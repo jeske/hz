@@ -11,7 +11,7 @@ LIBS = $(DX_LIBS) $(LUA_LIBS) -lm -mwindows
 
 TARGET=hz.exe
 PLATFORM_OBJS = hzres.o i_console.o i_draw.o i_video.o i_system.o i_sprtet.o \
-           i_main.o hndlmgr.o drawhndl.o ddutil.o control.o platform.o
+           i_main.o hndlmgr.o ddutil.o control.o platform.o
 
 
 # for the windows program icon and some other junk

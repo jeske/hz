@@ -656,7 +656,7 @@ void bltSplash (void)
     if (!I_loadImage (&im, "splash.bmp", 0))
     {
       I_doBlit (&dest, NULL, &im);
-      FlipScreen ();
+      I_FlipScreen ();
     }
     else
       I_Error ("Error loading splash.bmp");
@@ -664,7 +664,7 @@ void bltSplash (void)
   else
   {
     I_doBlit (&dest, NULL, &im);
-    FlipScreen ();
+    I_FlipScreen ();
   }
 
   // delete image
@@ -682,7 +682,7 @@ BOOL I_vid_setpalette (const char *filename)
   return TRUE;
 }
 
-void EraseScreen( void )
+void I_EraseScreen( void )
 {
 //  XClearWindow (X_display, X_mainWindow);
 //  XFlush (X_display);
@@ -690,7 +690,7 @@ void EraseScreen( void )
       X_height);
 }
 
-void FlipScreen( void )
+void I_FlipScreen( void )
 {
 //  I_Message ("FlipScreen()\n");
   XCopyArea (X_display, pBackBuffer, X_mainWindow, X_gc, 0, 0, X_width, 

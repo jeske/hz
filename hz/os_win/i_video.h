@@ -12,6 +12,8 @@
 #include <ddraw.h>
 #include "i_sprtet.h"
 
+extern int full_screen; // running in full screen mode?
+
 extern LPDIRECTDRAW            lpDD;
 extern DWORD                   dwTransType;
 extern LPDIRECTDRAWSURFACE     lpFrontBuffer;
@@ -37,5 +39,10 @@ void I_TextOut (DRAWABLE *draw, int x, int y, char *s, int len);
 void I_ClearDrawable (DRAWABLE *draw, int x1, int y1, int x2, int y2);
 int I_GetDrawContext (DRAWABLE *draw);
 int I_ReleaseDrawContext (DRAWABLE *draw);
+
+int     RestoreSurfaces( void );
+void    I_EraseScreen( void );
+void    I_FlipScreen( void );
+
 
 #endif

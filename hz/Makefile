@@ -1,4 +1,3 @@
-
 all: $(TARGET) install
 
 include platform.conf
@@ -45,7 +44,11 @@ clean:
 # this make depend needs to include all source files, not just those
 # in the current directory.... - jeske
 
-make.depend: Makefile make.conf.$(PLATFORM)
+# someday this depend stuff should depend on these files
+# but right now it dosn't even include all .cpp files....
+# Makefile make.conf.$(PLATFORM)
+
+make.depend: 
 	@echo "*****"
 	@echo "***** Generating make.depend"
 	@echo "*****"

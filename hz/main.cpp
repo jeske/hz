@@ -476,10 +476,10 @@ void DrawDisplayList( void )
 
 	already_drawing = 1;
 
-	EraseScreen();
+	I_EraseScreen();
 	paintScreen(); // C passthrough to C++ View classes in main.cpp
 	// we should sleep here to lock the framerate
-	FlipScreen();
+	I_FlipScreen();
 
 	already_drawing = 0;
 }
