@@ -31,15 +31,10 @@ public:
 	
 };
 
-enum
+enum sprite_type_enum
 {
-    OBJ_DONUT = 0,
-    OBJ_PYRAMID,
-    OBJ_CUBE,
-    OBJ_SPHERE,
-    OBJ_SHIP,
-    OBJ_BULLET,
-	OBJ_LUA
+  OBJ_UNKNOWN = 0,
+  OBJ_LUA
 };
 
 
@@ -82,72 +77,81 @@ struct img_frame_state_struct {
 
 class Sprite  {
 
-private:
-	int should_die;
-	
-	void addObjectToMap(Sprite **map_loc); // add me to a map location
-	char *obj_type_string;
-
+ private:
+	// ----------- for spritelist
 	friend class SpriteList; // these are for SpriteList fast access
-		void linkObject(Sprite *);
-		Sprite *next; // link to next node
-		Sprite *prev; // link to previous node
-		SHORT  type;  // object type
-		void doTick(unsigned int tickDiff); // move the object
-		void doAITick(unsigned int tickDiff);
+	void linkObject(Sprite *);
+	Sprite *next; // link to next node
+	Sprite *prev; // link to previous node
+        // --------------------------
 	
-	int mynumber; // my sprite number...
-
-
+	// ----------- for Map and ViewPort
 	friend class Map;
 	friend class ViewPort;
-		Sprite *tile_next; // link to next node on this tile location
-		unsigned char z_value; // 0 = stationary on map, 0xFF = TOP
-		Sprite **my_map_loc; // pointer to the link from the map to this list
-		int old_tile_x, old_tile_y; // "old" location in tile coordinates
-		Map *myMap;
-
-	void placeObject(Map *aMap); // place an object on the map
+	Sprite *tile_next; // link to next node on this tile location
+	unsigned char z_value; // 0 = stationary on map, 0xFF = TOP
+	Sprite **my_map_loc; // pointer to the link from the map to this list
+	int old_tile_x, old_tile_y; // "old" location in tile coordinates
+	Map *myMap;
+	void addObjectToMap(Sprite **map_loc); // add me to a map location	
 	void removeObjectFromMap(); // removes myself from the map I'm in...
-	Sprite *checkCollision();
+	// --------------------------------
 
-	SpriteType *mySpriteTypeObj; // connection to my SpriteType
-	SpriteList *mySpriteList;
+ protected:
+	void placeObject(Map *aMap); // place an object on the map
+  	int should_die;
+ public:
+	enum sprite_type_enum type;  // object type
 
-public:
-	int myLuaMirror; // the "ref" for my Lua Mirror    <-- client
-	int myLuaServerMirror; // the "ref" for my Lua "server" Mirror   <-- server
-
-
-	int layer;
-	void setLayer(int new_layer);
-
+	int mynumber; // my sprite number...
+	char *obj_type_string;
 	double velx, vely; // x and y velocity (pixels/millisecond)
 	double posx, posy; // actual x and y position
-
 
 	Sprite(SpriteList *aList,SpriteType *a_type, double x, double y, 
 			double vx, double vy);
 	~Sprite(); // destructor
 
-	void SpriteSetup(SpriteList *aList, SHORT a_type, double x, double y, 
-			double vx, double vy);
+	virtual void SpriteTeardown();
 
 	
+	Sprite *checkCollision();
+		SpriteType *mySpriteTypeObj; // connection to my SpriteType
+	SpriteList *mySpriteList;
+	int layer;
+	void setLayer(int new_layer);
 	void goToLoc(double newx, double newy); // called indirectly from Lua thru C_obj_goto
 	void Die(void); // we should die!
-
-	int canCollide(void);
-
 	void Draw(int ul_x, int ul_y);
 	void DrawClipped(int ul_x, int ul_y, RECT *clip_rect);
 
 	// callbacks
+	virtual void doTick(unsigned int tickDiff) = 0; // move the object
+	virtual void doAITick(unsigned int tickDiff) = 0;
+	virtual int canCollide(void) = 0;
+	virtual int handleEvent(struct input_event *ev) = 0; // we want key events!
+	virtual const char *getPropertyStr(const char *propName) = 0; // get object property value
+};
+
+class LuaSprite : public Sprite {
+public:
+	int myLuaMirror; // the "ref" for my Lua Mirror    <-- client
+	int myLuaServerMirror; // the "ref" for my Lua "server" Mirror   <-- server
+
+	LuaSprite(SpriteList *aList,SpriteType *a_type, double x, double y, 
+			double vx, double vy);
+
+	virtual void SpriteTeardown();
+
+	// callbacks
+	virtual int canCollide(void);
+	virtual void doTick(unsigned int tickDiff); // move the object
+	virtual void doAITick(unsigned int tickDiff);
 	virtual int handleEvent(struct input_event *ev); // we want key events!
 	virtual const char *getPropertyStr(const char *propName); // get object property value
 };
 
-class AISprite : public Sprite {
+class AISprite : public LuaSprite {
 public:
 	void doAITick(unsigned int tickDiff); // do the AI
 	AISprite(SpriteList *aList, SHORT a_type, double x, double y, double vx, double vy);

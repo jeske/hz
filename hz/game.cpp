@@ -214,7 +214,7 @@ void C_obj_delete() {
 void C_addsprite() {
 	SpriteType *type;
 	const char *type_name;
-	Sprite *new_obj;
+	LuaSprite *new_obj;
 	double x = 0, y = 0, vx = 0, vy = 0;
 
 	lua_beginblock();
@@ -245,7 +245,7 @@ void C_addsprite() {
 	type = findSpriteType(type_name);
 	if (type) {
 		dbgMsg(c_excessive,"C_addsprite('%s',%f,%f,%f,%f).\n",type_name,x,y,vx,vy);
-		new_obj = new Sprite(defaultSpriteList, type , x,y,vx,vy);
+		new_obj = new LuaSprite(defaultSpriteList, type , x,y,vx,vy);
 		lua_pushobject(lua_getref(new_obj->myLuaServerMirror));
 	} else {
 		dbgMsg(l_error,"no such SpriteType! [%s]\n",type_name);
@@ -516,7 +516,7 @@ void setup_game(void)
 	type = findSpriteType("mainship");
 	if (type) {
 		dbgMsg(c_info,"adding SpriteType mainship\n");
-		sp = new Sprite(defaultSpriteList, type , 50.0,50.0,0.0,0.0);
+		sp = new LuaSprite(defaultSpriteList, type , 50.0,50.0,0.0,0.0);
 		// mainView->setShipSprite(sp);
 		mainViewPort->followSprite(sp);
 	} else {

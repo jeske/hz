@@ -49,233 +49,244 @@ SpriteList *defaultSpriteList = NULL;
 // class Sprite
 //   - a map sprite
 
-Sprite::Sprite(SpriteList *aList, SpriteType *a_type, double x, double y, double vx, double vy) {
-	dbgMsg(c_excessive,"Sprite::Sprite(), creating typed sprite\n");
-	mySpriteTypeObj = a_type;
-	
-	myMap = 0;
-	this->layer = 0; // set the start layer
-	 // call the standard init!
-	this->SpriteSetup(aList, OBJ_DONUT, x,y,vx,vy);
-}
-
 static int sprite_number = 0;
 
-void Sprite::SpriteSetup(SpriteList *aList, SHORT a_type, double x, double y, double vx, double vy) {
-	Sprite *new_node = this;
+Sprite::Sprite(SpriteList *aList, SpriteType *a_type, double x, double y, double vx, double vy) {
+	dbgMsg(c_excessive,"Sprite::Sprite(), creating typed sprite\n");
 
-	if (new_node == NULL) {
-		dbgMsg(c_error,"NULL ptr Sprite...\n");
-		return;
-	}
-
-	mySpriteList = aList;
-	// mySpriteTypeObj = NULL;
-
+	mySpriteTypeObj = a_type;
+	myMap = 0;
+	this->layer = 0; // set the start layer
 	this->should_die = 0;
 	this->next = this->prev = NULL;
-	this->type = a_type;
+	this->type = OBJ_UNKNOWN; // ?? 
 	this->tile_next = NULL;
 	this->z_value = 0;
 	this->my_map_loc = NULL;
 	this->old_tile_x = -1;
 	this->old_tile_y = -1;
 	this->mynumber = sprite_number++;
+	mySpriteList = aList;
 
-	if (mySpriteTypeObj) {
-		obj_type_string = mySpriteTypeObj->name();
+	Sprite *new_node = this;
+
+	if( x < 0.0) {// no position specified?
+	  new_node->posx = randDouble( 0.0, (double)MAX_DONUT_X );
+	  new_node->posy = randDouble( 0.0, (double)MAX_DONUT_Y );
 	} else {
-		dbgMsg(c_error,"constructed sprite without typeobj!\n");
-		obj_type_string = "unknown";
-	}
-
-		if( x < 0.0) {// no position specified?
-			new_node->posx = randDouble( 0.0, (double)MAX_DONUT_X );
-			new_node->posy = randDouble( 0.0, (double)MAX_DONUT_Y );
-		} else {
-			new_node->posx = x;
-			new_node->posy = y;
-		}
-
-		//new_node->posx = x;
-		//new_node->posy = y;
-		new_node->velx = vx;
-		new_node->vely = vy;
-
-
-//		new_node->surf = NULL;
-
-		
-	dbgMsg(c_excessive,"Sprite::Sprite(), going to add to SpriteList\n");
-	
-	if (mySpriteList) {
-		mySpriteList->addSprite(this);
+	  new_node->posx = x;
+	  new_node->posy = y;
 	}
 	
-	dbgMsg(c_excessive,"Sprite::Sprite(), added to spritelist (%s:%d)\n",obj_type_string,mynumber);
-	
-	dbgMsg(c_excessive,"Sprite::Sprite(), going to add to Lua object list\n");
-	
-	// see if there is an "objects" table for the destination
-	// to go in, and
-	// see if there is an "object_types" table for us to get the
-	// template from...
-	
-	lua_beginblock();
-	
-	myLuaMirror = -1;
-	
-	lua_Object objects_tbl = lua_getglobal("objects");
-	lua_Object object_types_tbl = lua_getglobal("object_types");
-	if (!lua_istable(objects_tbl) || !lua_istable(object_types_tbl)) {
-		dbgMsg(c_error,"ERR: No 'objects' table to hold new Lua mirror, _OR_ no 'object_types' table\n");
-	} else {
-		// get _THIS_ object type from the "object_types" table
-		// of templates...
-		lua_pushobject(object_types_tbl);
-		lua_pushstring(obj_type_string);
-		lua_Object objptr = lua_gettable();
-
-		if (lua_istable(objptr)) {
-			// get the "new" constructor from that object
-			lua_pushobject(objptr);
-			lua_pushstring("new");
-			lua_Object constructor_fn = lua_gettable();
-
-
-			if (lua_isfunction(constructor_fn)) {
-				
-				// create the new list with "objnum" set to the correct 
-				// place (i.e. here)
-				lua_Object newObj = lua_createtable();
-				lua_pushobject(newObj);
-				lua_pushstring("objnum");
-				lua_pushuserdata((void *)this);
-				lua_settable();
-
-
-				
-				// now we need to call the constructor with this new object
-				// don't forget it's a METHOD!!!
-				lua_pushobject(objptr); // push SELF!
-				lua_pushobject(newObj); // push the new list...
-				if (lua_callfunction(constructor_fn)) {
-					if (consoleView) {
-						dbgMsg(l_error,"constructor call failed..\n");
-					}
-				}
-
-				lua_Object initializedObj = lua_getresult(1);
-
-				if (lua_istable(initializedObj)) {
-					
-					// now we need to store the new object in the "objects" table
-					lua_pushobject(objects_tbl);
-					lua_pushnumber((float)mynumber); // my object number
-					lua_pushobject(initializedObj);
-					lua_settable();
-				
-					// we need a "ref" for the object, but DON'T lock it!
-					lua_pushobject(initializedObj);
-					myLuaMirror = lua_ref(0);
-				} else {
-					dbgMsg(l_error,"object type 'new' constructor didn't return a table\n");
-				}
-			} else {
-				dbgMsg(l_error,"objtype has no 'new' constructor\n");
-			}
-		} else {
-			dbgMsg(l_error,"objtype (%s) not an object\n",obj_type_string);
-		}
-	}
-
-	lua_endblock();
-
-	dbgMsg(c_excessive,"Sprite::Sprite(), added to Lua object list\n");
-//	lua_dostring("printTables(objects);");
-
-/*
- * server side Lua mirror 
- */
-
-
-	// see if there is an "objects" table for the destination
-	// to go in, and
-	// see if there is an "object_types" table for us to get the
-	// template from...
-
-	lua_beginblock();
-
-	myLuaServerMirror = -1;
-
-	lua_Object srvobjs_tbl = lua_getglobal("srvobjs");
-	lua_Object srvobj_types_tbl = lua_getglobal("srvobj_types");
-	if (!lua_istable(srvobjs_tbl) || !lua_istable(srvobj_types_tbl)) {
-		dbgMsg(l_error,"ERR: No 'srvobjs' table to hold new Lua Server mirror, _OR_ no 'srvobj_types' table\n");
-	} else {
-		// get _THIS_ object type from the "srvobj_type" table
-		// of templates...
-		lua_pushobject(srvobj_types_tbl);
-		lua_pushstring(obj_type_string);
-		lua_Object objptr = lua_gettable();
-
-		if (lua_istable(objptr)) {
-			// get the "new" constructor from that object
-			lua_pushobject(objptr);
-			lua_pushstring("new");
-			lua_Object constructor_fn = lua_gettable();
-
-
-			if (lua_isfunction(constructor_fn)) {
-				
-				// create the new list with "objnum" set to the correct 
-				// place (i.e. here)
-				lua_Object newObj = lua_createtable();
-				lua_pushobject(newObj);
-				lua_pushstring("objnum");
-				lua_pushuserdata((void *)this);
-				lua_settable();
-				
-				// now we need to call the constructor with this new object
-				// don't forget it's a METHOD!!!
-				lua_pushobject(objptr); // push SELF!
-				lua_pushobject(newObj); // push the new list...
-				if (lua_callfunction(constructor_fn)) {
-					dbgMsg(l_error,"constructor call failed..\n");
-				}
-
-				lua_Object initializedObj = lua_getresult(1);
-
-				if (lua_istable(initializedObj)) {
-					
-					// now we need to store the new object in the "objects" table
-					lua_pushobject(srvobjs_tbl);
-					lua_pushnumber((float)mynumber); // my object number
-					lua_pushobject(initializedObj);
-					lua_settable();
-				
-					// we need a "ref" for the object, but DON'T lock it!
-					lua_pushobject(initializedObj);
-					myLuaServerMirror = lua_ref(0);
-				} else {
-					dbgMsg(l_error,"srv-object type 'new' constructor didn't return a table\n");
-				}
-			} else {
-				dbgMsg(l_error,"srv-objtype has no 'new' constructor\n");
-			}
-		} else {
-			dbgMsg(l_error,"srv-objtype (%s) not a lua obj_type\n",obj_type_string);
-		}
-	}
-
-	lua_endblock();
-
+	//new_node->posx = x;
+	//new_node->posy = y;
+	new_node->velx = vx;
+	new_node->vely = vy;
 
 }
 
+LuaSprite::LuaSprite(SpriteList *aList,SpriteType *a_type, double x, double y, 
+		     double vx, double vy) : Sprite(aList,a_type,x,y,vx,vy) {
 
-// destructor
+  this->type = OBJ_LUA; 
+  
+  Sprite *new_node = this;
+  
+  if (new_node == NULL) {
+    dbgMsg(c_error,"NULL ptr Sprite...\n");
+    return;
+  }
+  
+  if (mySpriteTypeObj) {
+    obj_type_string = mySpriteTypeObj->name();
+  } else {
+    dbgMsg(c_error,"constructed sprite without typeobj!\n");
+    obj_type_string = "unknown";
+  }
+  
+  dbgMsg(c_excessive,"Sprite::Sprite(), going to add to SpriteList\n");
+  
+  if (mySpriteList) {
+    mySpriteList->addSprite(this);
+  }
+  
+  dbgMsg(c_excessive,"Sprite::Sprite(), added to spritelist (%s:%d)\n",obj_type_string,mynumber);
+  
+  dbgMsg(c_excessive,"Sprite::Sprite(), going to add to Lua object list\n");
+  
+  // see if there is an "objects" table for the destination
+  // to go in, and
+  // see if there is an "object_types" table for us to get the
+  // template from...
+  
+  lua_beginblock();
+  
+  myLuaMirror = -1;
+  
+  lua_Object objects_tbl = lua_getglobal("objects");
+  lua_Object object_types_tbl = lua_getglobal("object_types");
+  if (!lua_istable(objects_tbl) || !lua_istable(object_types_tbl)) {
+    dbgMsg(c_error,"ERR: No 'objects' table to hold new Lua mirror, _OR_ no 'object_types' table\n");
+  } else {
+    // get _THIS_ object type from the "object_types" table
+    // of templates...
+    lua_pushobject(object_types_tbl);
+    lua_pushstring(obj_type_string);
+    lua_Object objptr = lua_gettable();
+    
+    if (lua_istable(objptr)) {
+      // get the "new" constructor from that object
+      lua_pushobject(objptr);
+      lua_pushstring("new");
+      lua_Object constructor_fn = lua_gettable();
+      
+      
+      if (lua_isfunction(constructor_fn)) {
+	
+	// create the new list with "objnum" set to the correct 
+	// place (i.e. here)
+	lua_Object newObj = lua_createtable();
+	lua_pushobject(newObj);
+	lua_pushstring("objnum");
+	lua_pushuserdata((void *)this);
+	lua_settable();
+	
+	
+	
+	// now we need to call the constructor with this new object
+	// don't forget it's a METHOD!!!
+	lua_pushobject(objptr); // push SELF!
+	lua_pushobject(newObj); // push the new list...
+	if (lua_callfunction(constructor_fn)) {
+	  if (consoleView) {
+	    dbgMsg(l_error,"constructor call failed..\n");
+	  }
+	}
+	
+	lua_Object initializedObj = lua_getresult(1);
+	
+	if (lua_istable(initializedObj)) {
+	  
+	  // now we need to store the new object in the "objects" table
+	  lua_pushobject(objects_tbl);
+	  lua_pushnumber((float)mynumber); // my object number
+	  lua_pushobject(initializedObj);
+	  lua_settable();
+	  
+	  // we need a "ref" for the object, but DON'T lock it!
+	  lua_pushobject(initializedObj);
+	  myLuaMirror = lua_ref(0);
+	} else {
+	  dbgMsg(l_error,"object type 'new' constructor didn't return a table\n");
+	}
+      } else {
+	dbgMsg(l_error,"objtype has no 'new' constructor\n");
+      }
+    } else {
+      dbgMsg(l_error,"objtype (%s) not an object\n",obj_type_string);
+    }
+  }
+  
+  lua_endblock();
+  
+  dbgMsg(c_excessive,"Sprite::Sprite(), added to Lua object list\n");
+  //	lua_dostring("printTables(objects);");
+  
+  /*
+   * server side Lua mirror 
+   */
+  
+  
+  // see if there is an "objects" table for the destination
+  // to go in, and
+  // see if there is an "object_types" table for us to get the
+  // template from...
+  
+  lua_beginblock();
+  
+  myLuaServerMirror = -1;
+  
+  lua_Object srvobjs_tbl = lua_getglobal("srvobjs");
+  lua_Object srvobj_types_tbl = lua_getglobal("srvobj_types");
+  if (!lua_istable(srvobjs_tbl) || !lua_istable(srvobj_types_tbl)) {
+    dbgMsg(l_error,"ERR: No 'srvobjs' table to hold new Lua Server mirror, _OR_ no 'srvobj_types' table\n");
+  } else {
+    // get _THIS_ object type from the "srvobj_type" table
+    // of templates...
+    lua_pushobject(srvobj_types_tbl);
+    lua_pushstring(obj_type_string);
+    lua_Object objptr = lua_gettable();
+    
+    if (lua_istable(objptr)) {
+      // get the "new" constructor from that object
+      lua_pushobject(objptr);
+      lua_pushstring("new");
+      lua_Object constructor_fn = lua_gettable();
+      
+      
+      if (lua_isfunction(constructor_fn)) {
+	// create the new list with "objnum" set to the correct 
+	// place (i.e. here)
+	lua_Object newObj = lua_createtable();
+	lua_pushobject(newObj);
+	lua_pushstring("objnum");
+	lua_pushuserdata((void *)this);
+	lua_settable();
+	
+	// now we need to call the constructor with this new object
+	// don't forget it's a METHOD!!!
+	lua_pushobject(objptr); // push SELF!
+	lua_pushobject(newObj); // push the new list...
+	if (lua_callfunction(constructor_fn)) {
+	  dbgMsg(l_error,"constructor call failed..\n");
+	}
+	
+	lua_Object initializedObj = lua_getresult(1);
+	
+	if (lua_istable(initializedObj)) {
+	  
+	  // now we need to store the new object in the "objects" table
+	  lua_pushobject(srvobjs_tbl);
+	  lua_pushnumber((float)mynumber); // my object number
+	  lua_pushobject(initializedObj);
+	  lua_settable();
+	  
+	  // we need a "ref" for the object, but DON'T lock it!
+	  lua_pushobject(initializedObj);
+	  myLuaServerMirror = lua_ref(0);
+	} else {
+	  dbgMsg(l_error,"srv-object type 'new' constructor didn't return a table\n");
+	}
+      } else {
+	dbgMsg(l_error,"srv-objtype has no 'new' constructor\n");
+      }
+    } else {
+      dbgMsg(l_error,"srv-objtype (%s) not a lua obj_type\n",obj_type_string);
+    }
+  }
+  
+  lua_endblock();
+}
+
+
 Sprite::~Sprite() {
+
+  // sprite specific teardown
+  this->SpriteTeardown();
+
+  // remove us from the spritelist..
+  if (mySpriteList) {
+    mySpriteList->removeSprite(this);
+  }
+  // and from the map!
+  this->removeObjectFromMap();
+}
+
+void Sprite::SpriteTeardown() {
+  // default method
+}
+
+void LuaSprite::SpriteTeardown() {
 
 	// first, remove my Lua Mirror
 
@@ -300,12 +311,6 @@ Sprite::~Sprite() {
 	}
 
 	lua_endblock();
-
-	// now remove us from the map..
-	if (mySpriteList) {
-		mySpriteList->removeSprite(this);
-	}
-	this->removeObjectFromMap();
 }
 
 static int spriteListCount = 0;
@@ -402,7 +407,7 @@ void SpriteList::removeSprite(Sprite *aSprite) {
 
 int ai_funcs = -1;
 
-void Sprite::doAITick(unsigned int tickDiff) {
+void LuaSprite::doAITick(unsigned int tickDiff) {
 	lua_beginblock();
 
 	if (myLuaMirror != -1) {
@@ -434,7 +439,7 @@ void Sprite::doAITick(unsigned int tickDiff) {
 	lua_endblock();
 }
 
-const char *Sprite::getPropertyStr(const char *propName) {
+const char *LuaSprite::getPropertyStr(const char *propName) {
   lua_Object lua_obj = lua_getref(myLuaServerMirror);
 
   lua_pushobject(lua_obj);
@@ -449,7 +454,7 @@ const char *Sprite::getPropertyStr(const char *propName) {
   }
 }
 
-int Sprite::handleEvent(struct input_event *ev) { // we want key events!
+int LuaSprite::handleEvent(struct input_event *ev) { // we want key events!
 	if (ev->dev_type == DT_KEYBOARD) {
 
 		if (ev->dev.keyboard.mask & KM_KEYUP) {
@@ -566,119 +571,120 @@ int Sprite::handleEvent(struct input_event *ev) { // we want key events!
 }
 
 
-void Sprite::doTick(unsigned int tickDiff) {
-	Sprite *ptr = this;
-	Sprite *target = this;
-	double maxx, maxy;
-	
-	ptr->posx  += ptr->velx  * (double)tickDiff;
-	ptr->posy  += ptr->vely  * (double)tickDiff;
-	
-	// somewhere here we need to figure out how to rely on the real
-	// map size!
-	maxx = (double) MAX_DONUT_X;
-	maxy = (double) MAX_DONUT_Y;
-
-	// here we'll call the mirror's doTick
-
-	lua_beginblock();
-
-	if (myLuaServerMirror != -1) {
-		lua_Object temp_obj = lua_getref(myLuaServerMirror);
-		if (!lua_istable(temp_obj)) {
-			myLuaServerMirror = -1;
-			dbgMsg(l_error,"Obj: lost server sprite ref\n");
-		}
-
-		lua_pushobject(temp_obj);
-		lua_pushstring("doTick");
-		lua_Object fnobj = lua_gettable();
-		if (lua_isfunction(fnobj)) {
-			// it's a function, so call it!
-
-			// actually, it's a METHOD!
-			lua_pushobject(temp_obj);	// push SELF!
-			lua_pushnumber((float)tickDiff);	// push the tick Count
-			int fn_result = lua_callfunction(fnobj);
-			if (!fn_result) {
+void LuaSprite::doTick(unsigned int tickDiff) {
+  LuaSprite *ptr = this;
+  Sprite *target = this;
+  double maxx, maxy;
+  
+  ptr->posx  += ptr->velx  * (double)tickDiff;
+  ptr->posy  += ptr->vely  * (double)tickDiff;
+  
+  // somewhere here we need to figure out how to rely on the real
+  // map size!
+  maxx = (double) MAX_DONUT_X;
+  maxy = (double) MAX_DONUT_Y;
+  
+  // here we'll call the mirror's doTick
+  
+  lua_beginblock();
+  
+  if (myLuaServerMirror != -1) {
+    lua_Object temp_obj = lua_getref(myLuaServerMirror);
+    if (!lua_istable(temp_obj)) {
+      myLuaServerMirror = -1;
+      dbgMsg(l_error,"Obj: lost server sprite ref\n");
+    }
+    
+    lua_pushobject(temp_obj);
+    lua_pushstring("doTick");
+    lua_Object fnobj = lua_gettable();
+    if (lua_isfunction(fnobj)) {
+      // it's a function, so call it!
+      
+      // actually, it's a METHOD!
+      lua_pushobject(temp_obj);	// push SELF!
+      lua_pushnumber((float)tickDiff);	// push the tick Count
+      int fn_result = lua_callfunction(fnobj);
+      if (!fn_result) {
 				// no error!
-			}
-		}
-	
-	}
-
-	lua_endblock();
-
-	if (this->should_die) {
-		delete this; // probably not the best thing to do, but it works
-		return;
-	}
-	
-
-	// here is the "bounce" on the edge of the map
-			
-			if( ptr->posx > maxx )
-			{
-				ptr->posx = maxx;
-				ptr->velx = -ptr->velx / 2;
-			}
-			else if ( ptr->posx < 0 )
-			{
-				ptr->posx =0;
-				ptr->velx = -ptr->velx;
-			}
-			if( ptr->posy > maxy )
-			{
-				ptr->posy = maxy;
-				ptr->vely = -ptr->vely / 2;
-			}
-			else if ( ptr->posy < 0 )
-			{
-				ptr->posy =0;
-				ptr->vely = -ptr->vely;
-			}
-			ptr->placeObject(mainMap);		
-		
-
-
-
-		// check for collision
-		Sprite *obj_hit;
-		if (obj_hit = this->checkCollision()) {
+      }
+    }
+    
+  }
+  
+  lua_endblock();
+  
+  if (this->should_die) {
+    delete this; // probably not the best thing to do, but it works
+    return;
+  }
+  
+  
+  // here is the "bounce" on the edge of the map
+  
+  if( ptr->posx > maxx ) {
+      ptr->posx = maxx;
+      ptr->velx = -ptr->velx / 2;
+    }
+  else if ( ptr->posx < 0 ) {
+      ptr->posx =0;
+      ptr->velx = -ptr->velx;
+    }
+  if( ptr->posy > maxy ) {
+      ptr->posy = maxy;
+      ptr->vely = -ptr->vely / 2;
+    }
+  else if ( ptr->posy < 0 ) {
+      ptr->posy =0;
+      ptr->vely = -ptr->vely;
+    }
+  ptr->placeObject(mainMap);		
+  
+  
+  
+  
+  // check for collision
+  Sprite *obj_hit;
+  if (obj_hit = this->checkCollision()) {
 				// There was a collision so send the ge_collision message...
-			lua_beginblock();
+    lua_beginblock();
+    
+    if (myLuaServerMirror != -1) {
+      lua_Object temp_obj = lua_getref(myLuaServerMirror);
+      if (!lua_istable(temp_obj)) {
+	myLuaServerMirror = -1;
+	dbgMsg(l_error,"SrvObj: lost sprite ref\n");
+      }
+      
+      lua_pushobject(temp_obj);
+      lua_pushstring("ge_collision");
+      lua_Object fnobj = lua_gettable();
 
-			if (myLuaServerMirror != -1) {
-				lua_Object temp_obj = lua_getref(myLuaServerMirror);
-				if (!lua_istable(temp_obj)) {
-					myLuaServerMirror = -1;
-					dbgMsg(l_error,"SrvObj: lost sprite ref\n");
-				}
-
-				lua_pushobject(temp_obj);
-				lua_pushstring("ge_collision");
-				lua_Object fnobj = lua_gettable();
-
-				lua_Object whoIHit = lua_getref(obj_hit->myLuaServerMirror);
-
-				if (lua_isfunction(fnobj)) {
-					// it's a function, so call it!
-					
-					// actually, it's a METHOD!
-					lua_pushobject(temp_obj);	// push SELF!
-					lua_pushnumber((float)posx);		// xposition
-					lua_pushnumber((float)posy);		// yposition
-					lua_pushobject(whoIHit);	// push the object I hit!
-					int fn_result = lua_callfunction(fnobj);
-					if (!fn_result) {
-						// no error!
-					}
-				}
-				
-			}
-			
-			lua_endblock();
-		} // end of collision check
+      if (obj_hit->type == OBJ_LUA) {
+	LuaSprite *obj_hit_luaSprite = (LuaSprite *)obj_hit;
+	lua_Object whoIHit = lua_getref(obj_hit_luaSprite->myLuaServerMirror);
+      
+	if (lua_isfunction(fnobj)) {
+	  // it's a function, so call it!
+	
+	  // actually, it's a METHOD!
+	  lua_pushobject(temp_obj);	// push SELF!
+	  lua_pushnumber((float)posx);		// xposition
+	  lua_pushnumber((float)posy);		// yposition
+	  lua_pushobject(whoIHit);	// push the object I hit!
+	  int fn_result = lua_callfunction(fnobj);
+	  if (!fn_result) {
+	    // no error!
+	  }
+	}
+      } else {	// we couldn't cast to a LuaSprite!!!
+	// don't even notify about the collision
+      }
+      
+    }
+    
+    lua_endblock();
+  } // end of collision check
 }
 
 
@@ -711,7 +717,7 @@ int map_dxdy[MAP_DXDY_COUNT][2] = {
 
 // tells the world if we are 'nocollide = 1' or not...
 
-int Sprite::canCollide() {
+int LuaSprite::canCollide() {
 	int retval = 0; 
 
 	lua_beginblock();
