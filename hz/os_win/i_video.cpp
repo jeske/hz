@@ -40,9 +40,11 @@
 
 void bltText( char *num, int x, int y );
 
-LPDIRECTDRAW            lpDD;
-LPDIRECTDRAWSURFACE     lpFrontBuffer;
-LPDIRECTDRAWSURFACE     lpBackBuffer;
+HWND                    hWndMain;
+LPDIRECTDRAW            lpDD = 0;
+LPDIRECTDRAWSURFACE     lpFrontBuffer = 0;
+LPDIRECTDRAWSURFACE     lpBackBuffer = 0;
+LPDIRECTDRAWCLIPPER     lpClipper = 0;
 DWORD                   dwTransType;
 int                     full_screen = 1; 
 
@@ -57,6 +59,7 @@ BOOL initAppWindow( HINSTANCE hInstance, int nCmdShow )
 {
     WNDCLASS    wc;
     BOOL        rc;
+
 
     wc.style = CS_DBLCLKS;
     wc.lpfnWndProc = MainWndproc;
@@ -74,28 +77,46 @@ BOOL initAppWindow( HINSTANCE hInstance, int nCmdShow )
         return FALSE;
     }
 
-    hWndMain = CreateWindowEx(0,  // WS_EX_TOPMOST,
-        "SSGameClass",
-        "HZ",
-        WS_VISIBLE | // so we don't have to call ShowWindow
-        WS_POPUP |   // non-app window
-        WS_SYSMENU,  // so we get an icon in the tray
-        500, // x, we are going to put it mostly off the screen because
-        500, // y, DirectX is fucked...
-        GetSystemMetrics(SM_CXSCREEN),
-        GetSystemMetrics(SM_CYSCREEN),
-        (HWND) NULL,
-        (HMENU) NULL,
-        (HINSTANCE) hInstance,
-        (LPVOID) NULL );
+    if (!full_screen) { // windowed!
 
-    if( !hWndMain )
-    {
-        return FALSE;
+      hWndMain = CreateWindowEx(0,  // WS_EX_TOPMOST,
+				"SSGameClass",
+				"HZ",
+				WS_VISIBLE |
+				WS_SYSMENU,  // so we get an icon in the tray
+				10, // x, we are going to put it mostly off the screen because
+				10, // y, DirectX is fucked...
+				ScreenX,
+				ScreenY,
+				(HWND) NULL,
+				(HMENU) NULL,
+				(HINSTANCE) hInstance,
+				(LPVOID) NULL );
+
+
+    } else { // full screen!
+      hWndMain = CreateWindowEx(0,  // WS_EX_TOPMOST,
+				"SSGameClass",
+				"HZ",
+				WS_VISIBLE | // so we don't have to call ShowWindow
+				WS_POPUP |   // non-app window
+				WS_SYSMENU,  // so we get an icon in the tray
+				500, // x, we are going to put it mostly off the screen because
+				500, // y, DirectX is fucked...
+				GetSystemMetrics(SM_CXSCREEN),
+				GetSystemMetrics(SM_CYSCREEN),
+				(HWND) NULL,
+				(HMENU) NULL,
+				(HINSTANCE) hInstance,
+				(LPVOID) NULL );
+            
     }
-
+    if( !hWndMain )	{
+      return CleanupAndExit("couldn't create main window!");
+    }
+    
     UpdateWindow( hWndMain );
-
+    
     return TRUE;
 
 } /* initAppWindow */
@@ -133,9 +154,58 @@ BOOL I_InitVideo( void )
     if( bTest )
         ShowLevelCount = 1000;
 
-    if( bUseEmulation )
+    if (!full_screen) {
+      // ---------------------------- WINDOWED ------------------------------
+
+      ddrval = DirectDrawCreate( NULL, &lpDD, NULL );
+      if (ddrval != DD_OK) {
+	return CleanupAndExit("W: DirectDrawCreate Failed!");
+      }
+
+      ddrval = lpDD->SetCooperativeLevel(hWndMain,DDSCL_NORMAL);
+      if (ddrval != DD_OK) {
+	return CleanupAndExit("W: DDSetCooperativeLevel Failed");
+      }
+      memset( &ddsd, 0, sizeof( ddsd ) );
+      ddsd.dwSize = sizeof( ddsd );
+      ddsd.dwFlags = DDSD_CAPS;
+      ddsd.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE;
+
+      ddrval = lpDD->CreateSurface(&ddsd, &lpFrontBuffer, NULL );
+      if (ddrval != DD_OK) {
+	return CleanupAndExit("W: DDCreateSurface for FrontBuffer Failed!");
+      }
+
+      memset( &ddsd, 0, sizeof( ddsd ) );
+      ddsd.dwSize = sizeof( ddsd );
+      ddsd.dwFlags = DDSD_CAPS | DDSD_HEIGHT | DDSD_WIDTH;
+      ddsd.ddsCaps.dwCaps = DDSCAPS_OFFSCREENPLAIN;
+      ddsd.dwWidth = ScreenX;
+      ddsd.dwHeight = ScreenY;
+      
+      ddrval = lpDD->CreateSurface(&ddsd, &lpBackBuffer, NULL );
+      
+      if( ddrval != DD_OK ) {
+	return CleanupAndExit("CreateSurface BacktBuffer Failed!");
+      }
+
+      ddrval = lpDD->CreateClipper(0, &lpClipper, NULL);
+      if (ddrval != DD_OK) {
+	return CleanupAndExit("DDClipper create failed");
+      }
+
+      ddrval = lpClipper->SetHWnd(0,hWndMain);
+      if (ddrval != DD_OK) {
+	return CleanupAndExit("DDClipper couldn't attach to hWndMain");
+      }
+
+    } else { // full_screen!
+      // ---------------------------- FULL SCREEN ---------------------------
+
+      if( bUseEmulation ) {
         ddrval = DirectDrawCreate( (GUID *)DDCREATE_EMULATIONONLY, &lpDD, NULL );
-    else
+      }
+      else
         ddrval = DirectDrawCreate( NULL, &lpDD, NULL );
 
     if( ddrval != DD_OK )
@@ -146,11 +216,7 @@ BOOL I_InitVideo( void )
 					DDSCL_EXCLUSIVE | DDSCL_FULLSCREEN  );
 		if( ddrval != DD_OK )
 			return CleanupAndExit("SetCooperativeLevel Failed");
-
-	    
 	}
-
-
 
     #ifdef NT_HACK
         DDSurfDesc.dwSize = sizeof(DDSurfDesc);
@@ -244,6 +310,8 @@ BOOL I_InitVideo( void )
     hndlMgr->addHandle(solidbrush = CreateSolidBrush(RGB(255,255,0)));
     if (!linepen || !blackpen || !blackbrush) {
       CleanupAndExit("Couldn't CreatePen() in ConsoleView::ConsoleView()");
+    }
+
     }
 
     return TRUE;
@@ -593,6 +661,8 @@ void I_FlipScreen( void )
 {
     HRESULT     ddrval;
 
+    if (full_screen) {
+
     // Flip the surfaces
     while( 1 )
     {
@@ -612,6 +682,23 @@ void I_FlipScreen( void )
         {
             break;
         }
+    }
+
+    } else { // windowed
+      RECT rcRectSrc, rcRectDest;
+      POINT p;
+
+      p.x = 0; p.y = 0;
+      ClientToScreen(hWndMain, &p);
+      GetClientRect(hWndMain,&rcRectDest);
+      OffsetRect(&rcRectDest,p.x,p.y);
+      SetRect(&rcRectSrc,0,0,ScreenX,ScreenY);
+      lpFrontBuffer->SetClipper(lpClipper);
+      ddrval = lpFrontBuffer->Blt(&rcRectDest,lpBackBuffer,&rcRectSrc,DDBLT_WAIT,NULL);
+
+      // not sure why this does not work, but it dosn't...
+      //ddrval = lpFrontBuffer->BltFast(rcRectDest.left,rcRectDest.top,lpBackBuffer,
+      //				      &rcRectSrc,DDBLTFAST_NOCOLORKEY | DDBLT_WAIT);
     }
 }
 

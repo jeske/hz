@@ -13,7 +13,7 @@
 #include "i_sprtet.h"
 
 extern int full_screen; // running in full screen mode?
-
+extern HWND                    hWndMain;
 extern LPDIRECTDRAW            lpDD;
 extern DWORD                   dwTransType;
 extern LPDIRECTDRAWSURFACE     lpFrontBuffer;

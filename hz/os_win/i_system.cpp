@@ -7,6 +7,7 @@
 // system dependent general stuff
 //
 
+#include <stdio.h>
 #include <string.h>
 
 #include "i_system.h"
@@ -35,45 +36,50 @@ const char *i_fix_path(const char *fix_path) {
   return fix_path;
 }
   
-int CleanupAndExit( char *err)
+int CleanupAndExit(char *err)
 {
-	dbgMsg(c_info,"CleanupAndExit:");
-	
-	delete hndlMgr;
-	hndlMgr = 0;
+  printf("CleanupAndExit: %s\n", err);
 
-//	should_die = 1;
+  if (hWndMain) {
+    MessageBox( hWndMain, err, "ERROR", MB_OK );
+    DestroyWindow(hWndMain);
+    hWndMain = NULL;
+  } else {
+    MessageBox( NULL, err, "ERROR", MB_OK );
+  }
 
-    // make the cursor visible
-    SetCursor(LoadCursor( NULL, IDC_ARROW ));
-    bMouseVisible = TRUE;
+  dbgMsg(c_info,"CleanupAndExit:");
+  dbgMsg(c_info,err);  
 
-    if( lpFrontBuffer != NULL )
-        lpFrontBuffer->Release();
+  if (hndlMgr) {
+    delete hndlMgr;
+    hndlMgr = 0;
+  }
+  
+  // should_die = 1;
 
-    if( lpDD != NULL )
-        lpDD->Release();
+  // make the cursor visible
+  SetCursor(LoadCursor( NULL, IDC_ARROW ));
+  bMouseVisible = TRUE;
 
-	if (realScreenView) {
-		delete realScreenView;
-	}
+  if( lpFrontBuffer != NULL )
+    lpFrontBuffer->Release();
 
-    //
-    // warn user if there is one
-    //
+  if( lpDD != NULL ) {
+    lpDD->Release();
+  }
+  if (realScreenView) {
+    delete realScreenView;
+  }
 
-    if( !bStress )
-    {
-        MessageBox( hWndMain, err, "ERROR", MB_OK );
-    }
-	exit(1);
-    //return FALSE; // exit(1);  !!!FIX!!!
-	return FALSE;
+  //
+  // warn user if there is one
+  //
+
+  exit(1); // FIX!!!!!! 
+
+  return FALSE;
 }
-
-
-
-
 
 //
 //

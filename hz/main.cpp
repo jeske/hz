@@ -434,7 +434,6 @@ DWORD                   lastInput = 0;
 BOOL                    lastThrust = FALSE;
 BOOL                    lastShield = FALSE;
 int                     showDelay = 0;
-HWND                    hWndMain;
 BOOL                    bShowFrameCount=TRUE;
 BOOL                    bIsActive;
 BOOL                    bMouseVisible = TRUE;

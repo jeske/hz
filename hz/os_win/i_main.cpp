@@ -72,6 +72,11 @@ int PASCAL WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
             bStress= TRUE;
             bTest = TRUE;
             break;
+	case 'w':
+	case 'W':
+	  full_screen = 0; // run in windowed mode...
+	  break;
+	  
         }
         while( IS_SPACE(*lpCmdLine) )
         {

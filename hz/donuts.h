@@ -74,7 +74,6 @@ extern DWORD                   lastInput;
 extern BOOL                    lastThrust;
 extern BOOL                    lastShield;
 extern int                     showDelay;
-extern HWND                    hWndMain;
 extern BOOL                    bShowFrameCount;
 extern BOOL                    bIsActive;
 extern BOOL                    bMouseVisible;
