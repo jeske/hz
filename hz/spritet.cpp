@@ -523,72 +523,14 @@ SpriteType::SpriteType(const char *name, lua_Object anObj) {
 
 }
 
-
-// this is the nastiest bit of platform specific code left in here...
-
-#ifdef OS_UNIX
+void SpriteType::loadImage(IMAGE *an_image, const char *image_name) 
+{
+  I_loadImage (an_image, image_name, 1);
+}
 
 void SpriteType::doBlit (RECT *dest, RECT *src, IMAGE *an_image) 
 {
   I_doBlit (dest, src, an_image);
 }
 
-void SpriteType::loadImage(IMAGE *an_image, const char *image_name) 
-{
-  I_loadImage (an_image, image_name, 1);
-}
 
-#else 
-
-#include "ddutil.h"
-
-void SpriteType::doBlit(RECT *dest, RECT *src, IMAGE *an_image) {
-	HRESULT ddrval;
-	if (src == NULL) {
-		src = &an_image->src;
-	}
-	do {
-				
-			/*
-			 *	ddrval = lpBackBuffer->BltFast(x,y, an_image->surf, 
-			 *	&(an_image->src), dwTransType  | DDBLTFAST_WAIT );
-			 */
-				
-			ddrval = lpBackBuffer->Blt(dest, an_image->surf, 
-							src, dwTransType | DDBLT_KEYSRC , NULL);
-
-			if (ddrval != DD_OK) {
-				if( ddrval == DDERR_SURFACELOST ) {
-					an_image->surf->Restore();
-				} else {
-					dbgMsg(c_error,"failed drawing image [%s] (ERR = %d)",an_image->name, ddrval);
-				}
-
-			/*
-			 * else if ( ddrval != DDERR_WASSTILLDRAWING ) {
-			 *    dbgMsg(c_error,"DDERR_WASSTILLDRAWING");
-			 *    Sleep(10);
-			 *    fail_count++;
-			 *    if (fail_count > 20) {
-			 *        return;
-			 *    }
-			 * }
-			 */
-
-			}
-		} while (ddrval == DDERR_WASSTILLDRAWING);
-}
-
-void SpriteType::loadImage(IMAGE *an_image, const char *image_name) {
-
-		an_image->name = strdup(image_name);
-		// load the image and put it somewhere!!!!
-		an_image->surf = DDLoadBitmap(lpDD, image_name, &(an_image->src), 0, 0); /* dx, dy */
-
-		if (an_image->surf) { // did the image load correctly? 
-			DDSetColorKey( an_image->surf, CLR_INVALID );
-		}
-}
-
-
-#endif

@@ -101,7 +101,7 @@ long FAR PASCAL MainWndproc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 			static int count = 0;
 			if (count) {
  				ev.dev_type = DT_KEYBOARD;
-				ev.dev.keyboard.mask = (enum keyboard_mask_enum)(KM_ASCII_KEY);
+				ev.dev.keyboard.mask = (keyboard_mask_enum)(KM_ASCII_KEY);
 				ev.dev.keyboard.ascii_code = wParam; // need to convert to ascii
 				realScreenView->inputEvent(&ev);
 			} else count++;
@@ -113,7 +113,7 @@ long FAR PASCAL MainWndproc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		// if there is a screen, then pass the key
 		if (realScreenView) {
  				ev.dev_type = DT_KEYBOARD;
-				ev.dev.keyboard.mask = (enum keyboard_mask_enum)(KM_KEYDOWN);
+				ev.dev.keyboard.mask = (keyboard_mask_enum)(KM_KEYDOWN);
 				ev.dev.keyboard.vk_code = wParam;
 				realScreenView->inputEvent(&ev);
 		}

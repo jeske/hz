@@ -29,22 +29,28 @@ int I_loadImage(IMAGE *an_image, const char *image_name,int is_sprite) {
 
   image_name = i_fix_path(image_name);
 
-		// strcpy(an_image->name,image_name);
-		an_image->name = strdup (image_name);
-		// load the image and put it somewhere!!!!
-		an_image->surf = DDLoadBitmap(lpDD, image_name, 
+  // strcpy(an_image->name,image_name);
+  an_image->name = strdup (image_name);
+  // load the image and put it somewhere!!!!
+  an_image->surf = DDLoadBitmap(lpDD, image_name, 
 				&(an_image->src), 0, 0); /* dx, dy */
-
-		if (an_image->surf) { // did the image load correctly? 
-			DDSetColorKey( an_image->surf, RGB(0,0,0) );
-			an_image->width = an_image->src.right - an_image->src.left;
-			an_image->height = an_image->src.bottom - an_image->src.top;
-
-			g_images_loaded++;
-
-			return 0; // success!
-		} else {
-			return 1; // failure!
-		}
+  
+  if (an_image->surf) { // did the image load correctly? 
+    if (is_sprite) {
+      DDSetColorKey( an_image->surf, CLR_INVALID ); // pull color key out of pixel (0,0)
+    } else {
+      // these sprites really should not have source keying turned on
+      // during the blit!!! So we "greenscreen them"
+      DDSetColorKey( an_image->surf, RGB(0,0xFF,0) );
+    }
+    an_image->width = an_image->src.right - an_image->src.left;
+    an_image->height = an_image->src.bottom - an_image->src.top;
+    
+    g_images_loaded++;
+    
+    return 0; // success!
+  } else {
+    return 1; // failure!
+  }
 }
 
