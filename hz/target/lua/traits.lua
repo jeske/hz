@@ -188,7 +188,7 @@ doTick = function(self,tick_diff)
 
 	if self.carrying_unit then
 		x,y = C_obj_getPos(self.objnum);
-		C_obj_setPos(self.carrying_unit.objnum,x,y);
+		C_obj_setPos(self.carrying_unit.objnum,x,y);	
  	end
 
 
