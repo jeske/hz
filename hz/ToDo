@@ -1,27 +1,23 @@
-Date: Thu, 6 Aug 1998 02:57:06 -0700
+$Id: ToDo,v 1.2 2001/05/08 06:12:23 jeske Exp $
+$Date: 2001/05/08 06:12:23 $
 
-This is meant as a ToDo so that Brandon and I can sync up on
-programming stuff.
+ToDO:
 
-functionality:
-
-- Add "offsets" for individual image layers
-- propagate mouse/joystick events into lua
-- straighten out keyboard input handling
+- Add "x/y offsets" for individual image layers
+- propagate mouse/joystick events into lua (keyboard is there)
 - pixel-perfect collisions, collision should occur at collide location,
   not at object corner location.
 - objects need to be able to have owners other than the map. (i.e. for
-   carrying objects)
+   carrying objects) (possibly just object activation/visibility)
 - move the object 'map contact spot' to the center of the object, not the
-  upper left corner
+  upper left corner??
 - give sprites a 'layer number' and draw them in layer order (possibly put off)
-- tile properties in lua 
+- tile properties in lua
     movement_rate, terrain_type, fog of war data, etc...
+- tile animation
 - lua objects need to be able to see neighboring objects and access sprites
   by tile location.
 - lua ai events: (reached tile location, everytick, enemy_near)
-- come up with a way to draw to offscreen/system memory surfaces
-  (i.e. for horizontal status bars, etc)
 - raw map file data format
 - fix map/viewport so that it can hit the right and bottom edges of the
   map correctly.
@@ -40,9 +36,8 @@ functionality:
   - probably just make a unit which can 'link' to another tile, and 
     just compute the A* where that unit is one of the nodes which is
     crossed in the path.
-- need to be able to control view setup (i.e. main.cpp) from lua instead.
-  also need to be able to talk to these views when they are created.
-  
+- control view setup (i.e. main.cpp) from lua instead of main.cpp??
+   
 speedup/safety:
 
 - make sure image layers draw in the same order all the time
@@ -53,13 +48,10 @@ speedup/safety:
 - think about effectively managing offscreen memory
 - check and redo viewport math to make sure we can handle a different tile
   size
-- lua inheritence cache
 
 tools:
 - image reduction tools
   - smallest box possible
   - smallest 'rectangular diffs' from standard image
 
--- 
-David Jeske (N9LCA) + http://www.chat.net/~jeske/ + jeske@chat.net
 

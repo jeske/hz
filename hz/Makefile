@@ -1,25 +1,14 @@
 
-include make.conf
+include platform.conf
+
+include make.conf.$(PLATFORM)
+
+VIEW_OBJS = i_console.o i_draw.o i_video.o i_system.o i_sprtet.o i_view.o
 
 COMN_OBJS = bmp.o concmd.o donuts.o game.o image.o luabase.o main.o map.o \
 	misc.o net.o sprite.o spritet.o vconsole.o view.o # sound.o
 
-
-UNIX_OBJS = i_console.o i_draw.o i_video.o i_system.o i_sprtet.o i_main.o
-
-WIN_OBJS = hzres.o i_console.o i_draw.o i_video.o i_system.o i_sprtet.o \
-           i_main.o hndlmgr.o drawhndl.o ddutil.o control.o platform.o
-
-VIEW_OBJS = i_console.o i_draw.o i_video.o i_system.o i_sprtet.o i_view.o
-
-
-
-# OBJS = $(COMN_OBJS) $(UNIX_OBJS)         # UNIX
-# TARGET = xhz
-
-OBJS = $(COMN_OBJS) $(WIN_OBJS)           # WINDOWS
-TARGET = hz.exe
-
+OBJS = $(COMN_OBJS) $(PLATFORM_OBJS)
 
 .c.o:
 	$(CC) -c $(CFLAGS) $<
@@ -29,11 +18,12 @@ TARGET = hz.exe
 
 all: $(TARGET) install
 
-make.conf:
+platform.conf: 
+	@echo "**************************************************"
 	@echo "Choose a platform!"
-	@echo "Create a file 'make.conf' which includes the appropriate make.conf.\* file"
+	@echo "Create a file platform.conf with a line like 'PLATFORM=win'"
+	@echo ""
 	@exit 1
-
 
 $(TARGET): $(OBJS)
 	$(CPP) -o $(TARGET) $(OBJS) $(LIBS)	
@@ -51,8 +41,11 @@ clean:
 hzres.o:
 	windres os_win/hz.res hzres.o
 
+ifeq ($(PLATFORM),linux)
+# depend does not work right on Windows right now...
 dep:
 	mv Makefile Makefile.bak
 	awk -f depend.awk < Makefile.bak > Makefile
 	echo '# DO NOT REMOVE THIS LINE' >> Makefile
 	$(CPP) -MM $(CFLAGS) *.cpp os_unix/*.cpp >> Makefile
+endif
