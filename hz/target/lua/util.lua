@@ -181,7 +181,11 @@ function printTable(a_table)
 
 	print(a_table);
 	while i do
-		classname = a_table[i].obj_type_name;
+		if type(v) == "table" then
+			classname = a_table[i].obj_type_name;
+		else
+			classname = nil;
+		end
 		if classname then
 			print("  ["..type(i).."]: "..i.." = [object("..classname..")] ".. tostring(a_table[i]))
 		else
