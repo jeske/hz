@@ -566,15 +566,22 @@ void ViewPort::draw_curview() {
 	// the screen.
 
 
-	// now do the "inner" tiles, and draw sprites which can just
+	// do the "inner" tiles, and draw sprites which can just
 	// be blindly drawn in full.
 
-	tile_x = start_tile_x;
-	tile_y = start_tile_y;
+	int space_to_left = MIN(start_tile_x, sprite_clip_tiles_x);
+	int space_to_top  = MIN(start_tile_y, sprite_clip_tiles_y);
 
-	for (x_iter = sprite_clip_tiles_x ; x_iter<num_x ; x_iter++) {
+	tile_x = start_tile_x - space_to_left;
+	tile_y = start_tile_y - space_to_top;
+
+	// the overdraw is a little excessive. I just add alot of
+	// extra space and let clipping take care of the extra sprites
+	// for now.  - jeske
+
+	for (x_iter = 0 ; x_iter<num_x + space_to_left + space_to_left; x_iter++) {
 		int save_tile_y = tile_y;
-		for (y_iter = sprite_clip_tiles_y;y_iter<num_y;y_iter++) {
+		for (y_iter = 0;y_iter<num_y + space_to_top + space_to_top;y_iter++) {
 			if ((cur_obj = (myMap->objects_rowindex[tile_y])[tile_x]) != NULL) {
 				int fail_count = 0;
 
@@ -591,6 +598,7 @@ void ViewPort::draw_curview() {
 		tile_x++;
 	}
 
+#if 0
 	// now we need to draw the sprites which need to be clipped...
 	// first, off the left side
 
@@ -716,6 +724,7 @@ void ViewPort::draw_curview() {
 			tile_y = save_tile_y;
 			tile_x++;
 	}
+#endif
 
 	{
 		char s[100];

@@ -444,8 +444,8 @@ void init_map() {
 	fflush(stdout);
 
 	spriteTmplManager = new SpriteTmplManager;
-	spriteTmplManager->max_sprite.width = 32;  // this sets up the max sprite size
-	spriteTmplManager->max_sprite.height = 32;
+	spriteTmplManager->max_sprite.width = 250;  // this sets up the max sprite size
+	spriteTmplManager->max_sprite.height = 250;
 
 //	aTileSet->newTile(new Tile("std\\Tile00.bmp"));
 //	aTileSet->newTile(new Tile("std\\Tile01.bmp"));
