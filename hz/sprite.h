@@ -134,7 +134,10 @@ public:
 
 	void Draw(int ul_x, int ul_y);
 	void DrawClipped(int ul_x, int ul_y, RECT *clip_rect);
+
+	// callbacks
 	virtual int handleEvent(struct input_event *ev); // we want key events!
+	virtual const char *getPropertyStr(const char *propName); // get object property value
 };
 
 class AISprite : public Sprite {

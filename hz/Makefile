@@ -40,7 +40,7 @@ install: $(TARGET)
 	cp $(TARGET) target
 
 clean: 
-	rm -f $(TARGET) obj/*.o Makefile.bak
+	rm -f $(TARGET) obj/*.o Makefile.bak make.depend
 
 # this make depend needs to include all source files, not just those
 # in the current directory.... - jeske

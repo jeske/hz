@@ -88,7 +88,7 @@ int lookup_builtin(char *name) {
 
 }
 
-SPRITECHUNK *find_entry(IMAGELIST *a_list, char *string) {
+SPRITECHUNK *find_entry(IMAGELIST *a_list, const char *string) {
 	int curloc = 0;
 
 	while (curloc < a_list->list_len) {
@@ -109,9 +109,8 @@ char *SpriteType::name() {
 
 
 
-void SpriteType::DrawRecurse(Sprite *spr_obj,lua_Object lua_obj, int x, int y, SPRITECHUNK *cur, RECT *clip_rect) {
+void SpriteType::DrawRecurse(Sprite *spr_obj, int x, int y, SPRITECHUNK *cur, RECT *clip_rect) {
 	IMAGELIST *a_list;
-	lua_Object temp;
 
 	if (cur == NULL) {
 		dbgMsg(c_error,"DrawRecurse got NULL SPRITECHUNK *\n");
@@ -127,9 +126,9 @@ void SpriteType::DrawRecurse(Sprite *spr_obj,lua_Object lua_obj, int x, int y, S
 			case 0: // direction
 				if (a_list->list_len<40 || ((spr_obj->facing_dir < 0) || (spr_obj->facing_dir>39))) {
 					dbgMsg(l_info,"facing dir = %d\n",spr_obj->facing_dir);
-					DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[0].ptr, clip_rect); // chain down the first one
+					DrawRecurse(spr_obj, x, y, a_list->list[0].ptr, clip_rect); // chain down the first one
 				} else {
-					DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[spr_obj->facing_dir].ptr, clip_rect);
+					DrawRecurse(spr_obj, x, y, a_list->list[spr_obj->facing_dir].ptr, clip_rect);
 				}
 				break;
 #endif
@@ -137,38 +136,29 @@ void SpriteType::DrawRecurse(Sprite *spr_obj,lua_Object lua_obj, int x, int y, S
 				{ 
 					int i;
 					for (i = 0; i < a_list->list_len; i++) {
-						DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[i].ptr,clip_rect); // chain for each one
+						DrawRecurse(spr_obj, x, y, a_list->list[i].ptr,clip_rect); // chain for each one
 					}
 				}
 				break;
 			case 2: // frame
 			default: // unknown!
-				DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[0].ptr,clip_rect); // chain down the first one
+				DrawRecurse(spr_obj, x, y, a_list->list[0].ptr,clip_rect); // chain down the first one
 				break;
 			};
 
 		} else if (a_list->index_type == LUA_VAR) {
-			lua_pushobject(lua_obj);
-			lua_pushstring(a_list->luavar_name);
-			temp = lua_gettable();
+		  const char *str_value = spr_obj->getPropertyStr(a_list->luavar_name);
 
-
-			if (!lua_isstring(temp) && !lua_isnumber(temp)) {
+		  if (str_value == NULL) {
 				// var dosn't exist, just choose the first one
-				DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[0].ptr,clip_rect);
-			} else {
-				DrawRecurse(spr_obj, lua_obj, x, y, find_entry(a_list,lua_getstring(temp)),clip_rect);
-			}
-
-
+		    DrawRecurse(spr_obj, x, y, a_list->list[0].ptr,clip_rect);
+		  } else {
+		    DrawRecurse(spr_obj, x, y, find_entry(a_list,str_value),clip_rect);
+		  }
 		} else {
 			dbgMsg(l_error,"unknown list index_type\n");
 			return;
 		}
-
-
-		// lua_pushobject(myobj);
-		// lua_pushstring(
 
 	} else {
 		// we found the image so draw it!
@@ -252,13 +242,13 @@ void SpriteType::DrawRecurse(Sprite *spr_obj,lua_Object lua_obj, int x, int y, S
   }
 }
 
-void SpriteType::DrawAt(Sprite *spr_obj, lua_Object lua_obj, int x, int y) {
-	this->DrawRecurse(spr_obj, lua_obj, x,y,myImageList, NULL);
+void SpriteType::DrawAt(Sprite *spr_obj, int x, int y) {
+	this->DrawRecurse(spr_obj, x,y,myImageList, NULL);
 }
 
 
-void SpriteType::DrawAtClipped(Sprite *spr_obj, lua_Object lua_obj, int x, int y, RECT *clip_rect) {
-	this->DrawRecurse(spr_obj, lua_obj, x,y,myImageList, clip_rect);
+void SpriteType::DrawAtClipped(Sprite *spr_obj, int x, int y, RECT *clip_rect) {
+	this->DrawRecurse(spr_obj,  x,y,myImageList, clip_rect);
 }
 
 

@@ -458,6 +458,21 @@ void Sprite::doAITick(unsigned int tickDiff) {
 	lua_endblock();
 }
 
+const char *Sprite::getPropertyStr(const char *propName) {
+  lua_Object lua_obj = lua_getref(myLuaServerMirror);
+
+  lua_pushobject(lua_obj);
+  lua_pushstring(propName);
+  lua_Object temp = lua_gettable();
+
+  if (!lua_isstring(temp) && !lua_isnumber(temp)) {
+				// var dosn't exist, just choose the first one	
+    return NULL;
+  } else {
+    return lua_getstring(temp);
+  }
+}
+
 int Sprite::handleEvent(struct input_event *ev) { // we want key events!
 	if (ev->dev_type == DT_KEYBOARD) {
 
@@ -960,7 +975,7 @@ void Sprite::DrawClipped(int ul_x, int ul_y, RECT *clip_rect) {
 	if (mySpriteTypeObj) {
 
 		// we need to look up the correct image in the table
-		mySpriteTypeObj->DrawAtClipped(this,lua_getref(myLuaServerMirror),(int)this->posx - ul_x, (int)this->posy - ul_y, clip_rect);
+		mySpriteTypeObj->DrawAtClipped(this,(int)this->posx - ul_x, (int)this->posy - ul_y, clip_rect);
 		
 	} else {
 		consoleView->addText("sprite without typeobj!");
@@ -975,7 +990,7 @@ void Sprite::Draw(int ul_x, int ul_y) {
 	if (mySpriteTypeObj) {
 
 		// we need to look up the correct image in the table
-		mySpriteTypeObj->DrawAt(this,lua_getref(myLuaServerMirror),(int)this->posx - ul_x, (int)this->posy - ul_y);
+		mySpriteTypeObj->DrawAt(this,(int)this->posx - ul_x, (int)this->posy - ul_y);
 		
 	} else {
 		consoleView->addText("sprite without typeobj!");

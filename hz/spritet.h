@@ -65,9 +65,9 @@ private:
 public: 
 	SPRITECHUNK *myImageList;  // this is public for now!
 	char *name();
-	void SpriteType::DrawRecurse(Sprite *spr_obj, lua_Object lua_obj, int x, int y, SPRITECHUNK *cur, RECT *clip_rect);
-	void SpriteType::DrawAt(Sprite *spr_obj, lua_Object lua_obj, int x, int y);
-	void SpriteType::DrawAtClipped(Sprite *spr_obj, lua_Object lua_obj, int x, int y, RECT *clip_rect);
+	void SpriteType::DrawRecurse(Sprite *spr_obj, int x, int y, SPRITECHUNK *cur, RECT *clip_rect);
+	void SpriteType::DrawAt(Sprite *spr_obj, int x, int y);
+	void SpriteType::DrawAtClipped(Sprite *spr_obj, int x, int y, RECT *clip_rect);
 	void SpriteType::parseSpriteTable(SPRITECHUNK **dest, lua_Object a_table);
 	SpriteType(const char *name, lua_Object anObj);
 };
