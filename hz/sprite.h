@@ -125,7 +125,7 @@ public:
 	int canCollide(void);
 
 	void Draw(int ul_x, int ul_y);
-	void DrawClipped(int ul_x, int ul_y);
+	void DrawClipped(int ul_x, int ul_y, RECT *clip_rect);
 	virtual int handleEvent(struct input_event *ev); // we want key events!
 };
 

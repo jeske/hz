@@ -106,7 +106,7 @@ char *SpriteType::name() {
 
 
 
-void SpriteType::DrawRecurse(Sprite *spr_obj,lua_Object lua_obj, int x, int y, SPRITECHUNK *cur) {
+void SpriteType::DrawRecurse(Sprite *spr_obj,lua_Object lua_obj, int x, int y, SPRITECHUNK *cur, RECT *clip_rect) {
 	IMAGELIST *a_list;
 	lua_Object temp;
 
@@ -124,9 +124,9 @@ void SpriteType::DrawRecurse(Sprite *spr_obj,lua_Object lua_obj, int x, int y, S
 			case 0: // direction
 				if (a_list->list_len<40 || ((spr_obj->facing_dir < 0) || (spr_obj->facing_dir>39))) {
 					dbgMsg(l_info,"facing dir = %d\n",spr_obj->facing_dir);
-					DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[0].ptr); // chain down the first one
+					DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[0].ptr, clip_rect); // chain down the first one
 				} else {
-					DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[spr_obj->facing_dir].ptr);
+					DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[spr_obj->facing_dir].ptr, clip_rect);
 				}
 				break;
 #endif
@@ -134,13 +134,13 @@ void SpriteType::DrawRecurse(Sprite *spr_obj,lua_Object lua_obj, int x, int y, S
 				{ 
 					int i;
 					for (i = 0; i < a_list->list_len; i++) {
-						DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[i].ptr); // chain for each one
+						DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[i].ptr,clip_rect); // chain for each one
 					}
 				}
 				break;
 			case 2: // frame
 			default: // unknown!
-				DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[0].ptr); // chain down the first one
+				DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[0].ptr,clip_rect); // chain down the first one
 				break;
 			};
 
@@ -152,9 +152,9 @@ void SpriteType::DrawRecurse(Sprite *spr_obj,lua_Object lua_obj, int x, int y, S
 
 			if (!lua_isstring(temp) && !lua_isnumber(temp)) {
 				// var dosn't exist, just choose the first one
-				DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[0].ptr);
+				DrawRecurse(spr_obj, lua_obj, x, y, a_list->list[0].ptr,clip_rect);
 			} else {
-				DrawRecurse(spr_obj, lua_obj, x, y, find_entry(a_list,lua_getstring(temp)));
+				DrawRecurse(spr_obj, lua_obj, x, y, find_entry(a_list,lua_getstring(temp)),clip_rect);
 			}
 
 
@@ -177,16 +177,70 @@ void SpriteType::DrawRecurse(Sprite *spr_obj,lua_Object lua_obj, int x, int y, S
 		dbgMsg(c_error,"drawing image [%s] (%d,%d)\n",an_image->name,an_image->src.right, an_image->src.bottom);
 		
 
-		dest.left = x;
-		dest.top = y;
-		dest.right = dest.left + an_image->src.right;
-		dest.bottom = dest.top + an_image->src.bottom;
-		
-		if ((x < 0) || (y < 0)) {
-			dbgMsg(c_error,"couldn't draw [%s] at (%d,%d)\n",an_image->name,x,y);
-			return;
+		if (clip_rect == NULL) {
+			// no clip!
+
+			dest.left = x;
+			dest.top = y;
+			dest.right = dest.left + an_image->src.right;
+			dest.bottom = dest.top + an_image->src.bottom;
+			
+			if ((x < 0) || (y < 0)) {
+				dbgMsg(c_error,"couldn't draw [%s] at (%d,%d)\n",an_image->name,x,y);
+				return;
+			}
+			this->doBlit(&dest, NULL, an_image);
+		} else {
+			int clip_dist;
+			RECT src = an_image->src;
+			// need to clip it!
+			dest.left = x;
+			dest.top = y;
+			dest.right = dest.left + an_image->src.right;
+			dest.bottom = dest.top + an_image->src.bottom;
+
+			
+			if ((dest.bottom < clip_rect->top) ||
+				(dest.right < clip_rect->left) ||
+				(dest.top > clip_rect->bottom) || 
+				(dest.left > clip_rect->right)) {
+				// completely out of the region
+				dbgMsg(c_error,"couldn't draw [%s] at (%d,%d)\n",an_image->name,x,y);
+				return;
+			}
+
+			if (dest.left < clip_rect->left) {
+				clip_dist = clip_rect->left - dest.left;
+				dest.left += clip_dist;
+				src.left  += clip_dist;
+				dbgMsg(c_error,"clipleft [%s] at (%d,%d)\n",an_image->name,x,y);
+			}
+
+			if (dest.top < clip_rect->top) {
+				clip_dist = clip_rect->top - dest.top;
+				dest.top += clip_dist;
+				src.top += clip_dist;
+				dbgMsg(c_error,"cliptop [%s] at (%d,%d)\n",an_image->name,x,y);
+			}
+
+			if (dest.right > clip_rect->right) {
+				clip_dist = dest.right - clip_rect->right;
+				dest.right -= clip_dist;
+				src.right  -= clip_dist;
+				dbgMsg(c_error,"clipright [%s] at (%d,%d)\n",an_image->name,x,y);
+			}
+
+			if (dest.bottom > clip_rect->bottom) {
+				clip_dist = dest.bottom - clip_rect->bottom;
+				dest.bottom -= clip_dist;
+				src.bottom -= clip_dist;
+				dbgMsg(c_error,"clipbottom [%s] at (%d,%d)\n",an_image->name,x,y);
+			}
+			
+			
+						
+			this->doBlit(&dest, &src, an_image);
 		}
-		this->doBlit(&dest, an_image);
 	} else {
 		dbgMsg(c_error,"no-image named [%s]\n",an_image->name);
 	}
@@ -196,8 +250,12 @@ void SpriteType::DrawRecurse(Sprite *spr_obj,lua_Object lua_obj, int x, int y, S
 }
 
 void SpriteType::DrawAt(Sprite *spr_obj, lua_Object lua_obj, int x, int y) {
-	this->DrawRecurse(spr_obj, lua_obj, x,y,myImageList);
+	this->DrawRecurse(spr_obj, lua_obj, x,y,myImageList, NULL);
+}
 
+
+void SpriteType::DrawAtClipped(Sprite *spr_obj, lua_Object lua_obj, int x, int y, RECT *clip_rect) {
+	this->DrawRecurse(spr_obj, lua_obj, x,y,myImageList, clip_rect);
 }
 
 

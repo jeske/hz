@@ -57,13 +57,14 @@ char *spriteTypeName(int num);
 class SpriteType {
 private:
 	char myName[30];
-	static void SpriteType::doBlit(RECT *dest, IMAGE *an_image); // platform specific blit function
+	static void SpriteType::doBlit(RECT *dest, RECT *src, IMAGE *an_image); // platform specific blit function
 	void SpriteType::loadImage(IMAGE *an_image, const char *image_name); // platform specific load image
 public: 
 	SPRITECHUNK *myImageList;  // this is public for now!
 	char *name();
-	void SpriteType::DrawRecurse(Sprite *spr_obj, lua_Object lua_obj, int x, int y, SPRITECHUNK *cur);
+	void SpriteType::DrawRecurse(Sprite *spr_obj, lua_Object lua_obj, int x, int y, SPRITECHUNK *cur, RECT *clip_rect);
 	void SpriteType::DrawAt(Sprite *spr_obj, lua_Object lua_obj, int x, int y);
+	void SpriteType::DrawAtClipped(Sprite *spr_obj, lua_Object lua_obj, int x, int y, RECT *clip_rect);
 	void SpriteType::parseSpriteTable(SPRITECHUNK **dest, lua_Object a_table);
 	SpriteType(char *name, lua_Object anObj);
 };

@@ -81,6 +81,7 @@ protected:
 								// of the view. 
 	void computeSizeVars();
 	void draw_curview(void);
+	void draw_curview2(void);
 	virtual void drawSelf();
 	virtual void handleFocusChange(int state);
 	static void doBlit(RECT *dest, RECT *src, LPDIRECTDRAWSURFACE surf);

@@ -10,8 +10,11 @@
 #include "..\donuts.h"
 #include "..\VConsole.h" // for dbgMsg();
 
-void SpriteType::doBlit(RECT *dest, IMAGE *an_image) {
+void SpriteType::doBlit(RECT *dest, RECT *src, IMAGE *an_image) {
 	HRESULT ddrval;
+	if (src == NULL) {
+		src = &an_image->src;
+	}
 	do {
 				
 			/*
@@ -20,7 +23,7 @@ void SpriteType::doBlit(RECT *dest, IMAGE *an_image) {
 			 */
 				
 			ddrval = lpBackBuffer->Blt(dest, an_image->surf, 
-							&(an_image->src), dwTransType | DDBLT_KEYSRC , NULL);
+							src, dwTransType | DDBLT_KEYSRC , NULL);
 
 			if (ddrval != DD_OK) {
 				if( ddrval == DDERR_SURFACELOST ) {

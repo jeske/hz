@@ -329,6 +329,9 @@ static int once_in_a_while = 0;
 #define MIN(x,y) (x > y ? y : x)
 #endif
 
+
+
+
 void ViewPort::draw_curview() {
 	int x_iter,y_iter,num_x = (VIEW_TILE_WIDTH), num_y = (VIEW_TILE_HEIGHT); // width/height in tiles
 
@@ -342,6 +345,13 @@ void ViewPort::draw_curview() {
 	LPDBLNODE cur_obj;
 	int tile_type;
 	
+	// setup clip_rect
+	RECT clip_rect;	
+	clip_rect.left		= my_dimension.x;
+	clip_rect.right		= my_dimension.x + my_dimension.width;
+	clip_rect.top		= my_dimension.y;
+	clip_rect.bottom	= my_dimension.y + my_dimension.height;
+
 	// reset statistics
 	draw_sprite_count = 0;
 	draw_sprite_clipped_count = 0;
@@ -569,7 +579,7 @@ void ViewPort::draw_curview() {
 				int fail_count = 0;
 
 				while (cur_obj) {
-					cur_obj->Draw((int)upper_left_x, (int)upper_left_y);
+					cur_obj->DrawClipped((int)upper_left_x, (int)upper_left_y, &clip_rect);
 					draw_sprite_count++;
 					cur_obj = cur_obj->tile_next;
 				} // while (cur_obj)
@@ -600,7 +610,7 @@ void ViewPort::draw_curview() {
 						// we need to clip this one!!!
 						
 
-					cur_obj->DrawClipped((int)upper_left_x,(int)upper_left_y);
+					cur_obj->DrawClipped((int)upper_left_x,(int)upper_left_y, &clip_rect);
 
 						
 					draw_sprite_clipped_count++;
@@ -633,7 +643,7 @@ void ViewPort::draw_curview() {
 
 						// we need to clip this one!!!
 
-						cur_obj->DrawClipped((int)upper_left_x,(int)upper_left_y);
+						cur_obj->DrawClipped((int)upper_left_x,(int)upper_left_y, &clip_rect);
 						
 					draw_sprite_clipped_count++;
 					cur_obj = cur_obj->tile_next;
@@ -653,9 +663,9 @@ void ViewPort::draw_curview() {
 	tile_x = start_tile_x;
 	tile_y = start_tile_y + view_height_tiles - space_avail_below;
 
-	for (x_iter = sprite_clip_tiles_x; x_iter < num_x; x_iter++) {
+	for (x_iter = sprite_clip_tiles_x ; x_iter < num_x + (sprite_clip_tiles_x * 3); x_iter++) {
 		int save_tile_y = tile_y;
-			for (y_iter = space_avail_below ; y_iter >= 0 ; y_iter--) {
+			for (y_iter = space_avail_below * 3 ; y_iter >= 0 ; y_iter--) {
 				if ((cur_obj = (myMap->objects_rowindex[tile_y])[tile_x]) != NULL) {
 					int fail_count = 0;
 					
@@ -663,7 +673,7 @@ void ViewPort::draw_curview() {
 
 						// we need to clip this one!!!
 						
-					cur_obj->DrawClipped((int)upper_left_x,(int)upper_left_y);
+					cur_obj->DrawClipped((int)upper_left_x,(int)upper_left_y, &clip_rect);
 						
 					draw_sprite_clipped_count++;
 					cur_obj = cur_obj->tile_next;
@@ -685,7 +695,7 @@ void ViewPort::draw_curview() {
 	tile_x = start_tile_x + view_width_tiles - space_avail_to_right;
 	tile_y = start_tile_y;
 
-	for (x_iter = space_avail_to_right; x_iter >= 0 ; x_iter--) {
+	for (x_iter = space_avail_to_right * 3; x_iter >= 0 ; x_iter--) {
 		int save_tile_y = tile_y;
 			for (y_iter = sprite_clip_tiles_y ; y_iter < num_y ; y_iter++) {
 				if ((cur_obj = (myMap->objects_rowindex[tile_y])[tile_x]) != NULL) {
@@ -695,7 +705,7 @@ void ViewPort::draw_curview() {
 
 						// we need to clip this one!!!
 						
-					cur_obj->DrawClipped((int)upper_left_x,(int)upper_left_y);
+					cur_obj->DrawClipped((int)upper_left_x,(int)upper_left_y, &clip_rect);
 						
 					draw_sprite_count++;
 					cur_obj = cur_obj->tile_next;

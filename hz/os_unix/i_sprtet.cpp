@@ -12,9 +12,9 @@
 #include "i_console.h"
 #include "osdep.h"
 
-void SpriteType::doBlit (RECT *dest, IMAGE *an_image) 
+void SpriteType::doBlit (RECT *dest, RECT *src, IMAGE *an_image) 
 {
-  I_doBlit (dest, NULL, an_image);
+  I_doBlit (dest, src, an_image);
 }
 
 void SpriteType::loadImage(IMAGE *an_image, const char *image_name) 

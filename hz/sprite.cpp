@@ -945,8 +945,15 @@ void Sprite::placeObject(Map *aMap) {
 	}
 }
 
-void Sprite::DrawClipped(int ul_x, int ul_y) {
-	this->Draw(ul_x,ul_y);
+void Sprite::DrawClipped(int ul_x, int ul_y, RECT *clip_rect) {
+	if (mySpriteTypeObj) {
+
+		// we need to look up the correct image in the table
+		mySpriteTypeObj->DrawAtClipped(this,lua_getref(myLuaServerMirror),(int)this->posx - ul_x, (int)this->posy - ul_y, clip_rect);
+		
+	} else {
+		consoleView->addText("sprite without typeobj!");
+	}
 }
 
 void Sprite::Die() {
@@ -954,9 +961,6 @@ void Sprite::Die() {
 }
 
 void Sprite::Draw(int ul_x, int ul_y) {
-//	HRESULT ddrval;
-
-	
 	if (mySpriteTypeObj) {
 
 		// we need to look up the correct image in the table
