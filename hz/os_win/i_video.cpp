@@ -22,13 +22,13 @@ LPDIRECTDRAWSURFACE     lpFrontBuffer;
 LPDIRECTDRAWSURFACE     lpBackBuffer;
 DWORD                   dwTransType;
 static HPEN 					linepen;
-static HPEN						solidbrush;
+static HBRUSH					solidbrush;
 static HPEN 					blackpen;
 static HBRUSH 					blackbrush;
 
 long FAR PASCAL MainWndproc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam );
 
-BOOL initAppWindow( HANDLE hInstance, int nCmdShow )
+BOOL initAppWindow( HINSTANCE hInstance, int nCmdShow )
 {
     WNDCLASS    wc;
     BOOL        rc;
@@ -38,9 +38,9 @@ BOOL initAppWindow( HANDLE hInstance, int nCmdShow )
     wc.cbClsExtra = 0;
     wc.cbWndExtra = 0;
     wc.hInstance = hInstance;
-    wc.hIcon = LoadIcon( hInstance, "WIN_ICON");
-    wc.hCursor = LoadCursor( NULL, IDC_ARROW );
-    wc.hbrBackground = GetStockObject( BLACK_BRUSH );
+    wc.hIcon = ((HICON) LoadIconA( (HINSTANCE) hInstance, "WIN_ICON"));
+    wc.hCursor = ((HCURSOR) LoadCursor( (HINSTANCE)NULL, IDC_ARROW ));
+    wc.hbrBackground = GetStockBrush( BLACK_BRUSH );
     wc.lpszMenuName =  NULL;
     wc.lpszClassName = "SSGameClass";
     rc = RegisterClass( &wc );
@@ -59,10 +59,10 @@ BOOL initAppWindow( HANDLE hInstance, int nCmdShow )
         500, // y, DirectX is fucked...
         GetSystemMetrics(SM_CXSCREEN),
         GetSystemMetrics(SM_CYSCREEN),
-        NULL,
-        NULL,
-        hInstance,
-        NULL );
+        (HWND) NULL,
+        (HMENU) NULL,
+        (HINSTANCE) hInstance,
+        (LPVOID) NULL );
 
     if( !hWndMain )
     {
@@ -207,7 +207,7 @@ BOOL I_InitVideo( void )
     hndlMgr->addHandle(linepen =  CreatePen(PS_SOLID,0,RGB(255,255,0)));
     hndlMgr->addHandle(blackpen = CreatePen(PS_SOLID,0,RGB(0,0,0)));
     hndlMgr->addHandle(blackbrush = CreateSolidBrush(RGB(0,0,0)));
-	hndlMgr->addHandle(solidbrush = CreateSolidBrush(RGB(255,255,0)));
+    hndlMgr->addHandle(solidbrush = CreateSolidBrush(RGB(255,255,0)));
     if (!linepen || !blackpen || !blackbrush) {
       CleanupAndExit("Couldn't CreatePen() in ConsoleView::ConsoleView()");
     }

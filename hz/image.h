@@ -6,9 +6,7 @@
 #ifndef _IMAGES_H_
 #define _IMAGES_H_ 1
 
-#ifdef OS_UNIX
 #include "translate.h"
-#endif
 
 typedef struct _imagedata
 {

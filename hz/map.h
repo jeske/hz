@@ -25,9 +25,9 @@ public:
 // public:
 	TileSet *myTiles;
 	Map(int gr, int gc, TileSet *aTileSet); // make a random map of a given size
-	int allocMap(); // allocate and setup the map structures
-	int deallocMap();
-	int setup(); // final setup
+	void allocMap(); // allocate and setup the map structures
+	void deallocMap();
+	void setup(); // final setup
 	void setSquare(int x, int y, int tile_type);
 	int getSquare(int x, int y);
 	~Map();
@@ -94,7 +94,7 @@ public:
 
 	ViewPort(int x,int y, int w, int h); // viewport size and map to use
 	~ViewPort();
-	setCurLoc(struct curloc_struct *loc);
+	int setCurLoc(struct curloc_struct *loc);
 };
 
 // Tile information
@@ -122,7 +122,7 @@ public:
 	int tile_width, tile_height;
 	int indexFromName(const char *name);
 	Tile *tileIndex(int index);
-	newTile(Tile *a_tile);
+	int newTile(Tile *a_tile);
 	TileSet(int tile_width, int tile_height);
 	~TileSet();
 };

@@ -23,7 +23,7 @@ typedef struct _drawable
 BOOL I_InitVideo( void );
 void I_doBlit(RECT *dest, IMAGE *an_image);
 BOOL I_vid_setpalette(const char *filename);
-BOOL initAppWindow( HANDLE hInstance, int nCmdShow );
+BOOL initAppWindow( HINSTANCE hInstance, int nCmdShow );
 void    bltSplash( void );
 void I_SetWindowText(char *str);
 int I_CreateDrawable (RECT *src, char *name, DRAWABLE *draw);

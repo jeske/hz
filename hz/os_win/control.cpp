@@ -41,6 +41,10 @@ void printJoyCapabilities(JOYCAPS *joyc) {
 	
 }
 
+extern "C" {
+WINMMAPI MMRESULT WINAPI joyConfigChanged( DWORD dwFlags );
+}
+
 void initJoystick() {
 	MMRESULT confres = joyConfigChanged(0);
 	unsigned int numdevs = joyGetNumDevs();

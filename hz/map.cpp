@@ -59,13 +59,8 @@ Map::Map(int gr, int gc, TileSet *aTileSet) {
 		map_height = grid_rows * myTiles->tile_height;
 	}
 	
-    if (this->allocMap()) {
-		// bail!
-	}
-
-	if (this->setup()) {
-		// bail
-	}
+    this->allocMap();
+    this->setup();
 
 }
 
@@ -73,7 +68,7 @@ Map::~Map() {
 	this->deallocMap();
 }
 
-int Map::allocMap() {
+void Map::allocMap() {
 	int iter;
 	int num_cells = grid_rows * grid_cols;	
 	unsigned short int *til_walker;
@@ -105,16 +100,15 @@ int Map::allocMap() {
 		til_walker += grid_cols;
 	}
 
-	return 0;
 }
 
-Map::deallocMap() {
+void Map::deallocMap() {
 	free(objects_rowindex);
 	free(objects);
 	free(tilemap_rowindex);
 	free(tilemap);
 
-	return 0;
+	return;
 }
 
 /*
@@ -136,7 +130,7 @@ int Map::getSquare(int x, int y) {
 	return 0;
 }
 
-Map::setup() {
+void Map::setup() {
 	int x,y;
 	int numtiles = 3;
 
@@ -146,8 +140,6 @@ Map::setup() {
 			(objects_rowindex[y])[x] = NULL;
 		}
 	}		
-
-	return 0;
 }
 
 
@@ -884,7 +876,7 @@ TileSet::~TileSet() {
 	free(this->tile_arry); // free the array
 }
 
-TileSet::newTile(Tile *a_tile) {
+int TileSet::newTile(Tile *a_tile) {
 	if (a_tile) {
 		if (arry_size < num_tiles) {
 			// resize the array!!!
