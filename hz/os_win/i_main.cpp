@@ -115,11 +115,11 @@ int PASCAL WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 
 //    InitializeSound();
 
-	ProgramState = PS_SPLASH;
+    ProgramState = PS_SPLASH;
 
 
-	init_server();
-	initViews();
+    init_server();
+    initViews();
 
     dwFrameTime = i_time_ms();
 
@@ -137,7 +137,6 @@ int PASCAL WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
         else if ( bIsActive )
         {
             UpdateFrame();
-
 			// we should do some kind of speed independent "doTick" here 
         }
         else

@@ -42,12 +42,12 @@ void UpdateFrame( void )
             bltSplash();
             return;
         case PS_ACTIVE:
-			dbgMsg(c_excessive,"UpdateFrame: PS_ACTIVE\n");
-			UpdateDisplayList();
+	    dbgMsg(c_excessive,"UpdateFrame: PS_ACTIVE\n");
+	    UpdateDisplayList();
             DrawDisplayList();
             return;
         case PS_BEGINREST:
-			dbgMsg(c_excessive,"UpdateFrame: PS_BEGINREST\n");
+	    dbgMsg(c_excessive,"UpdateFrame: PS_BEGINREST\n");
 #ifdef USE_DSOUND
             if(bWantSound)
             {

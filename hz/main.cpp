@@ -192,6 +192,9 @@ void initViews() {
 	//a_tabview->addView(productionPane = new View(0,0,ScreenX,ScreenY),"Production Pane");
 	a_tabview->addView(consolePane    = new View(0,0,ScreenX,ScreenY),"Console Pane");
 
+	// add splash startup pane
+	// a_tabview->addView(new ImageView(0,0,ScreenX,ScreenY,"splash.bmp"),"Console Pane");
+
 	a_tabview->switchTo(1);
 	// add FPS view...
 	FPSView *fps_view = new FPSView(0,0,0,0);

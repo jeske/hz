@@ -7,7 +7,7 @@ COMN_OBJS = bmp.o concmd.o donuts.o game.o image.o luabase.o main.o map.o \
 
 UNIX_OBJS = i_console.o i_draw.o i_video.o i_system.o i_sprtet.o i_main.o
 
-WIN_OBJS = i_console.o i_draw.o i_video.o i_system.o i_sprtet.o \
+WIN_OBJS = hzres.o i_console.o i_draw.o i_video.o i_system.o i_sprtet.o \
            i_main.o hndlmgr.o drawhndl.o ddutil.o control.o platform.o
 
 VIEW_OBJS = i_console.o i_draw.o i_video.o i_system.o i_sprtet.o i_view.o
@@ -18,7 +18,7 @@ VIEW_OBJS = i_console.o i_draw.o i_video.o i_system.o i_sprtet.o i_view.o
 # TARGET = xhz
 
 OBJS = $(COMN_OBJS) $(WIN_OBJS)           # WINDOWS
-TARGET = xhz.exe
+TARGET = hz.exe
 
 
 .c.o:
@@ -47,6 +47,9 @@ install: $(TARGET)
 
 clean: 
 	rm -f $(TARGET) *.o Makefile.bak
+
+hzres.o:
+	windres os_win/hz.res hzres.o
 
 dep:
 	mv Makefile Makefile.bak

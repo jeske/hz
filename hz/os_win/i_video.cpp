@@ -226,9 +226,10 @@ void bltSplash( void )
     HBITMAP     hbm;
 
     // set the palette before loading the splash screen
-    lpFrontBuffer->SetPalette(lpSplashPalette );
+    lpFrontBuffer->SetPalette(lpSplashPalette);
 
     hbm = (HBITMAP)LoadImage( GetModuleHandle( NULL ), "SPLASH", IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION );
+//    hbm = (HBITMAP)LoadImage( NULL, "SPLASH", IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION );
     if ( NULL == hbm )
         return;
 
