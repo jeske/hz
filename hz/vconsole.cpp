@@ -21,6 +21,8 @@
 #endif
 #include "i_system.h" // for CleanupAndExit()
 
+#include <string.h>
+
 #include "donuts.h" // for lpDD
 #include "view.h"
 #include "main.h" // consoleView

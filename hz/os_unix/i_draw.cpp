@@ -15,7 +15,7 @@
 
 #include "image.h"
 
-g_images_loaded = 0;
+int g_images_loaded = 0;
 
 // I_loadImage(IMAGE *an_image, const char *image_name);
 //

@@ -11,6 +11,7 @@
 #include "i_system.h"
 #include <sys/time.h>
 #include "i_console.h"
+#include <stdlib.h>
 
 unsigned long int i_time_ms() {
   static struct timeval last;
