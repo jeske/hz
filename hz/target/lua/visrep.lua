@@ -462,7 +462,7 @@ Heli = { L1 = { -- blades
 				IndexedBy = "imgdir"
 				}, -- end visualrep
 
-Tank = { L1 = { -- tank base
+Tank = { L2 = { -- tank base
 						{ "ntanks/turret0000.bmp" },
 						{ "ntanks/turret0001.bmp" },
 						{ "ntanks/turret0002.bmp" },
@@ -506,7 +506,7 @@ Tank = { L1 = { -- tank base
 						IndexedBy = "timgdir"
 					   },
 					
-					L2 = { -- tank turret
+					L1 = { -- tank turret
 						{ "ntanks/ntank0000.bmp" },
 						{ "ntanks/ntank0001.bmp" },
 						{ "ntanks/ntank0002.bmp" },
