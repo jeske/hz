@@ -2,8 +2,8 @@
 all: $(TARGET) install
 
 include platform.conf
-
 include make.conf.$(PLATFORM)
+include make.depend
 
 VIEW_OBJS = i_console.o i_draw.o i_video.o i_system.o i_sprtet.o i_view.o
 
@@ -42,11 +42,16 @@ install: $(TARGET)
 clean: 
 	rm -f $(TARGET) obj/*.o Makefile.bak
 
-ifeq ($(PLATFORM),linux)
-# depend does not work right on Windows right now...
-dep:
-	mv Makefile Makefile.bak
-	awk -f depend.awk < Makefile.bak > Makefile
-	echo '# DO NOT REMOVE THIS LINE' >> Makefile
-	$(CPP) -MM $(CFLAGS) *.cpp os_unix/*.cpp >> Makefile
-endif
+# this make depend needs to include all source files, not just those
+# in the current directory.... - jeske
+
+make.depend: Makefile make.conf.$(PLATFORM)
+	@echo "*****"
+	@echo "***** Generating make.depend"
+	@echo "*****"
+	@echo "# auto-generated make.depend" > make.depend.tmp
+	$(CPP) -MM $(CFLAGS) *.cpp >> make.depend.tmp
+	rm -f make.depend
+	mv make.depend.tmp make.depend
+	@echo "*****"
+
