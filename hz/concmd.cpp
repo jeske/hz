@@ -76,8 +76,6 @@ int cmd_print_con(char *str, ConsoleView *my_view) {
 
 	}
 
-	
-
 	if (my_view->conTest->getLineReverse(s,80,line_num) < 0) {
 		my_view->addString("<null ptr>\n");
 	} else {
@@ -98,6 +96,20 @@ int cmd_toggle_console_output(char *str, ConsoleView *my_view) {
 	return 0;
 }
 
+const char *help_text[] = {
+  " \n",
+    " Welcome to HZ!\n",
+    " \n",
+    " In the command console you can type any command listed\n",
+    " above. You can also type any Lua script command. To find\n",
+    " a list of available Lua functions and variables type: \n",
+    " \n",
+    "     > dir()\n",
+    " \n",
+    " You can also scroll up/down by using the pageup/down keys.\n",
+    " \n",
+    NULL };
+
 int cmd_print_help(char *, ConsoleView *myConsole) {
 	struct command_str *walker = commands;
 	char s[100];
@@ -107,6 +119,13 @@ int cmd_print_help(char *, ConsoleView *myConsole) {
 		myConsole->addText(s);
 		walker++;
 	}
+
+	const char **my_help_text = help_text;
+	while (*my_help_text) {
+	  myConsole->addText(*my_help_text);
+	  my_help_text++;
+	}
+
 	return 0;
 }
 
@@ -127,30 +146,33 @@ int strncmp_ic(char *st1, char *st2, int len) {
 
 
 int handleConsoleInput(ConsoleView *receiver, char *input) {
-	struct command_str *walker = commands;
+  struct command_str *walker = commands;
 
-	if (input[0] == '\'') {
-		// Pass the string to lua!!!
-		input++;
-		lua_beginblock();
-		lua_dostring(input);
-		lua_endblock();
-		return 1;
-	} else {
-
-		while (walker->command) {
-			if (!strncmp_ic(walker->command,input,strlen(walker->command))) {
+  // this is because old habits die hard and I used to require 
+  // Lua commands be prepended with the single-quote character.
+  if (input[0] == '\'') {
+    input++;
+  }
+  
+  while (walker->command) {
+    if (!strncmp_ic(walker->command,input,strlen(walker->command))) {
 				// matched!
-				if (walker->fn) {
-					walker->fn(input + strlen(walker->command),receiver);
-				}
-				return 1;
-			} 
-			walker++;
-		};
-		receiver->addText("[Unknown Command, type HELP]");
-	}
+      if (walker->fn) {
+	walker->fn(input + strlen(walker->command),receiver);
+      }
+      return 1;
+    } 
+    walker++;
+  };
 
-	
-	return 0;
+  // Pass the string to lua!!!
+  lua_beginblock();
+  int lerror = lua_dostring(input);
+  lua_endblock();
+
+  if (lerror) {
+    receiver->addText("[Invalid command, type HELP]");
+  }
+
+  return 1;
 }
