@@ -69,6 +69,10 @@ you should be able to "make" first inside lua31, and then inside
 the c:\hz\hz-files\hz directory. If you have any problems with the
 build, email me at <jeske@chat.net>.
 
+NOTE: The reason it compiles so slow (on windows) is that gcc does
+      not yet support precompiled headers and the windows header
+      files are quite large. Perhaps someday they'll fix this.
+
 4. Acknowledgements
 
 The engine has been ported to XWindows by Brandon Long. Specifically 
