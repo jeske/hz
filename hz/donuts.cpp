@@ -100,7 +100,7 @@ BOOL                    bUseEmulation;
 BOOL                    bTest=FALSE;
 BOOL                    bStress=FALSE;
 RGBQUAD                 SPalette[256];
-DWORD                   lastTickCount;
+DWORD                   lastTickCount = 0;
 int                     score;
 int                     ProgramState;
 int                     level;
@@ -146,14 +146,20 @@ int button_down = 0;
 
 void UpdateDisplayList( void )
 {
-    unsigned short int       thisTickCount = i_time_ms();
-    unsigned short int       tickDiff;
-      
-      
-    if (thisTickCount > lastTickCount) {
+    unsigned long int       thisTickCount = i_time_ms();
+    unsigned long int       tickDiff;
+
+	if (lastTickCount == 0) {
+		lastTickCount = thisTickCount - 10;
+	}
+
+    if (thisTickCount >= lastTickCount) {
        tickDiff = thisTickCount - lastTickCount;
     } else {
-       tickDiff = lastTickCount - thisTickCount;
+		printf("WRAPOVER! lastTick(%lu), thisTick(%lu), delta(%lu)\n",
+				lastTickCount,	thisTickCount, tickDiff);
+		
+		tickDiff = lastTickCount - thisTickCount;
     }
 
 
