@@ -11,14 +11,27 @@
 #include "view.h"
 #include "vconsole.h"
 
+// program states
+enum
+{
+    PS_SPLASH,
+    PS_ACTIVE,
+    PS_BEGINREST,
+    PS_REST
+};
+
+#define IS_NUM(c)     ((c) >= '0' && (c) <= '9')
+#define IS_SPACE(c)   ((c) == ' ' || (c) == '\r' || (c) == '\n' || (c) == '\t' || (c) == 'x')
+
 extern MultiView *mainTabView; 
 extern ConsoleView *consoleView; 
 extern View *realScreenView;
 
-void initViews(void);
-
-// {076C1FC9-B287-11d0-A8E3-00AA00A747E5}
-// DEFINE_GUID(HZ_GUID, 0x76c1fc9, 0xb287, 0x11d0, 0xa8, 0xe3, 0x0, 0xaa, 0x0, 0xa7, 0x47, 0xe5);
-
+void    initViews( void );
+void    UpdateFrame( void );
+void    UpdateDisplayList( void );
+void    DrawDisplayList( void );
+void	paintScreen( void);
+void    DestroyGame( void );
 
 #endif /* MAIN_H */

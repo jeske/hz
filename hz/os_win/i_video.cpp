@@ -46,8 +46,9 @@ LPDIRECTDRAWSURFACE     lpFrontBuffer = 0;
 LPDIRECTDRAWSURFACE     lpBackBuffer = 0;
 LPDIRECTDRAWCLIPPER     lpClipper = 0;
 DWORD                   dwTransType;
-int                     full_screen = 1; 
+int                     full_screen = 1;
 
+static DWORD                                    dwFillColor = 0; 
 static HPEN 					linepen;
 static HBRUSH					solidbrush;
 static HPEN 					blackpen;
@@ -150,10 +151,6 @@ BOOL I_InitVideo( void )
 #ifdef NT_HACK
     DDSURFACEDESC DDSurfDesc;
 #endif
-
-    score = 0;
-    if( bTest )
-        ShowLevelCount = 1000;
 
     if (!full_screen) {
       // ---------------------------- WINDOWED ------------------------------
@@ -626,9 +623,6 @@ void I_EraseScreen( void )
 {
     DDBLTFX     ddbltfx;
     HRESULT     ddrval;
-
-    if( bSpecialEffects )   // cool looking screen with no colorfill
-        return;
 
     // Erase the background
     ddbltfx.dwSize = sizeof( ddbltfx );

@@ -54,7 +54,7 @@ Sprite::Sprite(SpriteList *aList, SpriteType *a_type, double x, double y, double
 	dbgMsg(c_excessive,"Sprite::Sprite(), creating typed sprite\n");
 	mySpriteTypeObj = a_type;
 	
-	
+	myMap = 0;
 	this->layer = 0; // set the start layer
 	 // call the standard init!
 	this->SpriteSetup(aList, OBJ_DONUT, x,y,vx,vy);
@@ -78,7 +78,7 @@ void Sprite::SpriteSetup(SpriteList *aList, SHORT a_type, double x, double y, do
 	this->type = a_type;
 	this->tile_next = NULL;
 	this->z_value = 0;
-    this->my_map_loc = NULL;
+	this->my_map_loc = NULL;
 	this->old_tile_x = -1;
 	this->old_tile_y = -1;
 	this->mynumber = sprite_number++;
@@ -570,14 +570,15 @@ int Sprite::handleEvent(struct input_event *ev) { // we want key events!
 void Sprite::doTick(unsigned int tickDiff) {
 	Sprite *ptr = this;
 	Sprite *target = this;
-	double maxx, maxy, maxframe;
+	double maxx, maxy;
 	
 	ptr->posx  += ptr->velx  * (double)tickDiff;
 	ptr->posy  += ptr->vely  * (double)tickDiff;
-		
+	
+	// somewhere here we need to figure out how to rely on the real
+	// map size!
 	maxx = (double) MAX_DONUT_X;
 	maxy = (double) MAX_DONUT_Y;
-	maxframe = (double) MAX_DONUT_FRAME;
 
 	// here we'll call the mirror's doTick
 

@@ -323,7 +323,6 @@ int I_EventLoop()
 	{
 	  bIsActive = 1;
 	  lastTickCount = i_time_ms();
-	  bSpecialEffects = FALSE;
 	}
       }
       break;

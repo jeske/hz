@@ -409,7 +409,8 @@ void UpdateFrame( void )
   case PS_REST:
     dbgMsg(c_excessive,"UpdateFrame: PS_REST\n");
     
-    if( ( i_time_ms() - restCount ) > ShowLevelCount ) {
+    // delay for 100ms
+    if( ( i_time_ms() - restCount ) > 100 ) {
 #ifdef USE_DSOUND
       if(bWantSound) {
 	SndObjPlay(hsoEngineIdle, DSBPLAY_LOOPING);
@@ -426,7 +427,6 @@ void UpdateFrame( void )
 
 
 // LPDIRECTDRAWPALETTE     lpSplashPalette;
-BOOL                    bSoundEnabled = FALSE;
 BOOL                    bPlayIdle = FALSE;
 BOOL                    bPlayBuzz = FALSE;
 BOOL                    bPlayRev = FALSE;
@@ -435,29 +435,28 @@ BOOL                    lastThrust = FALSE;
 BOOL                    lastShield = FALSE;
 int                     showDelay = 0;
 BOOL                    bShowFrameCount=TRUE;
-BOOL                    bIsActive;
-BOOL                    bMouseVisible = TRUE;
-DWORD                   dwFrameCount;
-DWORD                   dwFrameTime;
-DWORD                   dwFrames;
-DWORD                   dwFramesLast;
 BOOL                    bUseEmulation;
 BOOL                    bTest=FALSE;
 BOOL                    bStress=FALSE;
 RGBQUAD                 SPalette[256];
-DWORD                   lastTickCount = 0;
 int                     score;
-int                     ProgramState;
 int                     level;
+
+DWORD                   dwFrameCount;
+DWORD                   dwFrameTime;
+DWORD                   dwFrames;
+DWORD                   dwFramesLast;
+DWORD                   lastTickCount = 0;
+int                     ProgramState;
 int                     restCount;
-DWORD                   dwFillColor;
-BOOL                    bSpecialEffects = FALSE;
-DWORD                   ShowLevelCount = 100;
+
+BOOL                    bIsActive;
+BOOL                    bMouseVisible = TRUE;
 DWORD                   ScreenX;
 DWORD                   ScreenY;
 DWORD                   ScreenBpp;
 BOOL                    bWantSound = TRUE;  //global hack to turn off sound
-
+BOOL                    bSoundEnabled = FALSE;
 
 
 #ifdef DEBUG

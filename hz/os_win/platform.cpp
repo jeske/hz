@@ -18,6 +18,9 @@
 #include <windowsx.h>
 #include <mmsystem.h>
 
+
+// I_EventLoop() equivilant for windows...
+
 /*
  * MainWndproc
  *
@@ -41,7 +44,6 @@ long FAR PASCAL MainWndproc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
         {
             // bMouseVisible = FALSE;
             lastTickCount = i_time_ms();
-            bSpecialEffects = FALSE;
         }
         else
         {
