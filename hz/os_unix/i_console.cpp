@@ -1,4 +1,5 @@
-
+// HZ Engine Source
+// Copyright 1999 by Brandon C. Long
 
 #include "i_console.h"
 #include "vconsole.h"

@@ -1,3 +1,6 @@
+// HZ Engine Source
+// Copyright (C) 1998 by David W. Jeske
+
 /*
  * ConCmd.h
  * Handle input from console

@@ -1,3 +1,6 @@
+// HZ Engine Source
+// Copyright (C) 1999 by David W. Jeske
+
 // Platform.cpp
 // 
 // other platform specific stuff... see DrawHndl.cpp for

@@ -1,3 +1,5 @@
+// HZ Engine Source
+// Copyright (C) 1999 by David W. Jeske
 
 
 #include "i_console.h"

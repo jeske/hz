@@ -1,3 +1,6 @@
+// HZ Engine Source
+// Copyright (C) 1999 by David W. Jeske
+
 // HndlMgr.h
 #include <ddraw.h>
 

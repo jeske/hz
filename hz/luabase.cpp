@@ -1,3 +1,7 @@
+// HZ Engine Source
+// Copyright (C) 1998 David W. Jeske
+
+
 #include "luabase.h"
 #include <lua.h>
 #include "vconsole.h"

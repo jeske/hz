@@ -1,3 +1,7 @@
+// HZ Engine Source
+// Copyright (C) 1999 by Brandon C. Long
+
+
 //
 // i_system.cpp
 //

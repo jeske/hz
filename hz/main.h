@@ -1,3 +1,6 @@
+// HZ Engine Source
+// Copyright (C) 1998 by David W. Jeske
+
 // Main.h
 //
 // The main header, includes global stuff which is important...

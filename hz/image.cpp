@@ -1,3 +1,6 @@
+// HZ Engine Source
+// Copyright (C) 2000 Brandon C. Long
+
 //
 // Image Loading
 // 

@@ -1,4 +1,7 @@
-//
+// HZ Engine Source
+// Copyright (C) 1998 by David W. Jeske
+
+
 // VConsole.cpp
 //
 // this is very tied to windows, we need to come up with a general way to 

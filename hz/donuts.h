@@ -1,12 +1,6 @@
-/*==========================================================================
- *
- *  Copyright (C) 1995-1996 Microsoft Corporation. All Rights Reserved.
- *
- *  File:       donuts.h
- *  Content:    main include file
- *
- *
- ***************************************************************************/
+// HZ Engine Source
+// Copyright (C) 1998 by David W. Jeske
+
 
 #ifndef DONUTS_H
 #define DONUTS_H

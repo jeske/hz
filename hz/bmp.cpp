@@ -1,3 +1,5 @@
+// HZ Engine Source
+// Copyright (C) 2000 Brandon C. Long
 
 #include <stdio.h>
 #include <malloc.h>

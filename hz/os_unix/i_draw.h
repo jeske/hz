@@ -1,3 +1,6 @@
+// HZ Engine Source
+// Copyright (C) 1999 by David W. Jeske
+
 // i_draw.h
 //
 // os dependent text draw function... used for basic stuff like

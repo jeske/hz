@@ -1,4 +1,7 @@
-//
+// HZ Engine Source 
+// Copyright (C) 1998 David W. Jeske
+
+
 // Sprite.cpp
 //
 //

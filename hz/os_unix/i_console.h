@@ -1,3 +1,6 @@
+// HZ Engine Source
+// Copyright (C) 1999 Brandon C. Long
+
 //
 // i_console.h
 // unix specific console code

@@ -1,3 +1,6 @@
+// HZ Engine
+// Copyright (C) 1998 David W. Jeske
+
 /*
  * ConCmd.cpp
  *

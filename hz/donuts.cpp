@@ -1,7 +1,11 @@
+// HZ Engine
+// Copyright (C) 1998 David W. Jeske
+
+
 // Donuts.cpp
 //
-// Originally part of SpaceDonuts demo, but I've hacked it over and it's almost
-// gone... :)
+// Originally part of Microsoft DirectX SpaceDonuts demo, 
+// but all that really remains is the filename... :)
 //
 
 

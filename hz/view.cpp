@@ -1,3 +1,7 @@
+// HZ Engine Source
+// Copyright (C) 1998 by David W. Jeske
+
+
 // View.cpp
 //
 // This is the code for the generic View class, it has to be given

@@ -1,3 +1,6 @@
+// HZ Engine Source
+// Copyright (C) 1998 by David W. Jeske
+
 // ConsoleView
 // 
 // This will provide our console input and output.

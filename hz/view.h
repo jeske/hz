@@ -1,3 +1,6 @@
+// HZ Engine Source
+// Copyright (C) 1998 by David W. Jeske
+
 // View.h
 // 
 // This is the code for the View class, it has to be given

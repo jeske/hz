@@ -1,3 +1,7 @@
+// HZ Engine Source
+// Copyright 1999 by Brandon C. Long
+
+
 //
 // i_sprtet.cpp
 //
