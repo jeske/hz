@@ -107,7 +107,15 @@ inputEvent = function(self,ev)
 		if (nextobj ~= nil) then
 			C_obj_followsprite(nextobj.objnum);
 		end
-	
+	elseif (ev == 49 ) then   -- '1'
+		-- tell the mainbase to create us a unit!
+		game.mainbase:buildUnit("soldier");
+	elseif (ev == 50 ) then   -- '2'
+		game.mainbase:buildUnit("litetank");
+	elseif (ev == 51 ) then   -- '3'
+		game.mainbase:buildUnit("hdApc");
+	elseif (ev == 52 ) then   -- '4'
+		game.mainbase:buildUnit("hovercraft");
 	elseif (ev == 32 ) then
 		-- try to pickup the unit under us!
 		self.attempt_pickup_drop_timer = 200;

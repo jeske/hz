@@ -106,6 +106,9 @@ end
 
 function setupGameSprites()
         print("setup UI elements");
+
+	game = {} -- make game table
+
         mainUnitDamageBar = C_newHorizBarView(25,10,150,12,100);
         mainUnitFuelBar   = C_newHorizBarView(_SCREEN_X - (150 + 25),10,150,12,100);
         
@@ -114,13 +117,15 @@ function setupGameSprites()
         -- this is our second unit...
 	C_addsprite("heli",300,30);
 
+
+	-- big base sprite
+	game.mainbase = C_addsprite("hdmainbase",15,15);
+
 	C_addsprite("hovercraft", 50,350);
 	C_addsprite("litetank",100,350);
 	C_addsprite("hdApc",150,350);
 	C_addsprite("soldier",200,350);
-	C_addsprite("hdmainbase",15,15);
 
-        -- give me one base
         C_addsprite("Base",350,150);
 
 

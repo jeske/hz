@@ -11,8 +11,9 @@ recharge = {
 }; -- end recharge
 
 hz_register_objtype("hdmainbase", {
-	flagimg = 1.0,
 	nocollide = 1,
+	build_unit_timer = 0,
+	build_unit_type_name = "",
 	VisualRep = VisualReps.hdmainbase,
 	-- methods
 
@@ -21,17 +22,31 @@ hz_register_objtype("hdmainbase", {
 			print("missile:new() called with non-table" .. tostring(a_list));
 		else
 			a_list._parents = {self};
-			a_list.objtype = "tree01";
-			a_list.counter = 0.0;
-			a_list.frame_time = 80.0;
-			a_list.flagimg = 1.0;
+			a_list.objtype = "hdmainbase";
 			C_obj_setLayer(a_list.objnum,-1);
 		end
 		return (a_list);
 	end,
 
-	-- this is a dummy ai_event to prevent slowdown!
-	
+	doTick = function(self,tick_diff)
+		if self.build_unit_timer > 0 then
+			self.build_unit_timer = max(0,self.build_unit_timer-tick_diff);
+
+			if self.build_unit_timer == 0 then
+				-- build the unit!
+                		xpos,ypos = C_obj_getPos(self.objnum);
+				C_addsprite(self.build_unit_type_name,xpos+200,ypos+115);
+				self.build_unit_type_name = "";
+			end
+
+		end
+	end,
+
+	buildUnit = function (self,unit_type_name)
+		self.build_unit_timer = 20;
+		self.build_unit_type_name = unit_type_name;
+	end,
+
 	ai_event = function(self)
 	end,
 }); 
