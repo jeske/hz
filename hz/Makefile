@@ -5,7 +5,7 @@
 
 
 # ---
-# These three targets need to be above include lines
+# These four targets need to be above include lines
 
 all: $(TARGET) install
 
@@ -14,6 +14,13 @@ clean:
 
 clobber: clean
 	rm -f make.depend $(TARGET)
+
+platform.conf: 
+	@echo "**************************************************"
+	@echo "Choose a platform!"
+	@echo "Create a file platform.conf with a line like 'PLATFORM=win'"
+	@echo ""
+	@exit 1
 
 # ---
 # Include for a more modular makefile
@@ -41,12 +48,6 @@ obj/%.o : %.cpp
 	$(CPP) -ggdb -c $< $(CFLAGS) -o $@
 
 
-platform.conf: 
-	@echo "**************************************************"
-	@echo "Choose a platform!"
-	@echo "Create a file platform.conf with a line like 'PLATFORM=win'"
-	@echo ""
-	@exit 1
 
 $(TARGET): $(OBJS)
 	$(CPP) -ggdb -o $(TARGET) $(OBJS) $(LIBS)	
