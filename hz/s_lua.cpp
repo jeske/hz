@@ -256,6 +256,44 @@ void LuaSprite::doTick(unsigned int tickDiff) {
   lua_endblock();
 }
 
+void LuaSprite::handleNearbyObjects(Sprite *nearby_objects[],int nearby_objects_count) {
+  int n;
+  int tbl_ref;
+  
+  lua_beginblock();
+  lua_pushobject(lua_createtable());
+  tbl_ref = lua_ref(1); // locked ref!
+  lua_endblock();
+
+  for (n=0;n<nearby_objects_count;n++) {
+    if (nearby_objects[n]->type == OBJ_LUA) {
+      lua_beginblock();
+      LuaSprite *a_sp = (LuaSprite *)nearby_objects[n];
+      lua_pushobject(lua_getref(tbl_ref));
+      lua_pushnumber((float)n+1);
+      lua_pushobject(lua_getref(a_sp->myLuaServerMirror));
+      lua_settable();
+      lua_endblock();
+    }
+  }
+  lua_beginblock();
+  // set the 'n' value
+  lua_pushobject(lua_getref(tbl_ref));
+  lua_pushstring("n");
+  lua_pushnumber((float)nearby_objects_count);
+  lua_settable();
+
+  // save the table as instance data!
+  lua_pushobject(lua_getref(myLuaServerMirror));
+  lua_pushstring("_NEARBY_OBJECTS");
+  lua_pushobject(lua_getref(tbl_ref));
+  lua_settable();
+
+  // drop our ref..
+  lua_unref(tbl_ref);
+  lua_endblock();
+}
+
 void LuaSprite::handleCollision(Sprite *obj_hit) {
   lua_beginblock();
     

@@ -88,19 +88,7 @@ dofile("obj_proj.lua");		-- projectiles
 
 dofile("initobj.lua");
 
-
-function setupGameSprites()
-	print("setup game sprites");
-	printTable(objects);
-	C_addsprite("heli",200,30);
-	C_addsprite("tank",30,200);
-	C_addsprite("hovercraft", 50,150);
-	C_addsprite("litetank",100,100);
-
-	-- the test objects for Daniel's fighter images
-	C_addsprite("hd_mainship",250,180); -- can't be controlled
-	C_addsprite("hd_mainship_c",250,250); -- CAN be controlled
-
+function makeRandomBases()
 	if 1 then
 		local x = 0
 		while (x < 10) do
@@ -112,7 +100,33 @@ function setupGameSprites()
 			x = x + 1;
 		end
 	end
+end
 
+function setupGameSprites()
+        print("setup UI elements");
+        mainUnitDamageBar = C_newHorizBarView(25,10,150,12,100);
+        mainUnitFuelBar   = C_newHorizBarView(_SCREEN_X - (150 + 25),10,150,12,100);
+        
+	print("setup game sprites");
+	printTable(objects);
+        -- this is our second unit...
+	C_addsprite("heli",200,30);
+
+        -- give me one base
+        C_addsprite("Base",100,100);
+
+        -- make one enemy
+	a_tnk = C_addsprite("tank",500,200);
+        a_tnk:ai_moveToXY(100,100);
+
+	-- C_addsprite("hovercraft", 50,150);
+	-- C_addsprite("litetank",100,100);
+
+	-- the test objects for Daniel's fighter images
+	-- C_addsprite("hd_mainship",250,180); -- can't be controlled
+	-- C_addsprite("hd_mainship_c",250,250); -- CAN be controlled
+
+        -- place a bunch of random flags on the map..
 	local i = 0;
 	while (i < 30) do
 		C_addsprite("flag",random() * 1500, random() * 1500);

@@ -27,12 +27,43 @@ function clamp_velocity(vx,vy,MAX_VELOCITY)
 end
 
 -- ************************************************
+--  damageable trait
+--  
+
+damageable = {
+damage = 0, damage_max = 100,
+applyDamage = function(self,amount)
+  local my_damage = self.damage;
+  if my_damage < self.damage_max then
+    my_damage = my_damage + amount;
+    if my_damage > self.damage_max then
+      my_damage = self.damage_max;
+      self.damage = my_damage;
+      if self.maxDamageReached then
+        self:maxDamageReached();
+      end
+    end
+  end
+  self.damage = my_damage;
+end,
+
+healDamage = function(self,amount)
+  local my_damage = self.damage;
+  if my_damage > 0.0 then
+    my_damage = my_damage - min(my_damage,amount);
+    self.damage = my_damage
+  end
+end
+
+}; -- end damageable
+
+-- ************************************************
 --  controllable trait
 --  
 
 controllable = {
 key_maps = a_key_map, -- we need the key map!
-firing_frequency = 200.0,
+firing_frequency = 200.0, carryable = 1,
 
 keyUp = function (self,vk_code)
 	local map = self.key_maps[vk_code];
@@ -77,7 +108,7 @@ inputEvent = function(self,ev)
 			C_obj_followsprite(nextobj.objnum);
 		end
 	
-	elseif (ev == 32) then
+	elseif (ev == 32 ) then
 		-- try to pickup the unit under us!
 		self.attempt_pickup_drop_timer = 200;
 	elseif (ev == 1000032) then -- space 
@@ -177,7 +208,7 @@ collidable = {
 ge_collision = function(self,x,y,whoIhit)
 
 	if self.attempt_pickup_drop_timer then
-		if not self.carrying_unit then
+		if not self.carrying_unit and whoIhit.carryable then
 			print("trying to carry unit! " .. whoIhit.obj_type_name);
 			self.carrying_unit = whoIhit;
 			self.attempt_pickup_drop_timer = nil; -- don't pickup anymore
@@ -185,7 +216,7 @@ ge_collision = function(self,x,y,whoIhit)
 
 	end
 
-	if ((collisions_active < MAX_COLLISIONS) and (self.layer == whoIhit.layer)) then
+	if nil and ((collisions_active < MAX_COLLISIONS) and (self.layer == whoIhit.layer)) then
 		C_addsprite("explosion",x,y);
 		collisions_active = collisions_active + 1;
 	end
@@ -195,9 +226,16 @@ end
 
 air_physics = {
 -- properties...
-vx = 0, vy = 0, rot = 0, MAX_VELOCITY = 0.3,
+vx = 0, vy = 0, rot = 0, MAX_VELOCITY = 0.3, TURN_DIVISOR = 26, 
 -- methods....
 doTick = function(self,tick_diff)
+        LAST_TICKDIFF = tick_diff;
+
+        -- handle displaying Damage...
+
+        if mainUnitDamageBar and self.show_my_damage then
+          mainUnitDamageBar:setValue(100 - (self.damage/self.damage_max) * 100);
+        end
 
   	-- handle carrying a unit
 	
@@ -304,9 +342,8 @@ doTick = function(self,tick_diff)
 	end
 
 
-	local i_rot = floor(rot);
 
-	if (i_rot == dest_dir) then
+	if (floor(self.rot) == dest_dir) then
 		-- we're facing, so given an acceleration boost!
 		vx = vx + (ax * tick_diff/2000.0);
 		vy = vy + (ay * tick_diff/2000.0);
@@ -315,17 +352,18 @@ doTick = function(self,tick_diff)
 		local turn_vec;
 		local cw_distance;
 		local ccw_distance;
+	        local rot = self.rot;
 
 		-- first, figur out what direction to turn
-		if (i_rot > dest_dir) then
-			ccw_distance = i_rot - dest_dir;
+		if (rot > dest_dir) then
+			ccw_distance = rot - dest_dir;
 			cw_distance  = MAX_SHIP_FRAME - (ccw_distance);
 		else
-			cw_distance = dest_dir - i_rot;
+			cw_distance = dest_dir - rot;
 			ccw_distance = MAX_SHIP_FRAME - (cw_distance);
 		end
 
-		local TURN_RATE = 1.0;
+		local TURN_RATE = tick_diff/self.TURN_DIVISOR;
 
 		if (cw_distance < ccw_distance) then
 			if (cw_distance < TURN_RATE) then
@@ -341,21 +379,23 @@ doTick = function(self,tick_diff)
 			end
 		end
 
-		i_rot = i_rot + turn_vec;
-		if (i_rot < 0.0) then
-			i_rot = i_rot + MAX_SHIP_FRAME;
+
+		rot = rot + turn_vec;
+		if (rot < 0.0) then
+			rot = rot + MAX_SHIP_FRAME;
 		end
-		if (i_rot >= MAX_SHIP_FRAME) then
-			i_rot = i_rot - MAX_SHIP_FRAME;
+		if (rot >= MAX_SHIP_FRAME) then
+			rot = rot - MAX_SHIP_FRAME;
 		end
+
+                self.rot = rot; -- save our result
 	end 
 
 	if self.imgdir_max then	
 		self.imgdir = floor((i_rot / MAX_SHIP_FRAME) * self.imgdir_max) + 1;
 	else
-		self.imgdir = i_rot + 1;
+		self.imgdir = floor(self.rot) + 1;
 	end
-	self.rot = i_rot;
 
 	-- cap the velocity at MAX!
 
@@ -606,7 +646,7 @@ function handle_firing(self, tick_diff)
 			if (self.timgdir) then
 				dir = self.timgdir;
 			else
-				dir = self.rot + 1;
+				dir = floor(self.rot) + 1;
 			end
 
 			xpos,ypos = C_obj_getPos(self.objnum);
@@ -619,9 +659,10 @@ function handle_firing(self, tick_diff)
 				xvel + Dirx[dir-1] * 0.3,
 				yvel + Diry[dir-1] * 0.3);
 			if new_bullet then
-				print(new_bullet);
 				new_bullet.creator = self;
-			end
+			else
+                                print("C_addsprite() returned nil!");
+                        end
 
 		end
 	else

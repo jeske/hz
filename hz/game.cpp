@@ -35,6 +35,69 @@
 
 extern int g_images_loaded; // from i_draw.h
 
+// ------------------------------------
+int horiz_scroll_view_tag = -1;
+
+// C_newHorizBarView() create a new horizontal status
+//  bar and add it to the game pane...
+//  args: x,y,w,h,max
+
+void C_hsb_setValue(void);
+
+void C_newHorizBarView() {
+   int x,y,w,h,max;
+   if (horiz_scroll_view_tag == -1) {
+     horiz_scroll_view_tag = lua_newtag();
+   }
+
+   x = (int)lua_getnumber(lua_getparam(1));
+   y = (int)lua_getnumber(lua_getparam(2));
+   w = (int)lua_getnumber(lua_getparam(3));
+   h = (int)lua_getnumber(lua_getparam(4));
+   max = (int)lua_getnumber(lua_getparam(5));
+
+   HorizStatusBar *a_bar = new HorizStatusBar(x,y,w,h,max);
+   gameScreenPane->addSubview(a_bar);
+   
+   lua_Object hz_view = lua_createtable();
+   
+   // save obj ptr.
+   lua_pushobject(hz_view);
+   lua_pushstring("c_objptr");
+   lua_pushusertag((void *)a_bar,horiz_scroll_view_tag);
+   lua_settable();
+
+   // add setValue(int val) method 
+   lua_pushobject(hz_view);
+   lua_pushstring("setValue");
+   lua_pushCclosure(C_hsb_setValue,0);
+   lua_settable();
+
+   // give the result to lua...
+   lua_pushobject(hz_view);
+
+}
+
+void C_hsb_setValue() {
+   lua_Object lua_barview = lua_getparam(1);
+   int value = (int)lua_getnumber(lua_getparam(2));
+
+   lua_pushobject(lua_barview);
+   lua_pushstring("c_objptr");
+   lua_Object hsb_ud = lua_gettable();
+
+   if (lua_tag(hsb_ud) != horiz_scroll_view_tag) {
+     lua_error("invalid first paramater to C_hsb_setValue()");
+   }
+   HorizStatusBar *hsb_ptr = (HorizStatusBar *)lua_getuserdata(hsb_ud);
+
+   hsb_ptr->setValue(value);
+   
+   
+}
+// ------------------------------------
+
+
 Map *mainMap = 0;
 ViewPort *mainViewPort = 0;
 SpriteTmplManager *spriteTmplManager = 0;
@@ -249,7 +312,6 @@ void C_obj_delete() {
 void C_addsprite() {
 	SpriteType *type;
 	const char *type_name;
-	LuaSprite *new_obj;
 	double x = 0, y = 0, vx = 0, vy = 0;
 
 	lua_beginblock();
@@ -273,17 +335,24 @@ void C_addsprite() {
 		vy = lua_getnumber(lua_getparam(5));
 	}
 
+	lua_endblock();
 
 	/* okay, we got all the info we need, now make the sprite! */
 	type = findSpriteType(type_name);
-	if (type) {
+	Sprite *new_obj;
+        if (type != NULL) {
 	  dbgMsg(c_excessive,"C_addsprite('%s',%f,%f,%f,%f).\n",type_name,x,y,vx,vy);
-	  type->makeInstance(defaultSpriteList,x,y,vx,vy);
-	  // lua_pushobject(lua_getref(new_obj->myLuaServerMirror));
-	} else {
-		dbgMsg(l_error,"no such SpriteType! [%s]\n",type_name);
-	}
-	lua_endblock();
+	  new_obj = (LuaSprite *)type->makeInstance(defaultSpriteList,x,y,vx,vy);
+          if (new_obj->type == OBJ_LUA) {
+            
+	    lua_pushobject(lua_getref(((LuaSprite *)new_obj)->myLuaServerMirror));
+            printf("****  return luamirror %d\n",((LuaSprite *)new_obj)->myLuaServerMirror );
+	  } else {
+	    dbgMsg(l_error,"sprite is not a LuaSprite [%s]\n",type_name);
+  	  }
+        } else {
+          dbgMsg(l_error,"no such spritetype [%s]\n",type_name);
+        }
 
 }
 
@@ -416,7 +485,13 @@ void C_luaerror_handler() {
 
 	lua_pushobject(param1);
 	lua_callfunction(old_handler);
+}
 
+void register_luadata() {
+  lua_pushnumber((float)ScreenX);
+  lua_setglobal("_SCREEN_X");
+  lua_pushnumber((float)ScreenX);
+  lua_setglobal("_SCREEN_Y");
 }
 
 void register_luafunctions() {
@@ -442,6 +517,7 @@ void register_luafunctions() {
   lua_register("C_getmapsquare", C_getmapsquare);
   lua_register("C_getmapsize", C_getmapsize);
   lua_register("write",C_write);
+  lua_register("C_newHorizBarView",C_newHorizBarView);
   
   // register our error handler
 #if 0
@@ -476,6 +552,7 @@ void init_lua_objects() {
 	
         printf ("init_lua_objects(): register lua functions\n");
 	lua_beginblock();
+        register_luadata();
 	register_luafunctions();
 	lua_endblock();
 

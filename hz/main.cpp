@@ -44,10 +44,7 @@ MultiView *mainTabView = NULL;
 MultiView *multiView = NULL;
 int testinc = 0;
 int testflash = 0;
-int testbarinc = 0;
 
-HorizStatusBar *status_bar;
-HorizStatusBar *status_bar2;
 HorizStatusBar *loadingBar;
 
 ConsoleView *consoleView;
@@ -153,8 +150,6 @@ void initViews() {
 
 	// PRODUCTION PANE
 
-		// we need something in the other tabview so here:
-		productionPane->addSubview(status_bar);
 
 
     // CONSOLE PANE
@@ -257,18 +252,6 @@ void initViews() {
 		// temp_view->setDepth(7);
 		// gameScreenPane->addSubview(temp_view);
 
-		// health bar
-		status_bar = new HorizStatusBar(25,10,150,12,20);
-		status_bar->setValue(5);
-		status_bar->setDepth(7);
-		gameScreenPane->addSubview(status_bar);
-
-
-		status_bar2 = new HorizStatusBar(viewPortWidth - (150 + 25),10,150,12,50);
-		status_bar2->setValue(5);
-		status_bar2->setDepth(7);
-		gameScreenPane->addSubview(status_bar2);
-
 		loadingBar = new HorizStatusBar(50,12,200,15,20);
 		loadingBar->setMaxValue(35);
 		loadingBar->setDepth(15);
@@ -310,23 +293,6 @@ extern int should_die; // to tell threads to die
 
 void paintScreen() {
 	if (realScreenView) {
-		if (testbarinc++ >= 3) {
-			testbarinc = 0;
-			if (status_bar && status_bar2) {
-				if (status_bar2->getValue() == 0) {
-					barvector = 1;
-				} else {
-					if (status_bar2->getValue() >= status_bar2->getMaxValue()) {
-						barvector = -1;
-					} 
-				}
-			
-			
-				status_bar2->setValue(status_bar2->getValue()+barvector);
-				status_bar->setValue(status_bar->getValue()+barvector);	
-			}
-			
-		}
 		if (loadingBar) {
 			loadingBar->setValue(g_images_loaded);
 		}

@@ -32,6 +32,9 @@ hz_register_objtype("Base", {
 	end,
 	ge_collision = function(self,x,y,whoIhit)
 		self.open_timer = 2000;
+                if whoIhit.healDamage then
+                  whoIhit:healDamage(1);
+                end
 	end,
 	doTick = function(self,tick_diff)
 		local State = self.State

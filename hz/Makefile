@@ -27,7 +27,7 @@ platform.conf:
 
 include platform.conf
 include make.conf.$(PLATFORM)
-include make.depend
+# include make.depend
 
 VIEW_OBJS = i_console.o i_draw.o i_video.o i_system.o i_sprtet.o i_view.o
 

@@ -3,7 +3,7 @@ $debug
 -- mainship object type...
 
 hz_register_objtype("mainship", {
-	_parents = { air_physics, controllable, collidable },
+	_parents = { damageable, air_physics, controllable, collidable },
 
 	Condition = "Healthy",
 	imgdir = 2.0,   -- the image index
@@ -15,16 +15,25 @@ hz_register_objtype("mainship", {
 	exp_timer = 0.0,
 	frame_time = 70,
 	layer = 1,
+        show_my_damage = 1,
 
-	damage = 0,
-	damage_max = 10,
+	damage_max = 100,
 	recharge_rate = 0.1,
 	
 	VisualRep = VisualReps.newDropShip,
 
-	-- dummy ai_event
+	-- called to navigate...
 	ai_event = function(self)
+          if not self.signaled_ai_event then
+            self.signaled_ai_event = 1;
+            print("******** AI EVENT".. tostring(self));
+          end
 	end,
+
+        ai_moveToXY = function(self,target_x, target_y)
+          self.ai_target_x = target_x;
+          self.ai_target_y = target_y;
+        end,
 
 	-- constructor
 	new = function (self,a_list) -- constructor

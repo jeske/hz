@@ -72,6 +72,14 @@ Map::~Map() {
 	this->deallocMap();
 }
 
+Sprite *Map::firstSpriteAtTileXY(int tile_x,int tile_y) {
+  if ((tile_x >= 0) && (tile_y >= 0) &&
+      (tile_x < grid_cols) && (tile_y < grid_rows)) {
+     return (objects_rowindex[tile_y])[tile_x];
+  }
+  return NULL;
+}
+
 void Map::allocMap() {
 	int iter;
 	int num_cells = grid_rows * grid_cols;	

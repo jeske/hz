@@ -24,6 +24,7 @@ public:
 	virtual int handleEvent(struct input_event *ev); // we want key events!
 	virtual void handleCollision(Sprite *obj_hit);
 	virtual const char *getPropertyStr(const char *propName); // get object property value
+        virtual void handleNearbyObjects(Sprite *nearby_objects[],int nearby_objects_count);
 };
 
 #if 0

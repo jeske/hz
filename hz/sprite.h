@@ -96,6 +96,7 @@ class Sprite  {
 	// --------------------------------
 
  protected:
+        int nearby_check; // check for nearby objects
 	void placeObject(Map *aMap); // place an object on the map
   	int should_die;
  public:
@@ -134,6 +135,7 @@ class Sprite  {
 	virtual int handleEvent(struct input_event *ev) = 0; // we want key events!
 	virtual void handleCollision(Sprite *obj_hit) = 0; // a collision occured!
 	virtual const char *getPropertyStr(const char *propName) = 0; // get object property value
+        virtual void handleNearbyObjects(Sprite *nearby_objects[],int nearby_objects_count);
 };
 
 

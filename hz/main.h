@@ -26,6 +26,7 @@ enum
 extern MultiView *mainTabView; 
 extern ConsoleView *consoleView; 
 extern View *realScreenView;
+extern View *gameScreenPane;
 
 void    initViews( void );
 void    UpdateFrame( void );

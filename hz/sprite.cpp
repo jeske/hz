@@ -67,6 +67,7 @@ Sprite::Sprite(SpriteList *aList, SpriteType *a_type, double x, double y, double
 	this->old_tile_x = -1;
 	this->old_tile_y = -1;
 	this->mynumber = sprite_number++;
+        this->nearby_check = 0;
 	mySpriteList = aList;
 
 	if( x < 0.0) {// no position specified?
@@ -308,6 +309,7 @@ int map_dxdy[MAP_DXDY_COUNT][2] = {
 	{  1, -1 }};
 
 
+#define MAX_NEARBY_OBJECTS 10
 
 
 Sprite *Sprite::checkCollision() {
@@ -319,6 +321,8 @@ Sprite *Sprite::checkCollision() {
 	Sprite *hit_temp = NULL;
 	int did_hit;
 //	double tempx, tempy;
+        Sprite *nearby_objects[MAX_NEARBY_OBJECTS];
+        int nearby_objects_count = 0;
 
 // static size collision detection, yuck!
 
@@ -337,14 +341,18 @@ Sprite *Sprite::checkCollision() {
 		check_tile_x = my_tile_x + map_dxdy[dxdy_count][0];
 		check_tile_y = my_tile_y + map_dxdy[dxdy_count][1];
 		
-		if ((check_tile_x >= 0) && (check_tile_y >= 0)) {
-			hit_temp = (myMap->objects_rowindex[check_tile_y])[check_tile_x];
+                hit_temp = myMap->firstSpriteAtTileXY(check_tile_x,check_tile_y);
+                if (hit_temp != NULL) {
 
 			did_hit = 0;
 			while (hit_temp && !did_hit) {
 				if ((hit_temp == this) || (!hit_temp->canCollide())) {
 					hit_temp = hit_temp->tile_next;
 				} else {
+					// record it as a nearby object!
+					if (nearby_check && (nearby_objects_count < MAX_NEARBY_OBJECTS)) {
+					   nearby_objects[nearby_objects_count++] = hit_temp;
+					}
 					// check to see if we hit this object
 						
 					if ((hit_temp->posx) > this->posx) {
@@ -387,12 +395,21 @@ Sprite *Sprite::checkCollision() {
 		dxdy_count++;
 	}
 
+        if (nearby_check) {
+          this->handleNearbyObjects(nearby_objects,nearby_objects_count);
+        }
+
 //	if (hit_temp) {
 //     dbgMsg(c_info,"Collision: [%d]:%s and [%d]:%s at (%f,%f)\n",this->mynumber, this->obj_type_string,
 //			hit_temp->mynumber, hit_temp->obj_type_string, this->posx, this->posy);
 //	}
 
 	return hit_temp;
+}
+
+void Sprite::handleNearbyObjects(Sprite *nearby_objects[],
+                                 int nearby_objects_count) {
+  // default method...
 }
 
 /*

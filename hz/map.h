@@ -34,6 +34,7 @@ public:
 	void setSquare(int x, int y, int tile_type);
 	int getSquare(int x, int y);
 	~Map();
+        Sprite *firstSpriteAtTileXY(int tile_x,int tile_y);
 };
 
 

@@ -6,7 +6,7 @@
 -- bullet object type...
 
 hz_register_objtype("bullet",{
-	VisualRep = { "std\\bullet.bmp", 0, 0, 0, 0 },
+	VisualRep = { "std\\bullet.bmp" },
 	countdown = 550,
 	layer = 1,
 
@@ -25,15 +25,13 @@ hz_register_objtype("bullet",{
 	
 	-- apply damage!
 	ge_collision = function(self,x,y,whoIhit)
-		if (whoIhit.damage and (whoIhit.creator ~= self) and (self.layer == whoIhit.layer)) then
+		if (whoIhit.applyDamage and (self.creator ~= whoIhit) and (self.layer == whoIhit.layer)) then
 			if (collisions_active < MAX_COLLISIONS) then
 				C_addsprite("explosion",x,y);
 				collisions_active = collisions_active + 1;
 			end
+			whoIhit:applyDamage(1);
 			C_obj_delete(self.objnum);
-			if (whoIhit.damage ~= nil) then
-				whoIhit.damage = whoIhit.damage + 1;
-			end
 		end
 	end,
 
