@@ -108,9 +108,11 @@ class Sprite  {
 
 	Sprite(SpriteList *aList,SpriteType *a_type, double x, double y, 
 			double vx, double vy);
+ protected:
 	~Sprite(); // destructor
+ public:
 
-	virtual void SpriteTeardown();
+	virtual void SpriteTeardown(void);
 
 	
 	Sprite *checkCollision();

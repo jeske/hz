@@ -100,6 +100,56 @@ hz_register_objtype("hd_mainship", {
 
 }); -- register done
 
+hz_register_objtype("hd_mainship_c", {
+	_parents = { air_physics, controllable, collidable },
+
+	Condition = "Healthy",
+	imgdir_max = 24,
+	imgdir = 2.0,   -- the image index
+
+	rimgdir = 1.0,
+	direction = 0.0, -- in degrees
+	bullet_type = "bullet",
+	objtype = "hd_mainship",
+	exp_timer = 0.0,
+	frame_time = 70,
+	layer = 1,
+	Mode = "Flying", -- Flying, Standing, Transforming, Walking 
+
+	damage = 0,
+	damage_max = 10,
+	recharge_rate = 0.1,
+	
+	VisualRep = VisualReps.hdFighter,
+
+	-- dummy ai_event
+	ai_event = function(self)
+	end,
+
+	-- constructor
+	new = function (self,a_list) -- constructor
+			if (type(a_list) ~= "table") then
+			print("mainship:new() called with non-table "..tostring(a_list));
+		else 
+			a_list._parents = { self };
+			a_list.key = {}; -- make our private keydown list
+			a_list.ctrl_centered = 1.0;
+			a_list.dest_dir = 0.0;
+		end
+		return a_list
+	end,
+
+	recharge = function (self,byWhom) -- recharge method
+		local damage = self.damage;
+		if (damage > 0) then
+			damage = max(0,damage - recharge_rate);
+			self.damage = damage;
+		end
+	end
+
+
+}); -- register done
+
 
 
 hz_register_objtype("heli", {

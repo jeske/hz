@@ -6,6 +6,7 @@
 // This is the lua-specific sprite subclass....
 
 #include <lua.h>
+#include <stdio.h>
 #include "main.h"
 #include "misc.h"
 #include "map.h"
@@ -173,10 +174,11 @@ LuaSprite::LuaSprite(SpriteList *aList,SpriteType *a_type, double x, double y,
   
   lua_endblock();
 }
-void LuaSprite::SpriteTeardown() {
+
+void LuaSprite::SpriteTeardown(void) {
 
 	// first, remove my Lua Mirror
-
+	printf("1 deleted lua %d\n",mynumber);
 	lua_beginblock();
 
 	lua_Object objects_tbl = lua_getglobal("objects");
@@ -194,6 +196,27 @@ void LuaSprite::SpriteTeardown() {
 			lua_pushnumber((float)mynumber);
 			lua_pushnil();
 			lua_settable();
+			printf("2 deleted lua %d\n",mynumber);
+		}
+	}
+
+
+	objects_tbl = lua_getglobal("srvobjs");
+	if (!lua_istable(objects_tbl)) {
+		dbgMsg(l_error,"ERR: No 'srvobs' table to remove mirror from\n");
+	} else {
+		// get _THIS_ object type from the "srvobjs" table
+	
+		lua_pushobject(objects_tbl);
+		lua_pushnumber((float)mynumber);
+		lua_Object objptr = lua_gettable();
+		if (lua_istable(objptr)) {
+			// now we need to remove that entry..
+			lua_pushobject(objects_tbl);
+			lua_pushnumber((float)mynumber);
+			lua_pushnil();
+			lua_settable();
+			printf("3 deleted lua %d\n",mynumber);
 		}
 	}
 

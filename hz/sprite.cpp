@@ -28,6 +28,7 @@
 //       sprite type object instead.
 
 #include <math.h>
+#include <stdio.h>
 
 #ifdef OS_WIN
 #include "DrawHndl.h" // RestoreSurfaces()
@@ -106,9 +107,12 @@ Sprite::Sprite(SpriteList *aList, SpriteType *a_type, double x, double y, double
 
 
 Sprite::~Sprite() {
-
+  printf("inside ~Sprite\n");
   // sprite specific teardown
-  this->SpriteTeardown();
+  // this->SpriteTeardown();
+  // NOTE: we had to move this to the spriteDoTick() code right 
+  // before delete because of C++ crappyness!
+
 
   // remove us from the spritelist..
   if (mySpriteList) {
@@ -135,6 +139,8 @@ void Sprite::doSpriteTick(unsigned int tickDiff) {
   ptr->posy  += ptr->vely  * (double)tickDiff;
 
   if (this->should_die) {
+    printf("deleting object\n");
+    this->SpriteTeardown();
     delete this; // probably not the best thing to do, but it works
     return;
   }
@@ -169,8 +175,9 @@ void Sprite::doSpriteTick(unsigned int tickDiff) {
   }
 }
 
-void Sprite::SpriteTeardown() {
+void Sprite::SpriteTeardown(void) {
   // default method
+  printf("default sprite teardown\n");
 }
 
 // ---------------------------------------------------------------------------

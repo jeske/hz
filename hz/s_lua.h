@@ -15,7 +15,7 @@ public:
 	LuaSprite(SpriteList *aList,SpriteType *a_type, double x, double y, 
 			double vx, double vy);
 
-	virtual void SpriteTeardown();
+	virtual void SpriteTeardown(void);
 
 	// callbacks
 	virtual int canCollide(void);
