@@ -1,7 +1,6 @@
 // HZ Engine Source
 // Copyright 1998 (C) David W. Jeske
 
-
 // spritet.cpp
 // class SpriteType
 //

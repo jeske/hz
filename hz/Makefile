@@ -16,10 +16,10 @@ COMP_OBJS = $(ALL_OBJS:%=obj\%)
 
 
 .c.o:
-	$(CC) -c $(CFLAGS) $<
+	$(CC) -c $< $(CFLAGS)
 
 obj/%.o : %.cpp
-	$(CPP) -c $(CFLAGS) $< -o $@
+	$(CPP) -c $< $(CFLAGS) -o $@
 
 
 platform.conf: 
@@ -50,7 +50,7 @@ make.depend: Makefile make.conf.$(PLATFORM)
 	@echo "***** Generating make.depend"
 	@echo "*****"
 	@echo "# auto-generated make.depend" > make.depend.tmp
-	$(CPP) -MM $(CFLAGS) *.cpp >> make.depend.tmp
+	$(CPP) -MM *.cpp $(CFLAGS) >> make.depend.tmp
 	rm -f make.depend
 	mv make.depend.tmp make.depend
 	@echo "*****"
