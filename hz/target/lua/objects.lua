@@ -85,6 +85,8 @@ dofile("obj_bse.lua");		-- mainbase and minibase defined
 dofile("obj_flg.lua");		-- flag
 dofile("obj_expl.lua");		-- explosions
 dofile("obj_proj.lua");		-- projectiles
+dofile("obj_trees.lua");	-- trees
+
 
 dofile("initobj.lua");
 
@@ -114,6 +116,7 @@ function setupGameSprites()
 
 	C_addsprite("hovercraft", 50,150);
 	C_addsprite("litetank",100,100);
+	C_addsprite("hdApc",150,150);
 
         -- give me one base
         C_addsprite("Base",100,150);
@@ -132,6 +135,14 @@ function setupGameSprites()
 	local i = 0;
 	while (i < 30) do
 		C_addsprite("flag",random() * 1500, random() * 1500);
+		C_addsprite("tree01",random() * 1500, random() * 1500);
+		C_addsprite("tree02",random() * 1500, random() * 1500);
+		C_addsprite("tree03",random() * 1500, random() * 1500);
+		C_addsprite("bush01",random() * 1500, random() * 1500);
+		C_addsprite("rock01",random() * 1500, random() * 1500);
+		C_addsprite("rock02",random() * 1500, random() * 1500);
+		C_addsprite("rock03",random() * 1500, random() * 1500);
+		C_addsprite("rock04",random() * 1500, random() * 1500);
 		i = i + 1;
 	end
 	-- printTable(objects);

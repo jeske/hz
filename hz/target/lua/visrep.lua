@@ -286,6 +286,49 @@ dropShip = {
 					IndexedBy="imgdir"
 				},
 
+hdApc = { 
+					{"hd_apc/tank0000.bmp" },
+					{"hd_apc/tank0001.bmp" },
+					{"hd_apc/tank0002.bmp" },
+					{"hd_apc/tank0003.bmp" },
+					{"hd_apc/tank0004.bmp" },
+					{"hd_apc/tank0005.bmp" },
+					{"hd_apc/tank0006.bmp" },
+					{"hd_apc/tank0007.bmp" },
+					{"hd_apc/tank0008.bmp" },
+					{"hd_apc/tank0009.bmp" },
+					{"hd_apc/tank0010.bmp" },
+					{"hd_apc/tank0011.bmp" },
+					{"hd_apc/tank0012.bmp" },
+					{"hd_apc/tank0013.bmp" },
+					{"hd_apc/tank0014.bmp" },
+					{"hd_apc/tank0015.bmp" },
+					{"hd_apc/tank0016.bmp" },
+					{"hd_apc/tank0017.bmp" },
+					{"hd_apc/tank0018.bmp" },
+					{"hd_apc/tank0019.bmp" },
+					{"hd_apc/tank0020.bmp" },
+					{"hd_apc/tank0021.bmp" },
+					{"hd_apc/tank0022.bmp" },
+					{"hd_apc/tank0023.bmp" },
+					{"hd_apc/tank0024.bmp" },
+					{"hd_apc/tank0025.bmp" },
+					{"hd_apc/tank0026.bmp" },
+					{"hd_apc/tank0027.bmp" },
+					{"hd_apc/tank0028.bmp" },
+					{"hd_apc/tank0029.bmp" },
+					{"hd_apc/tank0030.bmp" },
+					{"hd_apc/tank0031.bmp" },
+					{"hd_apc/tank0032.bmp" },
+					{"hd_apc/tank0033.bmp" },
+					{"hd_apc/tank0034.bmp" },
+					{"hd_apc/tank0035.bmp" },
+					{"hd_apc/tank0036.bmp" },
+					{"hd_apc/tank0037.bmp" },
+					{"hd_apc/tank0038.bmp" },
+					{"hd_apc/tank0039.bmp" };
+					IndexedBy="imgdir"
+				},
 					
 
 Flag = {
@@ -296,6 +339,15 @@ Flag = {
 				IndexedBy = "flagimg"
 				},
 Missile = {"img/missile.bmp" },
+
+Tree01 = {"land/tree01.bmp" },
+Tree02 = {"land/tree02.bmp" },
+Tree03 = {"land/tree03.bmp" },
+Bush01 = {"land/bush01.bmp" },
+Rock01 = {"land/rock01.bmp" },
+Rock02 = {"land/rock02.bmp" },
+Rock03 = {"land/rock03.bmp" },
+Rock04 = {"land/rock04.bmp" },
 
 
 Explosion = {

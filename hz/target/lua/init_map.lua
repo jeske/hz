@@ -6,7 +6,7 @@ if not MAP_TILES_LOADED then
   C_tile_addtype("t_snow/tile27.bmp"); -- tile 0 
 
   local tile_num = 1;
-  while (tile_num < 30) do
+  while (tile_num < 33) do
     C_tile_addtype(format("t_snow/tile%02d.bmp",tile_num));
     tile_num = tile_num + 1;
   end
@@ -63,8 +63,8 @@ map_templates.island = {
 
 map_templates.lake = {
   { 18, 25, 25, 25, 25, 25, 25, 25, 14 },
-  { 23,  2,  1,  5,  3,  3,  4,  2, 24 },
-  { 23,  2, 29,  5,  3,  3,  4, 12, 24 },
+  { 23,  2,  1,  1, 29,  1,  2,  2, 24 },
+  { 23,  2, 29,  2,  1,  2, 28, 12, 24 },
   { 19, 26, 26, 26, 26, 26, 26, 26, 16 },
 };
 
