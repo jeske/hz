@@ -69,6 +69,8 @@ BOOL I_InitVideo (void)
     return FALSE;
   }
 
+  SDL_EnableUNICODE(1);
+
   X_width = SCREENWIDTH;
   X_height = SCREENHEIGHT;
   ScreenX = X_width;
@@ -117,7 +119,7 @@ int I_EventLoop()
     case SDL_ACTIVEEVENT:
       if (!(event.active.state & SDL_APPACTIVE))
       {
-	bIsActive = 0;
+// 	bIsActive = 0;
 	bMouseVisible = TRUE;
       }
       else
@@ -145,12 +147,20 @@ int I_EventLoop()
       if (realScreenView) {
 
 	// SDL keysyms are usually the same as ascii keys....
-	ascii_key = event.key.keysym.sym;
+	ascii_key = event.key.keysym.unicode;
+	if (ascii_key == 0)
+	{
+	  ev.dev.keyboard.mask = KM_KEYDOWN; 
+	  ascii_key = event.key.keysym.sym;
+	}
+	else
+	{
+	  ev.dev.keyboard.mask = KM_KEYDOWN | KM_ASCII_KEY;
+	}
 
 	ev.dev_type = DT_KEYBOARD;
 	ev.dev.keyboard.vk_code = ascii_key;
 	ev.dev.keyboard.ascii_code = ascii_key;
-	ev.dev.keyboard.mask = KM_KEYDOWN | KM_ASCII_KEY;
 //	I_Message ("Got Key %d/%d at %lu\n", key, event.xkey.state, i_time_ms());
 	realScreenView->inputEvent(&ev);
       }
@@ -181,12 +191,12 @@ int I_EventLoop()
       // if there is a screen, then pass the key
       if (realScreenView) {
 
-	ascii_key = event.key.keysym.sym;
+	ascii_key = event.key.keysym.unicode;
 
 	ev.dev_type = DT_KEYBOARD;
 	ev.dev.keyboard.mask = KM_KEYUP;
 	ev.dev.keyboard.vk_code = event.key.keysym.sym;
-	I_Message ("Got Key %d at %lu\n", ascii_key, i_time_ms());
+	I_Message ("Got Key %c (%d) at %lu\n", ascii_key, ascii_key, i_time_ms());
 	ev.dev.keyboard.ascii_code = event.key.keysym.sym;
 	realScreenView->inputEvent(&ev);
       }
