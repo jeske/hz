@@ -10,6 +10,32 @@ recharge = {
 	end
 }; -- end recharge
 
+hz_register_objtype("hdmainbase", {
+	flagimg = 1.0,
+	nocollide = 1,
+	VisualRep = VisualReps.hdmainbase,
+	-- methods
+
+	new = function (self,a_list) 
+		if (type(a_list) ~= "table") then
+			print("missile:new() called with non-table" .. tostring(a_list));
+		else
+			a_list._parents = {self};
+			a_list.objtype = "tree01";
+			a_list.counter = 0.0;
+			a_list.frame_time = 80.0;
+			a_list.flagimg = 1.0;
+			C_obj_setLayer(a_list.objnum,-1);
+		end
+		return (a_list);
+	end,
+
+	-- this is a dummy ai_event to prevent slowdown!
+	
+	ai_event = function(self)
+	end,
+}); 
+
 
 hz_register_objtype("Base", {
 	_parents = { recharge },

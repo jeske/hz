@@ -16,6 +16,8 @@ oldBase = { 	IndexedBy = "Condition",
 
 abase = { "nbase/base0000.bmp", 0, 0, 0, 0},
 
+hdmainbase = { "hd_base/base.bmp", 0, 0, 0, 0},
+
 nbase = {
 	IndexedBy = "State",
       Closed = { "nbase/base0000.bmp" },

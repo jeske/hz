@@ -112,15 +112,16 @@ function setupGameSprites()
 	print("setup game sprites");
 	printTable(objects);
         -- this is our second unit...
-	C_addsprite("heli",200,30);
+	C_addsprite("heli",300,30);
 
-	C_addsprite("hovercraft", 50,150);
-	C_addsprite("litetank",100,100);
-	C_addsprite("hdApc",150,150);
-	C_addsprite("soldier",200,200);
+	C_addsprite("hovercraft", 50,350);
+	C_addsprite("litetank",100,350);
+	C_addsprite("hdApc",150,350);
+	C_addsprite("soldier",200,350);
+	C_addsprite("hdmainbase",15,15);
 
         -- give me one base
-        C_addsprite("Base",100,150);
+        C_addsprite("Base",350,150);
 
 
         -- make one enemy
@@ -135,15 +136,15 @@ function setupGameSprites()
         -- place a bunch of random flags on the map..
 	local i = 0;
 	while (i < 30) do
-		C_addsprite("flag",random() * 1500, random() * 1500);
-		C_addsprite("tree01",random() * 1500, random() * 1500);
-		C_addsprite("tree02",random() * 1500, random() * 1500);
-		C_addsprite("tree03",random() * 1500, random() * 1500);
-		C_addsprite("bush01",random() * 1500, random() * 1500);
-		C_addsprite("rock01",random() * 1500, random() * 1500);
-		C_addsprite("rock02",random() * 1500, random() * 1500);
-		C_addsprite("rock03",random() * 1500, random() * 1500);
-		C_addsprite("rock04",random() * 1500, random() * 1500);
+		C_addsprite("flag",random() * 1500 + 300, random() * 1500 + 300);
+		C_addsprite("tree01",random() * 1500 + 300, random() * 1500 + 300);
+		C_addsprite("tree02",random() * 1500 + 300, random() * 1500 + 300);
+		C_addsprite("tree03",random() * 1500 + 300, random() * 1500 + 300);
+		C_addsprite("bush01",random() * 1500 + 300, random() * 1500 + 300);
+		C_addsprite("rock01",random() * 1500 + 300, random() * 1500 + 300);
+		C_addsprite("rock02",random() * 1500 + 300, random() * 1500 + 300);
+		C_addsprite("rock03",random() * 1500 + 300, random() * 1500 + 300);
+		C_addsprite("rock04",random() * 1500 + 300, random() * 1500 + 300);
 		i = i + 1;
 	end
 	-- printTable(objects);
