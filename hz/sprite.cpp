@@ -62,31 +62,12 @@ Sprite::Sprite(SpriteList *aList, SpriteType *a_type, double x, double y, double
 
 static int sprite_number = 0;
 
-void Sprite::lfb_gettable(lua_Object index) {
-	dbgMsg(c_error,"called Sprite::lfb_gettable()\n");
-}
-
-void Sprite::lfb_gc() {
-	dbgMsg(c_error,"called Sprite::lfb_gc()\n"); 
-	delete this;
-}
-
 void Sprite::SpriteSetup(SpriteList *aList, SHORT a_type, double x, double y, double vx, double vy) {
 	Sprite *new_node = this;
 
 	if (new_node == NULL) {
 		dbgMsg(c_error,"NULL ptr Sprite...\n");
 		return;
-	}
-
-	// setup the sprite tag type
-	static int lua_sprite_tag = -1;
-	if (lua_sprite_tag == -1) {
-		lua_sprite_tag = lua_newtag();
-
-		lua_pushCclosure(LuaBase::slfb_gettable,0);
-		lua_settagmethod(lua_sprite_tag,"gettable");
-
 	}
 
 	mySpriteList = aList;
@@ -255,10 +236,6 @@ void Sprite::SpriteSetup(SpriteList *aList, SHORT a_type, double x, double y, do
 				lua_pushstring("objnum");
 				lua_pushuserdata((void *)this);
 				lua_settable();
-
-				// lua_pushuserdata((void *)this);
-				// lua_settag(lua_sprite_tag);
-
 				
 				// now we need to call the constructor with this new object
 				// don't forget it's a METHOD!!!

@@ -13,7 +13,6 @@
 #endif
 #include <lua.h>
 
-#include "luabase.h"
 #include "spritet.h"
 
 
@@ -70,7 +69,7 @@ struct img_frame_state_struct {
 };
 
 
-class Sprite : public LuaBase {
+class Sprite  {
 
 private:
 	int should_die;
@@ -111,9 +110,6 @@ public:
 
 	int layer;
 	void setLayer(int new_layer);
-
-	virtual void lfb_gettable(lua_Object index); // from LuaBase
-	virtual void lfb_gc(); // from LuaBase
 
 	double velx, vely; // x and y velocity (pixels/millisecond)
 	double posx, posy; // actual x and y position
