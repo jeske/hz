@@ -578,7 +578,6 @@ void ConsoleView::addString(const char *str) {
 
 void ConsoleView::addChar(char c) {
 	myData->addChar(c);
-	repaint();
 }
 
 void ConsoleView::setConsoleHandler(int (*cb)(ConsoleView *,char *)) {
