@@ -9,6 +9,44 @@
 
 VisualReps = {
 
+oldBase = { 	IndexedBy = "Condition",
+			Healthy = { "std\\base0000.bmp", 0, 0, 0, 0 },
+			Dead    = { "std\\dude5.bmp", 0, 0, 0, 0 }
+},
+
+abase = { "nbase\\base0000.bmp", 0, 0, 0, 0},
+
+nbase = {
+	IndexedBy = "State",
+      Closed = { "nbase\\base0000.bmp" , 0, 0, 0, 0},
+	Opening = { { "nbase\\base0001.bmp", 0, 0, 0, 0},
+			{ "nbase\\base0002.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0003.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0004.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0005.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0006.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0007.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0008.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0009.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0010.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0011.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0012.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0013.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0014.bmp" , 0, 0, 0, 0};
+			IndexedBy = "opentick" },
+      Open   = {	{ "nbase\\base0015.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0016.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0017.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0018.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0019.bmp" , 0, 0, 0, 0},
+			{ "nbase\\base0020.bmp" , 0, 0, 0, 0},
+			-- { "nbase\\base0021.bmp" , 0, 0, 0, 0}
+			;
+			IndexedBy = "spintick"
+			},
+
+},
+
 dropShip = { 
 					{"dropship\\dropship0000.bmp", 0, 0, 0, 0 },
 					{"dropship\\dropship0001.bmp", 0, 0, 0, 0 },

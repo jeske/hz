@@ -89,7 +89,20 @@ function setupGameSprites()
 	C_addsprite("tank",30,200);
 	C_addsprite("hovercraft", 50,150);
 	C_addsprite("litetank",100,100);
-    local i = 0;
+
+	if 1 then
+		local x = 0
+		while (x < 10) do
+			local y = 0
+			while y < 10 do
+				C_addsprite("Base",250 + (x * 100),500 + (y * 100));
+				y = y + 1;
+			end
+			x = x + 1;
+		end
+	end
+
+	local i = 0;
 	while (i < 30) do
 		C_addsprite("flag",random() * 1500, random() * 1500);
 		i = i + 1;
