@@ -92,6 +92,8 @@ BOOL I_vid_setpalette(const char *filename) {
 	return 1; // pass
 }
 
+// #define NT_HACK 1
+
 BOOL I_InitVideo( void )
 {
     DDCAPS          ddcaps;

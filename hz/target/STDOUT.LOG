@@ -75,4 +75,514 @@ table: 01978EA0
   [number]: 0 = [table] table: 019D02F8	
 1 entry.	
 setup_game() finished
+table: 019D07C0	
+  [string]: down = [number] 1	
+1 entry.	
+handlekeys() dest_dir = 20, centered = 0, centered = 0	
+accelerate at (0.000000,1.000000)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+  [string]: down = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: right = [number] 1	
+1 entry.	
+handlekeys() dest_dir = 10, centered = 0, centered = 0	
+accelerate at (1.000000,0.000000)	
+accelerate at (1.000000,0.000000)	
+table: 019D07C0	
+0 entries.	
+handlekeys() dest_dir = 10, centered = 1, centered = 1	
+table: 019D07C0	
+  [string]: left = [number] 1	
+1 entry.	
+handlekeys() dest_dir = 30, centered = 0, centered = 0	
+table: 019D07C0	
+  [string]: up = [number] 1	
+  [string]: left = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 35, centered = 0, centered = 0	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+table: 019D07C0	
+  [string]: up = [number] 1	
+  [string]: left = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 35, centered = 0, centered = 0	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+table: 019D07C0	
+  [string]: up = [number] 1	
+  [string]: left = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 35, centered = 0, centered = 0	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+table: 019D07C0	
+  [string]: up = [number] 1	
+  [string]: left = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 35, centered = 0, centered = 0	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+table: 019D07C0	
+  [string]: up = [number] 1	
+  [string]: left = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 35, centered = 0, centered = 0	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+table: 019D07C0	
+  [string]: up = [number] 1	
+  [string]: left = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 35, centered = 0, centered = 0	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+table: 019D07C0	
+  [string]: up = [number] 1	
+  [string]: left = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 35, centered = 0, centered = 0	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+table: 019D07C0	
+  [string]: up = [number] 1	
+  [string]: left = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 35, centered = 0, centered = 0	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+accelerate at (-0.707107,-0.707107)	
+table: 019D07C0	
+  [string]: up = [number] 1	
+1 entry.	
+handlekeys() dest_dir = 0, centered = 0, centered = 0	
+accelerate at (0.000000,-1.000000)	
+table: 019D07C0	
+0 entries.	
+handlekeys() dest_dir = 0, centered = 1, centered = 1	
+keydown = (32)'32'	
+keydown = (32)'32'	
+table: 019D07C0	
+  [string]: left = [number] 1	
+1 entry.	
+handlekeys() dest_dir = 30, centered = 0, centered = 0	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+accelerate at (-1.000000,0.000000)	
+table: 019D07C0	
+0 entries.	
+handlekeys() dest_dir = 30, centered = 1, centered = 1	
+table: 019D07C0	
+  [string]: right = [number] 1	
+1 entry.	
+handlekeys() dest_dir = 10, centered = 0, centered = 0	
+accelerate at (1.000000,0.000000)	
+table: 019D07C0	
+  [string]: down = [number] 1	
+  [string]: right = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: down = [number] 1	
+  [string]: right = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: down = [number] 1	
+  [string]: right = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: down = [number] 1	
+  [string]: right = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: down = [number] 1	
+  [string]: right = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+accelerate at (0.707107,0.707107)	
+table: 019D07C0	
+  [string]: down = [number] 1	
+  [string]: right = [number] 1	
+2 entries.	
+handlekeys() dest_dir = 15, centered = 0, centered = 0	
+table: 019D07C0	
+  [string]: right = [number] 1	
+1 entry.	
+handlekeys() dest_dir = 10, centered = 0, centered = 0	
+accelerate at (1.000000,0.000000)	
+table: 019D07C0	
+0 entries.	
+handlekeys() dest_dir = 10, centered = 1, centered = 1	
 keydown = (27)'27'	

@@ -1,4 +1,4 @@
-# Microsoft Developer Studio Generated NMAKE File, Format Version 4.00
+# Microsoft Developer Studio Generated NMAKE File, Format Version 4.10
 # ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Application" 0x0101
@@ -31,8 +31,8 @@ NULL=nul
 ################################################################################
 # Begin Project
 # PROP Target_Last_Scanned "HZ - Win32 Debug"
-CPP=cl.exe
 RSC=rc.exe
+CPP=cl.exe
 MTL=mktyplib.exe
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
@@ -50,36 +50,36 @@ MTL=mktyplib.exe
 OUTDIR=.\Release
 INTDIR=.\Release
 
-ALL : "$(OUTDIR)\hz.exe"
+ALL : ".\Release\hz.exe"
 
 CLEAN : 
-	-@erase ".\Release\hz.exe"
-	-@erase ".\Release\net.obj"
-	-@erase ".\Release\i_system.obj"
-	-@erase ".\Release\sprite.obj"
-	-@erase ".\Release\map.obj"
-	-@erase ".\Release\luabase.obj"
-	-@erase ".\Release\control.obj"
-	-@erase ".\Release\drawhndl.obj"
-	-@erase ".\Release\i_net.obj"
-	-@erase ".\Release\i_video.obj"
 	-@erase ".\Release\concmd.obj"
-	-@erase ".\Release\spritet.obj"
-	-@erase ".\Release\view.obj"
+	-@erase ".\Release\control.obj"
+	-@erase ".\Release\ddutil.obj"
+	-@erase ".\Release\donuts.obj"
+	-@erase ".\Release\donuts.res"
+	-@erase ".\Release\drawhndl.obj"
 	-@erase ".\Release\game.obj"
 	-@erase ".\Release\hndlmgr.obj"
-	-@erase ".\Release\misc.obj"
+	-@erase ".\Release\hz.exe"
+	-@erase ".\Release\i_draw.obj"
+	-@erase ".\Release\i_main.obj"
+	-@erase ".\Release\i_net.obj"
 	-@erase ".\Release\i_sound.obj"
 	-@erase ".\Release\i_sprtet.obj"
-	-@erase ".\Release\i_draw.obj"
-	-@erase ".\Release\ddutil.obj"
-	-@erase ".\Release\i_main.obj"
-	-@erase ".\Release\platform.obj"
-	-@erase ".\Release\vconsole.obj"
-	-@erase ".\Release\donuts.obj"
-	-@erase ".\Release\sound.obj"
+	-@erase ".\Release\i_system.obj"
+	-@erase ".\Release\i_video.obj"
+	-@erase ".\Release\luabase.obj"
 	-@erase ".\Release\main.obj"
-	-@erase ".\Release\donuts.res"
+	-@erase ".\Release\map.obj"
+	-@erase ".\Release\misc.obj"
+	-@erase ".\Release\net.obj"
+	-@erase ".\Release\platform.obj"
+	-@erase ".\Release\sound.obj"
+	-@erase ".\Release\sprite.obj"
+	-@erase ".\Release\spritet.obj"
+	-@erase ".\Release\vconsole.obj"
+	-@erase ".\Release\view.obj"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
@@ -89,7 +89,7 @@ CLEAN :
 CPP_PROJ=/nologo /ML /W3 /GX /O2 /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D\
  "OS_WIN" /Fp"$(INTDIR)/hz.pch" /YX /Fo"$(INTDIR)/" /c 
 CPP_OBJS=.\Release/
-CPP_SBRS=
+CPP_SBRS=.\.
 # ADD BASE MTL /nologo /D "NDEBUG" /win32
 # ADD MTL /nologo /D "NDEBUG" /win32
 MTL_PROJ=/nologo /D "NDEBUG" /win32 
@@ -100,7 +100,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 BSC32_FLAGS=/nologo /o"$(OUTDIR)/hz.bsc" 
-BSC32_SBRS=
+BSC32_SBRS= \
+	
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
 # ADD LINK32 lua.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib /nologo /subsystem:windows /machine:I386
@@ -110,34 +111,34 @@ LINK32_FLAGS=lua.lib kernel32.lib user32.lib gdi32.lib winspool.lib\
  /subsystem:windows /incremental:no /pdb:"$(OUTDIR)/hz.pdb" /machine:I386\
  /out:"$(OUTDIR)/hz.exe" 
 LINK32_OBJS= \
-	"$(INTDIR)/net.obj" \
-	"$(INTDIR)/i_system.obj" \
-	"$(INTDIR)/sprite.obj" \
-	"$(INTDIR)/map.obj" \
-	"$(INTDIR)/luabase.obj" \
-	"$(INTDIR)/control.obj" \
-	"$(INTDIR)/drawhndl.obj" \
-	"$(INTDIR)/i_net.obj" \
-	"$(INTDIR)/i_video.obj" \
-	"$(INTDIR)/concmd.obj" \
-	"$(INTDIR)/spritet.obj" \
-	"$(INTDIR)/view.obj" \
-	"$(INTDIR)/game.obj" \
-	"$(INTDIR)/hndlmgr.obj" \
-	"$(INTDIR)/misc.obj" \
-	"$(INTDIR)/i_sound.obj" \
-	"$(INTDIR)/i_sprtet.obj" \
-	"$(INTDIR)/i_draw.obj" \
-	"$(INTDIR)/ddutil.obj" \
-	"$(INTDIR)/i_main.obj" \
-	"$(INTDIR)/platform.obj" \
-	"$(INTDIR)/vconsole.obj" \
-	"$(INTDIR)/donuts.obj" \
-	"$(INTDIR)/sound.obj" \
-	"$(INTDIR)/main.obj" \
-	"$(INTDIR)/donuts.res"
+	".\Release\concmd.obj" \
+	".\Release\control.obj" \
+	".\Release\ddutil.obj" \
+	".\Release\donuts.obj" \
+	".\Release\donuts.res" \
+	".\Release\drawhndl.obj" \
+	".\Release\game.obj" \
+	".\Release\hndlmgr.obj" \
+	".\Release\i_draw.obj" \
+	".\Release\i_main.obj" \
+	".\Release\i_net.obj" \
+	".\Release\i_sound.obj" \
+	".\Release\i_sprtet.obj" \
+	".\Release\i_system.obj" \
+	".\Release\i_video.obj" \
+	".\Release\luabase.obj" \
+	".\Release\main.obj" \
+	".\Release\map.obj" \
+	".\Release\misc.obj" \
+	".\Release\net.obj" \
+	".\Release\platform.obj" \
+	".\Release\sound.obj" \
+	".\Release\sprite.obj" \
+	".\Release\spritet.obj" \
+	".\Release\vconsole.obj" \
+	".\Release\view.obj"
 
-"$(OUTDIR)\hz.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+".\Release\hz.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
@@ -157,75 +158,75 @@ LINK32_OBJS= \
 OUTDIR=.\Debug
 INTDIR=.\Debug
 
-ALL : "$(OUTDIR)\HZ.exe" ".\Debug\hz.bsc"
+ALL : ".\Target\HZ.exe" ".\Debug\hz.bsc"
 
 CLEAN : 
-	-@erase ".\Debug\vc40.pdb"
-	-@erase ".\Debug\hz.bsc"
-	-@erase ".\Debug\main.sbr"
-	-@erase ".\Debug\drawhndl.sbr"
-	-@erase ".\Debug\donuts.sbr"
-	-@erase ".\Debug\view.sbr"
-	-@erase ".\Debug\game.sbr"
-	-@erase ".\Debug\i_sound.sbr"
-	-@erase ".\Debug\misc.sbr"
-	-@erase ".\Debug\i_sprtet.sbr"
-	-@erase ".\Debug\luabase.sbr"
-	-@erase ".\Debug\vconsole.sbr"
-	-@erase ".\Debug\sound.sbr"
-	-@erase ".\Debug\sprite.sbr"
-	-@erase ".\Debug\hndlmgr.sbr"
-	-@erase ".\Debug\concmd.sbr"
-	-@erase ".\Debug\map.sbr"
-	-@erase ".\Debug\platform.sbr"
-	-@erase ".\Debug\i_net.sbr"
-	-@erase ".\Debug\i_system.sbr"
-	-@erase ".\Debug\i_draw.sbr"
-	-@erase ".\Debug\control.sbr"
-	-@erase ".\Debug\ddutil.sbr"
-	-@erase ".\Debug\i_main.sbr"
-	-@erase ".\Debug\i_video.sbr"
-	-@erase ".\Debug\net.sbr"
-	-@erase ".\Debug\spritet.sbr"
-	-@erase ".\Target\HZ.exe"
-	-@erase ".\Debug\i_net.obj"
-	-@erase ".\Debug\i_system.obj"
-	-@erase ".\Debug\i_draw.obj"
-	-@erase ".\Debug\control.obj"
-	-@erase ".\Debug\ddutil.obj"
-	-@erase ".\Debug\i_main.obj"
-	-@erase ".\Debug\i_video.obj"
-	-@erase ".\Debug\net.obj"
-	-@erase ".\Debug\spritet.obj"
-	-@erase ".\Debug\main.obj"
-	-@erase ".\Debug\drawhndl.obj"
-	-@erase ".\Debug\donuts.obj"
-	-@erase ".\Debug\view.obj"
-	-@erase ".\Debug\game.obj"
-	-@erase ".\Debug\i_sound.obj"
-	-@erase ".\Debug\misc.obj"
-	-@erase ".\Debug\i_sprtet.obj"
-	-@erase ".\Debug\luabase.obj"
-	-@erase ".\Debug\vconsole.obj"
-	-@erase ".\Debug\sound.obj"
-	-@erase ".\Debug\sprite.obj"
-	-@erase ".\Debug\hndlmgr.obj"
 	-@erase ".\Debug\concmd.obj"
-	-@erase ".\Debug\map.obj"
-	-@erase ".\Debug\platform.obj"
-	-@erase ".\hz.res"
-	-@erase ".\Target\HZ.ilk"
+	-@erase ".\Debug\concmd.sbr"
+	-@erase ".\Debug\control.obj"
+	-@erase ".\Debug\control.sbr"
+	-@erase ".\Debug\ddutil.obj"
+	-@erase ".\Debug\ddutil.sbr"
+	-@erase ".\Debug\donuts.obj"
+	-@erase ".\Debug\donuts.sbr"
+	-@erase ".\Debug\drawhndl.obj"
+	-@erase ".\Debug\drawhndl.sbr"
+	-@erase ".\Debug\game.obj"
+	-@erase ".\Debug\game.sbr"
+	-@erase ".\Debug\hndlmgr.obj"
+	-@erase ".\Debug\hndlmgr.sbr"
+	-@erase ".\Debug\hz.bsc"
 	-@erase ".\Debug\HZ.pdb"
+	-@erase ".\Debug\i_draw.obj"
+	-@erase ".\Debug\i_draw.sbr"
+	-@erase ".\Debug\i_main.obj"
+	-@erase ".\Debug\i_main.sbr"
+	-@erase ".\Debug\i_net.obj"
+	-@erase ".\Debug\i_net.sbr"
+	-@erase ".\Debug\i_sound.obj"
+	-@erase ".\Debug\i_sound.sbr"
+	-@erase ".\Debug\i_sprtet.obj"
+	-@erase ".\Debug\i_sprtet.sbr"
+	-@erase ".\Debug\i_system.obj"
+	-@erase ".\Debug\i_system.sbr"
+	-@erase ".\Debug\i_video.obj"
+	-@erase ".\Debug\i_video.sbr"
+	-@erase ".\Debug\luabase.obj"
+	-@erase ".\Debug\luabase.sbr"
+	-@erase ".\Debug\main.obj"
+	-@erase ".\Debug\main.sbr"
+	-@erase ".\Debug\map.obj"
+	-@erase ".\Debug\map.sbr"
+	-@erase ".\Debug\misc.obj"
+	-@erase ".\Debug\misc.sbr"
+	-@erase ".\Debug\net.obj"
+	-@erase ".\Debug\net.sbr"
+	-@erase ".\Debug\platform.obj"
+	-@erase ".\Debug\platform.sbr"
+	-@erase ".\Debug\sound.obj"
+	-@erase ".\Debug\sound.sbr"
+	-@erase ".\Debug\sprite.obj"
+	-@erase ".\Debug\sprite.sbr"
+	-@erase ".\Debug\spritet.obj"
+	-@erase ".\Debug\spritet.sbr"
+	-@erase ".\Debug\vc40.pdb"
+	-@erase ".\Debug\vconsole.obj"
+	-@erase ".\Debug\vconsole.sbr"
+	-@erase ".\Debug\view.obj"
+	-@erase ".\Debug\view.sbr"
+	-@erase ".\hz.res"
+	-@erase ".\Target\HZ.exe"
+	-@erase ".\Target\HZ.ilk"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
 # ADD BASE CPP /nologo /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /c
-# ADD CPP /nologo /MTd /W3 /GX /Zi /Od /I "c:\dxsdk\sdk\inc" /D "_DEBUG" /D "LUA_COMPAT2_5" /D "WIN32" /D "_WINDOWS" /D "OS_WIN" /U "USE_DSOUND" /FR /YX /c
-# SUBTRACT CPP /X
-CPP_PROJ=/nologo /MTd /W3 /GX /Zi /Od /I "c:\dxsdk\sdk\inc" /D "_DEBUG" /D\
- "LUA_COMPAT2_5" /D "WIN32" /D "_WINDOWS" /D "OS_WIN" /U "USE_DSOUND"\
- /FR"$(INTDIR)/" /Fp"$(INTDIR)/hz.pch" /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
+# ADD CPP /nologo /MTd /W3 /GX /Zi /Od /I "c:\dx7asdk\dxf\include" /I "..\lua31\include" /I "os_win" /D "_DEBUG" /D "LUA_COMPAT2_5" /D "WIN32" /D "_WINDOWS" /D "OS_WIN" /U "USE_DSOUND" /FR /YX /c
+CPP_PROJ=/nologo /MTd /W3 /GX /Zi /Od /I "c:\dx7asdk\dxf\include" /I\
+ "..\lua31\include" /I "os_win" /D "_DEBUG" /D "LUA_COMPAT2_5" /D "WIN32" /D\
+ "_WINDOWS" /D "OS_WIN" /U "USE_DSOUND" /FR"$(INTDIR)/" /Fp"$(INTDIR)/hz.pch"\
+ /YX /Fo"$(INTDIR)/" /Fd"$(INTDIR)/" /c 
 CPP_OBJS=.\Debug/
 CPP_SBRS=.\Debug/
 # ADD BASE MTL /nologo /D "_DEBUG" /win32
@@ -239,31 +240,31 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 BSC32_FLAGS=/nologo /o"$(OUTDIR)/hz.bsc" 
 BSC32_SBRS= \
-	"$(INTDIR)/main.sbr" \
-	"$(INTDIR)/drawhndl.sbr" \
-	"$(INTDIR)/donuts.sbr" \
-	"$(INTDIR)/view.sbr" \
-	"$(INTDIR)/game.sbr" \
-	"$(INTDIR)/i_sound.sbr" \
-	"$(INTDIR)/misc.sbr" \
-	"$(INTDIR)/i_sprtet.sbr" \
-	"$(INTDIR)/luabase.sbr" \
-	"$(INTDIR)/vconsole.sbr" \
-	"$(INTDIR)/sound.sbr" \
-	"$(INTDIR)/sprite.sbr" \
-	"$(INTDIR)/hndlmgr.sbr" \
-	"$(INTDIR)/concmd.sbr" \
-	"$(INTDIR)/map.sbr" \
-	"$(INTDIR)/platform.sbr" \
-	"$(INTDIR)/i_net.sbr" \
-	"$(INTDIR)/i_system.sbr" \
-	"$(INTDIR)/i_draw.sbr" \
-	"$(INTDIR)/control.sbr" \
-	"$(INTDIR)/ddutil.sbr" \
-	"$(INTDIR)/i_main.sbr" \
-	"$(INTDIR)/i_video.sbr" \
-	"$(INTDIR)/net.sbr" \
-	"$(INTDIR)/spritet.sbr"
+	".\Debug\concmd.sbr" \
+	".\Debug\control.sbr" \
+	".\Debug\ddutil.sbr" \
+	".\Debug\donuts.sbr" \
+	".\Debug\drawhndl.sbr" \
+	".\Debug\game.sbr" \
+	".\Debug\hndlmgr.sbr" \
+	".\Debug\i_draw.sbr" \
+	".\Debug\i_main.sbr" \
+	".\Debug\i_net.sbr" \
+	".\Debug\i_sound.sbr" \
+	".\Debug\i_sprtet.sbr" \
+	".\Debug\i_system.sbr" \
+	".\Debug\i_video.sbr" \
+	".\Debug\luabase.sbr" \
+	".\Debug\main.sbr" \
+	".\Debug\map.sbr" \
+	".\Debug\misc.sbr" \
+	".\Debug\net.sbr" \
+	".\Debug\platform.sbr" \
+	".\Debug\sound.sbr" \
+	".\Debug\sprite.sbr" \
+	".\Debug\spritet.sbr" \
+	".\Debug\vconsole.sbr" \
+	".\Debug\view.sbr"
 
 ".\Debug\hz.bsc" : "$(OUTDIR)" $(BSC32_SBRS)
     $(BSC32) @<<
@@ -280,34 +281,34 @@ LINK32_FLAGS=dplayx.lib ddraw.lib dxguid.lib winmm.lib kernel32.lib user32.lib\
  /incremental:yes /pdb:"$(OUTDIR)/HZ.pdb" /debug /machine:I386\
  /out:"Target/HZ.exe" 
 LINK32_OBJS= \
-	"$(INTDIR)/i_net.obj" \
-	"$(INTDIR)/i_system.obj" \
-	"$(INTDIR)/i_draw.obj" \
-	"$(INTDIR)/control.obj" \
-	"$(INTDIR)/ddutil.obj" \
-	"$(INTDIR)/i_main.obj" \
-	"$(INTDIR)/i_video.obj" \
-	"$(INTDIR)/net.obj" \
-	"$(INTDIR)/spritet.obj" \
-	"$(INTDIR)/main.obj" \
-	"$(INTDIR)/drawhndl.obj" \
-	"$(INTDIR)/donuts.obj" \
-	"$(INTDIR)/view.obj" \
-	"$(INTDIR)/game.obj" \
-	"$(INTDIR)/i_sound.obj" \
-	"$(INTDIR)/misc.obj" \
-	"$(INTDIR)/i_sprtet.obj" \
-	"$(INTDIR)/luabase.obj" \
-	"$(INTDIR)/vconsole.obj" \
-	"$(INTDIR)/sound.obj" \
-	"$(INTDIR)/sprite.obj" \
-	"$(INTDIR)/hndlmgr.obj" \
-	"$(INTDIR)/concmd.obj" \
-	"$(INTDIR)/map.obj" \
-	"$(INTDIR)/platform.obj" \
+	".\Debug\concmd.obj" \
+	".\Debug\control.obj" \
+	".\Debug\ddutil.obj" \
+	".\Debug\donuts.obj" \
+	".\Debug\drawhndl.obj" \
+	".\Debug\game.obj" \
+	".\Debug\hndlmgr.obj" \
+	".\Debug\i_draw.obj" \
+	".\Debug\i_main.obj" \
+	".\Debug\i_net.obj" \
+	".\Debug\i_sound.obj" \
+	".\Debug\i_sprtet.obj" \
+	".\Debug\i_system.obj" \
+	".\Debug\i_video.obj" \
+	".\Debug\luabase.obj" \
+	".\Debug\main.obj" \
+	".\Debug\map.obj" \
+	".\Debug\misc.obj" \
+	".\Debug\net.obj" \
+	".\Debug\platform.obj" \
+	".\Debug\sound.obj" \
+	".\Debug\sprite.obj" \
+	".\Debug\spritet.obj" \
+	".\Debug\vconsole.obj" \
+	".\Debug\view.obj" \
 	".\hz.res"
 
-"$(OUTDIR)\HZ.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
+".\Target\HZ.exe" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
   $(LINK32_FLAGS) $(LINK32_OBJS)
 <<
@@ -348,47 +349,71 @@ LINK32_OBJS= \
 # Begin Source File
 
 SOURCE=.\view.cpp
-DEP_CPP_VIEW_=\
-	{$(INCLUDE)}"\lua.h"\
-	{$(INCLUDE)}"\drawhndl.h"\
-	{$(INCLUDE)}"\hndlmgr.h"\
-	{$(INCLUDE)}"\i_video.h"\
-	{$(INCLUDE)}"\i_draw.h"\
-	{$(INCLUDE)}"\i_system.h"\
-	".\os_win\..\donuts.h"\
-	".\os_win\..\View.h"\
-	".\os_win\..\main.h"\
-	".\osdep.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	{$(INCLUDE)}"\i_image.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	".\luabase.h"\
-	".\os_win\..\spritet.h"\
-	".\os_win\..\vconsole.h"\
-	
-NODEP_CPP_VIEW_=\
-	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_VIEW_=\
+	"..\lua31\include\lua.h"\
+	".\drawhndl.h"\
+	".\dsutil.h"\
+	".\hndlmgr.h"\
+	".\i_draw.h"\
+	".\i_sprtet.h"\
+	".\i_system.h"\
+	".\i_video.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\osdep.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_VIEW_=\
+	".\translate.h"\
+	
 
-"$(INTDIR)\view.obj" : $(SOURCE) $(DEP_CPP_VIEW_) "$(INTDIR)"
+".\Release\view.obj" : $(SOURCE) $(DEP_CPP_VIEW_) "$(INTDIR)"
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_VIEW_=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\osdep.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_VIEW_=\
+	".\drawhndl.h"\
+	".\dsutil.h"\
+	".\hndlmgr.h"\
+	".\i_draw.h"\
+	".\i_sprtet.h"\
+	".\i_system.h"\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\view.obj" : $(SOURCE) $(DEP_CPP_VIEW_) "$(INTDIR)"
+".\Debug\view.obj" : $(SOURCE) $(DEP_CPP_VIEW_) "$(INTDIR)"
 
-"$(INTDIR)\view.sbr" : $(SOURCE) $(DEP_CPP_VIEW_) "$(INTDIR)"
+".\Debug\view.sbr" : $(SOURCE) $(DEP_CPP_VIEW_) "$(INTDIR)"
 
 
 !ENDIF 
@@ -398,49 +423,77 @@ NODEP_CPP_VIEW_=\
 # Begin Source File
 
 SOURCE=.\main.cpp
-DEP_CPP_MAIN_=\
-	{$(INCLUDE)}"\drawhndl.h"\
-	{$(INCLUDE)}"\hndlmgr.h"\
-	{$(INCLUDE)}"\i_system.h"\
-	{$(INCLUDE)}"\i_video.h"\
-	{$(INCLUDE)}"\i_draw.h"\
-	".\os_win\..\donuts.h"\
-	".\os_win\..\View.h"\
-	".\os_win\..\vconsole.h"\
-	".\os_win\..\map.h"\
-	".\concmd.h"\
-	".\os_win\..\main.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	{$(INCLUDE)}"\i_image.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	{$(INCLUDE)}"\lua.h"\
-	".\luabase.h"\
-	".\os_win\..\spritet.h"\
-	
-NODEP_CPP_MAIN_=\
-	".\i_console.h"\
-	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_MAIN_=\
+	"..\lua31\include\lua.h"\
+	".\concmd.h"\
+	".\drawhndl.h"\
+	".\dsutil.h"\
+	".\hndlmgr.h"\
+	".\i_draw.h"\
+	".\i_sprtet.h"\
+	".\i_system.h"\
+	".\i_video.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_MAIN_=\
+	".\i_console.h"\
+	".\resource.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\main.obj" : $(SOURCE) $(DEP_CPP_MAIN_) "$(INTDIR)"
+".\Release\main.obj" : $(SOURCE) $(DEP_CPP_MAIN_) "$(INTDIR)"
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_MAIN_=\
+	"..\lua31\include\lua.h"\
+	".\concmd.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_MAIN_=\
+	".\drawhndl.h"\
+	".\dsutil.h"\
+	".\hndlmgr.h"\
+	".\i_console.h"\
+	".\i_draw.h"\
+	".\i_sprtet.h"\
+	".\i_system.h"\
+	".\i_video.h"\
+	".\resource.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\main.obj" : $(SOURCE) $(DEP_CPP_MAIN_) "$(INTDIR)"
+".\Debug\main.obj" : $(SOURCE) $(DEP_CPP_MAIN_) "$(INTDIR)"
 
-"$(INTDIR)\main.sbr" : $(SOURCE) $(DEP_CPP_MAIN_) "$(INTDIR)"
+".\Debug\main.sbr" : $(SOURCE) $(DEP_CPP_MAIN_) "$(INTDIR)"
 
 
 !ENDIF 
@@ -450,49 +503,79 @@ NODEP_CPP_MAIN_=\
 # Begin Source File
 
 SOURCE=.\donuts.cpp
-DEP_CPP_DONUT=\
-	{$(INCLUDE)}"\drawhndl.h"\
-	{$(INCLUDE)}"\i_draw.h"\
-	{$(INCLUDE)}"\i_video.h"\
-	{$(INCLUDE)}"\i_system.h"\
-	".\os_win\..\main.h"\
-	".\os_win\..\donuts.h"\
-	".\os_win\..\View.h"\
-	".\sprite.h"\
-	".\os_win\..\spritet.h"\
-	".\misc.h"\
-	".\os_win\..\Game.h"\
-	".\os_win\..\map.h"\
-	".\os_win\..\net.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	{$(INCLUDE)}"\i_image.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	".\os_win\..\vconsole.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	{$(INCLUDE)}"\lua.h"\
-	".\luabase.h"\
-	
-NODEP_CPP_DONUT=\
-	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_DONUT=\
+	"..\lua31\include\lua.h"\
+	".\drawhndl.h"\
+	".\dsutil.h"\
+	".\i_draw.h"\
+	".\i_sprtet.h"\
+	".\i_system.h"\
+	".\i_video.h"\
+	".\luabase.h"\
+	".\misc.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Game.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\net.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\osdep.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_DONUT=\
+	".\resource.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\donuts.obj" : $(SOURCE) $(DEP_CPP_DONUT) "$(INTDIR)"
+".\Release\donuts.obj" : $(SOURCE) $(DEP_CPP_DONUT) "$(INTDIR)"
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_DONUT=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\misc.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Game.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\net.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\osdep.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_DONUT=\
+	".\drawhndl.h"\
+	".\dsutil.h"\
+	".\i_draw.h"\
+	".\i_sprtet.h"\
+	".\i_system.h"\
+	".\i_video.h"\
+	".\resource.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\donuts.obj" : $(SOURCE) $(DEP_CPP_DONUT) "$(INTDIR)"
+".\Debug\donuts.obj" : $(SOURCE) $(DEP_CPP_DONUT) "$(INTDIR)"
 
-"$(INTDIR)\donuts.sbr" : $(SOURCE) $(DEP_CPP_DONUT) "$(INTDIR)"
+".\Debug\donuts.sbr" : $(SOURCE) $(DEP_CPP_DONUT) "$(INTDIR)"
 
 
 !ENDIF 
@@ -502,45 +585,67 @@ NODEP_CPP_DONUT=\
 # Begin Source File
 
 SOURCE=.\sprite.cpp
-DEP_CPP_SPRIT=\
-	{$(INCLUDE)}"\lua.h"\
-	{$(INCLUDE)}"\drawhndl.h"\
-	".\os_win\..\donuts.h"\
-	".\os_win\..\main.h"\
-	".\misc.h"\
-	".\os_win\..\map.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	".\os_win\..\View.h"\
-	".\os_win\..\vconsole.h"\
-	{$(INCLUDE)}"\i_video.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	{$(INCLUDE)}"\i_image.h"\
-	".\luabase.h"\
-	".\os_win\..\spritet.h"\
-	
-NODEP_CPP_SPRIT=\
-	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_SPRIT=\
+	"..\lua31\include\lua.h"\
+	".\drawhndl.h"\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\luabase.h"\
+	".\misc.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_SPRIT=\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\sprite.obj" : $(SOURCE) $(DEP_CPP_SPRIT) "$(INTDIR)"
+".\Release\sprite.obj" : $(SOURCE) $(DEP_CPP_SPRIT) "$(INTDIR)"
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_SPRIT=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\misc.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_SPRIT=\
+	".\drawhndl.h"\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\sprite.obj" : $(SOURCE) $(DEP_CPP_SPRIT) "$(INTDIR)"
+".\Debug\sprite.obj" : $(SOURCE) $(DEP_CPP_SPRIT) "$(INTDIR)"
 
-"$(INTDIR)\sprite.sbr" : $(SOURCE) $(DEP_CPP_SPRIT) "$(INTDIR)"
+".\Debug\sprite.sbr" : $(SOURCE) $(DEP_CPP_SPRIT) "$(INTDIR)"
 
 
 !ENDIF 
@@ -551,28 +656,30 @@ NODEP_CPP_SPRIT=\
 
 SOURCE=.\misc.cpp
 DEP_CPP_MISC_=\
-	".\os_win\..\View.h"\
-	".\os_win\..\main.h"\
 	".\misc.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	".\os_win\..\vconsole.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
 	
 NODEP_CPP_MISC_=\
+	".\i_sprtet.h"\
+	".\i_video.h"\
 	".\translate.h"\
 	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
 
-"$(INTDIR)\misc.obj" : $(SOURCE) $(DEP_CPP_MISC_) "$(INTDIR)"
+".\Release\misc.obj" : $(SOURCE) $(DEP_CPP_MISC_) "$(INTDIR)"
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
 
-"$(INTDIR)\misc.obj" : $(SOURCE) $(DEP_CPP_MISC_) "$(INTDIR)"
+".\Debug\misc.obj" : $(SOURCE) $(DEP_CPP_MISC_) "$(INTDIR)"
 
-"$(INTDIR)\misc.sbr" : $(SOURCE) $(DEP_CPP_MISC_) "$(INTDIR)"
+".\Debug\misc.sbr" : $(SOURCE) $(DEP_CPP_MISC_) "$(INTDIR)"
 
 
 !ENDIF 
@@ -586,15 +693,15 @@ SOURCE=.\sound.cpp
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
 
-"$(INTDIR)\sound.obj" : $(SOURCE) "$(INTDIR)"
+".\Release\sound.obj" : $(SOURCE) "$(INTDIR)"
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
 
-"$(INTDIR)\sound.obj" : $(SOURCE) "$(INTDIR)"
+".\Debug\sound.obj" : $(SOURCE) "$(INTDIR)"
 
-"$(INTDIR)\sound.sbr" : $(SOURCE) "$(INTDIR)"
+".\Debug\sound.sbr" : $(SOURCE) "$(INTDIR)"
 
 
 !ENDIF 
@@ -604,48 +711,73 @@ SOURCE=.\sound.cpp
 # Begin Source File
 
 SOURCE=.\game.cpp
+
+!IF  "$(CFG)" == "HZ - Win32 Release"
+
 DEP_CPP_GAME_=\
-	{$(INCLUDE)}"\lua.h"\
-	{$(INCLUDE)}"\lualib.h"\
-	{$(INCLUDE)}"\luadebug.h"\
-	{$(INCLUDE)}"\i_system.h"\
-	{$(INCLUDE)}"\i_video.h"\
-	".\os_win\..\donuts.h"\
-	".\os_win\..\map.h"\
-	".\sprite.h"\
-	".\os_win\..\spritet.h"\
-	".\os_win\..\View.h"\
-	".\os_win\..\main.h"\
-	".\os_win\..\Game.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	{$(INCLUDE)}"\i_image.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
+	"..\lua31\include\lua.h"\
+	"..\lua31\include\luadebug.h"\
+	"..\lua31\include\lualib.h"\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\i_system.h"\
+	".\i_video.h"\
 	".\luabase.h"\
-	".\os_win\..\vconsole.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Game.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
 	
 NODEP_CPP_GAME_=\
 	".\i_console.h"\
 	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
 	
 
-!IF  "$(CFG)" == "HZ - Win32 Release"
-
-
-"$(INTDIR)\game.obj" : $(SOURCE) $(DEP_CPP_GAME_) "$(INTDIR)"
+".\Release\game.obj" : $(SOURCE) $(DEP_CPP_GAME_) "$(INTDIR)"
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_GAME_=\
+	"..\lua31\include\lua.h"\
+	"..\lua31\include\luadebug.h"\
+	"..\lua31\include\lualib.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Game.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_GAME_=\
+	".\dsutil.h"\
+	".\i_console.h"\
+	".\i_sprtet.h"\
+	".\i_system.h"\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\game.obj" : $(SOURCE) $(DEP_CPP_GAME_) "$(INTDIR)"
+".\Debug\game.obj" : $(SOURCE) $(DEP_CPP_GAME_) "$(INTDIR)"
 
-"$(INTDIR)\game.sbr" : $(SOURCE) $(DEP_CPP_GAME_) "$(INTDIR)"
+".\Debug\game.sbr" : $(SOURCE) $(DEP_CPP_GAME_) "$(INTDIR)"
 
 
 !ENDIF 
@@ -655,46 +787,73 @@ NODEP_CPP_GAME_=\
 # Begin Source File
 
 SOURCE=.\map.cpp
-DEP_CPP_MAP_C=\
-	{$(INCLUDE)}"\drawhndl.h"\
-	{$(INCLUDE)}"\i_system.h"\
-	{$(INCLUDE)}"\i_draw.h"\
-	{$(INCLUDE)}"\i_video.h"\
-	".\os_win\..\donuts.h"\
-	".\sprite.h"\
-	".\os_win\..\main.h"\
-	".\os_win\..\Game.h"\
-	".\os_win\..\map.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	{$(INCLUDE)}"\lua.h"\
-	".\luabase.h"\
-	".\os_win\..\spritet.h"\
-	".\os_win\..\View.h"\
-	".\os_win\..\vconsole.h"\
-	
-NODEP_CPP_MAP_C=\
-	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_MAP_C=\
+	"..\lua31\include\lua.h"\
+	".\drawhndl.h"\
+	".\dsutil.h"\
+	".\i_draw.h"\
+	".\i_sprtet.h"\
+	".\i_system.h"\
+	".\i_video.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Game.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\osdep.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_MAP_C=\
+	".\translate.h"\
+	
 
-"$(INTDIR)\map.obj" : $(SOURCE) $(DEP_CPP_MAP_C) "$(INTDIR)"
+".\Release\map.obj" : $(SOURCE) $(DEP_CPP_MAP_C) "$(INTDIR)"
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_MAP_C=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Game.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\osdep.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_MAP_C=\
+	".\drawhndl.h"\
+	".\dsutil.h"\
+	".\i_draw.h"\
+	".\i_sprtet.h"\
+	".\i_system.h"\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\map.obj" : $(SOURCE) $(DEP_CPP_MAP_C) "$(INTDIR)"
+".\Debug\map.obj" : $(SOURCE) $(DEP_CPP_MAP_C) "$(INTDIR)"
 
-"$(INTDIR)\map.sbr" : $(SOURCE) $(DEP_CPP_MAP_C) "$(INTDIR)"
+".\Debug\map.sbr" : $(SOURCE) $(DEP_CPP_MAP_C) "$(INTDIR)"
 
 
 !ENDIF 
@@ -704,43 +863,67 @@ NODEP_CPP_MAP_C=\
 # Begin Source File
 
 SOURCE=.\net.cpp
-DEP_CPP_NET_C=\
-	{$(INCLUDE)}"\dplay.h"\
-	".\os_win\..\donuts.h"\
-	".\os_win\..\main.h"\
-	".\os_win\..\map.h"\
-	".\os_win\..\net.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	{$(INCLUDE)}"\lua.h"\
-	".\luabase.h"\
-	".\os_win\..\spritet.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	".\os_win\..\View.h"\
-	".\os_win\..\vconsole.h"\
-	
-NODEP_CPP_NET_C=\
-	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_NET_C=\
+	"..\lua31\include\lua.h"\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\net.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dplay.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_NET_C=\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\net.obj" : $(SOURCE) $(DEP_CPP_NET_C) "$(INTDIR)"
+".\Release\net.obj" : $(SOURCE) $(DEP_CPP_NET_C) "$(INTDIR)"
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_NET_C=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\net.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dplay.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_NET_C=\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\net.obj" : $(SOURCE) $(DEP_CPP_NET_C) "$(INTDIR)"
+".\Debug\net.obj" : $(SOURCE) $(DEP_CPP_NET_C) "$(INTDIR)"
 
-"$(INTDIR)\net.sbr" : $(SOURCE) $(DEP_CPP_NET_C) "$(INTDIR)"
+".\Debug\net.sbr" : $(SOURCE) $(DEP_CPP_NET_C) "$(INTDIR)"
 
 
 !ENDIF 
@@ -750,36 +933,55 @@ NODEP_CPP_NET_C=\
 # Begin Source File
 
 SOURCE=.\concmd.cpp
-DEP_CPP_CONCM=\
-	{$(INCLUDE)}"\lua.h"\
-	".\os_win\..\main.h"\
-	".\os_win\..\net.h"\
-	".\os_win\..\View.h"\
-	".\concmd.h"\
-	".\os_win\..\vconsole.h"\
-	".\os_win\..\map.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	".\luabase.h"\
-	".\os_win\..\spritet.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	
-NODEP_CPP_CONCM=\
-	".\translate.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_CONCM=\
+	"..\lua31\include\lua.h"\
+	".\concmd.h"\
+	".\i_sprtet.h"\
+	".\luabase.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\net.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\sprite.h"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	
+NODEP_CPP_CONCM=\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\concmd.obj" : $(SOURCE) $(DEP_CPP_CONCM) "$(INTDIR)"
+".\Release\concmd.obj" : $(SOURCE) $(DEP_CPP_CONCM) "$(INTDIR)"
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_CONCM=\
+	"..\lua31\include\lua.h"\
+	".\concmd.h"\
+	".\luabase.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\net.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\sprite.h"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	
+NODEP_CPP_CONCM=\
+	".\i_sprtet.h"\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\concmd.obj" : $(SOURCE) $(DEP_CPP_CONCM) "$(INTDIR)"
+".\Debug\concmd.obj" : $(SOURCE) $(DEP_CPP_CONCM) "$(INTDIR)"
 
-"$(INTDIR)\concmd.sbr" : $(SOURCE) $(DEP_CPP_CONCM) "$(INTDIR)"
+".\Debug\concmd.sbr" : $(SOURCE) $(DEP_CPP_CONCM) "$(INTDIR)"
 
 
 !ENDIF 
@@ -789,44 +991,65 @@ NODEP_CPP_CONCM=\
 # Begin Source File
 
 SOURCE=.\spritet.cpp
-DEP_CPP_SPRITE=\
-	{$(INCLUDE)}"\lua.h"\
-	{$(INCLUDE)}"\drawhndl.h"\
-	{$(INCLUDE)}"\i_draw.h"\
-	".\os_win\..\donuts.h"\
-	".\os_win\..\View.h"\
-	".\os_win\..\main.h"\
-	".\os_win\..\spritet.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	{$(INCLUDE)}"\i_image.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	".\luabase.h"\
-	{$(INCLUDE)}"\i_video.h"\
-	".\os_win\..\vconsole.h"\
-	
-NODEP_CPP_SPRITE=\
-	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_SPRITE=\
+	"..\lua31\include\lua.h"\
+	".\drawhndl.h"\
+	".\dsutil.h"\
+	".\i_draw.h"\
+	".\i_sprtet.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_SPRITE=\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\spritet.obj" : $(SOURCE) $(DEP_CPP_SPRITE) "$(INTDIR)"
+".\Release\spritet.obj" : $(SOURCE) $(DEP_CPP_SPRITE) "$(INTDIR)"
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_SPRITE=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_SPRITE=\
+	".\drawhndl.h"\
+	".\dsutil.h"\
+	".\i_draw.h"\
+	".\i_sprtet.h"\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\spritet.obj" : $(SOURCE) $(DEP_CPP_SPRITE) "$(INTDIR)"
+".\Debug\spritet.obj" : $(SOURCE) $(DEP_CPP_SPRITE) "$(INTDIR)"
 
-"$(INTDIR)\spritet.sbr" : $(SOURCE) $(DEP_CPP_SPRITE) "$(INTDIR)"
+".\Debug\spritet.sbr" : $(SOURCE) $(DEP_CPP_SPRITE) "$(INTDIR)"
 
 
 !ENDIF 
@@ -852,70 +1075,65 @@ SOURCE=.\vconsole.cpp
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
 DEP_CPP_VCONS=\
-	{$(INCLUDE)}"\lua.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\drawhndl.h"\
-	{$(INCLUDE)}"\hndlmgr.h"\
-	{$(INCLUDE)}"\i_system.h"\
-	".\os_win\..\donuts.h"\
-	".\os_win\..\View.h"\
-	".\os_win\..\main.h"\
-	".\os_win\..\vconsole.h"\
-	{$(INCLUDE)}"\i_video.h"\
-	".\osdep.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
+	"..\lua31\include\lua.h"\
+	".\drawhndl.h"\
+	".\dsutil.h"\
+	".\hndlmgr.h"\
+	".\i_sprtet.h"\
+	".\i_system.h"\
+	".\i_video.h"\
 	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
 	".\os_win\..\spritet.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	{$(INCLUDE)}"\i_image.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\osdep.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
 	
 NODEP_CPP_VCONS=\
 	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
 	
 
-"$(INTDIR)\vconsole.obj" : $(SOURCE) $(DEP_CPP_VCONS) "$(INTDIR)"
+".\Release\vconsole.obj" : $(SOURCE) $(DEP_CPP_VCONS) "$(INTDIR)"
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
 DEP_CPP_VCONS=\
-	{$(INCLUDE)}"\lua.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\drawhndl.h"\
-	{$(INCLUDE)}"\hndlmgr.h"\
-	{$(INCLUDE)}"\i_system.h"\
-	".\os_win\..\donuts.h"\
-	".\os_win\..\View.h"\
-	".\os_win\..\main.h"\
-	".\os_win\..\vconsole.h"\
-	{$(INCLUDE)}"\i_video.h"\
-	".\osdep.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
+	"..\lua31\include\lua.h"\
 	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
 	".\os_win\..\spritet.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	{$(INCLUDE)}"\i_image.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\osdep.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
 	
 NODEP_CPP_VCONS=\
+	".\drawhndl.h"\
+	".\dsutil.h"\
+	".\hndlmgr.h"\
+	".\i_sprtet.h"\
+	".\i_system.h"\
+	".\i_video.h"\
 	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	".\}"\
 	
 
-"$(INTDIR)\vconsole.obj" : $(SOURCE) $(DEP_CPP_VCONS) "$(INTDIR)"
+".\Debug\vconsole.obj" : $(SOURCE) $(DEP_CPP_VCONS) "$(INTDIR)"
 
-"$(INTDIR)\vconsole.sbr" : $(SOURCE) $(DEP_CPP_VCONS) "$(INTDIR)"
+".\Debug\vconsole.sbr" : $(SOURCE) $(DEP_CPP_VCONS) "$(INTDIR)"
 
 
 !ENDIF 
@@ -926,20 +1144,20 @@ NODEP_CPP_VCONS=\
 
 SOURCE=.\os_win\donuts.rc
 DEP_RSC_DONUTS=\
-	".\os_win\..\_old\Splash.bmp"\
-	".\os_win\..\_old\donuts.bmp"\
-	".\os_win\..\_old\level.wav"\
-	".\os_win\..\_old\hum.wav"\
-	".\os_win\..\_old\rev.wav"\
-	".\os_win\..\_old\skid.wav"\
-	".\os_win\..\_old\shield.wav"\
-	".\os_win\..\_old\gunfire.wav"\
-	".\os_win\..\_old\bounce.wav"\
 	".\os_win\..\_old\bangbang.wav"\
-	".\os_win\..\_old\d_bang.wav"\
-	".\os_win\..\_old\p_bang.wav"\
+	".\os_win\..\_old\bounce.wav"\
 	".\os_win\..\_old\c_bang.wav"\
+	".\os_win\..\_old\d_bang.wav"\
+	".\os_win\..\_old\donuts.bmp"\
+	".\os_win\..\_old\gunfire.wav"\
+	".\os_win\..\_old\hum.wav"\
+	".\os_win\..\_old\level.wav"\
+	".\os_win\..\_old\p_bang.wav"\
+	".\os_win\..\_old\rev.wav"\
 	".\os_win\..\_old\s_bang.wav"\
+	".\os_win\..\_old\shield.wav"\
+	".\os_win\..\_old\skid.wav"\
+	".\os_win\..\_old\Splash.bmp"\
 	".\os_win\donuts.ico"\
 	".\os_win\icon1.ico"\
 	
@@ -947,7 +1165,7 @@ DEP_RSC_DONUTS=\
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
 
-"$(INTDIR)\donuts.res" : $(SOURCE) $(DEP_RSC_DONUTS) "$(INTDIR)"
+".\Release\donuts.res" : $(SOURCE) $(DEP_RSC_DONUTS) "$(INTDIR)"
    $(RSC) /l 0x409 /fo"$(INTDIR)/donuts.res" /i "c:\DXSDK\sdk\inc\" /i "os_win"\
  /d "NDEBUG" $(SOURCE)
 
@@ -955,7 +1173,7 @@ DEP_RSC_DONUTS=\
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
 
-"$(INTDIR)\hz.res" : $(SOURCE) $(DEP_RSC_DONUTS) "$(INTDIR)"
+".\hz.res" : $(SOURCE) $(DEP_RSC_DONUTS) "$(INTDIR)"
    $(RSC) /l 0x409 /fo"hz.res" /i "os_win" /d "_DEBUG" $(SOURCE)
 
 
@@ -967,14 +1185,14 @@ DEP_RSC_DONUTS=\
 
 SOURCE=.\os_win\control.cpp
 DEP_CPP_CONTR=\
-	{$(INCLUDE)}"\dinput.h"\
-	".\os_win\Control.h"\
+	".\os_win\control.h"\
+	"c:\dx7asdk\dxf\include\dinput.h"\
 	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
 
-"$(INTDIR)\control.obj" : $(SOURCE) $(DEP_CPP_CONTR) "$(INTDIR)"
+".\Release\control.obj" : $(SOURCE) $(DEP_CPP_CONTR) "$(INTDIR)"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
 
@@ -985,10 +1203,10 @@ BuildCmds= \
 	$(CPP) $(CPP_PROJ) $(SOURCE) \
 	
 
-"$(INTDIR)\control.obj" : $(SOURCE) $(DEP_CPP_CONTR) "$(INTDIR)"
+".\Debug\control.obj" : $(SOURCE) $(DEP_CPP_CONTR) "$(INTDIR)"
    $(BuildCmds)
 
-"$(INTDIR)\control.sbr" : $(SOURCE) $(DEP_CPP_CONTR) "$(INTDIR)"
+".\Debug\control.sbr" : $(SOURCE) $(DEP_CPP_CONTR) "$(INTDIR)"
    $(BuildCmds)
 
 !ENDIF 
@@ -998,36 +1216,29 @@ BuildCmds= \
 # Begin Source File
 
 SOURCE=.\os_win\ddutil.cpp
+DEP_CPP_DDUTI=\
+	".\os_win\ddutil.h"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
-DEP_CPP_DDUTI=\
-	{$(INCLUDE)}"\ddraw.h"\
-	".\os_win\ddutil.h"\
-	
 
-"$(INTDIR)\ddutil.obj" : $(SOURCE) $(DEP_CPP_DDUTI) "$(INTDIR)"
+".\Release\ddutil.obj" : $(SOURCE) $(DEP_CPP_DDUTI) "$(INTDIR)"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
-DEP_CPP_DDUTI=\
-	{$(INCLUDE)}"\ddraw.h"\
-	".\os_win\ddutil.h"\
-	
-NODEP_CPP_DDUTI=\
-	".\os_win\dwHeight"\
-	
 
 BuildCmds= \
 	$(CPP) $(CPP_PROJ) $(SOURCE) \
 	
 
-"$(INTDIR)\ddutil.obj" : $(SOURCE) $(DEP_CPP_DDUTI) "$(INTDIR)"
+".\Debug\ddutil.obj" : $(SOURCE) $(DEP_CPP_DDUTI) "$(INTDIR)"
    $(BuildCmds)
 
-"$(INTDIR)\ddutil.sbr" : $(SOURCE) $(DEP_CPP_DDUTI) "$(INTDIR)"
+".\Debug\ddutil.sbr" : $(SOURCE) $(DEP_CPP_DDUTI) "$(INTDIR)"
    $(BuildCmds)
 
 !ENDIF 
@@ -1037,49 +1248,77 @@ BuildCmds= \
 # Begin Source File
 
 SOURCE=.\os_win\drawhndl.cpp
-DEP_CPP_DRAWH=\
-	{$(INCLUDE)}"\i_video.h"\
-	".\os_win\..\donuts.h"\
-	{$(INCLUDE)}"\drawhndl.h"\
-	".\os_win\..\main.h"\
-	{$(INCLUDE)}"\i_system.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	{$(INCLUDE)}"\lua.h"\
-	".\luabase.h"\
-	".\os_win\..\spritet.h"\
-	".\os_win\..\View.h"\
-	".\os_win\..\vconsole.h"\
-	
-NODEP_CPP_DRAWH=\
-	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_DRAWH=\
+	"..\lua31\include\lua.h"\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\os_win\drawhndl.h"\
+	".\os_win\i_image.h"\
+	".\os_win\i_sprtet.h"\
+	".\os_win\i_system.h"\
+	".\os_win\i_video.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_DRAWH=\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\drawhndl.obj" : $(SOURCE) $(DEP_CPP_DRAWH) "$(INTDIR)"
+".\Release\drawhndl.obj" : $(SOURCE) $(DEP_CPP_DRAWH) "$(INTDIR)"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_DRAWH=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\os_win\drawhndl.h"\
+	".\os_win\i_image.h"\
+	".\os_win\i_sprtet.h"\
+	".\os_win\i_system.h"\
+	".\os_win\i_video.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_DRAWH=\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
 BuildCmds= \
 	$(CPP) $(CPP_PROJ) $(SOURCE) \
 	
 
-"$(INTDIR)\drawhndl.obj" : $(SOURCE) $(DEP_CPP_DRAWH) "$(INTDIR)"
+".\Debug\drawhndl.obj" : $(SOURCE) $(DEP_CPP_DRAWH) "$(INTDIR)"
    $(BuildCmds)
 
-"$(INTDIR)\drawhndl.sbr" : $(SOURCE) $(DEP_CPP_DRAWH) "$(INTDIR)"
+".\Debug\drawhndl.sbr" : $(SOURCE) $(DEP_CPP_DRAWH) "$(INTDIR)"
    $(BuildCmds)
 
 !ENDIF 
@@ -1089,48 +1328,71 @@ BuildCmds= \
 # Begin Source File
 
 SOURCE=.\os_win\platform.cpp
-DEP_CPP_PLATF=\
-	".\os_win\..\donuts.h"\
-	".\os_win\..\Game.h"\
-	".\os_win\..\View.h"\
-	".\os_win\..\main.h"\
-	{$(INCLUDE)}"\i_system.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	{$(INCLUDE)}"\lua.h"\
-	".\luabase.h"\
-	".\os_win\..\spritet.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	".\os_win\..\vconsole.h"\
-	
-NODEP_CPP_PLATF=\
-	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_PLATF=\
+	"..\lua31\include\lua.h"\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Game.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\os_win\i_system.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_PLATF=\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\platform.obj" : $(SOURCE) $(DEP_CPP_PLATF) "$(INTDIR)"
+".\Release\platform.obj" : $(SOURCE) $(DEP_CPP_PLATF) "$(INTDIR)"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_PLATF=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Game.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\os_win\i_system.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_PLATF=\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
 BuildCmds= \
 	$(CPP) $(CPP_PROJ) $(SOURCE) \
 	
 
-"$(INTDIR)\platform.obj" : $(SOURCE) $(DEP_CPP_PLATF) "$(INTDIR)"
+".\Debug\platform.obj" : $(SOURCE) $(DEP_CPP_PLATF) "$(INTDIR)"
    $(BuildCmds)
 
-"$(INTDIR)\platform.sbr" : $(SOURCE) $(DEP_CPP_PLATF) "$(INTDIR)"
+".\Debug\platform.sbr" : $(SOURCE) $(DEP_CPP_PLATF) "$(INTDIR)"
    $(BuildCmds)
 
 !ENDIF 
@@ -1141,14 +1403,14 @@ BuildCmds= \
 
 SOURCE=.\os_win\hndlmgr.cpp
 DEP_CPP_HNDLM=\
-	{$(INCLUDE)}"\hndlmgr.h"\
-	{$(INCLUDE)}"\ddraw.h"\
+	".\os_win\hndlmgr.h"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
 	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
 
-"$(INTDIR)\hndlmgr.obj" : $(SOURCE) $(DEP_CPP_HNDLM) "$(INTDIR)"
+".\Release\hndlmgr.obj" : $(SOURCE) $(DEP_CPP_HNDLM) "$(INTDIR)"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
 
@@ -1159,10 +1421,10 @@ BuildCmds= \
 	$(CPP) $(CPP_PROJ) $(SOURCE) \
 	
 
-"$(INTDIR)\hndlmgr.obj" : $(SOURCE) $(DEP_CPP_HNDLM) "$(INTDIR)"
+".\Debug\hndlmgr.obj" : $(SOURCE) $(DEP_CPP_HNDLM) "$(INTDIR)"
    $(BuildCmds)
 
-"$(INTDIR)\hndlmgr.sbr" : $(SOURCE) $(DEP_CPP_HNDLM) "$(INTDIR)"
+".\Debug\hndlmgr.sbr" : $(SOURCE) $(DEP_CPP_HNDLM) "$(INTDIR)"
    $(BuildCmds)
 
 !ENDIF 
@@ -1172,47 +1434,71 @@ BuildCmds= \
 # Begin Source File
 
 SOURCE=.\os_win\i_sprtet.cpp
-DEP_CPP_I_SPR=\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\i_video.h"\
-	".\os_win\..\spritet.h"\
-	".\os_win\..\donuts.h"\
-	".\os_win\..\vconsole.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	{$(INCLUDE)}"\i_image.h"\
-	{$(INCLUDE)}"\lua.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	".\luabase.h"\
-	".\os_win\..\View.h"\
-	
-NODEP_CPP_I_SPR=\
-	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_I_SPR=\
+	"..\lua31\include\lua.h"\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\os_win\i_image.h"\
+	".\os_win\i_sprtet.h"\
+	".\os_win\i_video.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_I_SPR=\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\i_sprtet.obj" : $(SOURCE) $(DEP_CPP_I_SPR) "$(INTDIR)"
+".\Release\i_sprtet.obj" : $(SOURCE) $(DEP_CPP_I_SPR) "$(INTDIR)"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_I_SPR=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\os_win\i_image.h"\
+	".\os_win\i_sprtet.h"\
+	".\os_win\i_video.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_I_SPR=\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
 BuildCmds= \
 	$(CPP) $(CPP_PROJ) $(SOURCE) \
 	
 
-"$(INTDIR)\i_sprtet.obj" : $(SOURCE) $(DEP_CPP_I_SPR) "$(INTDIR)"
+".\Debug\i_sprtet.obj" : $(SOURCE) $(DEP_CPP_I_SPR) "$(INTDIR)"
    $(BuildCmds)
 
-"$(INTDIR)\i_sprtet.sbr" : $(SOURCE) $(DEP_CPP_I_SPR) "$(INTDIR)"
+".\Debug\i_sprtet.sbr" : $(SOURCE) $(DEP_CPP_I_SPR) "$(INTDIR)"
    $(BuildCmds)
 
 !ENDIF 
@@ -1222,48 +1508,71 @@ BuildCmds= \
 # Begin Source File
 
 SOURCE=.\os_win\i_draw.cpp
-DEP_CPP_I_DRA=\
-	{$(INCLUDE)}"\ddraw.h"\
-	".\os_win\..\donuts.h"\
-	{$(INCLUDE)}"\drawhndl.h"\
-	{$(INCLUDE)}"\i_video.h"\
-	{$(INCLUDE)}"\hndlmgr.h"\
-	{$(INCLUDE)}"\i_draw.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	{$(INCLUDE)}"\lua.h"\
-	".\luabase.h"\
-	".\os_win\..\spritet.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	{$(INCLUDE)}"\i_image.h"\
-	
-NODEP_CPP_I_DRA=\
-	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_I_DRA=\
+	"..\lua31\include\lua.h"\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\ddutil.h"\
+	".\os_win\drawhndl.h"\
+	".\os_win\hndlmgr.h"\
+	".\os_win\i_draw.h"\
+	".\os_win\i_image.h"\
+	".\os_win\i_sprtet.h"\
+	".\os_win\i_video.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_I_DRA=\
+	".\translate.h"\
+	
 
-"$(INTDIR)\i_draw.obj" : $(SOURCE) $(DEP_CPP_I_DRA) "$(INTDIR)"
+".\Release\i_draw.obj" : $(SOURCE) $(DEP_CPP_I_DRA) "$(INTDIR)"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_I_DRA=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\ddutil.h"\
+	".\os_win\drawhndl.h"\
+	".\os_win\hndlmgr.h"\
+	".\os_win\i_draw.h"\
+	".\os_win\i_image.h"\
+	".\os_win\i_sprtet.h"\
+	".\os_win\i_video.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_I_DRA=\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\translate.h"\
+	
 
 BuildCmds= \
 	$(CPP) $(CPP_PROJ) $(SOURCE) \
 	
 
-"$(INTDIR)\i_draw.obj" : $(SOURCE) $(DEP_CPP_I_DRA) "$(INTDIR)"
+".\Debug\i_draw.obj" : $(SOURCE) $(DEP_CPP_I_DRA) "$(INTDIR)"
    $(BuildCmds)
 
-"$(INTDIR)\i_draw.sbr" : $(SOURCE) $(DEP_CPP_I_DRA) "$(INTDIR)"
+".\Debug\i_draw.sbr" : $(SOURCE) $(DEP_CPP_I_DRA) "$(INTDIR)"
    $(BuildCmds)
 
 !ENDIF 
@@ -1273,51 +1582,71 @@ BuildCmds= \
 # Begin Source File
 
 SOURCE=.\os_win\i_video.cpp
-DEP_CPP_I_VID=\
-	{$(INCLUDE)}"\i_video.h"\
-	".\os_win\..\donuts.h"\
-	{$(INCLUDE)}"\drawhndl.h"\
-	{$(INCLUDE)}"\i_system.h"\
-	".\os_win\..\map.h"\
-	".\os_win\..\vconsole.h"\
-	{$(INCLUDE)}"\hndlmgr.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	{$(INCLUDE)}"\i_image.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	{$(INCLUDE)}"\lua.h"\
-	".\luabase.h"\
-	".\os_win\..\spritet.h"\
-	".\os_win\..\View.h"\
-	
-NODEP_CPP_I_VID=\
-	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_I_VID=\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\os_win\drawhndl.h"\
+	".\os_win\hndlmgr.h"\
+	".\os_win\i_image.h"\
+	".\os_win\i_sprtet.h"\
+	".\os_win\i_system.h"\
+	".\os_win\i_video.h"\
+	".\sprite.h"\
+	
+NODEP_CPP_I_VID=\
+	".\translate.h"\
+	
 
-"$(INTDIR)\i_video.obj" : $(SOURCE) $(DEP_CPP_I_VID) "$(INTDIR)"
+".\Release\i_video.obj" : $(SOURCE) $(DEP_CPP_I_VID) "$(INTDIR)"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_I_VID=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\os_win\drawhndl.h"\
+	".\os_win\dsutil.h"\
+	".\os_win\hndlmgr.h"\
+	".\os_win\i_image.h"\
+	".\os_win\i_sprtet.h"\
+	".\os_win\i_system.h"\
+	".\os_win\i_video.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_I_VID=\
+	".\translate.h"\
+	
 
 BuildCmds= \
 	$(CPP) $(CPP_PROJ) $(SOURCE) \
 	
 
-"$(INTDIR)\i_video.obj" : $(SOURCE) $(DEP_CPP_I_VID) "$(INTDIR)"
+".\Debug\i_video.obj" : $(SOURCE) $(DEP_CPP_I_VID) "$(INTDIR)"
    $(BuildCmds)
 
-"$(INTDIR)\i_video.sbr" : $(SOURCE) $(DEP_CPP_I_VID) "$(INTDIR)"
+".\Debug\i_video.sbr" : $(SOURCE) $(DEP_CPP_I_VID) "$(INTDIR)"
    $(BuildCmds)
 
 !ENDIF 
@@ -1327,49 +1656,77 @@ BuildCmds= \
 # Begin Source File
 
 SOURCE=.\os_win\i_system.cpp
-DEP_CPP_I_SYS=\
-	{$(INCLUDE)}"\i_system.h"\
-	{$(INCLUDE)}"\i_video.h"\
-	".\os_win\..\vconsole.h"\
-	{$(INCLUDE)}"\hndlmgr.h"\
-	".\os_win\..\donuts.h"\
-	".\os_win\..\main.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	".\os_win\..\View.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	{$(INCLUDE)}"\lua.h"\
-	".\luabase.h"\
-	".\os_win\..\spritet.h"\
-	
-NODEP_CPP_I_SYS=\
-	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_I_SYS=\
+	"..\lua31\include\lua.h"\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\os_win\hndlmgr.h"\
+	".\os_win\i_image.h"\
+	".\os_win\i_sprtet.h"\
+	".\os_win\i_system.h"\
+	".\os_win\i_video.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_I_SYS=\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\i_system.obj" : $(SOURCE) $(DEP_CPP_I_SYS) "$(INTDIR)"
+".\Release\i_system.obj" : $(SOURCE) $(DEP_CPP_I_SYS) "$(INTDIR)"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_I_SYS=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\os_win\hndlmgr.h"\
+	".\os_win\i_image.h"\
+	".\os_win\i_sprtet.h"\
+	".\os_win\i_system.h"\
+	".\os_win\i_video.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_I_SYS=\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
 BuildCmds= \
 	$(CPP) $(CPP_PROJ) $(SOURCE) \
 	
 
-"$(INTDIR)\i_system.obj" : $(SOURCE) $(DEP_CPP_I_SYS) "$(INTDIR)"
+".\Debug\i_system.obj" : $(SOURCE) $(DEP_CPP_I_SYS) "$(INTDIR)"
    $(BuildCmds)
 
-"$(INTDIR)\i_system.sbr" : $(SOURCE) $(DEP_CPP_I_SYS) "$(INTDIR)"
+".\Debug\i_system.sbr" : $(SOURCE) $(DEP_CPP_I_SYS) "$(INTDIR)"
    $(BuildCmds)
 
 !ENDIF 
@@ -1379,51 +1736,81 @@ BuildCmds= \
 # Begin Source File
 
 SOURCE=.\os_win\i_main.cpp
-DEP_CPP_I_MAI=\
-	{$(INCLUDE)}"\i_video.h"\
-	{$(INCLUDE)}"\i_system.h"\
-	{$(INCLUDE)}"\hndlmgr.h"\
-	".\os_win\..\donuts.h"\
-	".\os_win\..\net.h"\
-	".\os_win\..\main.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\i_sprtet.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	".\sprite.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	{$(INCLUDE)}"\lua.h"\
-	".\luabase.h"\
-	".\os_win\..\spritet.h"\
-	".\os_win\..\map.h"\
-	".\os_win\..\View.h"\
-	".\os_win\..\vconsole.h"\
-	
-NODEP_CPP_I_MAI=\
-	".\translate.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_I_MAI=\
+	"..\lua31\include\lua.h"\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\net.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\os_win\hndlmgr.h"\
+	".\os_win\i_image.h"\
+	".\os_win\i_sprtet.h"\
+	".\os_win\i_system.h"\
+	".\os_win\i_video.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_I_MAI=\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\i_main.obj" : $(SOURCE) $(DEP_CPP_I_MAI) "$(INTDIR)"
+".\Release\i_main.obj" : $(SOURCE) $(DEP_CPP_I_MAI) "$(INTDIR)"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_I_MAI=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\os_win\..\Donuts.h"\
+	".\os_win\..\Main.h"\
+	".\os_win\..\map.h"\
+	".\os_win\..\net.h"\
+	".\os_win\..\spritet.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
+	".\os_win\hndlmgr.h"\
+	".\os_win\i_image.h"\
+	".\os_win\i_sprtet.h"\
+	".\os_win\i_system.h"\
+	".\os_win\i_video.h"\
+	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
+NODEP_CPP_I_MAI=\
+	".\dsutil.h"\
+	".\i_sprtet.h"\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
 BuildCmds= \
 	$(CPP) $(CPP_PROJ) $(SOURCE) \
 	
 
-"$(INTDIR)\i_main.obj" : $(SOURCE) $(DEP_CPP_I_MAI) "$(INTDIR)"
+".\Debug\i_main.obj" : $(SOURCE) $(DEP_CPP_I_MAI) "$(INTDIR)"
    $(BuildCmds)
 
-"$(INTDIR)\i_main.sbr" : $(SOURCE) $(DEP_CPP_I_MAI) "$(INTDIR)"
+".\Debug\i_main.sbr" : $(SOURCE) $(DEP_CPP_I_MAI) "$(INTDIR)"
    $(BuildCmds)
 
 !ENDIF 
@@ -1545,7 +1932,7 @@ SOURCE=.\os_win\i_net.cpp
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
 
-"$(INTDIR)\i_net.obj" : $(SOURCE) "$(INTDIR)"
+".\Release\i_net.obj" : $(SOURCE) "$(INTDIR)"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
 
@@ -1556,10 +1943,10 @@ BuildCmds= \
 	$(CPP) $(CPP_PROJ) $(SOURCE) \
 	
 
-"$(INTDIR)\i_net.obj" : $(SOURCE) "$(INTDIR)"
+".\Debug\i_net.obj" : $(SOURCE) "$(INTDIR)"
    $(BuildCmds)
 
-"$(INTDIR)\i_net.sbr" : $(SOURCE) "$(INTDIR)"
+".\Debug\i_net.sbr" : $(SOURCE) "$(INTDIR)"
    $(BuildCmds)
 
 !ENDIF 
@@ -1569,36 +1956,41 @@ BuildCmds= \
 # Begin Source File
 
 SOURCE=.\os_win\i_sound.cpp
-DEP_CPP_I_SOU=\
-	{$(INCLUDE)}"\ddraw.h"\
-	{$(INCLUDE)}"\dsound.h"\
-	".\os_win\ddutil.h"\
-	{$(INCLUDE)}"\dsutil.h"\
-	{$(INCLUDE)}"\d3dtypes.h"\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\d3dvec.inl"\
-	
-NODEP_CPP_I_SOU=\
-	".\..\..\MSDEV\DX5SDK\SDK\INC\subwtype.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_I_SOU=\
+	".\os_win\ddutil.h"\
+	".\os_win\dsutil.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
 
-"$(INTDIR)\i_sound.obj" : $(SOURCE) $(DEP_CPP_I_SOU) "$(INTDIR)"
+".\Release\i_sound.obj" : $(SOURCE) $(DEP_CPP_I_SOU) "$(INTDIR)"
    $(CPP) $(CPP_PROJ) $(SOURCE)
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_I_SOU=\
+	".\os_win\ddutil.h"\
+	".\os_win\dsutil.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
+	
 
 BuildCmds= \
 	$(CPP) $(CPP_PROJ) $(SOURCE) \
 	
 
-"$(INTDIR)\i_sound.obj" : $(SOURCE) $(DEP_CPP_I_SOU) "$(INTDIR)"
+".\Debug\i_sound.obj" : $(SOURCE) $(DEP_CPP_I_SOU) "$(INTDIR)"
    $(BuildCmds)
 
-"$(INTDIR)\i_sound.sbr" : $(SOURCE) $(DEP_CPP_I_SOU) "$(INTDIR)"
+".\Debug\i_sound.sbr" : $(SOURCE) $(DEP_CPP_I_SOU) "$(INTDIR)"
    $(BuildCmds)
 
 !ENDIF 
@@ -1680,29 +2072,43 @@ SOURCE=.\Target\lua\traits.lua
 # Begin Source File
 
 SOURCE=.\luabase.cpp
-DEP_CPP_LUABA=\
-	".\luabase.h"\
-	{$(INCLUDE)}"\lua.h"\
-	".\os_win\..\vconsole.h"\
-	".\os_win\..\View.h"\
-	{$(INCLUDE)}"\ddraw.h"\
-	
-NODEP_CPP_LUABA=\
-	".\translate.h"\
-	
 
 !IF  "$(CFG)" == "HZ - Win32 Release"
 
+DEP_CPP_LUABA=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	
+NODEP_CPP_LUABA=\
+	".\i_sprtet.h"\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\luabase.obj" : $(SOURCE) $(DEP_CPP_LUABA) "$(INTDIR)"
+".\Release\luabase.obj" : $(SOURCE) $(DEP_CPP_LUABA) "$(INTDIR)"
 
 
 !ELSEIF  "$(CFG)" == "HZ - Win32 Debug"
 
+DEP_CPP_LUABA=\
+	"..\lua31\include\lua.h"\
+	".\luabase.h"\
+	".\os_win\..\VConsole.h"\
+	".\os_win\..\View.h"\
+	"c:\dx7asdk\dxf\include\ddraw.h"\
+	
+NODEP_CPP_LUABA=\
+	".\i_sprtet.h"\
+	".\i_video.h"\
+	".\translate.h"\
+	
 
-"$(INTDIR)\luabase.obj" : $(SOURCE) $(DEP_CPP_LUABA) "$(INTDIR)"
+".\Debug\luabase.obj" : $(SOURCE) $(DEP_CPP_LUABA) "$(INTDIR)"
 
-"$(INTDIR)\luabase.sbr" : $(SOURCE) $(DEP_CPP_LUABA) "$(INTDIR)"
+".\Debug\luabase.sbr" : $(SOURCE) $(DEP_CPP_LUABA) "$(INTDIR)"
 
 
 !ENDIF 
