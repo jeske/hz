@@ -481,8 +481,7 @@ void ViewPort::draw_curview() {
 
 
 	// now draw the corner (lower left)
-	tile_type = (myMap->tilemap_rowindex[tile_y])[tile_y];
-
+	tile_type = myMap->tilemap_rowindex[tile_y][tile_x];
 	myTiles->tileIndex(tile_type)->doBlit(&dest,&src);
 	
 	tile_x++;	      
