@@ -12,6 +12,7 @@
 //
 
 #include <unistd.h>
+#include <stdlib.h>
 
 #include "i_video.h" // for initAppWindow()
 #include "i_system.h" // for timer..

@@ -42,12 +42,13 @@ enum dev_type_enum {
 	DT_MOUSE = 0x03
 };
 
-enum keyboard_mask_enum {
-	KM_KEYDOWN = 0x01,
-	KM_KEYUP = 0x02,
- 	KM_ASCII_KEY = 0x04,
-	KM_ASCII_KEYRPT = 0x08
-};
+typedef unsigned int keyboard_mask_enum;
+
+#define	KM_KEYDOWN 0x01
+#define	KM_KEYUP 0x02
+#define KM_ASCII_KEY 0x04
+#define	KM_ASCII_KEYRPT 0x08
+
 
 enum mouse_mask_enum {
 	MS_L_BUTTON = 01,
@@ -59,7 +60,7 @@ typedef struct input_event {
 	enum dev_type_enum dev_type;
 	union {
 		struct {
-			enum keyboard_mask_enum mask;
+			keyboard_mask_enum mask;
 //			int scan_code;
 			int vk_code;
 			int ascii_code;

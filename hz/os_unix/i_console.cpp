@@ -20,6 +20,8 @@ int I_Error (char *fmt, ...)
 
   va_end (ap);
   fprintf (stderr, "\n");
+
+  return 0;
 }
 
 int I_Perror (char *fmt, ...)
@@ -34,7 +36,7 @@ int I_Perror (char *fmt, ...)
 
   va_end (ap);
 
-  I_Error ("%s: %s (errno = %d)", s, p ? p : "unknown error", errno);
+  return I_Error ("%s: %s (errno = %d)", s, p ? p : "unknown error", errno);
 }
 
 int I_Message (char *fmt, ...)
@@ -46,6 +48,7 @@ int I_Message (char *fmt, ...)
   vfprintf (stderr, fmt, ap);
 
   va_end (ap);
+  return 0;
 }
 
 #if 0

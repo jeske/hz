@@ -10,6 +10,7 @@
 // and leave the whole implementation to be done on another platform.
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <lua.h> // Lua language lib!
 

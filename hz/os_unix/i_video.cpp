@@ -9,7 +9,6 @@
 #include "i_video.h"
 #include "i_system.h"
 #include "image.h"
-#include "donuts.h" // bIsActive 
 #include "main.h" // realScreenView
 #include "game.h" // setup_game
 
@@ -282,6 +281,7 @@ BOOL I_InitVideo (void)
 
     bIsActive = 1;
 
+    return FALSE;
 }
 
 #define UTIMER 50000            /* how long between updates (useconds) */

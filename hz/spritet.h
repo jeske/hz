@@ -73,4 +73,4 @@ public:
 };
 
 
-#endif SPRITET_H
+#endif /* SPRITET_H */

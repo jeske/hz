@@ -23,6 +23,7 @@
 //     that it really belongs here.
    
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "osdep.h"
 #ifdef OS_WIN
