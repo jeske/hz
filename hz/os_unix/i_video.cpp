@@ -340,35 +340,38 @@ int I_EventLoop()
     case KeyPress:
 
       if (realScreenView) {
+	int ascii_key = key;
 
 	ev.dev_type = DT_KEYBOARD;
-	ev.dev.keyboard.mask = (enum keyboard_mask_enum) (KM_KEYDOWN);
+
 	key = XKeycodeToKeysym(X_display, event.xkey.keycode, event.xkey.state & ShiftMask);
-	ev.dev.keyboard.mask = KM_KEYDOWN;
-	ev.dev.keyboard.vk_code = key;
+
+
+	// unix vk_codes are usually the same as ascii keys....
+	ascii_key = key;
+
+	// but there are a few exceptions...
 	if (key >= XK_space && key <= XK_asciitilde)
 	{
-	  ev.dev.keyboard.mask |= KM_ASCII_KEY;
-	  key = key - XK_space + ' ';
+	  ascii_key = key - XK_space + ' ';
 	}
 	if (key == XK_Tab)
 	{
-	  ev.dev.keyboard.mask |= KM_ASCII_KEY;
-	  key = 9;
+	  ascii_key = 9;
 	}
 	if (key == XK_Return)
 	{
-	  ev.dev.keyboard.mask |= KM_ASCII_KEY;
-	  key = '\n';
+	  ascii_key = '\n';
 	}
 	if (key == XK_BackSpace)
 	{
-	  ev.dev.keyboard.mask |= KM_ASCII_KEY;
-	  key = 8;
+	  ascii_key = 8;
 	}
 
+	ev.dev.keyboard.vk_code = key;
+	ev.dev.keyboard.ascii_code = ascii_key;
+	ev.dev.keyboard.mask = KM_KEYDOWN | KM_ASCII_KEY;
 //	I_Message ("Got Key %d/%d at %lu\n", key, event.xkey.state, i_time_ms());
-	ev.dev.keyboard.ascii_code = key;
 	realScreenView->inputEvent(&ev);
       }
 
