@@ -178,6 +178,8 @@ int handleMVInput(IN_EVENT *ev) {
 void initViews() {
 	View *temp_view;
 	MultiView *a_tabview;
+	int viewPortWidth = ScreenX - 177;
+	int viewPortHeight = ScreenY - 50;
 
 	realScreenView = new View(0,0,ScreenX, ScreenY); // real screen (TOP)
 	
@@ -264,18 +266,48 @@ void initViews() {
 		multiView->setDepth(10);
 		gameScreenPane->addSubview(multiView);
 		
+		
 		// main map display
-		temp_view = mainViewPort = new ViewPort(15,30,445,415);
+		temp_view = mainViewPort = new ViewPort(0,0,viewPortWidth,viewPortHeight);
 		temp_view->setDepth(-1);
 		gameScreenPane->addSubview(temp_view); 
 
 #ifdef OS_WIN	
-		temp_view = new ImageView(0,0,ScreenX,ScreenY,"std\\overlay.bmp");
+		char player_view_filename[] = "std\\con_player_view.bmp";
+		char status_view_filename[] = "std\\con_status.bmp";
+		char hzdoors_view_filename[] = "std\\con_hz_doors.bmp";
 #else
-		temp_view = new ImageView(0,0,ScreenX,ScreenY,"std/overlay.bmp");
+		char player_view_filename[] = "std/con_player_view.bmp";
+		char status_view_filename[] = "std/con_status.bmp";
+		char hzdoors_view_filename[] = "std/con_hz_doors.bmp";
 #endif
-		temp_view->setDepth(5);
-		gameScreenPane->addSubview(temp_view);
+		int player_view_width = 177, player_view_height = 145;
+		int status_view_width = 177, status_view_height = 143;
+		int hzdoors_view_width = 177, hzdoors_view_height = 128;
+		int cur_y = 0;
+
+		View *player_view = new ImageView(ScreenX - player_view_width,cur_y,
+				player_view_width,player_view_height,
+				player_view_filename);	
+		player_view->setDepth(5);
+		cur_y += player_view_height;
+
+		View *status_view = new ImageView(ScreenX - status_view_width,cur_y,
+				status_view_width,status_view_height,
+				status_view_filename);
+		status_view->setDepth(5);
+		cur_y += status_view_height;
+
+		View *hzdoors_view = new ImageView(ScreenX - hzdoors_view_width,cur_y,
+				hzdoors_view_width,hzdoors_view_height,
+				hzdoors_view_filename);
+		hzdoors_view->setDepth(5);
+		cur_y += hzdoors_view_height;
+
+
+		gameScreenPane->addSubview(player_view);
+		gameScreenPane->addSubview(status_view);
+		gameScreenPane->addSubview(hzdoors_view);
 
 
 		// main map display - clouds
@@ -290,13 +322,13 @@ void initViews() {
 		// gameScreenPane->addSubview(temp_view);
 
 		// health bar
-		status_bar = new HorizStatusBar(25,40,150,12,20);
+		status_bar = new HorizStatusBar(25,10,150,12,20);
 		status_bar->setValue(5);
 		status_bar->setDepth(7);
 		gameScreenPane->addSubview(status_bar);
 
 
-		status_bar2 = new HorizStatusBar(260,40,150,12,50);
+		status_bar2 = new HorizStatusBar(viewPortWidth - (150 + 25),10,150,12,50);
 		status_bar2->setValue(5);
 		status_bar2->setDepth(7);
 		gameScreenPane->addSubview(status_bar2);
