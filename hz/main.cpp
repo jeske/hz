@@ -35,7 +35,6 @@
 #include "game.h"  // setup_game()
 #include "net.h"   // tick_server()
 
-
 View *gameScreenPane = NULL;
 View *realScreenView = NULL;
 View *productionPane = NULL;
@@ -56,7 +55,6 @@ int barvector = -1;
 
 
 
-
 // ********************************
 // class FPSView
 //
@@ -64,51 +62,34 @@ int barvector = -1;
 class FPSView : public View { // C++ to C callthrough to paint the FPS
 protected:
 	virtual void drawSelf() {
-		if( bShowFrameCount ) {
-		    DWORD               time2;
-			char                buff[256];
-
-			dwFrameCount++;
-		    time2 = i_time_ms() - dwFrameTime;
-		    if( time2 > 1000 ) {
-				dwFrames = (unsigned int)(((double)dwFrameCount*(double)1000.0)/(double)time2);
-				dwFrameTime = i_time_ms();
-		        dwFrameCount = 0;
-		    }
-
-			if (dwFrames != dwFramesLast) {
-				dwFramesLast = dwFrames;
-			}
-
-			if( dwFrames > 99 ) {
-				dwFrames = 99;
-			}
-			buff[0] = (char)((dwFrames / 10) + '0');
-		    buff[1] = (char)((dwFrames % 10) + '0');
-		    buff[2] = '\0';
-		    bltText(buff, ScreenX - 80, 10);
-			dbgMsg(c_excessive,"dwFrames: %f  dwFrameCount:%X time2:%X\n",dwFrames, dwFrameTime, time2);
-		}
+	  if( bShowFrameCount ) {
+	    DWORD               time2;
+	    char                buff[256];
+	    
+	    dwFrameCount++;
+	    time2 = i_time_ms() - dwFrameTime;
+	    if( time2 > 1000 ) {
+	      dwFrames = (unsigned int)(((double)dwFrameCount*(double)1000.0)/(double)time2);
+	      dwFrameTime = i_time_ms();
+	      dwFrameCount = 0;
+	    }
+	    
+	    if (dwFrames != dwFramesLast) {
+	      dwFramesLast = dwFrames;
+	    }
+	    
+	    if( dwFrames > 99 ) {
+	      dwFrames = 99;
+	    }
+	    buff[0] = (char)((dwFrames / 10) + '0');
+	    buff[1] = (char)((dwFrames % 10) + '0');
+	    buff[2] = '\0';
+	    bltText(buff, ScreenX - 80, 10);
+	    dbgMsg(c_excessive,"dwFrames: %f  dwFrameCount:%X time2:%X\n",dwFrames, dwFrameTime, time2);
+	  }
 	}
 public:
-	FPSView(int x,int y, int w, int h) : View (x,y,w,h) {}
-};
-
-// ********************************
-// class TestView
-//
-
-class TestView : public View { // test view to checkout the draw heirarchy
-	int imagenum;
-public:
-	TestView(int x,int y,int w, int h,int opt) : View(x,y,w,h) {
-		imagenum = opt;
-		
-	}
-
-	virtual void drawSelf() {
-			// put drawing code here!!!
-	}
+  FPSView(int x,int y, int w, int h) : View (x,y,w,h) {}
 };
 
 

@@ -939,3 +939,21 @@ void TextureView::drawSelf() {
 }
 
 
+// ********************************
+// class TestView
+//
+
+class TestView : public View { // test view to checkout the draw heirarchy
+	int imagenum;
+public:
+	TestView(int x,int y,int w, int h,int opt) : View(x,y,w,h) {
+		imagenum = opt;
+		
+	}
+
+	virtual void drawSelf() {
+			// put drawing code here!!!
+	}
+};
+
+
