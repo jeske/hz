@@ -534,7 +534,8 @@ void setup_game(void)
 
 	// hack to try the C++ sprites
 
-	new SHZFlying(defaultSpriteList,type,50.0,100.0,0.0,0.0);
+	Sprite *c_sprite = new SHZFlying(defaultSpriteList,type,50.0,100.0,0.0,0.0);
+	mainViewPort->followSprite(c_sprite);
 
 	printf("setup_game() finished\n");
 	fflush(stdout);

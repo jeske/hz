@@ -264,7 +264,7 @@ doTick = function(self,tick_diff)
 			end
 		else
 			if (ccw_distance < TURN_RATE) then
-				turn_vec = 0.0 - cw_distance;
+				turn_vec = 0.0 - ccw_distance;
 			else
 				turn_vec = 0.0 - TURN_RATE; -- ccw
 			end

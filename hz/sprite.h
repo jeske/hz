@@ -154,4 +154,10 @@ public:
 extern SpriteList *defaultSpriteList;
 extern SpriteTmplManager *spriteTmplManager;
 
+#define MAX_SPRITE_DIR 40
+extern float Dirx[MAX_SPRITE_DIR];
+extern float Diry[MAX_SPRITE_DIR];
+
+
+
 #endif /* SPRITE_H */
