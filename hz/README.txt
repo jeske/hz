@@ -69,9 +69,9 @@ you should be able to "make" first inside lua31, and then inside
 the c:\hz\hz-files\hz directory. If you have any problems with the
 build, email me at <jeske@chat.net>.
 
-NOTE: The reason it compiles so slow (on windows) is that gcc does
+NOTE: I think the reason it compiles so slow (on windows) is that gcc does
       not yet support precompiled headers and the windows header
-      files are quite large. Perhaps someday they'll fix this.
+      files are quite large. Or perpahs mingw32/gcc is just slow on windows.
 
 NOTE: All paths should be specified in UNIX style with '/' (i.e.
       forward slash) characters. i_fix_path() is responsible
