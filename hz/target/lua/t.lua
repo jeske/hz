@@ -8,7 +8,7 @@ $debug
 
 -- first comes preloaded functions
 
- function printGlobalVariables ()
+function printGlobalVariables ()
  local i, v = nextvar(nil)
   while i do
     print("["..i..", "..type(v).."]")
@@ -34,7 +34,9 @@ function printTables(a_table, owner,tabspace)
 		while i do
 			if (type(v) == "table") then
 				print(tabspace.."  ["..type(i).."] ".. i .. " => [TABLE]");
-				printTables(v,owner,tabspace.."    ");
+                 		if i ~= "_slotcache" then
+					printTables(v,owner,tabspace.."    ");
+				end
 			else 
 				print(tabspace.."  ["..type(i).."]: "..i.." = ["..type(a_table[i]).."] ".. tostring(a_table[i]));
 			end

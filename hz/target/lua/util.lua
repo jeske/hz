@@ -173,23 +173,12 @@ end
 
 function AdvProtoIndex (t,f)
   
-  if (f == '_parents') or (f == '_methodcache') then -- to avoid loop
+  if f == '_parents' then -- to avoid loop
     if (OldIndex) then
 	    return OldIndex(t,f)
 	else
 		return nil;
 	end
-  end
-
-  local cache = rawgettable(t,"_methodcache");
-  if cache then
-     local item = rawgettable(cache,f)
-     if item then
-       return item
-     end
-  else
-     cache = {}
-     rawsettable(t,"_methodcache",cache); -- make the method cache!
   end
 
   local p = t["_parents"];
@@ -203,11 +192,6 @@ function AdvProtoIndex (t,f)
 	   if (type(cur_data) == 'table') then
 	       local result = cur_data[f];
 	       if (result ~= nil) then
-                       if type(result) == "function" then
-                         rawsettable(cache,f,result);
-                       --else 
-                       --  rawsettable(cache,f,result);
-                       end
 		       return result;        -- we found a match
 		   end
 	   else
@@ -224,6 +208,24 @@ function AdvProtoIndex (t,f)
   else 
      return nil;
   end
+end
+
+function add_parent(obj, par) 
+  if (obj._parents == nil) then
+      obj._parents = {}; -- create a parents table
+  end
+
+  local parents_table = obj._parents; -- get the parents table
+  local cur_index = 1;
+  local cur_data = parents_table[cur_index];
+
+  while (cur_data ~= nil) do
+     cur_data = parents_table[cur_index];
+	 cur_index = cur_index + 1;
+  end
+
+  parents_table[cur_index] = par; -- add new parent
+  
 end
 
 ----------------------------------------------------------
@@ -421,25 +423,6 @@ setupMultipleInheritenceForTag(tag({}))
 ----------------------------------------------------------------------
 
 
-function add_parent(obj, par) 
-  if (obj._parents == nil) then
-      obj._parents = {}; -- create a parents table
-  end
-
-  local parents_table = obj._parents; -- get the parents table
-  local cur_index = 1;
-  local cur_data = parents_table[cur_index];
-
-  while (cur_data ~= nil) do
-     cur_data = parents_table[cur_index];
-	 cur_index = cur_index + 1;
-  end
-
-  parents_table[cur_index] = par; -- add new parent
-  
-end
-
-OldIndex = settagmethod(tag({}),"index",AdvProtoIndex);  -- lua 3.1 method
 
 
 function luaStatus(message)
