@@ -805,7 +805,7 @@ void TextView::clearText() {
 
 ImageView::ImageView(int x, int y, int w, int h, char *imageName) : 
 						BufferedView(x,y,w,h) {
-    I_loadImage (this->backingStore.image, imageName, 1);
+    I_loadImage (this->backingStore.image, imageName, 0);
 }
 
 
