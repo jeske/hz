@@ -17,3 +17,5 @@ PLATFORM_OBJS = hzres.o i_console.o i_draw.o i_video.o i_system.o  \
 # for the windows program icon and some other junk
 obj/hzres.o: os_win/hz.res
 	windres os_win/hz.res obj/hzres.o
+os_win/hz.res: os_win/hz.res.gz
+	gzip -d -c os_win/hz.res.gz > os_win/hz.res
