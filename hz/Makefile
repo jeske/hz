@@ -1,4 +1,22 @@
+#########################################################
+##
+## Makefile for HZ
+##
+
+
+# ---
+# These three targets need to be above include lines
+
 all: $(TARGET) install
+
+clean: 
+	rm -f obj/*.o Makefile.bak 
+
+clobber: clean
+	rm -f make.depend $(TARGET)
+
+# ---
+# Include for a more modular makefile
 
 include platform.conf
 include make.conf.$(PLATFORM)
@@ -40,8 +58,6 @@ $(TARGET): $(OBJS)
 install: $(TARGET) 
 	cp $(TARGET) target
 
-clean: 
-	rm -f $(TARGET) obj/*.o Makefile.bak make.depend
 
 # this make depend needs to include all source files, not just those
 # in the current directory.... - jeske
