@@ -84,7 +84,6 @@ Sprite::Sprite(SpriteList *aList, SpriteType *a_type, double x, double y, double
 }
 
 
-
 Sprite::~Sprite() {
 
   // sprite specific teardown
@@ -96,6 +95,57 @@ Sprite::~Sprite() {
   }
   // and from the map!
   this->removeObjectFromMap();
+}
+
+void Sprite::doSpriteTick(unsigned int tickDiff) {
+  double maxx, maxy;
+  Sprite *ptr = this;
+
+  // somewhere here we need to figure out how to rely on the real
+  // map size!
+  maxx = (double) MAX_DONUT_X;
+  maxy = (double) MAX_DONUT_Y;
+
+  ptr->posx  += ptr->velx  * (double)tickDiff;
+  ptr->posy  += ptr->vely  * (double)tickDiff;
+  
+  // call the delegate method
+
+  this->doTick(tickDiff);
+
+  if (this->should_die) {
+    delete this; // probably not the best thing to do, but it works
+    return;
+  }
+
+  // check the bounds to make sure we don't go off the map edge!
+  
+  const double bounce_dampen = 5.5;
+
+  if( ptr->posx > maxx ) {
+      ptr->posx = maxx;
+      ptr->velx = -ptr->velx / bounce_dampen;
+    }
+  else if ( ptr->posx < 0 ) {
+      ptr->posx =0;
+      ptr->velx = -ptr->velx / bounce_dampen;
+    }
+  if( ptr->posy > maxy ) {
+      ptr->posy = maxy;
+      ptr->vely = -ptr->vely / bounce_dampen;
+    }
+  else if ( ptr->posy < 0 ) {
+      ptr->posy =0;
+      ptr->vely = -ptr->vely / bounce_dampen;
+    }
+  ptr->placeObject(mainMap);		
+
+  // check for collision
+  Sprite *obj_hit;
+  if (obj_hit = this->checkCollision()) {
+    // call the delegate method
+    this->handleCollision(obj_hit);
+  }
 }
 
 void Sprite::SpriteTeardown() {
@@ -136,7 +186,7 @@ void SpriteList::doTick(unsigned int tickDiff) {
 	cur = myHead;
 	while (cur) {
 		next = cur->next;
-		cur->doTick(tickDiff);
+		cur->doSpriteTick(tickDiff);
 		cur = next;
 	}
 }
@@ -346,9 +396,11 @@ void Sprite::goToLoc(double newx, double newy) {
 	vely = sin(angle) * 0.05;
 }
 
-// placeObject: this will put an object into the linked list it belongs 
-// in, and if
-// it had an old location, remove it from the wrong spot.
+
+int Sprite::canCollide() {
+  return 1;
+}
+
 
 void Sprite::removeObjectFromMap() {
 	Sprite *object = this;
@@ -392,6 +444,11 @@ void Sprite::addObjectToMap(LPDBLNODE *map_loc) {
 	(*map_loc) = this;
 	this->my_map_loc = map_loc;
 }
+
+// placeObject: this will put an object into the linked list it belongs 
+// in, and if
+// it had an old location, remove it from the wrong spot.
+
 
 void Sprite::placeObject(Map *aMap) {
 	Sprite *object = this;

@@ -240,13 +240,11 @@ void C_addsprite() {
 
 
 	/* okay, we got all the info we need, now make the sprite! */
-
-
 	type = findSpriteType(type_name);
 	if (type) {
-		dbgMsg(c_excessive,"C_addsprite('%s',%f,%f,%f,%f).\n",type_name,x,y,vx,vy);
-		new_obj = new LuaSprite(defaultSpriteList, type , x,y,vx,vy);
-		lua_pushobject(lua_getref(new_obj->myLuaServerMirror));
+	  dbgMsg(c_excessive,"C_addsprite('%s',%f,%f,%f,%f).\n",type_name,x,y,vx,vy);
+	  type->makeInstance(defaultSpriteList,x,y,vx,vy);
+	  // lua_pushobject(lua_getref(new_obj->myLuaServerMirror));
 	} else {
 		dbgMsg(l_error,"no such SpriteType! [%s]\n",type_name);
 	}
@@ -290,7 +288,7 @@ void C_sprite_addtype() {
 		lua_error("incorrect argument 2 to function C_sprite_addtype() (expected table)");
 	}
 
-	newtype = new SpriteType(type_name,lua_sprite);
+	newtype = new LuaSpriteType(type_name,lua_sprite);
 
 	lua_endblock();
 	dbgMsg(c_excessive,"C_sprite_addtype(): added sprite type (%s)\n",type_name);

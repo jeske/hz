@@ -25,7 +25,7 @@
 #include "main.h" // for console view
 
 #include "sprite.h"
-
+#include "s_lua.h"
 #include "spritet.h"
 
 // a crappy hack for now...
@@ -93,15 +93,18 @@ int lookup_builtin(char *name) {
 SPRITECHUNK *find_entry(IMAGELIST *a_list, const char *string) {
 	int curloc = 0;
 
-	while (curloc < a_list->list_len) {
-		if (!strcmp(a_list->list[curloc].name,string)) {
-			return (a_list->list[curloc].ptr);
-		}
-
-		curloc++;
+	if (string) {
+	  while (curloc < a_list->list_len) {
+	    if (!strcmp(a_list->list[curloc].name,string)) {
+	      return (a_list->list[curloc].ptr);
+	    }
+	    
+	    curloc++;
+	  }
 	}
 
-	return (NULL);
+	// if we didn't find it return the first entry!
+	return (a_list->list[0].ptr);
 }
 
 char *SpriteType::name() {
@@ -149,14 +152,9 @@ void SpriteType::DrawRecurse(Sprite *spr_obj, int x, int y, SPRITECHUNK *cur, RE
 			};
 
 		} else if (a_list->index_type == OBJECT_PROPERTY_STR) {
-		  const char *str_value = spr_obj->getPropertyStr(a_list->luavar_name);
-
-		  if (str_value == NULL) {
-				// var dosn't exist, just choose the first one
-		    DrawRecurse(spr_obj, x, y, a_list->list[0].ptr,clip_rect);
-		  } else {
-		    DrawRecurse(spr_obj, x, y, find_entry(a_list,str_value),clip_rect);
-		  }
+		  DrawRecurse(spr_obj, x, y, 
+			      find_entry(a_list, spr_obj->getPropertyStr(a_list->prop_name) ),
+			      clip_rect);
 		} else {
 			dbgMsg(l_error,"unknown list index_type\n");
 			return;
@@ -254,7 +252,83 @@ void SpriteType::DrawAtClipped(Sprite *spr_obj, int x, int y, RECT *clip_rect) {
 }
 
 
-void SpriteType::parseSpriteTable(SPRITECHUNK **dest, lua_Object a_tbl) {
+
+SpriteType::SpriteType(const char *name) {
+  printf("Loading SpriteType(%s)...\n",name);
+  // copy our name...
+  strncpy(myName,name,28);
+  myName[29] = 0;
+  this->myImageList = 0;
+
+  addSpriteType(name,this);
+  printf("...done loading SpriteType\n");
+
+};
+
+
+void SpriteType::loadImage(IMAGE *an_image, const char *image_name) 
+{
+  I_loadImage (an_image, image_name, 1);
+}
+
+void SpriteType::doBlit (RECT *dest, RECT *src, IMAGE *an_image) 
+{
+  I_doBlit (dest, src, an_image);
+}
+
+// ----------------------------------------------------------------
+//  LuaSpriteType
+// ----------------------------------------------------------------
+
+LuaSpriteType::LuaSpriteType(const char *name, lua_Object anObj) : 
+  SpriteType(name) {
+	lua_Object image_table;
+	lua_Object sprite_type_tbl;
+		
+	// first pull out the images table and send it to the parser
+
+	lua_pushobject(anObj);
+	lua_pushstring("VisualRep");
+	image_table = lua_gettable();
+	if (lua_istable(image_table)) {
+		this->parseLuaSpriteTable(&myImageList, image_table);
+	} else {
+		dbgMsg(l_error,"SpriteType::SpriteType(%s), no VisualRep\n",name);
+	}
+
+	// second, delete the images table to save space??? perhaps, perhaps not...
+
+	lua_pushobject(anObj);
+	lua_pushstring("VisualRep");
+	lua_pushnil();
+	lua_settable();
+
+	// third, create the sprite template in lua
+
+	sprite_type_tbl = lua_getglobal("sprite_types");
+	if (!lua_istable(sprite_type_tbl)) {
+		// we need to create it
+		dbgMsg(c_info,"Creating sprite_types table\n");
+		sprite_type_tbl = lua_createtable();
+		lua_pushobject(sprite_type_tbl);
+		lua_setglobal("sprite_types");
+
+	}
+
+	lua_pushobject(sprite_type_tbl);
+	lua_pushstring(name);
+	lua_pushobject(anObj);
+	lua_settable();
+}
+
+Sprite *LuaSpriteType::makeInstance(SpriteList *aList, double x, 
+				    double y, double vx, double vy) {
+  Sprite *new_obj = new LuaSprite(aList,this,x,y,vx,vy);
+  return new_obj;
+}
+
+
+void LuaSpriteType::parseLuaSpriteTable(SPRITECHUNK **dest, lua_Object a_tbl) {
 	lua_Object next_fn, temp_ref, tbl_idx, tbl_val; 
 	int table_len = 0;
 	int curindex = 0;
@@ -354,10 +428,10 @@ void SpriteType::parseSpriteTable(SPRITECHUNK **dest, lua_Object a_tbl) {
 			// it's an object property
 			a_list->index_type = OBJECT_PROPERTY_STR;
 
-			if (strlen(index_string) > sizeof(a_list->luavar_name)) {
+			if (strlen(index_string) > sizeof(a_list->prop_name)) {
 				lua_error("IndexedBy name too big in table"); // should do better than this
 			}
-			strcpy(a_list->luavar_name, index_string);
+			strcpy(a_list->prop_name, index_string);
 		}
 
 
@@ -417,7 +491,7 @@ void SpriteType::parseSpriteTable(SPRITECHUNK **dest, lua_Object a_tbl) {
 				if (lua_isstring(lua_getref(index_ref))) {
 					strcpy(a_list->list[curindex].name,lua_getstring(lua_getref(index_ref))); // size check!!
 					lua_beginblock();
-					this->parseSpriteTable(&(a_list->list[curindex].ptr),lua_getref(value_ref)); // recurse
+					this->parseLuaSpriteTable(&(a_list->list[curindex].ptr),lua_getref(value_ref)); // recurse
 					lua_endblock();
 				} else {
 					dbgMsg(c_error,"non-string index on sprite chunk!\n");
@@ -469,68 +543,3 @@ void SpriteType::parseSpriteTable(SPRITECHUNK **dest, lua_Object a_tbl) {
 	
 	return;
 }
-
-SpriteType::SpriteType(const char *name, lua_Object anObj) {
-	lua_Object image_table;
-	lua_Object sprite_type_tbl;
-		
-	this->myImageList = 0;
-
-	printf("Loading SpriteType(%s)...\n",name);
-
-	// copy our name...
-	strncpy(myName,name,28);
-	myName[29] = 0;
-
-
-	// first pull out the images table and send it to the parser
-
-	lua_pushobject(anObj);
-	lua_pushstring("VisualRep");
-	image_table = lua_gettable();
-	if (lua_istable(image_table)) {
-		this->parseSpriteTable(&myImageList, image_table);
-	} else {
-		dbgMsg(l_error,"SpriteType::SpriteType(%s), no VisualRep\n",name);
-	}
-
-	// second, delete the images table to save space??? perhaps, perhaps not...
-
-	lua_pushobject(anObj);
-	lua_pushstring("VisualRep");
-	lua_pushnil();
-	lua_settable();
-
-	// third, create the sprite template in lua
-
-	sprite_type_tbl = lua_getglobal("sprite_types");
-	if (!lua_istable(sprite_type_tbl)) {
-		// we need to create it
-		dbgMsg(c_info,"Creating sprite_types table\n");
-		sprite_type_tbl = lua_createtable();
-		lua_pushobject(sprite_type_tbl);
-		lua_setglobal("sprite_types");
-
-	}
-
-	lua_pushobject(sprite_type_tbl);
-	lua_pushstring(name);
-	lua_pushobject(anObj);
-	lua_settable();
-
-	addSpriteType(name,this);
-	printf("...done loading SpriteType\n");
-
-}
-
-void SpriteType::loadImage(IMAGE *an_image, const char *image_name) 
-{
-  I_loadImage (an_image, image_name, 1);
-}
-
-void SpriteType::doBlit (RECT *dest, RECT *src, IMAGE *an_image) 
-{
-  I_doBlit (dest, src, an_image);
-}
-
-

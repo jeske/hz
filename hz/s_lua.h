@@ -1,3 +1,5 @@
+// HZ Engine Source
+// Copyright (C) 1998 David W. Jeske
 
 #ifndef S_LUA_H
 #define S_LUA_H 1
@@ -20,6 +22,7 @@ public:
 	virtual void doTick(unsigned int tickDiff); // move the object
 	virtual void doAITick(unsigned int tickDiff);
 	virtual int handleEvent(struct input_event *ev); // we want key events!
+	virtual void handleCollision(Sprite *obj_hit);
 	virtual const char *getPropertyStr(const char *propName); // get object property value
 };
 

@@ -34,7 +34,7 @@ VIEW_OBJS = i_console.o i_draw.o i_video.o i_system.o i_sprtet.o i_view.o
 # vconsole overrides printf() so it should be first!
 
 COMN_OBJS = vconsole.o bmp.o concmd.o game.o image.o main.o map.o \
-	misc.o net.o sprite.o spritet.o s_lua.o view.o # sound.o
+	misc.o net.o sprite.o spritet.o s_lua.o s_hz.o view.o # sound.o
 
 ALL_OBJS = $(COMN_OBJS) $(PLATFORM_OBJS)
 OBJS = $(ALL_OBJS:%=obj/%)

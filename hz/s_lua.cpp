@@ -223,15 +223,6 @@ void LuaSprite::SpriteTeardown() {
 void LuaSprite::doTick(unsigned int tickDiff) {
   LuaSprite *ptr = this;
   Sprite *target = this;
-  double maxx, maxy;
-  
-  ptr->posx  += ptr->velx  * (double)tickDiff;
-  ptr->posy  += ptr->vely  * (double)tickDiff;
-  
-  // somewhere here we need to figure out how to rely on the real
-  // map size!
-  maxx = (double) MAX_DONUT_X;
-  maxy = (double) MAX_DONUT_Y;
   
   // here we'll call the mirror's doTick
   
@@ -260,77 +251,46 @@ void LuaSprite::doTick(unsigned int tickDiff) {
     }
     
   }
-  
   lua_endblock();
-  
-  if (this->should_die) {
-    delete this; // probably not the best thing to do, but it works
-    return;
-  }
-  
-  // here is the "bounce" on the edge of the map
-  
-  if( ptr->posx > maxx ) {
-      ptr->posx = maxx;
-      ptr->velx = -ptr->velx / 2;
-    }
-  else if ( ptr->posx < 0 ) {
-      ptr->posx =0;
-      ptr->velx = -ptr->velx;
-    }
-  if( ptr->posy > maxy ) {
-      ptr->posy = maxy;
-      ptr->vely = -ptr->vely / 2;
-    }
-  else if ( ptr->posy < 0 ) {
-      ptr->posy =0;
-      ptr->vely = -ptr->vely;
-    }
-  ptr->placeObject(mainMap);		
+}
 
-  
-  // check for collision
-  Sprite *obj_hit;
-  if (obj_hit = this->checkCollision()) {
-				// There was a collision so send the ge_collision message...
-    lua_beginblock();
+void LuaSprite::handleCollision(Sprite *obj_hit) {
+  lua_beginblock();
     
-    if (myLuaServerMirror != -1) {
-      lua_Object temp_obj = lua_getref(myLuaServerMirror);
-      if (!lua_istable(temp_obj)) {
-	myLuaServerMirror = -1;
-	dbgMsg(l_error,"SrvObj: lost sprite ref\n");
-      }
+  if (myLuaServerMirror != -1) {
+    lua_Object temp_obj = lua_getref(myLuaServerMirror);
+    if (!lua_istable(temp_obj)) {
+      myLuaServerMirror = -1;
+      dbgMsg(l_error,"SrvObj: lost sprite ref\n");
+    }
+    
+    lua_pushobject(temp_obj);
+    lua_pushstring("ge_collision");
+    lua_Object fnobj = lua_gettable();
+    
+    if (obj_hit->type == OBJ_LUA) {
+      LuaSprite *obj_hit_luaSprite = (LuaSprite *)obj_hit;
+      lua_Object whoIHit = lua_getref(obj_hit_luaSprite->myLuaServerMirror);
       
-      lua_pushobject(temp_obj);
-      lua_pushstring("ge_collision");
-      lua_Object fnobj = lua_gettable();
-
-      if (obj_hit->type == OBJ_LUA) {
-	LuaSprite *obj_hit_luaSprite = (LuaSprite *)obj_hit;
-	lua_Object whoIHit = lua_getref(obj_hit_luaSprite->myLuaServerMirror);
-      
-	if (lua_isfunction(fnobj)) {
-	  // it's a function, so call it!
+      if (lua_isfunction(fnobj)) {
+	// it's a function, so call it!
 	
-	  // actually, it's a METHOD!
-	  lua_pushobject(temp_obj);	// push SELF!
-	  lua_pushnumber((float)posx);		// xposition
-	  lua_pushnumber((float)posy);		// yposition
-	  lua_pushobject(whoIHit);	// push the object I hit!
-	  int fn_result = lua_callfunction(fnobj);
-	  if (!fn_result) {
-	    // no error!
-	  }
+	// actually, it's a METHOD!
+	lua_pushobject(temp_obj);	// push SELF!
+	lua_pushnumber((float)posx);		// xposition
+	lua_pushnumber((float)posy);		// yposition
+	lua_pushobject(whoIHit);	// push the object I hit!
+	int fn_result = lua_callfunction(fnobj);
+	if (!fn_result) {
+	  // no error!
 	}
-      } else {	// we couldn't cast to a LuaSprite!!!
-	// don't even notify about the collision
       }
-      
+    } else {	// we couldn't cast to a LuaSprite!!!
+      // don't even notify about the collision
     }
     
-    lua_endblock();
-  } // end of collision check
+  }
+  lua_endblock();
 }
 
 // tells the world if we are 'nocollide = 1' or not...

@@ -122,12 +122,15 @@ class Sprite  {
 	void Die(void); // we should die!
 	void Draw(int ul_x, int ul_y);
 	void DrawClipped(int ul_x, int ul_y, RECT *clip_rect);
+	void doSpriteTick(unsigned int tickDiff); // run the doTick() show
+
 
 	// callbacks
 	virtual void doTick(unsigned int tickDiff) = 0; // move the object
 	virtual void doAITick(unsigned int tickDiff) = 0;
-	virtual int canCollide(void) = 0;
+	virtual int canCollide(void);
 	virtual int handleEvent(struct input_event *ev) = 0; // we want key events!
+	virtual void handleCollision(Sprite *obj_hit) = 0; // a collision occured!
 	virtual const char *getPropertyStr(const char *propName) = 0; // get object property value
 };
 

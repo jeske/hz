@@ -19,6 +19,8 @@
 
 // Sprite chunk data structures...
 
+// ----------------- in memory representation for the image layer tree
+
 struct sprite_chunk_struct;
 
 typedef struct {
@@ -33,7 +35,7 @@ enum index_type_enum { PREDEF_INDEX, OBJECT_PROPERTY_STR };
 typedef struct {
 	enum index_type_enum index_type;
 	int predef_index_type;
-	char luavar_name[30];
+	char prop_name[30];
 	int list_len;
 	IMAGELISTENTRY list[1];
 } IMAGELIST;
@@ -50,26 +52,37 @@ typedef struct sprite_chunk_struct {
 } SPRITECHUNK;
 
 
+// --------------------------------------------------------------------
+
 class Sprite;
-// class SpriteType 
 class SpriteType;
+class SpriteList;
 
 SpriteType *findSpriteType(const char *name);
 const char *spriteTypeName(int num);
 
 class SpriteType {
-private:
-	char myName[30];
-	static void SpriteType::doBlit(RECT *dest, RECT *src, IMAGE *an_image); // platform specific blit function
-	void SpriteType::loadImage(IMAGE *an_image, const char *image_name); // platform specific load image
-public: 
-	SPRITECHUNK *myImageList;  // this is public for now!
-	char *name();
-	void SpriteType::DrawRecurse(Sprite *spr_obj, int x, int y, SPRITECHUNK *cur, RECT *clip_rect);
-	void SpriteType::DrawAt(Sprite *spr_obj, int x, int y);
-	void SpriteType::DrawAtClipped(Sprite *spr_obj, int x, int y, RECT *clip_rect);
-	void SpriteType::parseSpriteTable(SPRITECHUNK **dest, lua_Object a_table);
-	SpriteType(const char *name, lua_Object anObj);
+ protected:
+  char myName[30];
+  static void SpriteType::doBlit(RECT *dest, RECT *src, IMAGE *an_image); // platform specific blit function
+  void SpriteType::loadImage(IMAGE *an_image, const char *image_name); // platform specific load image
+
+ public: 
+  SPRITECHUNK *myImageList;  // this is public for now!
+  
+  SpriteType(const char *name);
+  char *name(void);
+  void DrawRecurse(Sprite *spr_obj, int x, int y, SPRITECHUNK *cur, RECT *clip_rect);
+  void DrawAt(Sprite *spr_obj, int x, int y);
+  void DrawAtClipped(Sprite *spr_obj, int x, int y, RECT *clip_rect);
+  virtual Sprite *makeInstance(SpriteList *aList, double x, double y, double vx, double vy) = 0;
+};
+
+class LuaSpriteType : public SpriteType {
+ public:
+  LuaSpriteType(const char *name, lua_Object anObj);
+  void parseLuaSpriteTable(SPRITECHUNK **dest, lua_Object a_table);
+  virtual Sprite *makeInstance(SpriteList *aList, double x, double y, double vx, double vy);
 };
 
 
