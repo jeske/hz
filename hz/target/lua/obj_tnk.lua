@@ -219,6 +219,35 @@ hz_register_objtype("hovercraft", {
 	end
 }); -- register done
 
+hz_register_objtype("soldier", {
+	_parents = { ground_physics, controllable, collidable },
+	imgdir = 2.0, -- image index
+	rimgdir = 1.0, -- rotor image index
+	direction = 0.0, 
+	bullet_type = "bullet",
+	objtype = "soldier",
+	exp_timer = 0.0,
+	frame_time = 70,
+	layer = 1,
+	VisualRep = VisualReps.hdSoldier,
+
+	-- dummy ai_event
+	ai_event = function(self)
+	end,
+
+	new = function (self,a_list) -- constructor
+		if (type(a_list) ~= 'table') then
+			print("heli:new() called with non-table "..tostring(a_list));
+		else
+			a_list._parents = { self };
+			a_list.key = {}; -- make our private keydown list
+			a_list.ctrl_centered = 1.0;
+			a_list.dest_dir = 0.0;
+		end
+		return (a_list);
+	end
+}); -- register done
+
 hz_register_objtype("litetank", {
 	_parents = { ground_physics, controllable, collidable },
 	imgdir = 2.0, -- image index

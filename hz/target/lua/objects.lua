@@ -117,6 +117,7 @@ function setupGameSprites()
 	C_addsprite("hovercraft", 50,150);
 	C_addsprite("litetank",100,100);
 	C_addsprite("hdApc",150,150);
+	C_addsprite("soldier",200,200);
 
         -- give me one base
         C_addsprite("Base",100,150);
