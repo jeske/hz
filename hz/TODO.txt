@@ -1,8 +1,11 @@
-$Id: TODO.txt,v 1.6 2002/01/21 06:15:05 jeske Exp $
-$Date: 2002/01/21 06:15:05 $
+$Id: TODO.txt,v 1.7 2002/01/21 07:19:41 jeske Exp $
+$Date: 2002/01/21 07:19:41 $
 
 ============= DONE RECENTLY ============================
 
+1/20/2002  Simple unit purchasing implemented. Just press the
+           1,2,3,4 keys to buy units. They appear at mainbase.
+5/16/2001  horiz scroll view is connected to mainship damage
 5/16/2001  carrying objects now works in a basic way!
 5/16/2001  added "dir()" function to lua with better 
            display of global variables, tables, and objects
@@ -18,22 +21,12 @@ $Date: 2002/01/21 06:15:05 $
 ============= TODO NOW =====================================
 
 hotlist:
-- press the "1" button to build a unit, wait for the unit to
-  be built, and then let you pick it up at a mainbase
-  (who builds the unit? my mainship? my mainbase? a new
-   lua 'game' object which does not exist?)
-- allow me to add a horizontal scroll view from lua and 
-  somehow connect it to object properties in lua
-- make sure C_obj_setPos() is correctly range checked for the
-  edge of the map, and that sprites are correctly moved to
-  their new tile space! We might want to return a value
-  about whether or not the new position is a valid position.
 - BASIC AI: make tank unit track nearby units and shoot at them 
   - lua objects need to be able to see neighboring objects and 
     access sprites by tile location.
-- collision with trees/rocks
+- bump collision with trees/rocks
 - purchase unit screen
-- pixel perfect collision detection
+- dumb computer opponent
 
 
 - (see bottom for 'TODO ARTWORK')
@@ -41,11 +34,17 @@ hotlist:
 ============= TODO LATER =====================================
 
 This is the list of stuff which will probably need to be done someday,
-but it's really in the critical path right now. If you are looking for
-something to knock off which is relatively small, you might try
+but it's not really in the critical path right now. If you are looking 
+for something to knock off which is relatively small, you might try
 something in "visual", or something else below which looks simple.
 
 misc:
+- make sure C_obj_setPos() is correctly range checked for the
+  edge of the map, and that sprites are correctly moved to
+  their new tile space! We might want to return a value
+  about whether or not the new position is a valid position.
+- use sprite "layer" numbers for draw ordering
+- check and update maxsprite size when loading sprites
 - the code in map.cpp which handles the viewport following
   the main sprite should really make it so that if
   the ship is going purely left/right/up/down, that it
@@ -54,8 +53,7 @@ misc:
   of the ship stays the same, and it should float to
   the center as the X-screen floats to the left.
 
-  Although this code really should somehow make it into
-  script someday.
+  Although this code might somehow make it into script someday.
 
 - propagate mouse/joystick events into lua (keyboard is there)
   - we should really change the way input events are processed.
@@ -69,8 +67,6 @@ misc:
     objects, because other code (such as the ConsoleView needs 
     access to raw keyboard)
 
-- use sprite "layer" numbers for something useful
-- check and update maxsprite size when loading sprites
 
 map improvements:
 - tile properties in lua
@@ -82,6 +78,7 @@ visual:
 - figure out how to get velocity and framerate setup so
   that the scrolling screen does not "jitter".
 - Add "x/y offsets" for individual image layers
+- change sprites to be center-based, and store computed sizes
 - pixel-perfect collisions, collision should occur at collide location,
   not at object corner location. This might be done by finally
   making the image loading code platform independent, switching
@@ -89,7 +86,7 @@ visual:
   at load time in platform independent code.
 - fix map/viewport so that it can hit the right and bottom edges of the
   map correctly.
-- examine code to make sure image layers draw in the same order 
+- examine code to make sure sprite image layers draw in the same order 
   all the time
 
 ai thoughts:
@@ -119,7 +116,7 @@ speedup/safety:
   (I don't even remember what this note means ??)
 - check and redo viewport math to make sure we can handle a different tile
   size
-- offscreen sprite manager 
+- offscreen sprite manager  (necessary ?)
   - Change IMAGE type and I_doBlit() to keep track of how many times
     each sprite is used between page flips, and then build some
     simple algorithm to incrementally change which ones are stored
