@@ -12,6 +12,8 @@
 
 #include "image.h"
 
+g_images_loaded = 0;
+
 // I_loadImage(IMAGE *an_image, const char *image_name);
 //
 // load an image from disk into an imagerep
@@ -36,6 +38,7 @@ int I_loadImage(IMAGE *an_image, const char *dos_image_name, int is_sprite)
   an_image->src.bottom = imdata.height;
   
   if (an_image->surf) { // did the image load correctly? 
+    g_images_loaded++;
     return 0; // success!
   } else {
     return 1; // failure!

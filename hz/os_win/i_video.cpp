@@ -130,15 +130,16 @@ BOOL I_InitVideo( void )
     #ifdef NT_HACK
         DDSurfDesc.dwSize = sizeof(DDSurfDesc);
         ddrval = lpDD->GetDisplayMode(&DDSurfDesc);
-        if(ddrval == DD_OK)
-			ScreenBpp = DDSurfDesc.ddpfPixelFormat.dwRGBBitCount;
+        if(ddrval == DD_OK) {
+           ScreenBpp = DDSurfDesc.ddpfPixelFormat.dwRGBBitCount;
+        }
     #endif
 
     // set the mode
 	ddrval = lpDD->SetDisplayMode(ScreenX, ScreenY, ScreenBpp );
-	if( ddrval != DD_OK )
+	if( ddrval != DD_OK ) {
 		return CleanupAndExit("SetDisplayMode Failed!");
-
+	}
 
     // check the color key hardware capabilities
     dwTransType = DDBLTFAST_SRCCOLORKEY;
@@ -182,9 +183,17 @@ BOOL I_InitVideo( void )
 		if( ddrval != DD_OK ) {
 			return CleanupAndExit("CreateSurface FrontBuffer Failed!");
 		}
-		
-
 	}
+
+	DDBLTFX ddbltfx;
+	ddbltfx.dwSize = sizeof(ddbltfx);
+	ddbltfx.dwFillColor = 0; // black
+
+	lpFrontBuffer->Blt(
+		NULL, 		// Destination is entire surface
+		NULL,		// No source surface
+		NULL,		// No source rect
+		DDBLT_COLORFILL, &ddbltfx);
 
     // get a pointer to the back buffer
     ddscaps.dwCaps = DDSCAPS_BACKBUFFER;

@@ -12,6 +12,8 @@
 
 #include "i_draw.h"      
 
+int g_images_loaded = 0;
+
 // I_loadImage(IMAGE *an_image, const char *image_name);
 //
 // load an image from disk into an imagerep
@@ -30,6 +32,9 @@ int I_loadImage(IMAGE *an_image, const char *image_name,int is_sprite) {
 			DDSetColorKey( an_image->surf, RGB(0,0,0) );
 			an_image->width = an_image->src.right - an_image->src.left;
 			an_image->height = an_image->src.bottom - an_image->src.top;
+
+			g_images_loaded++;
+
 			return 0; // success!
 		} else {
 			return 1; // failure!

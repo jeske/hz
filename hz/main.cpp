@@ -14,7 +14,7 @@
 #endif
 #include "i_system.h" // for i_time_ms()
 #include "i_video.h"
-#include "i_draw.h" // for bltText()
+#include "i_draw.h" 
 #ifdef OS_UNIX
 #include "i_console.h"
 #endif
@@ -29,7 +29,6 @@
 #include "concmd.h"
 #include "main.h"
 
-
 View *gameScreenPane = NULL;
 View *realScreenView = NULL;
 View *productionPane = NULL;
@@ -40,9 +39,11 @@ MultiView *multiView = NULL;
 int testinc = 0;
 int testflash = 0;
 int testbarinc = 0;
-HorizStatusBar *status_bar3;
-HorizStatusBar *status_bar2;
+
 HorizStatusBar *status_bar;
+HorizStatusBar *status_bar2;
+HorizStatusBar *loadingBar;
+
 ConsoleView *consoleView;
 int barvector = -1;
 
@@ -50,7 +51,7 @@ void paintScreen() {
 	if (realScreenView) {
 		if (testbarinc++ >= 3) {
 			testbarinc = 0;
-			if (status_bar && status_bar2 && status_bar3) {
+			if (status_bar && status_bar2) {
 				if (status_bar2->getValue() == 0) {
 					barvector = 1;
 				} else {
@@ -60,13 +61,16 @@ void paintScreen() {
 				}
 			
 			
-
-				status_bar3->setValue(status_bar2->getValue());
 				status_bar2->setValue(status_bar2->getValue()+barvector);
 				status_bar->setValue(status_bar->getValue()+barvector);	
 			}
 			
 		}
+		if (loadingBar) {
+			loadingBar->setValue(g_images_loaded);
+		}
+
+
 		if (testinc++ >= 20 && multiView) {
 			// switch the multiview
 			multiView->nextView();
@@ -231,6 +235,9 @@ void initViews() {
 
 
 		// test an imageview behind the console..
+		temp_view = new ImageView(0,0,ScreenX,ScreenY,"splash.bmp");
+#if 0
+
 #ifdef OS_WIN	
 		temp_view = new ImageView(0,0,40,ScreenY,"std\\ConBKG.bmp");
 #else
@@ -244,6 +251,9 @@ void initViews() {
 #else
 		temp_view = new ImageView(0,0,ScreenX, 40, "std/conbkg.bmp");
 #endif
+
+#endif
+
 		temp_view->setDepth(3);
 		consolePane->addSubview(temp_view);
 	
@@ -336,10 +346,11 @@ void initViews() {
 		status_bar2->setDepth(7);
 		gameScreenPane->addSubview(status_bar2);
 
-		status_bar3 = new HorizStatusBar(50,12,200,15,20);
-		status_bar3->setValue(15);
-		status_bar3->setDepth(15);
-		consolePane->addSubview(status_bar3);
+		loadingBar = new HorizStatusBar(50,12,200,15,20);
+		loadingBar->setMaxValue(35);
+		loadingBar->setDepth(15);
+		consolePane->addSubview(loadingBar);
+
 
 //		multiView->addView(new TestView(350,20,50,50,0),"view1");
 //		multiView->addView(new TestView(350,20,50,50,1),"view2");

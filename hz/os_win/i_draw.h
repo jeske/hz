@@ -8,6 +8,8 @@
 
 #include "i_sprtet.h"
 
+extern int g_images_loaded;
+
 void bltText( char *num, int x, int y );
 int I_loadImage(IMAGE *an_image, const char *image_name, int is_sprite);
 void I_drawLine(int x1, int y1, int x2, int y2);

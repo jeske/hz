@@ -99,7 +99,7 @@ int PASCAL WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 
     ScreenX = getint(&lpCmdLine, 640);
     ScreenY = getint(&lpCmdLine, 480);
-    ScreenBpp = getint(&lpCmdLine, 8);
+    ScreenBpp = getint(&lpCmdLine, 16);
 
     if( !initAppWindow(hInstance, nCmdShow) )
     {

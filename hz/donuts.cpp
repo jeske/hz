@@ -40,6 +40,7 @@ void UpdateFrame( void )
             // display the splash screen
 			dbgMsg(c_excessive,"UpdateFrame: PS_SPLASH\n");
             bltSplash();
+			ProgramState = PS_BEGINREST;
             return;
         case PS_ACTIVE:
 	    dbgMsg(c_excessive,"UpdateFrame: PS_ACTIVE\n");
@@ -47,6 +48,9 @@ void UpdateFrame( void )
             DrawDisplayList();
             return;
         case PS_BEGINREST:
+			DrawDisplayList();  // prime drawing
+			setup_game();		// setup the game for the first time
+
 	    dbgMsg(c_excessive,"UpdateFrame: PS_BEGINREST\n");
 #ifdef USE_DSOUND
             if(bWantSound)

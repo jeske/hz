@@ -29,6 +29,8 @@
 #include "main.h" // for mainTabView
 #include "game.h"
 
+extern int g_images_loaded; // from i_draw.h
+
 Map *mainMap = 0;
 ViewPort *mainViewPort = 0;
 SpriteTmplManager *spriteTmplManager = 0;
@@ -452,6 +454,8 @@ void init_lua_objects() {
 #endif
 	lua_endblock();
         consoleView->runningLua(0);
+	printf("%d Images loaded\n",g_images_loaded);
+
 }
 
 

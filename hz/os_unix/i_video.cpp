@@ -372,6 +372,8 @@ int I_EventLoop()
       switch (key) {
 	case VK_RETURN:
 	case '\n':
+#if 0   
+      // we handle this in the platform code anymore...
 	  if (ProgramState == PS_SPLASH) {
 //	    I_Message ("VK_RETURN at %lu\n", i_time_ms());
 	    ProgramState = PS_BEGINREST;
@@ -380,6 +382,7 @@ int I_EventLoop()
 	    XFillRectangle (X_display, pBackBuffer, X_black_gc, 0, 0, X_width, 
 		X_height);
 	  }
+#endif
 	  break;
 	case VK_ESCAPE:
 	case VK_F12:

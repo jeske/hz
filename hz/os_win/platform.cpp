@@ -112,11 +112,15 @@ long FAR PASCAL MainWndproc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 
 		switch (wParam) {
 			case VK_RETURN:
+#if 0
+                // we don't handle this in platform code anymore
 				if( ProgramState == PS_SPLASH ) {
-					ProgramState = PS_BEGINREST;
-					DrawDisplayList();
-					setup_game();
+				  ProgramState = PS_BEGINREST;
+				  DrawDisplayList();
+				  setup_game();
 				}
+
+#endif
 				break;
 			case VK_ESCAPE:
 			case VK_F12:
