@@ -27,7 +27,7 @@ typedef struct {
 } IMAGELISTENTRY;
 
 
-enum index_type_enum { PREDEF_INDEX, LUA_VAR };
+enum index_type_enum { PREDEF_INDEX, OBJECT_PROPERTY_STR };
 
 // IMAGE LIST
 typedef struct {

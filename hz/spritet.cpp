@@ -146,7 +146,7 @@ void SpriteType::DrawRecurse(Sprite *spr_obj, int x, int y, SPRITECHUNK *cur, RE
 				break;
 			};
 
-		} else if (a_list->index_type == LUA_VAR) {
+		} else if (a_list->index_type == OBJECT_PROPERTY_STR) {
 		  const char *str_value = spr_obj->getPropertyStr(a_list->luavar_name);
 
 		  if (str_value == NULL) {
@@ -349,8 +349,8 @@ void SpriteType::parseSpriteTable(SPRITECHUNK **dest, lua_Object a_tbl) {
 			a_list->index_type = PREDEF_INDEX;
 			a_list->predef_index_type = lookup_builtin(index_string);
 		} else {
-			// it's a lua variable
-			a_list->index_type = LUA_VAR;
+			// it's an object property
+			a_list->index_type = OBJECT_PROPERTY_STR;
 
 			if (strlen(index_string) > sizeof(a_list->luavar_name)) {
 				lua_error("IndexedBy name too big in table"); // should do better than this
