@@ -33,9 +33,7 @@
 #include "osdep.h"
 
 
-
-
-
+#define SCROLLBACK_INCREMENT 20
 
 // this is probably broken, at least it looks broken to me...
 
@@ -64,27 +62,34 @@ int ConsoleData::getLineStartReverse(int count) {
 	}
 }
 
-// returns length, -1 signals no such line
+// --------------------------------
+// ConsoleData::getLineReverse char *dest_buffer, int max_len, int line_count) 
+//
+//   Skips (line_count) lines from the back of the buffer, and then copies
+//   the data for the next line into the (dest_buffer), up to (max_len) characters.
+//
+//   returns length, -1 signals no such line
 
 int ConsoleData::getLineReverse(char *s, int max_len, int line_count) {
 	int buf_ptr = getLineStartReverse(line_count);
 	int cur_len = 0;
 
-	if (buf_ptr < 0) {
+	if ((s == NULL) || (buf_ptr < 0)) {
 		return -1;
 	}
 
 	while ((buf_ptr != head_ptr) && (max_len > 1)) {
-		if (s) {
-			*s = data[buf_ptr];
-			s++; max_len--;
-		}
+		if (data[buf_ptr] && data[buf_ptr] != '\n') {
+		  *s = data[buf_ptr];
+		  s++; max_len--;
+		  cur_len++;
+		} 
+
 		if (data[buf_ptr] == 0) {
-			/* end of this line */
-			return cur_len;
-		} else {
-			cur_len++;
-		}
+		  /* end of this line */
+		  *s = 0;
+		  return cur_len;
+		} 
 		buf_ptr = bufWrap(buf_ptr + 1);
 	}
 
@@ -360,12 +365,12 @@ int ConsoleView::handleEvent(IN_EVENT *ev) {
 			this->paintInputRow();
 		} else if (ev->dev.keyboard.mask & KM_KEYDOWN) {
 			switch (ev->dev.keyboard.vk_code) {
-					case VK_PRIOR: /* scrollback! */
-								scrollback_lines = MIN(myData->numLines() - 5, 
-								scrollback_lines + 5);
+					case VK_PRIOR: /* scrollback! , page up */
+								scrollback_lines = MIN(myData->numLines() - SCROLLBACK_INCREMENT, 
+								scrollback_lines + SCROLLBACK_INCREMENT);
 							break;
-					case VK_NEXT: /* scroll forward! */
-								scrollback_lines = MAX(0,scrollback_lines - 5);
+					case VK_NEXT: /* scroll forward! , page down */
+								scrollback_lines = MAX(0,scrollback_lines - SCROLLBACK_INCREMENT);
 							break;
 					case VK_END: /* goto bottom! */
 							scrollback_lines = 0;
@@ -401,6 +406,9 @@ void ConsoleView::drawSelf() {
 
 	BufferedView::drawSelf();
 }
+
+// void ConsoleView::paintInputRow(void)
+// this function is really mislabeled. It actually renders the entire view...
 
 void ConsoleView::paintInputRow() {
 	// we need to paint the input data, and if the number of lines
@@ -540,6 +548,7 @@ void ConsoleView::paintInputRow() {
 						strcpy(s,"<null>");
 						slen = strlen(s);
 					}
+					slen = strlen(s);
 		
 					I_GetTextExtent(&backingStore,s,slen,&lineSize);	
 					if ((draw_cur_y - lineSize.cy) > 0) {
