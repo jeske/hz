@@ -623,7 +623,7 @@ while (more_to_draw) {
 	if (finding_layer_range) {
 		finding_layer_range = 0;
 		cur_layer = min_layer;
-		printf("found layer info, min = %d, max = %d\n", min_layer, max_layer);
+		// printf("found layer info, min = %d, max = %d\n", min_layer, max_layer);
 	} else {
 		cur_layer++;
 		if (cur_layer > max_layer) {

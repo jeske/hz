@@ -50,7 +50,7 @@ hz_register_objtype("Base", {
 			if State == "Closed" then
 				self.opentick = 1;
 				self.State = "Opening";
-				print("opening: Opening");
+				-- print("opening: Opening");
 			elseif State == "Opening" then
 				self.opentick = self.opentick + 1;
 
@@ -58,7 +58,7 @@ hz_register_objtype("Base", {
 					-- start spinning
 					self.spintick = 1;
 					self.State = "Open";
-					print("opening: Open");
+					-- print("opening: Open");
 				end
 			elseif State == "Open" then
 				self.spintick = self.spintick + 1;
@@ -66,7 +66,7 @@ hz_register_objtype("Base", {
 				if self.spintick > 6 then
 					self.spintick = 1;
 					self.spincount = self.spincount + 1;
-					print("opening: spin ", self.spincount);
+					-- print("opening: spin ", self.spincount);
 				end
 
 				if self.open_timer <= 0 then
@@ -75,6 +75,10 @@ hz_register_objtype("Base", {
 			end
 
 		elseif self.opening_or_closing == "closing" then
+			if self.open_timer > 0 then
+				self.opening_or_closing = "opening"
+			end
+
 			if State == "Open" then
 				self.spintick = self.spintick - 1;
 				

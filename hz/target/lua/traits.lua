@@ -58,9 +58,9 @@ inputEvent = function(self,ev)
 		xpos,ypos = C_obj_pos(self.objnum);
 
 		C_addsprite(self.bullet_type,
-				xpos + 32 + (Dirx[dir] * 80), ypos + 32 + (Diry[dir] * 80), 
-				Dirx[dir] * 500.0/1000.0,
-				Diry[dir] * 500.0/1000.0);
+				xpos + 32 + (Dirx[dir] * 80), ypos + 32 + (Diry[dir-1] * 80), 
+				Dirx[dir-1] * 500.0/1000.0,
+				Diry[dir-1] * 500.0/1000.0);
 
 --		new_obj = new Sprite( defaultSpriteList, OBJ_BULLET, 
 --					Dirx[(int)shipSprite->frame]*6.0 + 32.0 + shipSprite->posx,
