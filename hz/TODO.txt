@@ -1,5 +1,5 @@
-$Id: TODO.txt,v 1.5 2001/06/07 08:46:26 jeske Exp $
-$Date: 2001/06/07 08:46:26 $
+$Id: TODO.txt,v 1.6 2002/01/21 06:15:05 jeske Exp $
+$Date: 2002/01/21 06:15:05 $
 
 ============= DONE RECENTLY ============================
 
@@ -28,9 +28,13 @@ hotlist:
   edge of the map, and that sprites are correctly moved to
   their new tile space! We might want to return a value
   about whether or not the new position is a valid position.
-- make tank unit track nearby units and shoot at them 
+- BASIC AI: make tank unit track nearby units and shoot at them 
   - lua objects need to be able to see neighboring objects and 
     access sprites by tile location.
+- collision with trees/rocks
+- purchase unit screen
+- pixel perfect collision detection
+
 
 - (see bottom for 'TODO ARTWORK')
 
