@@ -62,8 +62,10 @@ map_templates.island = {
 
 
 map_templates.lake = {
-  { -1, -1, -1, -1, -1, -1, -1, -1, 14 },
-  { -1, 23,  5,  3,  3,  3,  4, 08, 24 }
+  { 18, 25, 25, 25, 25, 25, 25, 25, 14 },
+  { 23,  2,  1,  5,  3,  3,  4,  2, 24 },
+  { 23,  2, 29,  5,  3,  3,  4, 12, 24 },
+  { 19, 26, 26, 26, 26, 26, 26, 26, 16 },
 };
 
 map_templates.hz_logo = { 
@@ -94,7 +96,7 @@ function place_item(a_map, at_x, at_y)
   end
 end
 
-place_item(map_templates.lake,10,10);
+place_item(map_templates.lake,10,15);
 place_item(map_templates.hz_logo,1,1);
 
 
