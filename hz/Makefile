@@ -7,7 +7,7 @@ include make.depend
 
 VIEW_OBJS = i_console.o i_draw.o i_video.o i_system.o i_sprtet.o i_view.o
 
-COMN_OBJS = bmp.o concmd.o donuts.o game.o image.o luabase.o main.o map.o \
+COMN_OBJS = bmp.o concmd.o donuts.o game.o image.o main.o map.o \
 	misc.o net.o sprite.o spritet.o vconsole.o view.o # sound.o
 
 ALL_OBJS = $(COMN_OBJS) $(PLATFORM_OBJS)
