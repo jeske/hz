@@ -1,5 +1,5 @@
-$Id: TODO.txt,v 1.3 2001/05/17 05:09:53 jeske Exp $
-$Date: 2001/05/17 05:09:53 $
+$Id: TODO.txt,v 1.4 2001/05/17 08:21:53 jeske Exp $
+$Date: 2001/05/17 08:21:53 $
 
 ============= DONE RECENTLY ============================
 
@@ -38,6 +38,17 @@ something to knock off which is relatively small, you might try
 something in "visual", or something else below which looks simple.
 
 misc:
+- the code in map.cpp which handles the viewport following
+  the main sprite should really make it so that if
+  the ship is going purely left/right/up/down, that it
+  floats to the center on that axis. For example, if
+  going directly right, currently the Y-screen position
+  of the ship stays the same, and it should float to
+  the center as the X-screen floats to the left.
+
+  Although this code really should somehow make it into
+  script someday.
+
 - propagate mouse/joystick events into lua (keyboard is there)
   - we should really change the way input events are processed.
     First they should go through an input-event-configuration 
@@ -60,6 +71,8 @@ map improvements:
 - real map file data format, and a few real maps!
 
 visual:
+- figure out how to get velocity and framerate setup so
+  that the scrolling screen does not "jitter".
 - Add "x/y offsets" for individual image layers
 - pixel-perfect collisions, collision should occur at collide location,
   not at object corner location. This might be done by finally

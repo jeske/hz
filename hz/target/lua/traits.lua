@@ -1,3 +1,35 @@
+
+
+
+function clamp_velocity(vx,vy,MAX_VELOCITY)
+  local speed = sqrt(vx * vx + vy * vy);
+  if abs(speed) > MAX_VELOCITY then
+    if vx == 0.0 then
+      if vy > 0.0 then
+        vy = MAX_VELOCITY;
+      else
+        vy = - MAX_VELOCITY;
+      end
+    elseif vy == 0.0 then
+      if vx > 0.0 then
+        vx = MAX_VELOCITY;
+      else
+        vx = - MAX_VELOCITY;
+      end
+    else
+
+      angle = atan2(vy,vx);
+      vx = cos(angle) * MAX_VELOCITY;
+      vy = sin(angle) * MAX_VELOCITY;
+    end
+  end
+  return vx,vy;  
+end
+
+-- ************************************************
+--  controllable trait
+--  
+
 controllable = {
 key_maps = a_key_map, -- we need the key map!
 firing_frequency = 200.0,
@@ -62,13 +94,13 @@ inputEvent = function(self,ev)
 		xpos,ypos = C_obj_getPos(self.objnum);
 
 		C_addsprite(self.bullet_type,
-				xpos + 32 + (Dirx[dir] * 80), ypos + 32 + (Diry[dir-1] * 80), 
+				xpos + 36 + (Dirx[dir] * 80), ypos + 36 + (Diry[dir-1] * 80), 
 				Dirx[dir-1] * 500.0/1000.0,
 				Diry[dir-1] * 500.0/1000.0);
 
 --		new_obj = new Sprite( defaultSpriteList, OBJ_BULLET, 
---					Dirx[(int)shipSprite->frame]*6.0 + 32.0 + shipSprite->posx,
---                    Diry[(int)shipSprite->frame]*6.0 + 32.0 + shipSprite->posy,
+--					Dirx[(int)shipSprite->frame]*6.0 + 36.0 + shipSprite->posx,
+--                    Diry[(int)shipSprite->frame]*6.0 + 36.0 + shipSprite->posy,
 --                    Dirx[(int)shipSprite->frame]*500.0/1000.0,
 --                    Diry[(int)shipSprite->frame]*500.0/1000.0 );
 
@@ -162,12 +194,9 @@ end
 }; -- end collidable
 
 air_physics = {
-	
 -- properties...
-vx = 0, vy = 0, rot = 0,
-
-	-- methods....
-
+vx = 0, vy = 0, rot = 0, MAX_VELOCITY = 0.3,
+-- methods....
 doTick = function(self,tick_diff)
 
   	-- handle carrying a unit
@@ -176,6 +205,11 @@ doTick = function(self,tick_diff)
 		if self.carrying_unit then
 			-- we need to try and drop it!!
 			print("dropping unit ".. self.carrying_unit.obj_type_name);
+			local unit = self.carrying_unit;
+			unit.rot = self.rot;
+			unit.imgdir = self.imgdir;
+
+
 			self.carrying_unit = nil;
 			self.attempt_pickup_drop_timer = nil; -- reset the timer!
 		else 
@@ -207,6 +241,7 @@ doTick = function(self,tick_diff)
 	local exp_img_num = self.rimgdir;
 	local EXP_IMG_COUNT = 10;
 	local MAX_SHIP_FRAME = 40;
+	local MAX_VELOCITY = self.MAX_VELOCITY;
 
 	exp_timer = exp_timer + tick_diff;
 
@@ -268,6 +303,7 @@ doTick = function(self,tick_diff)
 		return;
 	end
 
+
 	local i_rot = floor(rot);
 
 	if (i_rot == dest_dir) then
@@ -320,6 +356,11 @@ doTick = function(self,tick_diff)
 		self.imgdir = i_rot + 1;
 	end
 	self.rot = i_rot;
+
+	-- cap the velocity at MAX!
+
+	vx,vy = clamp_velocity(vx,vy,MAX_VELOCITY);
+
 	C_obj_setVelocity(self.objnum,vx,vy);
 
 end -- function end
@@ -569,13 +610,14 @@ function handle_firing(self, tick_diff)
 			end
 
 			xpos,ypos = C_obj_getPos(self.objnum);
+			xvel,yvel = C_obj_getVelocity(self.objnum);
 
 			local offset = 30;
 
 			new_bullet = C_addsprite(self.bullet_type,
 				xpos + 32 + (Dirx[dir] * offset), ypos + 32 + (Diry[dir-1] * offset), 
-				Dirx[dir-1] * 500.0/1000.0,
-				Diry[dir-1] * 500.0/1000.0);
+				xvel + Dirx[dir-1] * 0.3,
+				yvel + Diry[dir-1] * 0.3);
 			if new_bullet then
 				print(new_bullet);
 				new_bullet.creator = self;
