@@ -1,0 +1,193 @@
+<!-- luac.man,v 1.18 2000/03/29 17:07:36 lhf Exp -->
+<HTML>
+<HEAD>
+<TITLE>LUAC man page</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+
+<H1>NAME</H1>
+luac - Lua compiler
+<H1>SYNOPSIS</H1>
+<B>luac</B>
+[
+<I>options</I>
+] [
+<I>filenames</I>
+]
+<H1>DESCRIPTION</H1>
+<B>luac</B>
+is the Lua compiler.
+It translates programs written in the Lua programming language
+into binary files that can be loaded and executed with
+<B>lua_dofile</B>
+in C or with
+<B>dofile</B>
+in Lua.
+<P>
+The main advantages of pre-compiling chunks are:
+faster loading,
+protecting source code from user changes,
+and
+off-line syntax error detection.
+The binary files created by
+<B>luac</B>
+are portable to all architectures.
+<P>
+Pre-compiling does not imply faster execution
+because in Lua chunks are always compiled into bytecodes before being executed.
+<B>luac</B>
+simply allows those bytecodes to be saved in a file for later execution.
+<P>
+<B>luac</B>
+produces a single output file containing the bytecodes
+for all source files given.
+By default,
+the output file is named
+<B>luac.out</B>,
+but you can change this with the
+<B>-o</B>
+option.
+<P>
+You can use
+<B>"-"</B>
+to indicate
+<I>stdin</I>
+as a source file.
+<P>
+<B>luac</B>
+can also load and list binary files with the
+<B>-u</B>
+option.
+<P>
+Binary files produced by differents runs of
+<B>luac</B>
+(even in different machines)
+can be combined into one large file,
+using 
+<B>cat</B>(1).
+The result is still a valid binary file
+and can be loaded with a single call to
+<B>lua_dofile</B>
+or 
+<B>dofile</B>.
+<P>
+The internal format of the binary files produced by
+<B>luac</B>
+may change when a new version of Lua is released.
+We try to maintain compatibility even for binary files,
+but it is not always possible.
+So,
+save the source files of all Lua programs that you precompile.
+<P>
+<H1>OPTIONS</H1>
+Options must be separate.
+<P>
+<B>-c</B>
+compile (this is the default).
+<P>
+<B>-u</B>
+undump, i.e., load and list the given binary files.
+If no files are given, then
+<B>luac</B>
+undumps
+<B>luac.out</B>.
+Listing a binary file is useful to learn about Lua's virtual machine.
+Listing is also useful to test the integrity of binary files:
+corrupted files will probably generate errors when undumped.
+To test without listing, use
+<B>-q</B>.
+For a thourough integrity test,
+use
+<B>-t</B>.
+<P>
+<B>-d</B>
+turn debugging on.
+Individual chunks may
+still control the generation of debug information with
+<B>$debug</B>
+and
+<B>$nodebug.</B>
+If debugging is on, then listings show the names of the local variables.
+<P>
+<B>-D "</B><I>name"</I>
+predefine symbol
+<I>name</I>
+for conditional compilation.
+By default,
+<B>luac</B>
+does
+<I>not</I>
+predefine any symbols,
+not even the built-in functions.
+<P>
+<B>-l</B>
+produce a listing of the compiled bytecode for Lua's virtual machine.
+This is the default when undumping.
+<P>
+<B>-n</B>
+save numbers in native format.
+By default,
+numbers are saved in text form,
+for maximum portability.
+Binary files with numbers in native format are slightly faster to load,
+but are not completely portable.
+<P>
+<B>-o "</B><I>file"</I>
+output to
+<I>file</I>,
+instead of the default
+<B>luac.out</B>.
+The output file cannot be a source file.
+<P>
+<B>-O</B>
+optimize.
+Debug information is removed
+and
+duplicate constants are coalesced.
+<P>
+<B>-p</B>
+parse sources files but do not generate any output file.
+Used mainly for syntax checking.
+<P>
+<B>-q</B>
+quiet; produce no listing.
+This is the default when compiling.
+<P>
+<B>-t</B>
+perform a thourough integrity test when undumping.
+Code that passes this test is completely safe,
+in the sense that it will not break the interpreter.
+However,
+there is no guarantee that such code does anything sensible.
+(None can be given, because the halting problem is unsolvable.)
+<P>
+<B>-U "</B><I>name"</I>
+undefine symbol
+<I>name</I>
+for conditional compilation.
+<P>
+<B>-v</B>
+print version information.
+<P>
+<B>-V</B>
+verbose;
+print the names of the source files as they are processed.
+<H1>FILES</H1>
+<P>
+<B>luac.out</B>
+default output file
+<H1>SEE ALSO</H1>
+<B>lua</B>(1)
+<BR>
+<A HREF="http://www.tecgraf.puc-rio.br/lua/">http://www.tecgraf.puc-rio.br/lua/</A>
+<H1>DIAGNOSTICS</H1>
+Error messages should be self explanatory.
+<H1>AUTHORS</H1>
+L. H. de Figueiredo,
+R. Ierusalimschy and
+W. Celes
+(<A HREF="mailto:lua@tecgraf.puc-rio.br">lua@tecgraf.puc-rio.br</A>)
+<!-- EOF -->
+</BODY>
+</HTML>
