@@ -18,7 +18,7 @@ up to 1024x768x16bits using Windows DirectDraw.
 
 The HZ Engine is Copyright (C) 1998 by David W. Jeske 
   Linux Port (os_unix) Copyright Brandon C. Long
-  Original artwork is Copyright Barry Gillespy
+  Original artwork is Copyright Barry Gillhespy
   Some misc artwork is borrowed (without permission) from 
     other sources.
 

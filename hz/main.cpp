@@ -240,23 +240,19 @@ void initViews() {
 
 		// test an imageview behind the console..
 		temp_view = new ImageView(0,0,ScreenX,ScreenY,"splash.bmp");
-#if 0
-
-#ifdef OS_WIN	
-		temp_view = new ImageView(0,0,40,ScreenY,"std\\ConBKG.bmp");
-#else
-		temp_view = new ImageView(0,0,40,ScreenY,"std/conbkg.bmp");
-#endif
-		temp_view->setDepth(2);
-		consolePane->addSubview(temp_view);
-
-#ifdef OS_WIN
-		temp_view = new ImageView(0,0,ScreenX, 40, "std\\ConBKG.bmp");
-#else
-		temp_view = new ImageView(0,0,ScreenX, 40, "std/conbkg.bmp");
-#endif
-
-#endif
+//#ifdef OS_WIN	
+//		temp_view = new ImageView(0,0,40,ScreenY,"std\\ConBKG.bmp");
+//#else
+//		temp_view = new ImageView(0,0,40,ScreenY,"std/conbkg.bmp");
+//#endif
+//		temp_view->setDepth(2);
+//		consolePane->addSubview(temp_view);
+//
+//#ifdef OS_WIN
+//		temp_view = new ImageView(0,0,ScreenX, 40, "std\\ConBKG.bmp");
+//#else
+//		temp_view = new ImageView(0,0,ScreenX, 40, "std/conbkg.bmp");
+//#endif
 
 		temp_view->setDepth(3);
 		consolePane->addSubview(temp_view);
