@@ -112,15 +112,17 @@ function setupGameSprites()
         -- this is our second unit...
 	C_addsprite("heli",200,30);
 
+	C_addsprite("hovercraft", 50,150);
+	C_addsprite("litetank",100,100);
+
         -- give me one base
-        C_addsprite("Base",100,100);
+        C_addsprite("Base",100,150);
+
 
         -- make one enemy
-	a_tnk = C_addsprite("tank",500,200);
-        a_tnk:ai_moveToXY(100,100);
+	-- a_tnk = C_addsprite("tank",500,200);
+        -- a_tnk:ai_moveToXY(100,100);
 
-	-- C_addsprite("hovercraft", 50,150);
-	-- C_addsprite("litetank",100,100);
 
 	-- the test objects for Daniel's fighter images
 	-- C_addsprite("hd_mainship",250,180); -- can't be controlled

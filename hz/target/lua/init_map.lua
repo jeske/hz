@@ -2,12 +2,12 @@
 -- tile sprites... this is just to get things rolling
 
 if not MAP_TILES_LOADED then
-  C_setpalette("nimg/tile01.bmp");
-  C_tile_addtype("nimg/tile27.bmp"); -- tile 0 
+  C_setpalette("t_snow/tile01.bmp");
+  C_tile_addtype("t_snow/tile27.bmp"); -- tile 0 
 
   local tile_num = 1;
   while (tile_num < 30) do
-    C_tile_addtype(format("nimg/tile%02d.bmp",tile_num));
+    C_tile_addtype(format("t_snow/tile%02d.bmp",tile_num));
     tile_num = tile_num + 1;
   end
 

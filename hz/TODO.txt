@@ -1,5 +1,5 @@
-$Id: TODO.txt,v 1.4 2001/05/17 08:21:53 jeske Exp $
-$Date: 2001/05/17 08:21:53 $
+$Id: TODO.txt,v 1.5 2001/06/07 08:46:26 jeske Exp $
+$Date: 2001/06/07 08:46:26 $
 
 ============= DONE RECENTLY ============================
 
@@ -24,6 +24,10 @@ hotlist:
    lua 'game' object which does not exist?)
 - allow me to add a horizontal scroll view from lua and 
   somehow connect it to object properties in lua
+- make sure C_obj_setPos() is correctly range checked for the
+  edge of the map, and that sprites are correctly moved to
+  their new tile space! We might want to return a value
+  about whether or not the new position is a valid position.
 - make tank unit track nearby units and shoot at them 
   - lua objects need to be able to see neighboring objects and 
     access sprites by tile location.
