@@ -54,9 +54,10 @@ int CleanupAndExit(char *err)
   SetCursor(LoadCursor( NULL, IDC_ARROW ));
   bMouseVisible = TRUE;
 
-  if( lpFrontBuffer != NULL ) {
-    lpFrontBuffer->Release();
-  }
+  // this causes a segfault for some reason....
+  //  if( lpFrontBuffer != NULL ) {
+  //    lpFrontBuffer->Release();
+  //  }
 
   if( lpDD != NULL ) {
     lpDD->Release();

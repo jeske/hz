@@ -111,6 +111,7 @@ BOOL initAppWindow( HINSTANCE hInstance, int nCmdShow )
 				(LPVOID) NULL );
             
     }
+
     if( !hWndMain )	{
       return CleanupAndExit("couldn't create main window!");
     }
@@ -298,10 +299,11 @@ BOOL I_InitVideo( void )
 
     } // end of fullscreen startup
 
-    // common startup
+    // ---------------------------------------- common startup -----------------------
 
-    if( !RestoreSurfaces() )
+    if( !RestoreSurfaces() ) {
         return CleanupAndExit("RestoreSurfaces Failed!");
+    }
 
     hndlMgr->addHandle(linepen =  CreatePen(PS_SOLID,0,RGB(255,255,0)));
     hndlMgr->addHandle(blackpen = CreatePen(PS_SOLID,0,RGB(0,0,0)));
@@ -710,6 +712,10 @@ int RestoreSurfaces( void )
     ddrval = lpFrontBuffer->Restore();
     if( ddrval != DD_OK )
         return FALSE;
+    
+    // restore back buffer?
+
+    // restore palette
 
 #if 0
     // Create and set the palette for the splash bitmap
@@ -719,7 +725,9 @@ int RestoreSurfaces( void )
 #endif
 
     // set the palette before loading the art
-//    lpFrontBuffer->SetPalette(lpArtPalette );
+    // lpFrontBuffer->SetPalette(lpArtPalette );
+
+    // restore sprites...
 
     return TRUE;
 }
