@@ -198,7 +198,7 @@ void ConsoleData::addChar(char c) {
 ConsoleView::ConsoleView(int x,int y,int w,int h) : BufferedView(x,y,w,h) {
 	// this should take into account the size of the screen
 	// and stuff like that, but for now we'll just make it big...
-    int width_chars = 80;
+	int width_chars = 80;
 	int height_chars = 80;
 	int buf_size = (width_chars * (height_chars * 2)) * sizeof(char);
 

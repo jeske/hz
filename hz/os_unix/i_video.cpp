@@ -590,11 +590,16 @@ int I_CreateDrawable (RECT *src, char *name, DRAWABLE *draw)
   }
 }
 
-void I_doBlit (RECT *dest, IMAGE *im)
+void I_doBlit (RECT *dest, RECT *src_cliprect, IMAGE *im)
 {
   int width = dest->right - dest->left;
   int height = dest->bottom - dest->top;
- 
+  static RECT all  = { 0,0,0,0 };
+  
+  // if there is no source cliprect, use the image.
+  if (src_cliprect == NULL) {
+    src_cliprect = & all;
+  }
 
 #if 0
   if (dest->top == 0 && dest->left == 0)
@@ -611,13 +616,17 @@ void I_doBlit (RECT *dest, IMAGE *im)
     // Sprite needs mask!
     XSetClipOrigin (X_display, X_sprite_gc, dest->left, dest->top);
     XSetClipMask (X_display, X_sprite_gc, im->mask);
-    XCopyArea (X_display, im->surf, pBackBuffer, X_sprite_gc, 0, 0, width, 
-	height, dest->left, dest->top);
+    XCopyArea (X_display, im->surf, pBackBuffer, X_sprite_gc, 
+        src_cliprect->left, src_cliprect->top, 
+        width, height, 
+        dest->left, dest->top);
   }
   else
   {
-    XCopyArea (X_display, im->surf, pBackBuffer, X_gc, 0, 0, width, height, 
-	dest->left, dest->top);
+    XCopyArea (X_display, im->surf, pBackBuffer, X_gc, 
+        src_cliprect->left, src_cliprect->top, 
+        width, height, 
+        dest->left, dest->top);
   }
   // return TRUE;
   return;
@@ -637,7 +646,7 @@ void bltSplash (void)
   {
     if (!I_loadImage (&im, "splash.bmp", 0))
     {
-      I_doBlit (&dest, &im);
+      I_doBlit (&dest, NULL, &im);
       FlipScreen ();
     }
     else
@@ -645,7 +654,7 @@ void bltSplash (void)
   }
   else
   {
-    I_doBlit (&dest, &im);
+    I_doBlit (&dest, NULL, &im);
     FlipScreen ();
   }
 

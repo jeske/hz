@@ -49,7 +49,7 @@ typedef struct _drawable
 
 BOOL I_InitVideo (void);
 BOOL I_EventLoop (void);
-void I_doBlit (RECT *dest, IMAGE *im); 
+void I_doBlit (RECT *dest, RECT *src_cliprect, IMAGE *im); 
 int I_createimage (IMAGEDATA *imd, IMAGE *image, int is_sprite);
 void bltSplash (void); 
 BOOL I_vid_setpalette (const char *filename);

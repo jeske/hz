@@ -410,7 +410,7 @@ void ViewPort::draw_curview() {
 	src.right = grid_width;
 
 	dest.left = my_dimension.x;
-	dest.right = (grid_width - offset_x);
+	dest.right = (grid_width - offset_x) + dest.left;
 	dest.bottom = (dest.top = dest.bottom) + grid_height;
 
 
@@ -873,6 +873,5 @@ Tile *TileSet::tileIndex(int index) {
 
 void Tile::doBlit (RECT *dest,RECT *src) 
 {
-  my_image.src = *src;
-  I_doBlit (dest, &this->my_image);
+  I_doBlit (dest, src, &this->my_image);
 }

@@ -468,15 +468,15 @@ void BufferedView::setDirty() {
 }
 
 void BufferedView::drawSelf() {
-	RECT src;
-	HRESULT ddrval;
+	RECT dest;
 
-	src.left = my_dimension.x;
-	src.top = my_dimension.y;
-	src.right = src.left + my_dimension.width-1;
-	src.bottom = src.top + my_dimension.height-1;
+	dest.left = my_dimension.x;
+	dest.top = my_dimension.y;
+	dest.right = dest.left + my_dimension.width-1;
+	dest.bottom = dest.top + my_dimension.height-1;
 
 #if 0
+	HRESULT ddrval;
 
 	//if (dirty_count) {
 		//dirty_count--;
@@ -494,11 +494,12 @@ void BufferedView::drawSelf() {
 			return;
         }
 #else
-	// if (this->backingStore.image->name != NULL)
-	  I_doBlit (&(src), this->backingStore.image);
-#endif
 
+	// if (this->backingStore.image->name != NULL)
+        I_doBlit (&(dest), NULL, this->backingStore.image);
 	//}
+
+#endif
 }
 
 // HorizStatusBar

@@ -25,7 +25,7 @@ void bltText( char *num, int x, int y );		// draw the specified text at (x,y)
 void I_drawLine(int x1, int y1, int x2, int y2);// draw a line from x1,y1 to x2,y2
 
 int I_loadImage(IMAGE *an_image, const char *image_name, int is_sprite); // load an IMAGE
-void I_doBlit(RECT *dest, IMAGE *an_image);		// blit an IMAGE at a destination
+void I_doBlit(RECT *dest, RECT *src_cliprect, IMAGE *an_image);		// blit an IMAGE at a destination
 
 unsigned long int i_time_ms(void); 
 
