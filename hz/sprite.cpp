@@ -91,8 +91,8 @@ void Sprite::SpriteSetup(SpriteList *aList, SHORT a_type, double x, double y, do
 	}
 
 		if( x < 0.0) {// no position specified?
-			new_node->posx = randDouble( 0.0, (double)MAX_DONUT_X );
-			new_node->posy = randDouble( 0.0, (double)MAX_DONUT_Y );
+			new_node->posx = randDouble( 0.0, (double)100.0 );
+			new_node->posy = randDouble( 0.0, (double)100.0 );
 		} else {
 			new_node->posx = x;
 			new_node->posy = y;
@@ -570,14 +570,13 @@ int Sprite::handleEvent(struct input_event *ev) { // we want key events!
 void Sprite::doTick(unsigned int tickDiff) {
 	Sprite *ptr = this;
 	Sprite *target = this;
-	double maxx, maxy, maxframe;
+	double maxx, maxy;
 	
 	ptr->posx  += ptr->velx  * (double)tickDiff;
 	ptr->posy  += ptr->vely  * (double)tickDiff;
 		
-	maxx = (double) MAX_DONUT_X;
-	maxy = (double) MAX_DONUT_Y;
-	maxframe = (double) MAX_DONUT_FRAME;
+	maxx = (double) myMap->map_width;
+	maxy = (double) myMap->map_height;
 
 	// here we'll call the mirror's doTick
 
