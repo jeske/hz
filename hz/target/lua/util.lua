@@ -1,9 +1,8 @@
 $debug
 print("Util.lua!!!");
 
-function dir_table(a_table, collect_data)
-	-- this prints most tables out as normal tables, and 
-	-- knows how to descend the _parents class machinery
+function dir_object(a_table, collect_data)
+	-- this knows how to descend the _parents class machinery
 
 	local recurse_data;
 
@@ -59,7 +58,11 @@ function dir(a_table)
         local formatstring;
 
 	if a_table then
-		dir_table(a_table);
+		if a_table._parents then
+			dir_object(a_table);
+		else
+			printTable(a_table);
+		end
 		return;
 	end
 	-- otherwise they want the global table
@@ -174,10 +177,16 @@ end
 function printTable(a_table)
 	local i,v = next(a_table,nil)
 	local count = 0;
+	local classname;
 
 	print(a_table);
 	while i do
-		print("  ["..type(i).."]: "..i.." = ["..type(v).."] ".. tostring(a_table[i]))
+		classname = a_table[i].obj_type_name;
+		if classname then
+			print("  ["..type(i).."]: "..i.." = [object("..classname..")] ".. tostring(a_table[i]))
+		else
+			print("  ["..type(i).."]: "..i.." = ["..type(v).."] ".. tostring(a_table[i]))
+		end
 		i,v = next(a_table,i)
 		count = count + 1;
 	end
