@@ -10,4 +10,4 @@ LUA_LIBS = -L../lua31/lib -llua -llualib
 LIBS = $(X_LIBS) $(LUA_LIBS) -lm
 
 TARGET=xhz
-PLATFORM_OBJS = i_console.o i_draw.o i_video.o i_system.o i_sprtet.o i_main.o
+PLATFORM_OBJS = i_console.o i_draw.o i_video.o i_system.o i_main.o

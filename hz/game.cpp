@@ -24,7 +24,6 @@
 #include "i_video.h" // this should not be here, it's for the set palette
 #include "i_console.h"
 
-#include "donuts.h"
 #include "map.h"
 #include "sprite.h"
 #include "spritet.h" // sprite type

@@ -10,7 +10,7 @@ LUA_LIBS = -L../lua31/lib -llua -llualib
 LIBS = $(DX_LIBS) $(LUA_LIBS) -lm -mwindows
 
 TARGET=hz.exe
-PLATFORM_OBJS = hzres.o i_console.o i_draw.o i_video.o i_system.o i_sprtet.o \
+PLATFORM_OBJS = hzres.o i_console.o i_draw.o i_video.o i_system.o  \
            i_main.o hndlmgr.o ddutil.o control.o platform.o
 
 

@@ -30,10 +30,10 @@
 #include "i_video.h"
 
 // GAME INCLUDES
-#include "..\donuts.h"
+#include "../main.h"
 #include "i_system.h" // CleanupAndExit()
-#include "..\map.h" // ViewPort
-#include "..\vconsole.h"
+#include "../map.h" // ViewPort
+#include "../vconsole.h"
 
 #include "hndlmgr.h"
 
@@ -80,10 +80,12 @@ BOOL initAppWindow( HINSTANCE hInstance, int nCmdShow )
 
     if (!full_screen) { // windowed!
 
+      // to disable resize, change WS_OVERLAPPEDWINDOW to WS_OVERLAPPED !
+
       hWndMain = CreateWindowEx(0,  // WS_EX_TOPMOST,
 				"SSGameClass",
 				"HZ",
-				WS_OVERLAPPED | WS_VISIBLE |
+				WS_OVERLAPPEDWINDOW | WS_VISIBLE |
 				WS_SYSMENU,  // so we get an icon in the tray
 				10, // x, we are going to put it mostly off the screen because
 				10, // y, DirectX is fucked...
@@ -139,8 +141,6 @@ BOOL I_vid_setpalette(const char *filename) {
     lpFrontBuffer->SetPalette(lpArtPalette );
 	return 1; // pass
 }
-
-// #define NT_HACK 1
 
 BOOL I_InitVideo( void )
 {
@@ -204,104 +204,87 @@ BOOL I_InitVideo( void )
     } else { // full_screen!
       // ---------------------------- FULL SCREEN ---------------------------
 
-      if( bUseEmulation ) {
-        ddrval = DirectDrawCreate( (GUID *)DDCREATE_EMULATIONONLY, &lpDD, NULL );
-      }
-      else
-        ddrval = DirectDrawCreate( NULL, &lpDD, NULL );
+      ddrval = DirectDrawCreate( NULL, &lpDD, NULL );
 
-    if( ddrval != DD_OK )
+      if( ddrval != DD_OK ) {
         return CleanupAndExit("DirectDrawCreate Failed!");
-	
-	if( !bUseEmulation ) {
-		ddrval = lpDD->SetCooperativeLevel(hWndMain,
-					DDSCL_EXCLUSIVE | DDSCL_FULLSCREEN  );
-		if( ddrval != DD_OK )
-			return CleanupAndExit("SetCooperativeLevel Failed");
-	}
-
-    #ifdef NT_HACK
-        DDSurfDesc.dwSize = sizeof(DDSurfDesc);
-        ddrval = lpDD->GetDisplayMode(&DDSurfDesc);
-        if(ddrval == DD_OK) {
-           ScreenBpp = DDSurfDesc.ddpfPixelFormat.dwRGBBitCount;
-        }
-    #endif
-
-    // set the mode
-	ddrval = lpDD->SetDisplayMode(ScreenX, ScreenY, ScreenBpp );
-	if( ddrval != DD_OK ) {
-		return CleanupAndExit("SetDisplayMode Failed!");
-	}
-
-    // check the color key hardware capabilities
-    dwTransType = DDBLTFAST_SRCCOLORKEY;
-    ddcaps.dwSize = sizeof( ddcaps );
-
-    // Create surfaces
-
-	if (!bUseEmulation) {
-		memset( &ddsd, 0, sizeof( ddsd ) );
-		ddsd.dwSize = sizeof( ddsd );
-		ddsd.dwFlags = DDSD_CAPS | DDSD_BACKBUFFERCOUNT;
-		ddsd.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE |
-			DDSCAPS_FLIP |
-			DDSCAPS_COMPLEX;
-		ddsd.dwBackBufferCount = 1;
-
-		ddrval = lpDD->CreateSurface(&ddsd, &lpFrontBuffer, NULL );
-
-		if( ddrval != DD_OK ) {
-			return CleanupAndExit("CreateSurface FrontBuffer Failed!");
-		}
-	} else {
-		
-		memset( &ddsd, 0, sizeof( ddsd ) );
-		ddsd.dwSize = sizeof( ddsd );
-		ddsd.dwFlags = DDSD_CAPS;
-		ddsd.ddsCaps.dwCaps = DDSCAPS_COMPLEX;
-		ddsd.dwBackBufferCount = 0;
-
-		ddrval = lpDD->CreateSurface(&ddsd, &lpFrontBuffer, NULL );
-
-		if( ddrval != DD_OK ) {
-			return CleanupAndExit("CreateSurface FrontBuffer Failed!");
-		}
-	}
-
-	DDBLTFX ddbltfx;
-	ddbltfx.dwSize = sizeof(ddbltfx);
-	ddbltfx.dwFillColor = 0; // black
-
-	lpFrontBuffer->Blt(
-		NULL, 		// Destination is entire surface
-		NULL,		// No source surface
-		NULL,		// No source rect
-		DDBLT_COLORFILL, &ddbltfx);
-
-    // get a pointer to the back buffer
-    ddscaps.dwCaps = DDSCAPS_BACKBUFFER;
-    ddrval = lpFrontBuffer->GetAttachedSurface(
-                &ddscaps,
-                &lpBackBuffer );
-    if( ddrval != DD_OK )
+      }
+      
+      ddrval = lpDD->SetCooperativeLevel(hWndMain,
+					 DDSCL_EXCLUSIVE | DDSCL_FULLSCREEN  );
+      if( ddrval != DD_OK ) {
+	return CleanupAndExit("SetCooperativeLevel Failed");
+      }
+      
+#ifdef NT_HACK
+      DDSurfDesc.dwSize = sizeof(DDSurfDesc);
+      ddrval = lpDD->GetDisplayMode(&DDSurfDesc);
+      if(ddrval == DD_OK) {
+	ScreenBpp = DDSurfDesc.ddpfPixelFormat.dwRGBBitCount;
+      }
+#endif
+      
+      // set the mode
+      ddrval = lpDD->SetDisplayMode(ScreenX, ScreenY, ScreenBpp );
+      if( ddrval != DD_OK ) {
+	return CleanupAndExit("SetDisplayMode Failed!");
+      }
+      
+      // check the color key hardware capabilities
+      dwTransType = DDBLTFAST_SRCCOLORKEY;
+      ddcaps.dwSize = sizeof( ddcaps );
+      
+      // Create front and back surfaces
+      
+      memset( &ddsd, 0, sizeof( ddsd ) );
+      ddsd.dwSize = sizeof( ddsd );
+      ddsd.dwFlags = DDSD_CAPS | DDSD_BACKBUFFERCOUNT;
+      ddsd.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE |
+	DDSCAPS_FLIP |
+	DDSCAPS_COMPLEX;
+      ddsd.dwBackBufferCount = 1;
+      
+      ddrval = lpDD->CreateSurface(&ddsd, &lpFrontBuffer, NULL );
+      
+      if( ddrval != DD_OK ) {
+	return CleanupAndExit("CreateSurface FrontBuffer Failed!");
+      }
+    
+      // clear the front buffer!
+  
+      DDBLTFX ddbltfx;
+      ddbltfx.dwSize = sizeof(ddbltfx);
+      ddbltfx.dwFillColor = 0; // black
+      
+      lpFrontBuffer->Blt(
+			 NULL, 		// Destination is entire surface
+			 NULL,		// No source surface
+			 NULL,		// No source rect
+			 DDBLT_COLORFILL, &ddbltfx);
+      
+      // get a pointer to the back buffer
+      ddscaps.dwCaps = DDSCAPS_BACKBUFFER;
+      ddrval = lpFrontBuffer->GetAttachedSurface(
+						 &ddscaps,
+						 &lpBackBuffer );
+      if( ddrval != DD_OK )
         return CleanupAndExit("GetAttachedDurface Failed!");
-
-    ddsd.dwFlags = DDSD_CAPS | DDSD_WIDTH | DDSD_HEIGHT;
-    ddsd.ddsCaps.dwCaps = DDSCAPS_OFFSCREENPLAIN;
+      
+      ddsd.dwFlags = DDSD_CAPS | DDSD_WIDTH | DDSD_HEIGHT;
+      ddsd.ddsCaps.dwCaps = DDSCAPS_OFFSCREENPLAIN;
 #ifdef DEBUG
-    if( bHELBlt )
+      if( bHELBlt )
         ddsd.ddsCaps.dwCaps |= DDSCAPS_SYSTEMMEMORY;
 #endif
-
+      
     } // end of fullscreen startup
-
+    
     // ---------------------------------------- common startup -----------------------
-
+    
     if( !RestoreSurfaces() ) {
-        return CleanupAndExit("RestoreSurfaces Failed!");
+      return CleanupAndExit("RestoreSurfaces Failed!");
     }
-
+    
     hndlMgr->addHandle(linepen =  CreatePen(PS_SOLID,0,RGB(255,255,0)));
     hndlMgr->addHandle(blackpen = CreatePen(PS_SOLID,0,RGB(0,0,0)));
     hndlMgr->addHandle(blackbrush = CreateSolidBrush(RGB(0,0,0)));

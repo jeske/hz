@@ -1,7 +1,6 @@
 // HZ Engine Source
 // Copyright (C) 1998 David W. Jeske
 
-
 /*
  * main.cpp
  *
@@ -28,7 +27,6 @@
 #include "i_system.h" // for i_time_ms()
 #include "i_video.h"
 #include "i_draw.h" 
-#include "donuts.h"
 #include "view.h"
 #include "vconsole.h"
 #include "map.h"
@@ -55,51 +53,6 @@ HorizStatusBar *loadingBar;
 
 ConsoleView *consoleView;
 int barvector = -1;
-
-void paintScreen() {
-	if (realScreenView) {
-		if (testbarinc++ >= 3) {
-			testbarinc = 0;
-			if (status_bar && status_bar2) {
-				if (status_bar2->getValue() == 0) {
-					barvector = 1;
-				} else {
-					if (status_bar2->getValue() >= status_bar2->getMaxValue()) {
-						barvector = -1;
-					} 
-				}
-			
-			
-				status_bar2->setValue(status_bar2->getValue()+barvector);
-				status_bar->setValue(status_bar->getValue()+barvector);	
-			}
-			
-		}
-		if (loadingBar) {
-			loadingBar->setValue(g_images_loaded);
-		}
-
-
-		if (testinc++ >= 20 && multiView) {
-			// switch the multiview
-			multiView->nextView();
-			testinc = 0;
-			
-			if (testflash++ >= 30) {
-				multiView->setState(!multiView->curState()); // disable
-				if (multiView->curState()) {
-					testflash = 0;
-				} else {
-					testflash = 10;
-				}
-			}
-
-		}
-		
-
-		realScreenView->draw();
-	}
-}
 
 
 
@@ -232,9 +185,6 @@ void initViews() {
 			char s[120];
 			sprintf(s,"ScreenMode: %dx%dx%dbpp",ScreenX, ScreenY, ScreenBpp);
 			consoleView->addText(s);
-			if (bUseEmulation) {
-				consoleView->addText("HAL Emulation only...");
-			}
 		}
 		consoleView->setConsoleHandler(handleConsoleInput); // setup our handler fn
 	
@@ -374,7 +324,55 @@ extern int should_die; // to tell threads to die
 
 
 //--------------------------------------------------------------------
-// from donuts.cpp
+// GAME LOOP STUFF
+// (mostly from donuts.cpp)
+
+void paintScreen() {
+	if (realScreenView) {
+		if (testbarinc++ >= 3) {
+			testbarinc = 0;
+			if (status_bar && status_bar2) {
+				if (status_bar2->getValue() == 0) {
+					barvector = 1;
+				} else {
+					if (status_bar2->getValue() >= status_bar2->getMaxValue()) {
+						barvector = -1;
+					} 
+				}
+			
+			
+				status_bar2->setValue(status_bar2->getValue()+barvector);
+				status_bar->setValue(status_bar->getValue()+barvector);	
+			}
+			
+		}
+		if (loadingBar) {
+			loadingBar->setValue(g_images_loaded);
+		}
+
+
+		if (testinc++ >= 20 && multiView) {
+			// switch the multiview
+			multiView->nextView();
+			testinc = 0;
+			
+			if (testflash++ >= 30) {
+				multiView->setState(!multiView->curState()); // disable
+				if (multiView->curState()) {
+					testflash = 0;
+				} else {
+					testflash = 10;
+				}
+			}
+
+		}
+		
+
+		realScreenView->draw();
+	}
+}
+
+
 
 
 void UpdateFrame( void )
@@ -416,7 +414,6 @@ void UpdateFrame( void )
 	SndObjPlay(hsoEngineIdle, DSBPLAY_LOOPING);
       }
 #endif
-      bPlayIdle = TRUE;
       lastTickCount = i_time_ms();
       ProgramState = PS_ACTIVE;
       I_SetWindowText("HZ -- [running]");
@@ -426,22 +423,7 @@ void UpdateFrame( void )
 }
 
 
-// LPDIRECTDRAWPALETTE     lpSplashPalette;
-BOOL                    bPlayIdle = FALSE;
-BOOL                    bPlayBuzz = FALSE;
-BOOL                    bPlayRev = FALSE;
-DWORD                   lastInput = 0;
-BOOL                    lastThrust = FALSE;
-BOOL                    lastShield = FALSE;
-int                     showDelay = 0;
 BOOL                    bShowFrameCount=TRUE;
-BOOL                    bUseEmulation;
-BOOL                    bTest=FALSE;
-BOOL                    bStress=FALSE;
-RGBQUAD                 SPalette[256];
-int                     score;
-int                     level;
-
 DWORD                   dwFrameCount;
 DWORD                   dwFrameTime;
 DWORD                   dwFrames;

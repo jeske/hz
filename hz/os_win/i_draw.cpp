@@ -8,7 +8,6 @@
 //
 
 #include <ddraw.h>       // for BltFast
-#include "..\donuts.h"   // for lpBackBuffer
 #include "drawhndl.h"    // for RestoreSurfaces()
 #include "i_video.h"     // for lpDD
 #include "hndlmgr.h"

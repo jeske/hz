@@ -28,7 +28,6 @@
 #include "i_draw.h"
 #include "i_system.h" // for CleanupAndExit()
 
-#include "donuts.h" // for lpDD
 #include "view.h"
 #include "main.h" // consoleView
 

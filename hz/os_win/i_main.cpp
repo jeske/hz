@@ -15,7 +15,6 @@
 #include "i_video.h" // for initAppWindow()
 #include "i_system.h" // for timer..
 #include "hndlmgr.h" // handle manager
-#include "..\donuts.h" // for the boolean flags
 #include "..\net.h" // for init_server();
 #include "..\main.h" // for initViews();
 
@@ -58,19 +57,8 @@ int PASCAL WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 
         switch (*lpCmdLine++)
         {
-        case 'e':
-            bUseEmulation = TRUE;
-			printf("UseEmulation\n");
-            break;
-        case 't':
-            bTest = TRUE;
-            break;
         case 'S':
             bWantSound = FALSE;
-            break;
-        case 'x':
-            bStress= TRUE;
-            bTest = TRUE;
             break;
 	case 'w':
 	case 'W':

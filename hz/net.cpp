@@ -9,7 +9,6 @@
 #ifdef OS_WIn
 #include <dplay.h>
 #endif
-#include "donuts.h" // hWndMain
 #include "main.h" // consoleView
 #include "map.h"
 #include "net.h"

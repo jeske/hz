@@ -14,7 +14,6 @@
 #include "i_video.h"
 #include "..\VConsole.h"
 #include "hndlmgr.h"
-#include "..\donuts.h" // bMouseVisable
 #include "..\main.h" // realScreenView (which we shouldn't be deleting here anyhow)
 
 unsigned long int i_time_ms() {

@@ -7,10 +7,9 @@
 // the drawing related stuff...
 
 // why do these need to be here? get rid of them
-#include "..\Donuts.h"
-#include "..\Game.h"
-#include "..\View.h"
-#include "..\Main.h"
+#include "..\game.h"
+#include "..\view.h"
+#include "..\main.h" 
 
 #include "i_system.h" // i_time_ms();
 
@@ -160,7 +159,6 @@ long FAR PASCAL MainWndproc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
         return 0;
 
     case WM_DESTROY:
-        lastInput=0;
         DestroyGame();
         PostQuitMessage( 0 );
         break;

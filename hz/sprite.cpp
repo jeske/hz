@@ -35,7 +35,6 @@
 #include "DrawHndl.h" // RestoreSurfaces()
 #endif
 
-#include "donuts.h"
 #include "main.h"
 #include "misc.h"
 #include "map.h"
@@ -978,3 +977,4 @@ void Sprite::Draw(int ul_x, int ul_y) {
 	   
 	   // *****************************
 	   
+

@@ -34,4 +34,29 @@ void    DrawDisplayList( void );
 void	paintScreen( void);
 void    DestroyGame( void );
 
+#define DEF_SHOW_DELAY     (2000)
+
+#define MAX_MAP_X  2000
+#define MAX_MAP_Y  2000
+#define     MAX_DONUT_X     MAX_MAP_X - 64
+#define     MAX_DONUT_Y     MAX_MAP_Y - 64
+
+extern BOOL                    bShowFrameCount;
+extern BOOL                    bSoundEnabled;
+extern BOOL                    bIsActive;
+extern BOOL                    bMouseVisible;
+extern DWORD                   dwFrameCount;
+extern DWORD                   dwFrameTime;
+extern DWORD                   dwFrames;
+extern DWORD                   dwFramesLast;
+extern DWORD                   lastTickCount;
+extern int                     ProgramState;
+extern int                     restCount;
+
+extern BOOL                    bWantSound;  //global hack to turn off sound
+
+extern DWORD                   ScreenX;
+extern DWORD                   ScreenY;
+extern DWORD                   ScreenBpp;
+
 #endif /* MAIN_H */

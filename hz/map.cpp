@@ -32,7 +32,6 @@
 #include "i_draw.h" // I_loadImage()
 #include "i_video.h"
 
-#include "donuts.h" // for "extern"s of DD surfaces
 #include "sprite.h" // SpriteTmplManager
 #include "main.h" // extern ConsoleView *consoleView;
 #include "game.h" // extern Sprite *shipSprite;
@@ -842,9 +841,9 @@ int ViewPort::handleEvent(IN_EVENT *ev) {
 }
 
 void ViewPort::handleFocusChange(int state) {
-	if (!state) {
-		lastInput = 0; // kill input if they switch to another screen!
-	}
+  // should send myFollowSprite some event to tell him
+  // that we lost event focus and he should clear his
+  // key/button state
 }
 
 

@@ -23,7 +23,6 @@
 
 #include <string.h>
 
-#include "donuts.h" // for lpDD
 #include "view.h"
 #include "main.h" // consoleView
 
