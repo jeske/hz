@@ -8,6 +8,9 @@
 //
 
 #include <ddraw.h> // for RECT, get rid of this!
+#include "ddutil.h"
+
+
 #include "i_video.h" // lpBackBuffer, lpDD
 #include "..\spritet.h"
 #include "..\donuts.h"

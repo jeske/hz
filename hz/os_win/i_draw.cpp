@@ -16,6 +16,8 @@
 #include "i_system.h"
 #include "i_draw.h"      
 
+#include "ddutil.h"
+
 int g_images_loaded = 0;
 
 // I_loadImage(IMAGE *an_image, const char *image_name);

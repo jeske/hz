@@ -31,6 +31,17 @@ public:
 	
 };
 
+enum
+{
+    OBJ_DONUT = 0,
+    OBJ_PYRAMID,
+    OBJ_CUBE,
+    OBJ_SPHERE,
+    OBJ_SHIP,
+    OBJ_BULLET,
+	OBJ_LUA
+};
+
 
 class SpriteList;
 

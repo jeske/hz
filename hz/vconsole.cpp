@@ -9,7 +9,7 @@
 // an abstract Console class, and implement a video based console for windows
 // and leave the whole implementation to be done on another platform.
 
-
+#include <stdio.h>
 
 #include <lua.h> // Lua language lib!
 

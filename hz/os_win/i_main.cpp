@@ -10,7 +10,7 @@
 // the high-level input message handling for the OS.
 //
 
-
+#include <stdio.h>
 
 #include "i_video.h" // for initAppWindow()
 #include "i_system.h" // for timer..
@@ -18,7 +18,6 @@
 #include "..\donuts.h" // for the boolean flags
 #include "..\net.h" // for init_server();
 #include "..\main.h" // for initViews();
-
 
 int getint(char**p, int def)
 {

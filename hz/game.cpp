@@ -13,17 +13,16 @@
 // of any sprite.
 //
 
+#include <stdio.h>
+
 #include <lua.h>
 #include <lualib.h>
 #include <luadebug.h>
 
 
-
 #include "i_system.h" // i_time_ms()
 #include "i_video.h" // this should not be here, it's for the set palette
-#ifdef OS_UNIX
 #include "i_console.h"
-#endif
 
 #include "donuts.h"
 #include "map.h"
@@ -32,6 +31,7 @@
 #include "view.h" // for multiView class
 #include "main.h" // for mainTabView
 #include "game.h"
+#include "net.h"  // tick_server()
 
 extern int g_images_loaded; // from i_draw.h
 

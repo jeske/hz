@@ -5,28 +5,6 @@
 #ifndef DONUTS_H
 #define DONUTS_H
 
-#ifdef OS_WIN
-# undef WIN32_LEAN_AND_MEAN
-# define WIN32_LEAN_AND_MEAN
-# include <windows.h>
-# include <windowsx.h>
-# include <mmsystem.h>
-# include <ddraw.h>
-# ifdef USE_DSOUND
-#  include <dsound.h>
-# endif
-# include "os_win\resource.h"
-# include "os_win\ddutil.h"
-# include <io.h>
-#else if defined (OS_UNIX)
-# include "translate.h"
-#endif
-#include <stdio.h>
-#include <stdlib.h>
-#ifdef USE_DSOUND
-#include "dsutil.h"
-#endif
-
 #include "sprite.h"
 
 #define DEF_SHOW_DELAY     (2000)
@@ -35,34 +13,6 @@
 #define IS_SPACE(c)   ((c) == ' ' || (c) == '\r' || (c) == '\n' || (c) == '\t' || (c) == 'x')
 
 
-/*
- * keyboard commands
- */
-
-#define KEY_STOP   0x00000001l
-#define KEY_DOWN   0x00000002l
-#define KEY_LEFT   0x00000004l
-#define KEY_RIGHT  0x00000008l
-#define KEY_UP     0x00000010l
-#define KEY_FIRE   0x00000020l
-#define KEY_THROW  0x00000040l
-#define KEY_SHIELD 0x00000080l
-
-// #ifdef __cplusplus
-// extern "C" {            /* Assume C declarations for C++ */
-// #endif  /* __cplusplus */
-
-
-enum
-{
-    OBJ_DONUT = 0,
-    OBJ_PYRAMID,
-    OBJ_CUBE,
-    OBJ_SPHERE,
-    OBJ_SHIP,
-    OBJ_BULLET,
-	OBJ_LUA
-};
 
 
 // program states
@@ -148,12 +98,6 @@ extern DWORD                   ScreenX;
 extern DWORD                   ScreenY;
 extern DWORD                   ScreenBpp;
 extern BOOL                    bWantSound;  //global hack to turn off sound
-
-
-
-// #ifdef __cplusplus
-// }
-// #endif  /* __cplusplus */
 
 
 #endif /* DONUTS_H */

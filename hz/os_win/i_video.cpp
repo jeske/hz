@@ -9,6 +9,25 @@
 // this should setup a double buffered display for drawing inside i_draw.cpp
 //
 
+// STANDARD INCLUDES
+
+
+// WINDOWS INCLUDES
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <windowsx.h>
+#include <mmsystem.h>
+#include <ddraw.h>
+#ifdef USE_DSOUND
+#include <dsound.h>
+#endif
+
+
+#include "resource.h"
+#include "ddutil.h"
+
+
+// GAME INCLUDES
 #include "i_video.h"
 #include "..\donuts.h"
 #include "drawhndl.h"
@@ -17,6 +36,7 @@
 #include "..\vconsole.h"
 
 #include "hndlmgr.h"
+
 
 void bltText( char *num, int x, int y );
 
