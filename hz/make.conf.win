@@ -3,7 +3,7 @@ CPP = g++
 DX_INCLUDES = -IC:/dx7asdk/dxf/include -fvtable-thunks
 LUA_INCLUDES = -I../lua31/include
 CFLAGS = -g -DOS_WIN -I. $(DX_INCLUDES) $(LUA_INCLUDES) -Ios_win
-VPATH = . ./os_win/
+VPATH = .;./os_win/;./obj/
 
 DX_LIBS = -LC:/local/dx7implibs -LC:/local/lib -lwinmm -lgdi32 -lgmon -lddraw
 LUA_LIBS = -L../lua31/lib -llua -llualib
