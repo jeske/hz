@@ -35,8 +35,8 @@ private:
 	int bufWrap(int);
 	int getLineStartReverse(int count);
 public:
-	void addText(char *s);		// adds a LF at the end
-	void addString(char *s);	// no LF
+	void addText(const char *s);		// adds a LF at the end
+	void addString(const char *s);	// no LF
 	void addChar(char c);		// just a char...
 	int numLines();
 	int getLineReverse(char *s, int max_len, int line_count);
@@ -94,8 +94,8 @@ public:
 
         void runningLua(int state);
 	void setConsoleHandler(int (*cb)(ConsoleView *,char *));
-	void addText(char *string);		// adds a newline
-	void addString(char *string);	// no newline
+	void addText(const char *string);		// adds a newline
+	void addString(const char *string);	// no newline
 	void addChar(char c);			// just a character
 	void clear();
 };

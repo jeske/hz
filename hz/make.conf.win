@@ -7,7 +7,7 @@ VPATH = .;./os_win/;./obj/
 
 DX_LIBS = -LC:/local/dx7implibs -LC:/local/lib -lwinmm -lgdi32 -lgmon -lddraw
 LUA_LIBS = -L../lua31/lib -llua -llualib
-LIBS = $(DX_LIBS) $(LUA_LIBS) -lm
+LIBS = $(DX_LIBS) $(LUA_LIBS) -lm -mwindows
 
 TARGET=hz.exe
 PLATFORM_OBJS = hzres.o i_console.o i_draw.o i_video.o i_system.o i_sprtet.o \

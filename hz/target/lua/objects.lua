@@ -90,6 +90,7 @@ function setupGameSprites()
 	C_addsprite("tank",30,200);
 	C_addsprite("hovercraft", 50,150);
 	C_addsprite("litetank",100,100);
+	C_addsprite("hd_mainship",250,180);
 
 	if 1 then
 		local x = 0

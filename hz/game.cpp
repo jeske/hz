@@ -74,7 +74,7 @@ void C_setmapsquare(void) {
 
 void C_setpalette(void) {
 	lua_Object file = lua_getparam(1);
-	char *filename;
+	const char *filename;
 
 	if (lua_isstring(file)) {
 		filename = lua_getstring(file);
@@ -214,7 +214,7 @@ void C_obj_delete() {
 
 void C_addsprite() {
 	SpriteType *type;
-	char *type_name;
+	const char *type_name;
 	Sprite *new_obj;
 	double x = 0, y = 0, vx = 0, vy = 0;
 
@@ -257,7 +257,7 @@ void C_addsprite() {
 
 void C_tile_addtype() {
 	lua_Object lua_tile;
-	char *filename;
+	const char *filename;
 	Tile *atile;
 
 	lua_tile = lua_getparam(1);
@@ -277,7 +277,7 @@ void C_tile_addtype() {
 void C_sprite_addtype() {
 	SpriteType *newtype;
 	lua_Object lua_sprite;
-	char *type_name;
+	const char *type_name;
 	
 	lua_beginblock();
 
@@ -300,7 +300,7 @@ void C_sprite_addtype() {
 }
 
 void C_sprite_listtypes() {
-	char *name;
+	const char *name;
 	int cur = 0;
 	char s[100];
 
@@ -435,8 +435,8 @@ void register_luafunctions() {
 void init_lua_objects() {
         
         printf ("init_lua_objects(): Starting\n");
-	strlib_open();
 
+	strlib_open();
 	mathlib_open();
 	
         printf ("init_lua_objects(): register lua functions\n");

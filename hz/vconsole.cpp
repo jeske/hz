@@ -140,14 +140,14 @@ void ConsoleData::gobbleLine(void) {
 
 }
 
-void ConsoleData::addString(char *s) {
+void ConsoleData::addString(const char *s) {
 	while (s && *s) {
 		this->addChar(*s);
 		s++;
 	}
 }
 
-void ConsoleData::addText(char *s) {
+void ConsoleData::addText(const char *s) {
 	this->addString(s);
 	this->addChar('\n');
 }
@@ -594,13 +594,13 @@ void ConsoleView::computeSizes() {
 	activeLineStartY = (my_dimension.height - 60);
 }
 
-void ConsoleView::addText(char *str) {
+void ConsoleView::addText(const char *str) {
 	myData->addString(str);
 	myData->addChar('\n');
 	repaint();
 }
 
-void ConsoleView::addString(char *str) {
+void ConsoleView::addString(const char *str) {
 	myData->addString(str);
 	repaint();
 };

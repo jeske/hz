@@ -32,13 +32,13 @@
 #define MAX_SPRITETYPE 25
 int cur_num_spritetype = 0;
 typedef struct {
-	char name[30];
+	const char name[30];
 	SpriteType *type;
 } SPRITETYPELIST;
 
 SPRITETYPELIST spritetype_list[MAX_SPRITETYPE];
 
-SpriteType *findSpriteType(char *name) {
+SpriteType *findSpriteType(const char *name) {
 		SPRITETYPELIST *walker = spritetype_list;
 		int curloc = 0;
 		
@@ -54,7 +54,7 @@ SpriteType *findSpriteType(char *name) {
 		return (NULL);
 }
 
-char *spriteTypeName(int num) {
+const char *spriteTypeName(int num) {
 	if ((num < 0) || (num > cur_num_spritetype)) {
 		return NULL;
 	}
@@ -63,9 +63,9 @@ char *spriteTypeName(int num) {
 }
 
 
-void addSpriteType(char *name, SpriteType *type) {
+void addSpriteType(const char *name, SpriteType *type) {
 	if (cur_num_spritetype < MAX_SPRITETYPE) {
-		strcpy(spritetype_list[cur_num_spritetype].name,name);
+		strcpy((char *)spritetype_list[cur_num_spritetype].name,name);
 		spritetype_list[cur_num_spritetype].type = type;
 		cur_num_spritetype++;
 	}
@@ -479,7 +479,7 @@ void SpriteType::parseSpriteTable(SPRITECHUNK **dest, lua_Object a_tbl) {
 	return;
 }
 
-SpriteType::SpriteType(char *name, lua_Object anObj) {
+SpriteType::SpriteType(const char *name, lua_Object anObj) {
 	lua_Object image_table;
 	lua_Object sprite_type_tbl;
 		

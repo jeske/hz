@@ -54,8 +54,8 @@ class Sprite;
 // class SpriteType 
 class SpriteType;
 
-SpriteType *findSpriteType(char *name);
-char *spriteTypeName(int num);
+SpriteType *findSpriteType(const char *name);
+const char *spriteTypeName(int num);
 
 class SpriteType {
 private:
@@ -69,7 +69,7 @@ public:
 	void SpriteType::DrawAt(Sprite *spr_obj, lua_Object lua_obj, int x, int y);
 	void SpriteType::DrawAtClipped(Sprite *spr_obj, lua_Object lua_obj, int x, int y, RECT *clip_rect);
 	void SpriteType::parseSpriteTable(SPRITECHUNK **dest, lua_Object a_table);
-	SpriteType(char *name, lua_Object anObj);
+	SpriteType(const char *name, lua_Object anObj);
 };
 
 
