@@ -38,16 +38,6 @@ const char *i_fix_path(const char *fix_path) {
   
 int CleanupAndExit(char *err)
 {
-  printf("CleanupAndExit: %s\n", err);
-
-  if (hWndMain) {
-    MessageBox( hWndMain, err, "ERROR", MB_OK );
-    DestroyWindow(hWndMain);
-    hWndMain = NULL;
-  } else {
-    MessageBox( NULL, err, "ERROR", MB_OK );
-  }
-
   dbgMsg(c_info,"CleanupAndExit:");
   dbgMsg(c_info,err);  
 
@@ -62,8 +52,9 @@ int CleanupAndExit(char *err)
   SetCursor(LoadCursor( NULL, IDC_ARROW ));
   bMouseVisible = TRUE;
 
-  if( lpFrontBuffer != NULL )
+  if( lpFrontBuffer != NULL ) {
     lpFrontBuffer->Release();
+  }
 
   if( lpDD != NULL ) {
     lpDD->Release();
@@ -71,10 +62,17 @@ int CleanupAndExit(char *err)
   if (realScreenView) {
     delete realScreenView;
   }
-
   //
   // warn user if there is one
   //
+
+  if (hWndMain) {
+    MessageBox( hWndMain, err, "ERROR", MB_OK );
+    DestroyWindow(hWndMain);
+    hWndMain = NULL;
+  } else {
+    MessageBox( NULL, err, "ERROR", MB_OK );
+  }
 
   exit(1); // FIX!!!!!! 
 
