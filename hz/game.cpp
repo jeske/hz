@@ -25,7 +25,7 @@
 #include "i_console.h"
 
 #include "map.h"
-#include "sprite.h"
+#include "s_lua.h"
 #include "spritet.h" // sprite type
 #include "view.h" // for multiView class
 #include "main.h" // for mainTabView

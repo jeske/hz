@@ -11,10 +11,8 @@
 #ifdef OS_WIN
 #include <ddraw.h>
 #endif
-#include <lua.h>
 
 #include "spritet.h"
-
 
 #ifndef SHORT
 #define SHORT short int
@@ -131,32 +129,6 @@ class Sprite  {
 	virtual int canCollide(void) = 0;
 	virtual int handleEvent(struct input_event *ev) = 0; // we want key events!
 	virtual const char *getPropertyStr(const char *propName) = 0; // get object property value
-};
-
-class LuaSprite : public Sprite {
-public:
-	int myLuaMirror; // the "ref" for my Lua Mirror    <-- client
-	int myLuaServerMirror; // the "ref" for my Lua "server" Mirror   <-- server
-
-	LuaSprite(SpriteList *aList,SpriteType *a_type, double x, double y, 
-			double vx, double vy);
-
-	virtual void SpriteTeardown();
-
-	// callbacks
-	virtual int canCollide(void);
-	virtual void doTick(unsigned int tickDiff); // move the object
-	virtual void doAITick(unsigned int tickDiff);
-	virtual int handleEvent(struct input_event *ev); // we want key events!
-	virtual const char *getPropertyStr(const char *propName); // get object property value
-};
-
-class AISprite : public LuaSprite {
-public:
-	void doAITick(unsigned int tickDiff); // do the AI
-	AISprite(SpriteList *aList, SHORT a_type, double x, double y, double vx, double vy);
-	~AISprite();
-	AISprite();
 };
 
 
