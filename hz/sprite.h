@@ -111,7 +111,7 @@ class Sprite  {
  protected:
 	~Sprite(); // destructor
  public:
-
+	
 	virtual void SpriteTeardown(void);
 
 	
@@ -124,7 +124,7 @@ class Sprite  {
 	void Die(void); // we should die!
 	void Draw(int ul_x, int ul_y);
 	void DrawClipped(int ul_x, int ul_y, RECT *clip_rect);
-	void doSpriteTick(unsigned int tickDiff); // run the doTick() show
+	void spriteDoTick(unsigned int tickDiff); // run the doTick() show
 
 
 	// callbacks

@@ -122,7 +122,7 @@ Sprite::~Sprite() {
   this->removeObjectFromMap();
 }
 
-void Sprite::doSpriteTick(unsigned int tickDiff) {
+void Sprite::spriteDoTick(unsigned int tickDiff) {
   double maxx, maxy;
   Sprite *ptr = this;
 
@@ -214,7 +214,7 @@ void SpriteList::doTick(unsigned int tickDiff) {
 	cur = myHead;
 	while (cur) {
 		next = cur->next;
-		cur->doSpriteTick(tickDiff);
+		cur->spriteDoTick(tickDiff);
 		cur = next;
 	}
 }
