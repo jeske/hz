@@ -510,12 +510,13 @@ void ConsoleView::paintInputRow() {
 			draw_lines++;
 		}
 
+            if (!this->isRunningLua) {
 		// draw a cursor!
 
 		I_FillRectangle (&backingStore, lineSize.cx + 2, 
 		     	         my_dimension.height - lineSize.cy + 2, 
 				 lineSize.cx + 10, my_dimension.height - 2);
-
+            }
 		
 		/* now we need to draw the lines above that */
 

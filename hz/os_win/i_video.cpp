@@ -369,6 +369,12 @@ int I_CreateDrawable (RECT *src, char *name, DRAWABLE *draw)
   }
 
   DDSetColorKey (draw->image->surf, CLR_INVALID);
+ 
+  // choose the standard non-proportional font...
+  ddrval = draw->image->surf->GetDC(&draw->hdc);
+  SelectObject(draw->hdc, GetStockObject(ANSI_FIXED_FONT));
+  draw->image->surf->ReleaseDC(draw->hdc);
+  draw->hdc = NULL;
 
   return TRUE;
 } 
@@ -452,11 +458,12 @@ int I_GetDrawContext (DRAWABLE *draw)
   if (ddrval != DD_OK) {
     CleanupAndExit ("I_GetDrawContext: GetDC Failed!");
     return FALSE;
-  }
-  else
-  {
+  } else {
     SelectObject (draw->hdc, linepen);
+    SelectObject(draw->hdc, GetStockObject(ANSI_FIXED_FONT));
   }
+
+  // SelectObject(draw->hdc, GetStockObject(ANSI_FIXED_FONT));
 
   return TRUE;
 }
