@@ -27,6 +27,7 @@ hz_register_objtype("Base", {
 	new = function(self,a_list) 
 		a_list._parents = {self};
 		a_list.objtype = "default"
+		C_obj_setLayer(a_list.objnum,-1);
 		return a_list
 	end,
 	ge_collision = function(self,x,y,whoIhit)

@@ -50,7 +50,9 @@ SpriteList *defaultSpriteList = NULL;
 Sprite::Sprite(SpriteList *aList, SpriteType *a_type, double x, double y, double vx, double vy) {
 	dbgMsg(c_excessive,"Sprite::Sprite(), creating typed sprite\n");
 	mySpriteTypeObj = a_type;
-
+	
+	
+	this->layer = 0; // set the start layer
 	 // call the standard init!
 	this->SpriteSetup(aList, OBJ_DONUT, x,y,vx,vy);
 }
@@ -251,10 +253,8 @@ void Sprite::SpriteSetup(SpriteList *aList, SHORT a_type, double x, double y, do
 				lua_pushuserdata((void *)this);
 				lua_settable();
 
-				lua_pushuserdata((void *)this);
-				lua_settag(lua_sprite_tag);
-
-
+				// lua_pushuserdata((void *)this);
+				// lua_settag(lua_sprite_tag);
 
 				
 				// now we need to call the constructor with this new object
@@ -831,7 +831,15 @@ Sprite *Sprite::checkCollision() {
 	return hit_temp;
 }
 
+/*
+ * Sprite::setLayer(int new_layer) 
+ *
+ * this sets the new draw layer for the object
+ */
 
+void Sprite::setLayer(int new_layer) {
+	this->layer = new_layer;
+}
 
 
 /*

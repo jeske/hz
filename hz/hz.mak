@@ -550,7 +550,9 @@ DEP_CPP_DONUT=\
 	".\os_win\..\spritet.h"\
 	".\os_win\..\vconsole.h"\
 	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
 	".\os_win\drawhndl.h"\
+	".\os_win\dsutil.h"\
 	".\os_win\i_draw.h"\
 	".\os_win\i_image.h"\
 	".\os_win\i_sprtet.h"\
@@ -558,7 +560,10 @@ DEP_CPP_DONUT=\
 	".\os_win\i_video.h"\
 	".\osdep.h"\
 	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
 	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
 	
 NODEP_CPP_DONUT=\
 	".\translate.h"\
@@ -619,12 +624,17 @@ DEP_CPP_SPRIT=\
 	".\os_win\..\spritet.h"\
 	".\os_win\..\vconsole.h"\
 	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
 	".\os_win\drawhndl.h"\
+	".\os_win\dsutil.h"\
 	".\os_win\i_image.h"\
 	".\os_win\i_sprtet.h"\
 	".\os_win\i_video.h"\
 	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
 	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
 	
 NODEP_CPP_SPRIT=\
 	".\translate.h"\
@@ -1605,14 +1615,19 @@ DEP_CPP_I_VID=\
 	".\os_win\..\spritet.h"\
 	".\os_win\..\vconsole.h"\
 	".\os_win\..\View.h"\
+	".\os_win\ddutil.h"\
 	".\os_win\drawhndl.h"\
+	".\os_win\dsutil.h"\
 	".\os_win\hndlmgr.h"\
 	".\os_win\i_image.h"\
 	".\os_win\i_sprtet.h"\
 	".\os_win\i_system.h"\
 	".\os_win\i_video.h"\
 	".\sprite.h"\
+	"C:\dx7asdk\DXF\include\d3dtypes.h"\
+	"C:\dx7asdk\DXF\include\d3dvec.inl"\
 	"c:\dx7asdk\dxf\include\ddraw.h"\
+	"c:\dx7asdk\dxf\include\dsound.h"\
 	
 NODEP_CPP_I_VID=\
 	".\translate.h"\

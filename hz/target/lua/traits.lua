@@ -179,7 +179,7 @@ doTick = function(self,tick_diff)
 		-- accelerate in that direction!
 		ax = Dirx[floor(dest_dir)];
 		ay = Diry[floor(dest_dir)];
-		print(format("accelerate at (%f,%f)",ax,ay));
+		-- print(format("accelerate at (%f,%f)",ax,ay));
 	end
 	
 	if (ax == 0.0) then	
@@ -317,7 +317,7 @@ doTick = function(self,tick_diff)
 			ax = Dirx[floor(rot)];
 			ay = Diry[floor(rot)];
 	
-			print(format("accelerate at (%f,%f)",ax,ay));
+			-- print(format("accelerate at (%f,%f)",ax,ay));
 	
 			-- we're facing, so given an acceleration boost!
 			vx = vx + (ax * tick_diff/speed_scale);

@@ -20,7 +20,7 @@ hz_register_objtype("mainship", {
 	damage_max = 10,
 	recharge_rate = 0.1,
 	
-	VisualRep = VisualReps.dropShip,
+	VisualRep = VisualReps.newDropShip,
 
 	-- dummy ai_event
 	ai_event = function(self)
@@ -59,7 +59,7 @@ hz_register_objtype("heli", {
 	bullet_type = "bullet",
 	objtype = "heli",
 	exp_timer = 0.0,
-	frame_time = 70,
+	frame_time = 30,
 	layer = 1,
 	VisualRep = VisualReps.Heli,
 

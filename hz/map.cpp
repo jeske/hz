@@ -566,11 +566,20 @@ void ViewPort::draw_curview() {
 	// the screen.
 
 
+	
+int space_to_left = MIN(start_tile_x, sprite_clip_tiles_x);
+int space_to_top  = MIN(start_tile_y, sprite_clip_tiles_y);
+
+	
+int more_to_draw = 1;
+int finding_layer_range = 1;
+int min_layer=0, max_layer = 0;
+int cur_layer;
+
+while (more_to_draw) {
+
 	// do the "inner" tiles, and draw sprites which can just
 	// be blindly drawn in full.
-
-	int space_to_left = MIN(start_tile_x, sprite_clip_tiles_x);
-	int space_to_top  = MIN(start_tile_y, sprite_clip_tiles_y);
 
 	tile_x = start_tile_x - space_to_left;
 	tile_y = start_tile_y - space_to_top;
@@ -583,20 +592,47 @@ void ViewPort::draw_curview() {
 		int save_tile_y = tile_y;
 		for (y_iter = 0;y_iter<num_y + space_to_top + space_to_top;y_iter++) {
 			if ((cur_obj = (myMap->objects_rowindex[tile_y])[tile_x]) != NULL) {
-				int fail_count = 0;
-
-				while (cur_obj) {
-					cur_obj->DrawClipped((int)upper_left_x, (int)upper_left_y, &clip_rect);
-					draw_sprite_count++;
-					cur_obj = cur_obj->tile_next;
-				} // while (cur_obj)
+				if (finding_layer_range) {
+					while (cur_obj) {
+						if (cur_obj->layer < min_layer) {
+							min_layer = cur_obj->layer;
+						} else {
+							if (cur_obj->layer > max_layer) {
+								max_layer = cur_obj->layer;
+							}
+						}
+						cur_obj = cur_obj->tile_next;
+					} // while (cur_obj)	
+				} else {
+					while (cur_obj) {
+						if (cur_obj->layer == cur_layer) {
+							cur_obj->DrawClipped((int)upper_left_x, (int)upper_left_y, &clip_rect);
+							draw_sprite_count++;
+						}
+						cur_obj = cur_obj->tile_next;
+					} // while (cur_obj)
+				}
 			}
 
 			tile_y++;			
 		}
 		tile_y = save_tile_y;
 		tile_x++;
+	} // for (x_iter 
+
+	if (finding_layer_range) {
+		finding_layer_range = 0;
+		cur_layer = min_layer;
+		printf("found layer info, min = %d, max = %d\n", min_layer, max_layer);
+	} else {
+		cur_layer++;
+		if (cur_layer > max_layer) {
+			// we're done!
+			more_to_draw = 0;
+		}
 	}
+
+} // while (more_to_draw)
 
 #if 0
 	// now we need to draw the sprites which need to be clipped...

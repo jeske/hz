@@ -31,6 +31,10 @@ world_object = {
 		end
 	end,
 
+	setLayer = function(self,layer)
+		C_obj_setLayer(self.objnum,layer);
+	end, 
+
 	viewFollow = function(self)
 		local objnum = self.objnum;
 	

@@ -93,6 +93,25 @@ void C_obj_followsprite() {
 	mainViewPort->followSprite(sp);	
 }
 
+void C_obj_setLayer() {
+	Sprite *sp;
+	lua_Object objnum	= lua_getparam(1);
+	lua_Object layer    = lua_getparam(2);	
+
+	if (!lua_isuserdata(objnum)) {
+		lua_error("incorrect argument 1 to function C_obj_setlayer()");
+	}
+
+	if (!lua_isnumber(layer)) {
+		lua_error("incorrect argument 2 to function C_obj_setlayer()");
+	}
+
+	sp = (Sprite *)lua_getuserdata(objnum);
+
+	sp->setLayer((int)lua_getnumber(layer));
+
+}
+
 void C_obj_pos() {
 	Sprite *sp;
 	lua_Object objnum = lua_getparam(1);
@@ -375,6 +394,7 @@ void register_luafunctions() {
 	lua_register("C_obj_setVelocity", C_obj_setVelocity);
 	lua_register("C_obj_followsprite", C_obj_followsprite);
 	lua_register("C_obj_pos", C_obj_pos );
+	lua_register("C_obj_setLayer", C_obj_setLayer);
 	lua_register("C_setpalette", C_setpalette);
 	lua_register("C_tile_addtype", C_tile_addtype);
 	lua_register("C_setmapsquare", C_setmapsquare);

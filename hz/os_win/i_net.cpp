@@ -266,7 +266,7 @@ int cmd_create_dplay_game(char *str, ConsoleView *myConsole) {
     sessionDesc.dwFlags = DPSESSION_KEEPALIVE;
 	sessionDesc.guidApplication = HZ_GUID;
 	sessionDesc.dwMaxPlayers = 8;
-	sessionDesc.lpszSessionNameA = "ShadowStrike";
+	sessionDesc.lpszSessionNameA = "HZ";
 
 	result = DPlay_obj->Open(&sessionDesc, DPOPEN_CREATE);
 

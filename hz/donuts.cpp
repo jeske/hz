@@ -72,7 +72,7 @@ void UpdateFrame( void )
                 bPlayIdle = TRUE;
                 lastTickCount = i_time_ms();
                 ProgramState = PS_ACTIVE;
-		I_SetWindowText("ShadowStrike -- [running]");
+		I_SetWindowText("HZ -- [running]");
             }
             return;
     }

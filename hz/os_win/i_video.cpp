@@ -51,7 +51,7 @@ BOOL initAppWindow( HANDLE hInstance, int nCmdShow )
 
     hWndMain = CreateWindowEx(0,  // WS_EX_TOPMOST,
         "SSGameClass",
-        "ShadowStrike",
+        "HZ",
         WS_VISIBLE | // so we don't have to call ShowWindow
         WS_POPUP |   // non-app window
         WS_SYSMENU,  // so we get an icon in the tray

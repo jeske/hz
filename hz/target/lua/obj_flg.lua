@@ -21,6 +21,7 @@ hz_register_objtype("flag", {
 			a_list.counter = 0.0;
 			a_list.frame_time = 80.0;
 			a_list.flagimg = 1.0;
+			C_obj_setLayer(a_list.objnum,-1);
 		end
 		return (a_list);
 	end,

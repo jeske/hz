@@ -47,6 +47,53 @@ nbase = {
 
 },
 
+newDropShip = { 
+					{"newdropship\\dropship0000.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0001.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0002.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0003.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0004.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0005.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0006.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0007.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0008.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0009.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0010.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0011.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0012.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0013.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0014.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0015.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0016.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0017.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0018.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0019.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0020.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0021.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0022.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0023.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0024.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0025.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0026.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0027.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0028.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0029.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0030.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0031.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0032.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0033.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0034.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0035.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0036.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0037.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0038.bmp", 0, 0, 0, 0 },
+					{"newdropship\\dropship0039.bmp", 0, 0, 0, 0 };
+					IndexedBy="imgdir"
+				},
+
+
+
+
 dropShip = { 
 					{"dropship\\dropship0000.bmp", 0, 0, 0, 0 },
 					{"dropship\\dropship0001.bmp", 0, 0, 0, 0 },

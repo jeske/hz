@@ -104,6 +104,9 @@ private:
 	SpriteList *mySpriteList;
 
 public:
+	int layer;
+	void setLayer(int new_layer);
+
 	virtual void lfb_gettable(lua_Object index); // from LuaBase
 	virtual void lfb_gc(); // from LuaBase
 
