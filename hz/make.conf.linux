@@ -1,0 +1,10 @@
+CC = gcc
+CPP = g++
+X_INCLUDES = /usr/X11/include
+LUA_INCLUDES = ../lua31/include
+CFLAGS = -g -DLINUX -DOS_UNIX -I.  -I$(X_INCLUDES) -I$(LUA_INCLUDES) -Ios_unix
+VPATH = . ./os_unix/
+
+X_LIBS = -L/usr/X11/lib -L/usr/X11R6/lib -lXpm -lXext -lX11 # -lefence
+LUA_LIBS = -L../lua31/lib -llua -llualib
+LIBS = $(X_LIBS) $(LUA_LIBS) -lm

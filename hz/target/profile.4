@@ -1,0 +1,1455 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  us/call  us/call  name    
+ 25.64      3.39     3.39                             luaV_execute
+  8.32      4.49     1.10      383  2872.06  2872.06  I_createimage(_imagedata *, IMAGE *, int)
+  6.96      5.41     0.92    13326    69.04   117.97  ConsoleData::getLineStartReverse(int)
+  6.96      6.33     0.92                             present
+  5.14      7.01     0.68 15130955     0.04     0.04  ConsoleData::bufWrap(int)
+  3.40      7.46     0.45      383  1174.93  1201.04  load_bmp_v3(_imagedata *, unsigned char *)
+  2.42      7.78     0.32                             luaD_call
+  2.19      8.07     0.29                             luaO_equalObj
+  1.97      8.33     0.26                             insert
+  1.82      8.57     0.24                             luaD_openstack
+  1.59      8.78     0.21   102800     2.04     2.14  Sprite::checkCollision(void)
+  1.59      8.99     0.21                             luaC_ref
+  1.44      9.18     0.19                             luaV_gettable
+  1.29      9.35     0.17                             luaH_get
+  1.21      9.51     0.16                             set_normalized
+  1.13      9.66     0.15     2440    61.48   170.18  ViewPort::draw_curview(void)
+  1.13      9.81     0.15                             luaV_getglobal
+  1.06      9.95     0.14                             callC
+  1.06     10.09     0.14                             luaS_new
+  0.98     10.22     0.13   544545     0.24     0.24  I_doBlit(_rect *, IMAGE *)
+  0.98     10.35     0.13                             hash
+  0.98     10.48     0.13                             hashindex
+  0.98     10.61     0.13                             luaD_adjusttop
+  0.98     10.74     0.13                             luaL_nonnullarg
+  0.98     10.87     0.13                             lua_pushobject
+  0.98     11.00     0.13                             lua_pushstring
+  0.98     11.13     0.13                             put_luaObjectonTop
+  0.91     11.25     0.12   102800     1.17     1.17  Sprite::placeObject(Map *)
+  0.91     11.37     0.12                             normalized_type
+  0.76     11.47     0.10                             rawgettable
+  0.61     11.55     0.08                             lua_pushnumber
+  0.61     11.63     0.08                             lua_rawgettable
+  0.53     11.70     0.07                             luaD_callTM
+  0.53     11.77     0.07                             lua_lua2C
+  0.53     11.84     0.07                             lua_tag
+  0.45     11.90     0.06   103140     0.58     3.88  Sprite::doTick(unsigned int)
+  0.45     11.96     0.06                             luaC_getref
+  0.45     12.02     0.06                             luaI_type
+  0.45     12.08     0.06                             luaT_efectivetag
+  0.38     12.13     0.05   509960     0.10     0.34  Tile::doBlit(_rect *, _rect *)
+  0.38     12.18     0.05                             checkCparams
+  0.38     12.23     0.05                             luaD_checkstack
+  0.38     12.28     0.05                             luaV_settable
+  0.38     12.33     0.05                             lua_beginblock
+  0.38     12.38     0.05                             lua_callfunction
+  0.38     12.43     0.05                             put_luaObject
+  0.30     12.47     0.04                             luaD_protectedrun
+  0.30     12.51     0.04                             luaL_addchar
+  0.23     12.54     0.03    23371     1.28     2.72  SpriteType::DrawRecurse(Sprite *, unsigned int, int, int, sprite_chunk_struct *)
+  0.23     12.57     0.03     2841    10.56   151.38  SpriteList::doTick(unsigned int)
+  0.23     12.60     0.03                             comparison
+  0.23     12.63     0.03                             luaH_set
+  0.23     12.66     0.03                             lua_getref
+  0.23     12.69     0.03                             lua_gettable
+  0.23     12.72     0.03                             lua_isfunction
+  0.15     12.74     0.02   143282     0.14     0.22  ConsoleData::addChar(char)
+  0.15     12.76     0.02    25604     0.78     1.02  SpriteType::doBlit(_rect *, IMAGE *)
+  0.15     12.78     0.02    23371     0.86     3.57  Sprite::Draw(int, int)
+  0.15     12.80     0.02    14205     1.41     1.41  C_obj_getVelocity(void)
+  0.15     12.82     0.02    13326     1.50   120.67  ConsoleData::getLineReverse(char *, int, int)
+  0.15     12.84     0.02                             luaA_Address
+  0.15     12.86     0.02                             luaC_checkGC
+  0.15     12.88     0.02                             luaI_singlematch
+  0.15     12.90     0.02                             luaV_tostring
+  0.15     12.92     0.02                             lua_endblock
+  0.15     12.94     0.02                             lua_istable
+  0.08     12.95     0.01   509960     0.02     0.02  TileSet::tileIndex(int)
+  0.08     12.96     0.01   102984     0.10     0.10  Sprite::doAITick(unsigned int)
+  0.08     12.97     0.01    43490     0.23     0.23  dbgMsg(DEBUG_LEVEL, char const *,...)
+  0.08     12.98     0.01    25686     0.39    62.11  View::draw(void)
+  0.08     12.99     0.01    24789     0.40     0.40  drawSubviews(View *)
+  0.08     13.00     0.01    16883     0.59     0.59  read_little_32(unsigned char **)
+  0.08     13.01     0.01    11541     0.87     0.87  Sprite::canCollide(void)
+  0.08     13.02     0.01     8461     1.18     4.96  ConsoleData::addString(char *)
+  0.08     13.03     0.01     8444     1.18   187.85  ConsoleView::addString(char *)
+  0.08     13.04     0.01     8444     1.18     1.18  logToFile(char *)
+  0.08     13.05     0.01     2854     3.50     3.73  FPSView::drawSelf(void)
+  0.08     13.06     0.01     2854     3.50    10.90  paintScreen(void)
+  0.08     13.07     0.01     2841     3.52     7.04  SpriteList::doAITick(unsigned int)
+  0.08     13.08     0.01     2145     4.66     4.66  HorizStatusBar::repaintSelf(void)
+  0.08     13.09     0.01      417    23.98  3798.72  ConsoleView::drawSelf(void)
+  0.08     13.10     0.01                             bracket_end
+  0.08     13.11     0.01                             closeandpush
+  0.08     13.12     0.01                             do_callinc
+  0.08     13.13     0.01                             luaA_pushobject
+  0.08     13.14     0.01                             luaH_new
+  0.08     13.15     0.01                             luaL_tablearg
+  0.08     13.16     0.01                             luaY_parse
+  0.08     13.17     0.01                             lua_getnumber
+  0.08     13.18     0.01                             lua_getuserdata
+  0.08     13.19     0.01                             lua_isuserdata
+  0.08     13.20     0.01                             lua_pushusertag
+  0.08     13.21     0.01                             strconc
+  0.08     13.22     0.01                             travlock
+  0.00     13.22     0.00   143282     0.00     0.00  ConsoleData::charsInBuf(void)
+  0.00     13.22     0.00   143282     0.00     0.00  ConsoleData::spaceInBuf(void)
+  0.00     13.22     0.00    24771     0.00     0.00  find_entry(IMAGELIST *, char *)
+  0.00     13.22     0.00    23371     0.00     2.72  SpriteType::DrawAt(Sprite *, unsigned int, int, int)
+  0.00     13.22     0.00    14450     0.00     0.00  I_GetTextExtent(_drawable *, char *, int, _size *)
+  0.00     13.22     0.00    14205     0.00     0.00  C_obj_setVelocity(void)
+  0.00     13.22     0.00    13600     0.00     0.00  I_TextOut(_drawable *, int, int, char *, int)
+  0.00     13.22     0.00     8979     0.00     0.24  BufferedView::drawSelf(void)
+  0.00     13.22     0.00     8580     0.00     0.00  I_DrawLine(_drawable *, int, int, int, int)
+  0.00     13.22     0.00     8462     0.00     0.00  ConsoleView::repaint(void)
+  0.00     13.22     0.00     8444     0.00   189.03  printf
+  0.00     13.22     0.00     7286     0.00     3.57  Sprite::DrawClipped(int, int)
+  0.00     13.22     0.00     6557     0.00     0.04  View::handleEvent(input_event *)
+  0.00     13.22     0.00     5794     0.00     0.00  i_time_ms(void)
+  0.00     13.22     0.00     5708     0.00     0.00  View::drawSelf(void)
+  0.00     13.22     0.00     4397     0.00     0.00  MultiView::drawSelf(void)
+  0.00     13.22     0.00     3617     0.00     1.53  ConsoleData::gobbleLine(void)
+  0.00     13.22     0.00     3557     0.00     0.00  HorizStatusBar::getValue(void)
+  0.00     13.22     0.00     3003     0.00     0.00  I_ClearDrawable(_drawable *, int, int, int, int)
+  0.00     13.22     0.00     2856     0.00     0.00  FlipScreen(void)
+  0.00     13.22     0.00     2854     0.00     0.00  DrawDisplayList(void)
+  0.00     13.22     0.00     2854     0.00     0.00  EraseScreen(void)
+  0.00     13.22     0.00     2854     0.00     0.00  bltText(char *, int, int)
+  0.00     13.22     0.00     2844     0.00   341.43  UpdateFrame(void)
+  0.00     13.22     0.00     2843     0.00    10.09  I_EventLoop(void)
+  0.00     13.22     0.00     2841     0.00   158.42  UpdateDisplayList(void)
+  0.00     13.22     0.00     2841     0.00     0.00  ViewPort::doFollowTick(unsigned int)
+  0.00     13.22     0.00     2841     0.00     0.00  ViewPort::setCurLoc(curloc_struct *)
+  0.00     13.22     0.00     2841     0.00   151.38  tick_server(int)
+  0.00     13.22     0.00     2573     0.00     0.00  BufferedView::setDirty(void)
+  0.00     13.22     0.00     2570     0.00     0.00  I_GetDrawContext(_drawable *)
+  0.00     13.22     0.00     2570     0.00     0.00  I_ReleaseDrawContext(_drawable *)
+  0.00     13.22     0.00     2440     0.00     0.00  ViewPort::drawSelf(void)
+  0.00     13.22     0.00     2336     0.00     0.00  I_FillRectangle(_drawable *, int, int, int, int)
+  0.00     13.22     0.00     2203     0.00    10.79  View::inputEvent(input_event *)
+  0.00     13.22     0.00     2154     0.00     0.00  MultiView::handleEvent(input_event *)
+  0.00     13.22     0.00     2142     0.00     4.66  HorizStatusBar::setValue(int)
+  0.00     13.22     0.00     1149     0.00     0.00  read_little_16(unsigned char **)
+  0.00     13.22     0.00     1103     0.00     0.22  handleMVInput(input_event *)
+  0.00     13.22     0.00     1054     0.00     0.26  Sprite::handleEvent(input_event *)
+  0.00     13.22     0.00     1054     0.00     0.26  ViewPort::handleEvent(input_event *)
+  0.00     13.22     0.00      797     0.00     0.00  Sprite::addObjectToMap(Sprite **)
+  0.00     13.22     0.00      762     0.00     0.00  Sprite::removeObjectFromMap(void)
+  0.00     13.22     0.00      705     0.00     0.00  HorizStatusBar::getMaxValue(void)
+  0.00     13.22     0.00      425     0.00     0.00  I_SetFGColor(_drawable *, int, int, int)
+  0.00     13.22     0.00      425     0.00  3783.58  ConsoleView::paintInputRow(void)
+  0.00     13.22     0.00      414     0.00     0.00  TextureView::drawSelf(void)
+  0.00     13.22     0.00      390     0.00     0.00  I_Message(char *,...)
+  0.00     13.22     0.00      383     0.00  4073.11  I_loadImage(IMAGE *, char const *, int)
+  0.00     13.22     0.00      383     0.00     0.00  i_convert_path(char *)
+  0.00     13.22     0.00      383     0.00  1201.04  load_bmp(_imagedata *, char const *)
+  0.00     13.22     0.00      383     0.00  1201.04  load_image(_imagedata *, char const *)
+  0.00     13.22     0.00      383     0.00     0.00  stat
+  0.00     13.22     0.00      375     0.00     1.15  Sprite::SpriteSetup(SpriteList *, short, double, double, double, double)
+  0.00     13.22     0.00      375     0.00     1.38  Sprite::Sprite(SpriteList *, SpriteType *, double, double, double, double)
+  0.00     13.22     0.00      375     0.00     0.00  LuaBase::LuaBase(void)
+  0.00     13.22     0.00      375     0.00     0.23  SpriteList::addSprite(Sprite *)
+  0.00     13.22     0.00      375     0.00     0.00  findSpriteType(char *)
+  0.00     13.22     0.00      375     0.00     0.00  SpriteType::name(void)
+  0.00     13.22     0.00      374     0.00     1.61  C_addsprite(void)
+  0.00     13.22     0.00      349     0.00  4073.11  SpriteType::loadImage(IMAGE *, char const *)
+  0.00     13.22     0.00      340     0.00     0.00  C_obj_delete(void)
+  0.00     13.22     0.00      340     0.00     0.00  Sprite::Die(void)
+  0.00     13.22     0.00      340     0.00     0.23  Sprite::~Sprite(void)
+  0.00     13.22     0.00      340     0.00     0.00  LuaBase::~LuaBase(void)
+  0.00     13.22     0.00      340     0.00     0.23  SpriteList::removeSprite(Sprite *)
+  0.00     13.22     0.00      280     0.00     0.00  ConsoleData::numLines(void)
+  0.00     13.22     0.00      156     0.00     0.00  C_obj_pos(void)
+  0.00     13.22     0.00      154     0.00     0.00  C_setmapsquare(void)
+  0.00     13.22     0.00      154     0.00     0.00  Map::setSquare(int, int, int)
+  0.00     13.22     0.00      138     0.00    82.42  MultiView::nextView(void)
+  0.00     13.22     0.00       46     0.00   505.36  ConsoleView::handleEvent(input_event *)
+  0.00     13.22     0.00       46     0.00     0.00  View::handleFocusChange(int)
+  0.00     13.22     0.00       30     0.00  4073.11  C_tile_addtype(void)
+  0.00     13.22     0.00       30     0.00  4073.11  Tile::Tile(char const *)
+  0.00     13.22     0.00       30     0.00     0.00  TileSet::newTile(Tile *)
+  0.00     13.22     0.00       17     0.00     5.18  ConsoleView::addText(char *)
+  0.00     13.22     0.00       15     0.00     0.00  View::View(int, int, int, int)
+  0.00     13.22     0.00       13     0.00 109969.62  C_sprite_addtype(void)
+  0.00     13.22     0.00       13     0.00 109969.16  SpriteType::SpriteType(char *, unsigned int)
+  0.00     13.22     0.00       13     0.00     0.00  addSpriteType(char *, SpriteType *)
+  0.00     13.22     0.00       13     0.00     0.00  View::addSubview(View *)
+  0.00     13.22     0.00       13     0.00 109591.07  SpriteType::parseSpriteTable(sprite_chunk_struct **, unsigned int)
+  0.00     13.22     0.00       13     0.00  1749.76  View::setInputFocus(int)
+  0.00     13.22     0.00       10     0.00     0.00  View::curState(void)
+  0.00     13.22     0.00       10     0.00     0.00  View::setDepth(int)
+  0.00     13.22     0.00        7     0.00     0.00  I_CreateDrawable(_rect *, char *, _drawable *)
+  0.00     13.22     0.00        7     0.00     0.00  BufferedView::BufferedView(int, int, int, int)
+  0.00     13.22     0.00        7     0.00     0.00  strncmp_ic(char *, char *, int)
+  0.00     13.22     0.00        6     0.00     0.00  ConsoleView::runningLua(int)
+  0.00     13.22     0.00        5     0.00  4549.38  ConsoleView::handleFocusChange(int)
+  0.00     13.22     0.00        5     0.00     0.00  MultiView::handleFocusChange(int)
+  0.00     13.22     0.00        5     0.00     0.00  View::setState(int)
+  0.00     13.22     0.00        4     0.00     0.00  ViewPort::handleFocusChange(int)
+  0.00     13.22     0.00        3     0.00     4.66  HorizStatusBar::HorizStatusBar(int, int, int, int, int)
+  0.00     13.22     0.00        3     0.00  4073.11  ImageView::ImageView(int, int, int, int, char *)
+  0.00     13.22     0.00        3     0.00     0.00  lookup_builtin(char *)
+  0.00     13.22     0.00        2     0.00     0.00  ConsoleData::ConsoleData(int)
+  0.00     13.22     0.00        2     0.00     0.00  MultiView::MultiView(int, int, int, int)
+  0.00     13.22     0.00        2     0.00   947.79  MultiView::addView(View *, char *)
+  0.00     13.22     0.00        2     0.00  2036.79  bltSplash(void)
+  0.00     13.22     0.00        2     0.00    90.85  handleConsoleInput(ConsoleView *, char *)
+  0.00     13.22     0.00        2     0.00     0.00  ConsoleData::setScrollbackSize(int)
+  0.00     13.22     0.00        2     0.00  3791.15  MultiView::switchTo(int)
+  0.00     13.22     0.00        1     0.00     0.00  C_setpalette(void)
+  0.00     13.22     0.00        1     0.00     0.00  I_InitVideo(void)
+  0.00     13.22     0.00        1     0.00     0.00  I_SetWindowText(char *)
+  0.00     13.22     0.00        1     0.00     0.00  I_vid_setpalette(char const *)
+  0.00     13.22     0.00        1     0.00     0.23  SpriteList::SpriteList(void)
+  0.00     13.22     0.00        1     0.00   181.70  ConsoleView::ConsoleView(int, int, int, int)
+  0.00     13.22     0.00        1     0.00     0.00  TextureView::TextureView(int, int, int, int)
+  0.00     13.22     0.00        1     0.00     0.00  Map::Map(int, int, TileSet *)
+  0.00     13.22     0.00        1     0.00     0.00  FPSView::FPSView(int, int, int, int)
+  0.00     13.22     0.00        1     0.00     0.00  TileSet::TileSet(int, int)
+  0.00     13.22     0.00        1     0.00     0.00  ViewPort::ViewPort(int, int, int, int)
+  0.00     13.22     0.00        1     0.00     0.00  Map::allocMap(void)
+  0.00     13.22     0.00        1     0.00     0.00  ConsoleView::clear(void)
+  0.00     13.22     0.00        1     0.00     0.00  ViewPort::computeSizeVars(void)
+  0.00     13.22     0.00        1     0.00     0.00  ConsoleView::computeSizes(void)
+  0.00     13.22     0.00        1     0.00     0.00  ViewPort::followSprite(Sprite *)
+  0.00     13.22     0.00        1     0.00 20374.70  initViews(void)
+  0.00     13.22     0.00        1     0.00   567.10  init_lua_objects(void)
+  0.00     13.22     0.00        1     0.00   189.49  init_map(void)
+  0.00     13.22     0.00        1     0.00     0.00  init_server(void)
+  0.00     13.22     0.00        1     0.00     0.00  register_luafunctions(void)
+  0.00     13.22     0.00        1     0.00     0.00  ConsoleView::setConsoleHandler(int (*)(ConsoleView *, char *))
+  0.00     13.22     0.00        1     0.00     0.00  View::setEventCallback(int (*)(input_event *))
+  0.00     13.22     0.00        1     0.00     0.00  ViewPort::setMap(int, int, Map *)
+  0.00     13.22     0.00        1     0.00     0.00  Map::setup(void)
+  0.00     13.22     0.00        1     0.00  4739.31  setup_game(void)
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+ 
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this 
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) for 0.08% of 13.22 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     25.6    3.39    0.00                 luaV_execute [1]
+-----------------------------------------------
+[2]     15.5    0.18    1.87   11292+62647   <cycle 1 as a whole> [2]
+                0.01    1.59   25686             View::draw(void) <cycle 1> [7]
+                0.15    0.27    2440             ViewPort::draw_curview(void) <cycle 1> [28]
+                0.01    0.02    2854             paintScreen(void) <cycle 1> [76]
+                0.01    0.00   24789             drawSubviews(View *) <cycle 1> [106]
+                0.00    0.00      17             ConsoleView::addText(char *) <cycle 1> [142]
+                0.00    0.00    8462             ConsoleView::repaint(void) <cycle 1> [155]
+                0.00    0.00    2854             DrawDisplayList(void) <cycle 1> [162]
+                0.00    0.00    2440             ViewPort::drawSelf(void) <cycle 1> [170]
+-----------------------------------------------
+                                                 <spontaneous>
+[3]     13.0    0.14    1.57                 callC [3]
+                0.00    1.43      13/13          C_sprite_addtype(void) [13]
+                0.00    0.12      30/30          C_tile_addtype(void) [50]
+                0.02    0.00   14205/14205       C_obj_getVelocity(void) [92]
+                0.00    0.00     374/374         C_addsprite(void) [131]
+                0.00    0.00   14205/14205       C_obj_setVelocity(void) [152]
+                0.00    0.00     340/340         C_obj_delete(void) [184]
+                0.00    0.00     156/156         C_obj_pos(void) [187]
+                0.00    0.00     154/154         C_setmapsquare(void) [188]
+                0.00    0.00       1/1           C_setpalette(void) [204]
+-----------------------------------------------
+                0.02    1.59   13326/13326       ConsoleView::paintInputRow(void) [5]
+[4]     12.2    0.02    1.59   13326         ConsoleData::getLineReverse(char *, int, int) [4]
+                0.92    0.65   13326/13326       ConsoleData::getLineStartReverse(int) [11]
+                0.02    0.00  353670/15130955     ConsoleData::bufWrap(int) [21]
+-----------------------------------------------
+                0.00    0.01       3/425         ConsoleView::handleFocusChange(int) [88]
+                0.00    0.02       6/425         ConsoleView::handleEvent(input_event *) [87]
+                0.00    1.57     416/425         ConsoleView::drawSelf(void) [10]
+[5]     12.2    0.00    1.61     425         ConsoleView::paintInputRow(void) [5]
+                0.02    1.59   13326/13326       ConsoleData::getLineReverse(char *, int, int) [4]
+                0.00    0.00   14450/14450       I_GetTextExtent(_drawable *, char *, int, _size *) [151]
+                0.00    0.00   13600/13600       I_TextOut(_drawable *, int, int, char *, int) [153]
+                0.00    0.00     850/3003        I_ClearDrawable(_drawable *, int, int, int, int) [160]
+                0.00    0.00     425/2570        I_GetDrawContext(_drawable *) [168]
+                0.00    0.00     425/2336        I_FillRectangle(_drawable *, int, int, int, int) [171]
+                0.00    0.00     425/425         I_SetFGColor(_drawable *, int, int, int) [177]
+                0.00    0.00     425/2570        I_ReleaseDrawContext(_drawable *) [169]
+                0.00    0.00     425/2573        BufferedView::setDirty(void) [167]
+                0.00    0.00     265/280         ConsoleData::numLines(void) [186]
+-----------------------------------------------
+                0.00    0.00       1/8444        init_map(void) [139]
+                0.00    0.00       1/8444        setup_game(void) [127]
+                0.00    0.00       3/8444        init_lua_objects(void) [132]
+                0.00    0.00      15/8444        SpriteType::parseSpriteTable(sprite_chunk_struct **, unsigned int) [15]
+                0.00    0.00      26/8444        SpriteType::SpriteType(char *, unsigned int) [14]
+                0.00    1.59    8398/8444        luaI_print [8]
+[6]     12.1    0.00    1.60    8444         printf [6]
+                0.01    1.58    8444/8444        ConsoleView::addString(char *) [9]
+                0.01    0.00    8444/8444        logToFile(char *) [109]
+-----------------------------------------------
+                                2854             paintScreen(void) <cycle 1> [76]
+                                2854             MultiView::drawSelf(void) <cycle 1> [158]
+                               19978             drawSubviews(View *) <cycle 1> [106]
+[7]     12.1    0.01    1.59   25686         View::draw(void) <cycle 1> [7]
+                0.01    1.56     414/417         ConsoleView::drawSelf(void) [10]
+                0.01    0.00    2854/2854        FPSView::drawSelf(void) [102]
+                0.00    0.00    8562/8979        BufferedView::drawSelf(void) [129]
+                0.00    0.00    5708/5708        View::drawSelf(void) [157]
+                0.00    0.00     414/414         TextureView::drawSelf(void) [178]
+                               24789             drawSubviews(View *) <cycle 1> [106]
+                                4397             MultiView::drawSelf(void) <cycle 1> [158]
+                                2440             ViewPort::drawSelf(void) <cycle 1> [170]
+-----------------------------------------------
+                                                 <spontaneous>
+[8]     12.0    0.00    1.59                 luaI_print [8]
+                0.00    1.59    8398/8444        printf [6]
+-----------------------------------------------
+                0.01    1.58    8444/8444        printf [6]
+[9]     12.0    0.01    1.58    8444         ConsoleView::addString(char *) [9]
+                0.13    1.40    8444/11292       ConsoleView::repaint(void) <cycle 1> [155]
+                0.01    0.03    8444/8461        ConsoleData::addString(char *) [72]
+-----------------------------------------------
+                0.00    0.01       3/417         ConsoleView::handleFocusChange(int) [88]
+                0.01    1.56     414/417         View::draw(void) <cycle 1> [7]
+[10]    12.0    0.01    1.57     417         ConsoleView::drawSelf(void) [10]
+                0.00    1.57     416/425         ConsoleView::paintInputRow(void) [5]
+                0.00    0.00     417/8979        BufferedView::drawSelf(void) [129]
+-----------------------------------------------
+                0.92    0.65   13326/13326       ConsoleData::getLineReverse(char *, int, int) [4]
+[11]    11.9    0.92    0.65   13326         ConsoleData::getLineStartReverse(int) [11]
+                0.65    0.00 14510713/15130955     ConsoleData::bufWrap(int) [21]
+-----------------------------------------------
+                0.00    0.00       1/383         bltSplash(void) [128]
+                0.00    0.01       3/383         ImageView::ImageView(int, int, int, int, char *) [100]
+                0.00    0.12      30/383         Tile::Tile(char const *) [51]
+                0.00    1.42     349/383         SpriteType::loadImage(IMAGE *, char const *) [16]
+[12]    11.8    0.00    1.56     383         I_loadImage(IMAGE *, char const *, int) [12]
+                1.10    0.00     383/383         I_createimage(_imagedata *, IMAGE *, int) [17]
+                0.00    0.46     383/383         load_image(_imagedata *, char const *) [24]
+                0.00    0.00     383/383         i_convert_path(char *) [180]
+-----------------------------------------------
+                0.00    1.43      13/13          callC [3]
+[13]    10.8    0.00    1.43      13         C_sprite_addtype(void) [13]
+                0.00    1.43      13/13          SpriteType::SpriteType(char *, unsigned int) [14]
+                0.00    0.00      26/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+-----------------------------------------------
+                0.00    1.43      13/13          C_sprite_addtype(void) [13]
+[14]    10.8    0.00    1.43      13         SpriteType::SpriteType(char *, unsigned int) [14]
+                0.00    1.42      13/13          SpriteType::parseSpriteTable(sprite_chunk_struct **, unsigned int) [15]
+                0.00    0.00      26/8444        printf [6]
+                0.00    0.00       1/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+                0.00    0.00      13/13          addSpriteType(char *, SpriteType *) [192]
+-----------------------------------------------
+                                 351             SpriteType::parseSpriteTable(sprite_chunk_struct **, unsigned int) [15]
+                0.00    1.42      13/13          SpriteType::SpriteType(char *, unsigned int) [14]
+[15]    10.8    0.00    1.42      13+351     SpriteType::parseSpriteTable(sprite_chunk_struct **, unsigned int) [15]
+                0.00    1.42     349/349         SpriteType::loadImage(IMAGE *, char const *) [16]
+                0.00    0.00      15/8444        printf [6]
+                0.00    0.00    1453/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+                0.00    0.00       3/3           lookup_builtin(char *) [202]
+                                 351             SpriteType::parseSpriteTable(sprite_chunk_struct **, unsigned int) [15]
+-----------------------------------------------
+                0.00    1.42     349/349         SpriteType::parseSpriteTable(sprite_chunk_struct **, unsigned int) [15]
+[16]    10.8    0.00    1.42     349         SpriteType::loadImage(IMAGE *, char const *) [16]
+                0.00    1.42     349/383         I_loadImage(IMAGE *, char const *, int) [12]
+-----------------------------------------------
+                1.10    0.00     383/383         I_loadImage(IMAGE *, char const *, int) [12]
+[17]     8.3    1.10    0.00     383         I_createimage(_imagedata *, IMAGE *, int) [17]
+                0.00    0.00     383/390         I_Message(char *,...) [179]
+-----------------------------------------------
+                                                 <spontaneous>
+[18]     7.7    0.00    1.02                 main [18]
+                0.00    0.97    2844/2844        UpdateFrame(void) [19]
+                0.00    0.03    2843/2843        I_EventLoop(void) [82]
+                0.00    0.02       1/1           initViews(void) [91]
+                0.00    0.00       2/5794        i_time_ms(void) [156]
+                0.00    0.00       1/390         I_Message(char *,...) [179]
+                0.00    0.00       1/1           I_InitVideo(void) [205]
+                0.00    0.00       1/1           init_server(void) [213]
+-----------------------------------------------
+                0.00    0.97    2844/2844        main [18]
+[19]     7.3    0.00    0.97    2844         UpdateFrame(void) [19]
+                0.05    0.47    2841/11292       DrawDisplayList(void) <cycle 1> [162]
+                0.00    0.45    2841/2841        UpdateDisplayList(void) [25]
+                0.00    0.00       2/2           bltSplash(void) [128]
+                0.00    0.00    2845/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+                0.00    0.00       2/5794        i_time_ms(void) [156]
+                0.00    0.00       1/1           I_SetWindowText(char *) [206]
+-----------------------------------------------
+                                                 <spontaneous>
+[20]     7.0    0.92    0.00                 present [20]
+-----------------------------------------------
+                0.01    0.00  123290/15130955     ConsoleData::gobbleLine(void) [126]
+                0.01    0.00  143282/15130955     ConsoleData::addChar(char) [75]
+                0.02    0.00  353670/15130955     ConsoleData::getLineReverse(char *, int, int) [4]
+                0.65    0.00 14510713/15130955     ConsoleData::getLineStartReverse(int) [11]
+[21]     5.1    0.68    0.00 15130955         ConsoleData::bufWrap(int) [21]
+-----------------------------------------------
+                0.00    0.46     383/383         load_image(_imagedata *, char const *) [24]
+[22]     3.5    0.00    0.46     383         load_bmp(_imagedata *, char const *) [22]
+                0.45    0.01     383/383         load_bmp_v3(_imagedata *, unsigned char *) [23]
+                0.00    0.00     383/383         stat [181]
+                0.00    0.00     383/1149        read_little_16(unsigned char **) [173]
+-----------------------------------------------
+                0.45    0.01     383/383         load_bmp(_imagedata *, char const *) [22]
+[23]     3.5    0.45    0.01     383         load_bmp_v3(_imagedata *, unsigned char *) [23]
+                0.01    0.00   16883/16883       read_little_32(unsigned char **) [107]
+                0.00    0.00     766/1149        read_little_16(unsigned char **) [173]
+                0.00    0.00       3/390         I_Message(char *,...) [179]
+-----------------------------------------------
+                0.00    0.46     383/383         I_loadImage(IMAGE *, char const *, int) [12]
+[24]     3.5    0.00    0.46     383         load_image(_imagedata *, char const *) [24]
+                0.00    0.46     383/383         load_bmp(_imagedata *, char const *) [22]
+-----------------------------------------------
+                0.00    0.45    2841/2841        UpdateFrame(void) [19]
+[25]     3.4    0.00    0.45    2841         UpdateDisplayList(void) [25]
+                0.00    0.43    2841/2841        tick_server(int) [27]
+                0.01    0.01    2841/2841        SpriteList::doAITick(unsigned int) [93]
+                0.00    0.00    2841/5794        i_time_ms(void) [156]
+                0.00    0.00    2841/2841        ViewPort::doFollowTick(unsigned int) [165]
+-----------------------------------------------
+                0.03    0.40    2841/2841        tick_server(int) [27]
+[26]     3.3    0.03    0.40    2841         SpriteList::doTick(unsigned int) [26]
+                0.06    0.34  103140/103140      Sprite::doTick(unsigned int) [29]
+-----------------------------------------------
+                0.00    0.43    2841/2841        UpdateDisplayList(void) [25]
+[27]     3.3    0.00    0.43    2841         tick_server(int) [27]
+                0.03    0.40    2841/2841        SpriteList::doTick(unsigned int) [26]
+-----------------------------------------------
+                                2440             ViewPort::drawSelf(void) <cycle 1> [170]
+[28]     3.1    0.15    0.27    2440         ViewPort::draw_curview(void) <cycle 1> [28]
+                0.05    0.12  509960/509960      Tile::doBlit(_rect *, _rect *) [37]
+                0.01    0.04   16085/23371       Sprite::Draw(int, int) [55]
+                0.00    0.03    7286/7286        Sprite::DrawClipped(int, int) [84]
+                0.01    0.00  509960/509960      TileSet::tileIndex(int) [103]
+                                  12             ConsoleView::addText(char *) <cycle 1> [142]
+-----------------------------------------------
+                0.06    0.34  103140/103140      SpriteList::doTick(unsigned int) [26]
+[29]     3.0    0.06    0.34  103140         Sprite::doTick(unsigned int) [29]
+                0.21    0.01  102800/102800      Sprite::checkCollision(void) [34]
+                0.12    0.00  102800/102800      Sprite::placeObject(Map *) [52]
+                0.00    0.00     340/340         Sprite::~Sprite(void) [145]
+-----------------------------------------------
+                                                 <spontaneous>
+[30]     2.4    0.32    0.00                 luaD_call [30]
+-----------------------------------------------
+                                                 <spontaneous>
+[31]     2.2    0.29    0.00                 luaO_equalObj [31]
+-----------------------------------------------
+                                                 <spontaneous>
+[32]     2.0    0.26    0.00                 insert [32]
+-----------------------------------------------
+                                                 <spontaneous>
+[33]     1.8    0.24    0.00                 luaD_openstack [33]
+-----------------------------------------------
+                0.21    0.01  102800/102800      Sprite::doTick(unsigned int) [29]
+[34]     1.7    0.21    0.01  102800         Sprite::checkCollision(void) [34]
+                0.01    0.00   11541/11541       Sprite::canCollide(void) [108]
+-----------------------------------------------
+                                                 <spontaneous>
+[35]     1.6    0.21    0.00                 luaC_ref [35]
+-----------------------------------------------
+                                                 <spontaneous>
+[36]     1.4    0.19    0.00                 luaV_gettable [36]
+-----------------------------------------------
+                0.05    0.12  509960/509960      ViewPort::draw_curview(void) <cycle 1> [28]
+[37]     1.3    0.05    0.12  509960         Tile::doBlit(_rect *, _rect *) [37]
+                0.12    0.00  509960/544545      I_doBlit(_rect *, IMAGE *) [42]
+-----------------------------------------------
+                                                 <spontaneous>
+[38]     1.3    0.17    0.00                 luaH_get [38]
+-----------------------------------------------
+                                                 <spontaneous>
+[39]     1.2    0.16    0.00                 set_normalized [39]
+-----------------------------------------------
+                                                 <spontaneous>
+[40]     1.1    0.15    0.00                 luaV_getglobal [40]
+-----------------------------------------------
+                                                 <spontaneous>
+[41]     1.1    0.14    0.00                 luaS_new [41]
+-----------------------------------------------
+                0.00    0.00       2/544545      bltSplash(void) [128]
+                0.00    0.00    8979/544545      BufferedView::drawSelf(void) [129]
+                0.01    0.00   25604/544545      SpriteType::doBlit(_rect *, IMAGE *) [83]
+                0.12    0.00  509960/544545      Tile::doBlit(_rect *, _rect *) [37]
+[42]     1.0    0.13    0.00  544545         I_doBlit(_rect *, IMAGE *) [42]
+-----------------------------------------------
+                                                 <spontaneous>
+[43]     1.0    0.13    0.00                 hash [43]
+-----------------------------------------------
+                                                 <spontaneous>
+[44]     1.0    0.13    0.00                 hashindex [44]
+-----------------------------------------------
+                                                 <spontaneous>
+[45]     1.0    0.13    0.00                 luaD_adjusttop [45]
+-----------------------------------------------
+                                                 <spontaneous>
+[46]     1.0    0.13    0.00                 luaL_nonnullarg [46]
+-----------------------------------------------
+                                                 <spontaneous>
+[47]     1.0    0.13    0.00                 lua_pushobject [47]
+-----------------------------------------------
+                                                 <spontaneous>
+[48]     1.0    0.13    0.00                 lua_pushstring [48]
+-----------------------------------------------
+                                                 <spontaneous>
+[49]     1.0    0.13    0.00                 put_luaObjectonTop [49]
+-----------------------------------------------
+                0.00    0.12      30/30          callC [3]
+[50]     0.9    0.00    0.12      30         C_tile_addtype(void) [50]
+                0.00    0.12      30/30          Tile::Tile(char const *) [51]
+                0.00    0.00      30/30          TileSet::newTile(Tile *) [191]
+-----------------------------------------------
+                0.00    0.12      30/30          C_tile_addtype(void) [50]
+[51]     0.9    0.00    0.12      30         Tile::Tile(char const *) [51]
+                0.00    0.12      30/383         I_loadImage(IMAGE *, char const *, int) [12]
+-----------------------------------------------
+                0.12    0.00  102800/102800      Sprite::doTick(unsigned int) [29]
+[52]     0.9    0.12    0.00  102800         Sprite::placeObject(Map *) [52]
+                0.00    0.00     797/797         Sprite::addObjectToMap(Sprite **) [174]
+                0.00    0.00     422/762         Sprite::removeObjectFromMap(void) [175]
+-----------------------------------------------
+                                                 <spontaneous>
+[53]     0.9    0.12    0.00                 normalized_type [53]
+-----------------------------------------------
+                                                 <spontaneous>
+[54]     0.8    0.10    0.00                 rawgettable [54]
+-----------------------------------------------
+                0.01    0.02    7286/23371       Sprite::DrawClipped(int, int) [84]
+                0.01    0.04   16085/23371       ViewPort::draw_curview(void) <cycle 1> [28]
+[55]     0.6    0.02    0.06   23371         Sprite::Draw(int, int) [55]
+                0.00    0.06   23371/23371       SpriteType::DrawAt(Sprite *, unsigned int, int, int) [62]
+-----------------------------------------------
+                                                 <spontaneous>
+[56]     0.6    0.08    0.00                 lua_pushnumber [56]
+-----------------------------------------------
+                                                 <spontaneous>
+[57]     0.6    0.08    0.00                 lua_rawgettable [57]
+-----------------------------------------------
+                                                 <spontaneous>
+[58]     0.5    0.07    0.00                 luaD_callTM [58]
+-----------------------------------------------
+                                                 <spontaneous>
+[59]     0.5    0.07    0.00                 lua_lua2C [59]
+-----------------------------------------------
+                                                 <spontaneous>
+[60]     0.5    0.07    0.00                 lua_tag [60]
+-----------------------------------------------
+                               39436             SpriteType::DrawRecurse(Sprite *, unsigned int, int, int, sprite_chunk_struct *) [61]
+                0.03    0.03   23371/23371       SpriteType::DrawAt(Sprite *, unsigned int, int, int) [62]
+[61]     0.5    0.03    0.03   23371+39436   SpriteType::DrawRecurse(Sprite *, unsigned int, int, int, sprite_chunk_struct *) [61]
+                0.02    0.01   25604/25604       SpriteType::doBlit(_rect *, IMAGE *) [83]
+                0.01    0.00   32130/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+                0.00    0.00   24771/24771       find_entry(IMAGELIST *, char *) [150]
+                               39436             SpriteType::DrawRecurse(Sprite *, unsigned int, int, int, sprite_chunk_struct *) [61]
+-----------------------------------------------
+                0.00    0.06   23371/23371       Sprite::Draw(int, int) [55]
+[62]     0.5    0.00    0.06   23371         SpriteType::DrawAt(Sprite *, unsigned int, int, int) [62]
+                0.03    0.03   23371/23371       SpriteType::DrawRecurse(Sprite *, unsigned int, int, int, sprite_chunk_struct *) [61]
+-----------------------------------------------
+                                                 <spontaneous>
+[63]     0.5    0.06    0.00                 luaC_getref [63]
+-----------------------------------------------
+                                                 <spontaneous>
+[64]     0.5    0.06    0.00                 luaI_type [64]
+-----------------------------------------------
+                                                 <spontaneous>
+[65]     0.5    0.06    0.00                 luaT_efectivetag [65]
+-----------------------------------------------
+                                                 <spontaneous>
+[66]     0.4    0.05    0.00                 checkCparams [66]
+-----------------------------------------------
+                                                 <spontaneous>
+[67]     0.4    0.05    0.00                 luaD_checkstack [67]
+-----------------------------------------------
+                                                 <spontaneous>
+[68]     0.4    0.05    0.00                 luaV_settable [68]
+-----------------------------------------------
+                                                 <spontaneous>
+[69]     0.4    0.05    0.00                 lua_beginblock [69]
+-----------------------------------------------
+                                                 <spontaneous>
+[70]     0.4    0.05    0.00                 lua_callfunction [70]
+-----------------------------------------------
+                                                 <spontaneous>
+[71]     0.4    0.05    0.00                 put_luaObject [71]
+-----------------------------------------------
+                0.00    0.00      17/8461        ConsoleView::addText(char *) <cycle 1> [142]
+                0.01    0.03    8444/8461        ConsoleView::addString(char *) [9]
+[72]     0.3    0.01    0.03    8461         ConsoleData::addString(char *) [72]
+                0.02    0.01  143265/143282      ConsoleData::addChar(char) [75]
+-----------------------------------------------
+                                                 <spontaneous>
+[73]     0.3    0.04    0.00                 luaD_protectedrun [73]
+-----------------------------------------------
+                                                 <spontaneous>
+[74]     0.3    0.04    0.00                 luaL_addchar [74]
+-----------------------------------------------
+                0.00    0.00      17/143282      ConsoleView::addText(char *) <cycle 1> [142]
+                0.02    0.01  143265/143282      ConsoleData::addString(char *) [72]
+[75]     0.2    0.02    0.01  143282         ConsoleData::addChar(char) [75]
+                0.01    0.00  143282/15130955     ConsoleData::bufWrap(int) [21]
+                0.00    0.01    3617/3617        ConsoleData::gobbleLine(void) [126]
+                0.00    0.00  143282/143282      ConsoleData::spaceInBuf(void) [149]
+-----------------------------------------------
+                                2854             DrawDisplayList(void) <cycle 1> [162]
+[76]     0.2    0.01    0.02    2854         paintScreen(void) <cycle 1> [76]
+                0.00    0.01     135/138         MultiView::nextView(void) [101]
+                0.00    0.01    2139/2142        HorizStatusBar::setValue(int) [124]
+                0.00    0.00    3557/3557        HorizStatusBar::getValue(void) [159]
+                0.00    0.00     705/705         HorizStatusBar::getMaxValue(void) [176]
+                0.00    0.00      10/10          View::curState(void) [194]
+                0.00    0.00       5/5           View::setState(int) [200]
+                                2854             View::draw(void) <cycle 1> [7]
+-----------------------------------------------
+                                                 <spontaneous>
+[77]     0.2    0.03    0.00                 comparison [77]
+-----------------------------------------------
+                                                 <spontaneous>
+[78]     0.2    0.03    0.00                 luaH_set [78]
+-----------------------------------------------
+                                                 <spontaneous>
+[79]     0.2    0.03    0.00                 lua_getref [79]
+-----------------------------------------------
+                                                 <spontaneous>
+[80]     0.2    0.03    0.00                 lua_gettable [80]
+-----------------------------------------------
+                                                 <spontaneous>
+[81]     0.2    0.03    0.00                 lua_isfunction [81]
+-----------------------------------------------
+                0.00    0.03    2843/2843        main [18]
+[82]     0.2    0.00    0.03    2843         I_EventLoop(void) [82]
+                0.00    0.02    1103/1103        View::inputEvent(input_event *) <cycle 2> [86]
+                0.00    0.00       1/1           setup_game(void) [127]
+                0.00    0.00       1/11292       DrawDisplayList(void) <cycle 1> [162]
+-----------------------------------------------
+                0.02    0.01   25604/25604       SpriteType::DrawRecurse(Sprite *, unsigned int, int, int, sprite_chunk_struct *) [61]
+[83]     0.2    0.02    0.01   25604         SpriteType::doBlit(_rect *, IMAGE *) [83]
+                0.01    0.00   25604/544545      I_doBlit(_rect *, IMAGE *) [42]
+-----------------------------------------------
+                0.00    0.03    7286/7286        ViewPort::draw_curview(void) <cycle 1> [28]
+[84]     0.2    0.00    0.03    7286         Sprite::DrawClipped(int, int) [84]
+                0.01    0.02    7286/23371       Sprite::Draw(int, int) [55]
+-----------------------------------------------
+[85]     0.2    0.00    0.02    1103+3254    <cycle 2 as a whole> [85]
+                0.00    0.02    2203+7608        View::inputEvent(input_event *) <cycle 2> [86]
+-----------------------------------------------
+                                7608             View::inputEvent(input_event *) <cycle 2> [86]
+                                1100             MultiView::handleEvent(input_event *) <cycle 2> [172]
+                0.00    0.02    1103/1103        I_EventLoop(void) [82]
+[86]     0.2    0.00    0.02    2203+7608    View::inputEvent(input_event *) <cycle 2> [86]
+                0.00    0.02      46/46          ConsoleView::handleEvent(input_event *) [87]
+                0.00    0.00    1054/1054        ViewPort::handleEvent(input_event *) [136]
+                0.00    0.00    6557/6557        View::handleEvent(input_event *) [137]
+                                2154             MultiView::handleEvent(input_event *) <cycle 2> [172]
+                                7608             View::inputEvent(input_event *) <cycle 2> [86]
+-----------------------------------------------
+                0.00    0.02      46/46          View::inputEvent(input_event *) <cycle 2> [86]
+[87]     0.2    0.00    0.02      46         ConsoleView::handleEvent(input_event *) [87]
+                0.00    0.02       6/425         ConsoleView::paintInputRow(void) [5]
+                0.00    0.00       2/11292       ConsoleView::addText(char *) <cycle 1> [142]
+                0.00    0.00       2/2           handleConsoleInput(ConsoleView *, char *) [140]
+                0.00    0.00      15/280         ConsoleData::numLines(void) [186]
+                0.00    0.00       4/6           ConsoleView::runningLua(int) [198]
+-----------------------------------------------
+                0.00    0.02       5/5           View::setInputFocus(int) <cycle 3> [90]
+[88]     0.2    0.00    0.02       5         ConsoleView::handleFocusChange(int) [88]
+                0.00    0.01       3/417         ConsoleView::drawSelf(void) [10]
+                0.00    0.01       3/425         ConsoleView::paintInputRow(void) [5]
+                0.00    0.00       3/2573        BufferedView::setDirty(void) [167]
+-----------------------------------------------
+[89]     0.2    0.00    0.02      12+6       <cycle 3 as a whole> [89]
+                0.00    0.02      13+47          View::setInputFocus(int) <cycle 3> [90]
+-----------------------------------------------
+                                  47             View::setInputFocus(int) <cycle 3> [90]
+                                   1             MultiView::handleFocusChange(int) <cycle 3> [199]
+                0.00    0.00       1/12          initViews(void) [91]
+                0.00    0.00       1/12          MultiView::addView(View *, char *) [130]
+                0.00    0.01       4/12          MultiView::switchTo(int) [125]
+                0.00    0.01       6/12          MultiView::nextView(void) [101]
+[90]     0.2    0.00    0.02      13+47      View::setInputFocus(int) <cycle 3> [90]
+                0.00    0.02       5/5           ConsoleView::handleFocusChange(int) [88]
+                0.00    0.00      46/46          View::handleFocusChange(int) [190]
+                0.00    0.00       4/4           ViewPort::handleFocusChange(int) [201]
+                                   5             MultiView::handleFocusChange(int) <cycle 3> [199]
+                                  47             View::setInputFocus(int) <cycle 3> [90]
+-----------------------------------------------
+                0.00    0.02       1/1           main [18]
+[91]     0.2    0.00    0.02       1         initViews(void) [91]
+                0.00    0.01       3/3           ImageView::ImageView(int, int, int, int, char *) [100]
+                0.00    0.00       1/2           MultiView::switchTo(int) [125]
+                0.00    0.00       2/2           MultiView::addView(View *, char *) [130]
+                0.00    0.00       1/12          View::setInputFocus(int) <cycle 3> [90]
+                0.00    0.00       2/11292       ConsoleView::addText(char *) <cycle 1> [142]
+                0.00    0.00       1/1           ConsoleView::ConsoleView(int, int, int, int) [141]
+                0.00    0.00       3/3           HorizStatusBar::HorizStatusBar(int, int, int, int, int) [146]
+                0.00    0.00       3/2142        HorizStatusBar::setValue(int) [124]
+                0.00    0.00      13/13          View::addSubview(View *) [193]
+                0.00    0.00      10/10          View::setDepth(int) [195]
+                0.00    0.00       3/15          View::View(int, int, int, int) [590]
+                0.00    0.00       2/2           MultiView::MultiView(int, int, int, int) [593]
+                0.00    0.00       1/1           FPSView::FPSView(int, int, int, int) [596]
+                0.00    0.00       1/1           ConsoleView::setConsoleHandler(int (*)(ConsoleView *, char *)) [215]
+                0.00    0.00       1/1           TextureView::TextureView(int, int, int, int) [594]
+                0.00    0.00       1/1           ViewPort::ViewPort(int, int, int, int) [598]
+                0.00    0.00       1/1           View::setEventCallback(int (*)(input_event *)) [216]
+-----------------------------------------------
+                0.02    0.00   14205/14205       callC [3]
+[92]     0.2    0.02    0.00   14205         C_obj_getVelocity(void) [92]
+-----------------------------------------------
+                0.01    0.01    2841/2841        UpdateDisplayList(void) [25]
+[93]     0.2    0.01    0.01    2841         SpriteList::doAITick(unsigned int) [93]
+                0.01    0.00  102984/102984      Sprite::doAITick(unsigned int) [104]
+-----------------------------------------------
+                                                 <spontaneous>
+[94]     0.2    0.02    0.00                 luaA_Address [94]
+-----------------------------------------------
+                                                 <spontaneous>
+[95]     0.2    0.02    0.00                 luaC_checkGC [95]
+-----------------------------------------------
+                                                 <spontaneous>
+[96]     0.2    0.02    0.00                 luaI_singlematch [96]
+-----------------------------------------------
+                                                 <spontaneous>
+[97]     0.2    0.02    0.00                 luaV_tostring [97]
+-----------------------------------------------
+                                                 <spontaneous>
+[98]     0.2    0.02    0.00                 lua_endblock [98]
+-----------------------------------------------
+                                                 <spontaneous>
+[99]     0.2    0.02    0.00                 lua_istable [99]
+-----------------------------------------------
+                0.00    0.01       3/3           initViews(void) [91]
+[100]    0.1    0.00    0.01       3         ImageView::ImageView(int, int, int, int, char *) [100]
+                0.00    0.01       3/383         I_loadImage(IMAGE *, char const *, int) [12]
+                0.00    0.00       3/7           BufferedView::BufferedView(int, int, int, int) [591]
+-----------------------------------------------
+                0.00    0.00       3/138         handleMVInput(input_event *) [138]
+                0.00    0.01     135/138         paintScreen(void) <cycle 1> [76]
+[101]    0.1    0.00    0.01     138         MultiView::nextView(void) [101]
+                0.00    0.01       6/12          View::setInputFocus(int) <cycle 3> [90]
+-----------------------------------------------
+                0.01    0.00    2854/2854        View::draw(void) <cycle 1> [7]
+[102]    0.1    0.01    0.00    2854         FPSView::drawSelf(void) [102]
+                0.00    0.00    2854/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+                0.00    0.00    2948/5794        i_time_ms(void) [156]
+                0.00    0.00    2854/2854        bltText(char *, int, int) [164]
+-----------------------------------------------
+                0.01    0.00  509960/509960      ViewPort::draw_curview(void) <cycle 1> [28]
+[103]    0.1    0.01    0.00  509960         TileSet::tileIndex(int) [103]
+-----------------------------------------------
+                0.01    0.00  102984/102984      SpriteList::doAITick(unsigned int) [93]
+[104]    0.1    0.01    0.00  102984         Sprite::doAITick(unsigned int) [104]
+-----------------------------------------------
+                0.00    0.00       1/43490       SpriteList::SpriteList(void) [147]
+                0.00    0.00       1/43490       SpriteType::SpriteType(char *, unsigned int) [14]
+                0.00    0.00       2/43490       init_map(void) [139]
+                0.00    0.00       4/43490       setup_game(void) [127]
+                0.00    0.00      26/43490       C_sprite_addtype(void) [13]
+                0.00    0.00     340/43490       SpriteList::removeSprite(Sprite *) [144]
+                0.00    0.00     374/43490       C_addsprite(void) [131]
+                0.00    0.00     375/43490       Sprite::Sprite(SpriteList *, SpriteType *, double, double, double, double) [133]
+                0.00    0.00     375/43490       SpriteList::addSprite(Sprite *) [143]
+                0.00    0.00    1210/43490       Sprite::handleEvent(input_event *) [135]
+                0.00    0.00    1453/43490       SpriteType::parseSpriteTable(sprite_chunk_struct **, unsigned int) [15]
+                0.00    0.00    1500/43490       Sprite::SpriteSetup(SpriteList *, short, double, double, double, double) [134]
+                0.00    0.00    2845/43490       UpdateFrame(void) [19]
+                0.00    0.00    2854/43490       FPSView::drawSelf(void) [102]
+                0.01    0.00   32130/43490       SpriteType::DrawRecurse(Sprite *, unsigned int, int, int, sprite_chunk_struct *) [61]
+[105]    0.1    0.01    0.00   43490         dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+-----------------------------------------------
+                               24789             View::draw(void) <cycle 1> [7]
+[106]    0.1    0.01    0.00   24789         drawSubviews(View *) <cycle 1> [106]
+                               19978             View::draw(void) <cycle 1> [7]
+-----------------------------------------------
+                0.01    0.00   16883/16883       load_bmp_v3(_imagedata *, unsigned char *) [23]
+[107]    0.1    0.01    0.00   16883         read_little_32(unsigned char **) [107]
+-----------------------------------------------
+                0.01    0.00   11541/11541       Sprite::checkCollision(void) [34]
+[108]    0.1    0.01    0.00   11541         Sprite::canCollide(void) [108]
+-----------------------------------------------
+                0.01    0.00    8444/8444        printf [6]
+[109]    0.1    0.01    0.00    8444         logToFile(char *) [109]
+-----------------------------------------------
+                0.00    0.00       3/2145        HorizStatusBar::HorizStatusBar(int, int, int, int, int) [146]
+                0.01    0.00    2142/2145        HorizStatusBar::setValue(int) [124]
+[110]    0.1    0.01    0.00    2145         HorizStatusBar::repaintSelf(void) [110]
+                0.00    0.00    8580/8580        I_DrawLine(_drawable *, int, int, int, int) [154]
+                0.00    0.00    2145/2570        I_GetDrawContext(_drawable *) [168]
+                0.00    0.00    2145/3003        I_ClearDrawable(_drawable *, int, int, int, int) [160]
+                0.00    0.00    2145/2570        I_ReleaseDrawContext(_drawable *) [169]
+                0.00    0.00    2145/2573        BufferedView::setDirty(void) [167]
+                0.00    0.00    1911/2336        I_FillRectangle(_drawable *, int, int, int, int) [171]
+-----------------------------------------------
+                                                 <spontaneous>
+[111]    0.1    0.01    0.00                 bracket_end [111]
+-----------------------------------------------
+                                                 <spontaneous>
+[112]    0.1    0.01    0.00                 closeandpush [112]
+-----------------------------------------------
+                                                 <spontaneous>
+[113]    0.1    0.01    0.00                 do_callinc [113]
+-----------------------------------------------
+                                                 <spontaneous>
+[114]    0.1    0.01    0.00                 luaA_pushobject [114]
+-----------------------------------------------
+                                                 <spontaneous>
+[115]    0.1    0.01    0.00                 luaH_new [115]
+-----------------------------------------------
+                                                 <spontaneous>
+[116]    0.1    0.01    0.00                 luaL_tablearg [116]
+-----------------------------------------------
+                                                 <spontaneous>
+[117]    0.1    0.01    0.00                 luaY_parse [117]
+-----------------------------------------------
+                                                 <spontaneous>
+[118]    0.1    0.01    0.00                 lua_getnumber [118]
+-----------------------------------------------
+                                                 <spontaneous>
+[119]    0.1    0.01    0.00                 lua_getuserdata [119]
+-----------------------------------------------
+                                                 <spontaneous>
+[120]    0.1    0.01    0.00                 lua_isuserdata [120]
+-----------------------------------------------
+                                                 <spontaneous>
+[121]    0.1    0.01    0.00                 lua_pushusertag [121]
+-----------------------------------------------
+                                                 <spontaneous>
+[122]    0.1    0.01    0.00                 strconc [122]
+-----------------------------------------------
+                                                 <spontaneous>
+[123]    0.1    0.01    0.00                 travlock [123]
+-----------------------------------------------
+                0.00    0.00       3/2142        initViews(void) [91]
+                0.00    0.01    2139/2142        paintScreen(void) <cycle 1> [76]
+[124]    0.1    0.00    0.01    2142         HorizStatusBar::setValue(int) [124]
+                0.01    0.00    2142/2145        HorizStatusBar::repaintSelf(void) [110]
+-----------------------------------------------
+                0.00    0.00       1/2           setup_game(void) [127]
+                0.00    0.00       1/2           initViews(void) [91]
+[125]    0.1    0.00    0.01       2         MultiView::switchTo(int) [125]
+                0.00    0.01       4/12          View::setInputFocus(int) <cycle 3> [90]
+-----------------------------------------------
+                0.00    0.01    3617/3617        ConsoleData::addChar(char) [75]
+[126]    0.0    0.00    0.01    3617         ConsoleData::gobbleLine(void) [126]
+                0.01    0.00  123290/15130955     ConsoleData::bufWrap(int) [21]
+-----------------------------------------------
+                0.00    0.00       1/1           I_EventLoop(void) [82]
+[127]    0.0    0.00    0.00       1         setup_game(void) [127]
+                0.00    0.00       1/2           MultiView::switchTo(int) [125]
+                0.00    0.00       1/1           init_lua_objects(void) [132]
+                0.00    0.00       1/1           init_map(void) [139]
+                0.00    0.00       1/8444        printf [6]
+                0.00    0.00       1/375         Sprite::Sprite(SpriteList *, SpriteType *, double, double, double, double) [133]
+                0.00    0.00       4/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+                0.00    0.00       1/1           SpriteList::SpriteList(void) [147]
+                0.00    0.00       1/5794        i_time_ms(void) [156]
+                0.00    0.00       1/375         findSpriteType(char *) [182]
+                0.00    0.00       1/1           ViewPort::followSprite(Sprite *) [212]
+-----------------------------------------------
+                0.00    0.00       2/2           UpdateFrame(void) [19]
+[128]    0.0    0.00    0.00       2         bltSplash(void) [128]
+                0.00    0.00       1/383         I_loadImage(IMAGE *, char const *, int) [12]
+                0.00    0.00       2/544545      I_doBlit(_rect *, IMAGE *) [42]
+                0.00    0.00       2/2856        FlipScreen(void) [161]
+-----------------------------------------------
+                0.00    0.00     417/8979        ConsoleView::drawSelf(void) [10]
+                0.00    0.00    8562/8979        View::draw(void) <cycle 1> [7]
+[129]    0.0    0.00    0.00    8979         BufferedView::drawSelf(void) [129]
+                0.00    0.00    8979/544545      I_doBlit(_rect *, IMAGE *) [42]
+-----------------------------------------------
+                0.00    0.00       2/2           initViews(void) [91]
+[130]    0.0    0.00    0.00       2         MultiView::addView(View *, char *) [130]
+                0.00    0.00       1/12          View::setInputFocus(int) <cycle 3> [90]
+-----------------------------------------------
+                0.00    0.00     374/374         callC [3]
+[131]    0.0    0.00    0.00     374         C_addsprite(void) [131]
+                0.00    0.00     374/375         Sprite::Sprite(SpriteList *, SpriteType *, double, double, double, double) [133]
+                0.00    0.00     374/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+                0.00    0.00     374/375         findSpriteType(char *) [182]
+-----------------------------------------------
+                0.00    0.00       1/1           setup_game(void) [127]
+[132]    0.0    0.00    0.00       1         init_lua_objects(void) [132]
+                0.00    0.00       3/8444        printf [6]
+                0.00    0.00       2/6           ConsoleView::runningLua(int) [198]
+                0.00    0.00       1/1           register_luafunctions(void) [214]
+-----------------------------------------------
+                0.00    0.00       1/375         setup_game(void) [127]
+                0.00    0.00     374/375         C_addsprite(void) [131]
+[133]    0.0    0.00    0.00     375         Sprite::Sprite(SpriteList *, SpriteType *, double, double, double, double) [133]
+                0.00    0.00     375/375         Sprite::SpriteSetup(SpriteList *, short, double, double, double, double) [134]
+                0.00    0.00     375/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+                0.00    0.00     375/375         LuaBase::LuaBase(void) [588]
+-----------------------------------------------
+                0.00    0.00     375/375         Sprite::Sprite(SpriteList *, SpriteType *, double, double, double, double) [133]
+[134]    0.0    0.00    0.00     375         Sprite::SpriteSetup(SpriteList *, short, double, double, double, double) [134]
+                0.00    0.00    1500/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+                0.00    0.00     375/375         SpriteList::addSprite(Sprite *) [143]
+                0.00    0.00     375/375         SpriteType::name(void) [183]
+-----------------------------------------------
+                0.00    0.00    1054/1054        ViewPort::handleEvent(input_event *) [136]
+[135]    0.0    0.00    0.00    1054         Sprite::handleEvent(input_event *) [135]
+                0.00    0.00    1210/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+-----------------------------------------------
+                0.00    0.00    1054/1054        View::inputEvent(input_event *) <cycle 2> [86]
+[136]    0.0    0.00    0.00    1054         ViewPort::handleEvent(input_event *) [136]
+                0.00    0.00    1054/1054        Sprite::handleEvent(input_event *) [135]
+-----------------------------------------------
+                0.00    0.00    6557/6557        View::inputEvent(input_event *) <cycle 2> [86]
+[137]    0.0    0.00    0.00    6557         View::handleEvent(input_event *) [137]
+                0.00    0.00    1103/1103        handleMVInput(input_event *) [138]
+-----------------------------------------------
+                0.00    0.00    1103/1103        View::handleEvent(input_event *) [137]
+[138]    0.0    0.00    0.00    1103         handleMVInput(input_event *) [138]
+                0.00    0.00       3/138         MultiView::nextView(void) [101]
+-----------------------------------------------
+                0.00    0.00       1/1           setup_game(void) [127]
+[139]    0.0    0.00    0.00       1         init_map(void) [139]
+                0.00    0.00       1/8444        printf [6]
+                0.00    0.00       2/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+                0.00    0.00       1/1           TileSet::TileSet(int, int) [597]
+                0.00    0.00       1/1           Map::Map(int, int, TileSet *) [595]
+                0.00    0.00       1/1           ViewPort::setMap(int, int, Map *) [217]
+-----------------------------------------------
+                0.00    0.00       2/2           ConsoleView::handleEvent(input_event *) [87]
+[140]    0.0    0.00    0.00       2         handleConsoleInput(ConsoleView *, char *) [140]
+                0.00    0.00       1/11292       ConsoleView::addText(char *) <cycle 1> [142]
+                0.00    0.00       7/7           strncmp_ic(char *, char *, int) [197]
+-----------------------------------------------
+                0.00    0.00       1/1           initViews(void) [91]
+[141]    0.0    0.00    0.00       1         ConsoleView::ConsoleView(int, int, int, int) [141]
+                0.00    0.00       1/11292       ConsoleView::repaint(void) <cycle 1> [155]
+                0.00    0.00       2/2           ConsoleData::ConsoleData(int) [592]
+                0.00    0.00       1/7           BufferedView::BufferedView(int, int, int, int) [591]
+                0.00    0.00       1/1           ConsoleView::computeSizes(void) [211]
+                0.00    0.00       1/1           ConsoleView::clear(void) [209]
+-----------------------------------------------
+                                  12             ViewPort::draw_curview(void) <cycle 1> [28]
+                0.00    0.00       1/11292       handleConsoleInput(ConsoleView *, char *) [140]
+                0.00    0.00       2/11292       initViews(void) [91]
+                0.00    0.00       2/11292       ConsoleView::handleEvent(input_event *) [87]
+[142]    0.0    0.00    0.00      17         ConsoleView::addText(char *) <cycle 1> [142]
+                0.00    0.00      17/8461        ConsoleData::addString(char *) [72]
+                0.00    0.00      17/143282      ConsoleData::addChar(char) [75]
+                                  17             ConsoleView::repaint(void) <cycle 1> [155]
+-----------------------------------------------
+                0.00    0.00     375/375         Sprite::SpriteSetup(SpriteList *, short, double, double, double, double) [134]
+[143]    0.0    0.00    0.00     375         SpriteList::addSprite(Sprite *) [143]
+                0.00    0.00     375/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+-----------------------------------------------
+                0.00    0.00     340/340         Sprite::~Sprite(void) [145]
+[144]    0.0    0.00    0.00     340         SpriteList::removeSprite(Sprite *) [144]
+                0.00    0.00     340/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+-----------------------------------------------
+                0.00    0.00     340/340         Sprite::doTick(unsigned int) [29]
+[145]    0.0    0.00    0.00     340         Sprite::~Sprite(void) [145]
+                0.00    0.00     340/340         SpriteList::removeSprite(Sprite *) [144]
+                0.00    0.00     340/762         Sprite::removeObjectFromMap(void) [175]
+                0.00    0.00     340/340         LuaBase::~LuaBase(void) [589]
+-----------------------------------------------
+                0.00    0.00       3/3           initViews(void) [91]
+[146]    0.0    0.00    0.00       3         HorizStatusBar::HorizStatusBar(int, int, int, int, int) [146]
+                0.00    0.00       3/2145        HorizStatusBar::repaintSelf(void) [110]
+                0.00    0.00       3/7           BufferedView::BufferedView(int, int, int, int) [591]
+-----------------------------------------------
+                0.00    0.00       1/1           setup_game(void) [127]
+[147]    0.0    0.00    0.00       1         SpriteList::SpriteList(void) [147]
+                0.00    0.00       1/43490       dbgMsg(DEBUG_LEVEL, char const *,...) [105]
+-----------------------------------------------
+                0.00    0.00  143282/143282      ConsoleData::spaceInBuf(void) [149]
+[148]    0.0    0.00    0.00  143282         ConsoleData::charsInBuf(void) [148]
+-----------------------------------------------
+                0.00    0.00  143282/143282      ConsoleData::addChar(char) [75]
+[149]    0.0    0.00    0.00  143282         ConsoleData::spaceInBuf(void) [149]
+                0.00    0.00  143282/143282      ConsoleData::charsInBuf(void) [148]
+-----------------------------------------------
+                0.00    0.00   24771/24771       SpriteType::DrawRecurse(Sprite *, unsigned int, int, int, sprite_chunk_struct *) [61]
+[150]    0.0    0.00    0.00   24771         find_entry(IMAGELIST *, char *) [150]
+-----------------------------------------------
+                0.00    0.00   14450/14450       ConsoleView::paintInputRow(void) [5]
+[151]    0.0    0.00    0.00   14450         I_GetTextExtent(_drawable *, char *, int, _size *) [151]
+-----------------------------------------------
+                0.00    0.00   14205/14205       callC [3]
+[152]    0.0    0.00    0.00   14205         C_obj_setVelocity(void) [152]
+-----------------------------------------------
+                0.00    0.00   13600/13600       ConsoleView::paintInputRow(void) [5]
+[153]    0.0    0.00    0.00   13600         I_TextOut(_drawable *, int, int, char *, int) [153]
+-----------------------------------------------
+                0.00    0.00    8580/8580        HorizStatusBar::repaintSelf(void) [110]
+[154]    0.0    0.00    0.00    8580         I_DrawLine(_drawable *, int, int, int, int) [154]
+-----------------------------------------------
+                                  17             ConsoleView::addText(char *) <cycle 1> [142]
+                0.00    0.00       1/11292       ConsoleView::ConsoleView(int, int, int, int) [141]
+                0.13    1.40    8444/11292       ConsoleView::addString(char *) [9]
+[155]    0.0    0.00    0.00    8462         ConsoleView::repaint(void) <cycle 1> [155]
+                                  12             DrawDisplayList(void) <cycle 1> [162]
+-----------------------------------------------
+                0.00    0.00       1/5794        setup_game(void) [127]
+                0.00    0.00       2/5794        UpdateFrame(void) [19]
+                0.00    0.00       2/5794        main [18]
+                0.00    0.00    2841/5794        UpdateDisplayList(void) [25]
+                0.00    0.00    2948/5794        FPSView::drawSelf(void) [102]
+[156]    0.0    0.00    0.00    5794         i_time_ms(void) [156]
+-----------------------------------------------
+                0.00    0.00    5708/5708        View::draw(void) <cycle 1> [7]
+[157]    0.0    0.00    0.00    5708         View::drawSelf(void) [157]
+-----------------------------------------------
+                                4397             View::draw(void) <cycle 1> [7]
+[158]    0.0    0.00    0.00    4397         MultiView::drawSelf(void) <cycle 1> [158]
+                                2854             View::draw(void) <cycle 1> [7]
+-----------------------------------------------
+                0.00    0.00    3557/3557        paintScreen(void) <cycle 1> [76]
+[159]    0.0    0.00    0.00    3557         HorizStatusBar::getValue(void) [159]
+-----------------------------------------------
+                0.00    0.00       1/3003        ConsoleView::clear(void) [209]
+                0.00    0.00       7/3003        I_CreateDrawable(_rect *, char *, _drawable *) [196]
+                0.00    0.00     850/3003        ConsoleView::paintInputRow(void) [5]
+                0.00    0.00    2145/3003        HorizStatusBar::repaintSelf(void) [110]
+[160]    0.0    0.00    0.00    3003         I_ClearDrawable(_drawable *, int, int, int, int) [160]
+-----------------------------------------------
+                0.00    0.00       2/2856        bltSplash(void) [128]
+                0.00    0.00    2854/2856        DrawDisplayList(void) <cycle 1> [162]
+[161]    0.0    0.00    0.00    2856         FlipScreen(void) [161]
+-----------------------------------------------
+                                  12             ConsoleView::repaint(void) <cycle 1> [155]
+                0.00    0.00       1/11292       I_EventLoop(void) [82]
+                0.05    0.47    2841/11292       UpdateFrame(void) [19]
+[162]    0.0    0.00    0.00    2854         DrawDisplayList(void) <cycle 1> [162]
+                0.00    0.00    2854/2854        EraseScreen(void) [163]
+                0.00    0.00    2854/2856        FlipScreen(void) [161]
+                                2854             paintScreen(void) <cycle 1> [76]
+-----------------------------------------------
+                0.00    0.00    2854/2854        DrawDisplayList(void) <cycle 1> [162]
+[163]    0.0    0.00    0.00    2854         EraseScreen(void) [163]
+-----------------------------------------------
+                0.00    0.00    2854/2854        FPSView::drawSelf(void) [102]
+[164]    0.0    0.00    0.00    2854         bltText(char *, int, int) [164]
+-----------------------------------------------
+                0.00    0.00    2841/2841        UpdateDisplayList(void) [25]
+[165]    0.0    0.00    0.00    2841         ViewPort::doFollowTick(unsigned int) [165]
+                0.00    0.00    2841/2841        ViewPort::setCurLoc(curloc_struct *) [166]
+-----------------------------------------------
+                0.00    0.00    2841/2841        ViewPort::doFollowTick(unsigned int) [165]
+[166]    0.0    0.00    0.00    2841         ViewPort::setCurLoc(curloc_struct *) [166]
+-----------------------------------------------
+                0.00    0.00       3/2573        ConsoleView::handleFocusChange(int) [88]
+                0.00    0.00     425/2573        ConsoleView::paintInputRow(void) [5]
+                0.00    0.00    2145/2573        HorizStatusBar::repaintSelf(void) [110]
+[167]    0.0    0.00    0.00    2573         BufferedView::setDirty(void) [167]
+-----------------------------------------------
+                0.00    0.00     425/2570        ConsoleView::paintInputRow(void) [5]
+                0.00    0.00    2145/2570        HorizStatusBar::repaintSelf(void) [110]
+[168]    0.0    0.00    0.00    2570         I_GetDrawContext(_drawable *) [168]
+-----------------------------------------------
+                0.00    0.00     425/2570        ConsoleView::paintInputRow(void) [5]
+                0.00    0.00    2145/2570        HorizStatusBar::repaintSelf(void) [110]
+[169]    0.0    0.00    0.00    2570         I_ReleaseDrawContext(_drawable *) [169]
+-----------------------------------------------
+                                2440             View::draw(void) <cycle 1> [7]
+[170]    0.0    0.00    0.00    2440         ViewPort::drawSelf(void) <cycle 1> [170]
+                                2440             ViewPort::draw_curview(void) <cycle 1> [28]
+-----------------------------------------------
+                0.00    0.00     425/2336        ConsoleView::paintInputRow(void) [5]
+                0.00    0.00    1911/2336        HorizStatusBar::repaintSelf(void) [110]
+[171]    0.0    0.00    0.00    2336         I_FillRectangle(_drawable *, int, int, int, int) [171]
+-----------------------------------------------
+                                2154             View::inputEvent(input_event *) <cycle 2> [86]
+[172]    0.0    0.00    0.00    2154         MultiView::handleEvent(input_event *) <cycle 2> [172]
+                                1100             View::inputEvent(input_event *) <cycle 2> [86]
+-----------------------------------------------
+                0.00    0.00     383/1149        load_bmp(_imagedata *, char const *) [22]
+                0.00    0.00     766/1149        load_bmp_v3(_imagedata *, unsigned char *) [23]
+[173]    0.0    0.00    0.00    1149         read_little_16(unsigned char **) [173]
+-----------------------------------------------
+                0.00    0.00     797/797         Sprite::placeObject(Map *) [52]
+[174]    0.0    0.00    0.00     797         Sprite::addObjectToMap(Sprite **) [174]
+-----------------------------------------------
+                0.00    0.00     340/762         Sprite::~Sprite(void) [145]
+                0.00    0.00     422/762         Sprite::placeObject(Map *) [52]
+[175]    0.0    0.00    0.00     762         Sprite::removeObjectFromMap(void) [175]
+-----------------------------------------------
+                0.00    0.00     705/705         paintScreen(void) <cycle 1> [76]
+[176]    0.0    0.00    0.00     705         HorizStatusBar::getMaxValue(void) [176]
+-----------------------------------------------
+                0.00    0.00     425/425         ConsoleView::paintInputRow(void) [5]
+[177]    0.0    0.00    0.00     425         I_SetFGColor(_drawable *, int, int, int) [177]
+-----------------------------------------------
+                0.00    0.00     414/414         View::draw(void) <cycle 1> [7]
+[178]    0.0    0.00    0.00     414         TextureView::drawSelf(void) [178]
+-----------------------------------------------
+                0.00    0.00       1/390         I_vid_setpalette(char const *) [207]
+                0.00    0.00       1/390         main [18]
+                0.00    0.00       2/390         I_InitVideo(void) [205]
+                0.00    0.00       3/390         load_bmp_v3(_imagedata *, unsigned char *) [23]
+                0.00    0.00     383/390         I_createimage(_imagedata *, IMAGE *, int) [17]
+[179]    0.0    0.00    0.00     390         I_Message(char *,...) [179]
+-----------------------------------------------
+                0.00    0.00     383/383         I_loadImage(IMAGE *, char const *, int) [12]
+[180]    0.0    0.00    0.00     383         i_convert_path(char *) [180]
+-----------------------------------------------
+                0.00    0.00     383/383         load_bmp(_imagedata *, char const *) [22]
+[181]    0.0    0.00    0.00     383         stat [181]
+-----------------------------------------------
+                0.00    0.00       1/375         setup_game(void) [127]
+                0.00    0.00     374/375         C_addsprite(void) [131]
+[182]    0.0    0.00    0.00     375         findSpriteType(char *) [182]
+-----------------------------------------------
+                0.00    0.00     375/375         Sprite::SpriteSetup(SpriteList *, short, double, double, double, double) [134]
+[183]    0.0    0.00    0.00     375         SpriteType::name(void) [183]
+-----------------------------------------------
+                0.00    0.00     340/340         callC [3]
+[184]    0.0    0.00    0.00     340         C_obj_delete(void) [184]
+                0.00    0.00     340/340         Sprite::Die(void) [185]
+-----------------------------------------------
+                0.00    0.00     340/340         C_obj_delete(void) [184]
+[185]    0.0    0.00    0.00     340         Sprite::Die(void) [185]
+-----------------------------------------------
+                0.00    0.00      15/280         ConsoleView::handleEvent(input_event *) [87]
+                0.00    0.00     265/280         ConsoleView::paintInputRow(void) [5]
+[186]    0.0    0.00    0.00     280         ConsoleData::numLines(void) [186]
+-----------------------------------------------
+                0.00    0.00     156/156         callC [3]
+[187]    0.0    0.00    0.00     156         C_obj_pos(void) [187]
+-----------------------------------------------
+                0.00    0.00     154/154         callC [3]
+[188]    0.0    0.00    0.00     154         C_setmapsquare(void) [188]
+                0.00    0.00     154/154         Map::setSquare(int, int, int) [189]
+-----------------------------------------------
+                0.00    0.00     154/154         C_setmapsquare(void) [188]
+[189]    0.0    0.00    0.00     154         Map::setSquare(int, int, int) [189]
+-----------------------------------------------
+                0.00    0.00      46/46          View::setInputFocus(int) <cycle 3> [90]
+[190]    0.0    0.00    0.00      46         View::handleFocusChange(int) [190]
+-----------------------------------------------
+                0.00    0.00      30/30          C_tile_addtype(void) [50]
+[191]    0.0    0.00    0.00      30         TileSet::newTile(Tile *) [191]
+-----------------------------------------------
+                0.00    0.00      13/13          SpriteType::SpriteType(char *, unsigned int) [14]
+[192]    0.0    0.00    0.00      13         addSpriteType(char *, SpriteType *) [192]
+-----------------------------------------------
+                0.00    0.00      13/13          initViews(void) [91]
+[193]    0.0    0.00    0.00      13         View::addSubview(View *) [193]
+-----------------------------------------------
+                0.00    0.00      10/10          paintScreen(void) <cycle 1> [76]
+[194]    0.0    0.00    0.00      10         View::curState(void) [194]
+-----------------------------------------------
+                0.00    0.00      10/10          initViews(void) [91]
+[195]    0.0    0.00    0.00      10         View::setDepth(int) [195]
+-----------------------------------------------
+                0.00    0.00       7/7           BufferedView::BufferedView(int, int, int, int) [591]
+[196]    0.0    0.00    0.00       7         I_CreateDrawable(_rect *, char *, _drawable *) [196]
+                0.00    0.00       7/3003        I_ClearDrawable(_drawable *, int, int, int, int) [160]
+-----------------------------------------------
+                0.00    0.00       7/7           handleConsoleInput(ConsoleView *, char *) [140]
+[197]    0.0    0.00    0.00       7         strncmp_ic(char *, char *, int) [197]
+-----------------------------------------------
+                0.00    0.00       2/6           init_lua_objects(void) [132]
+                0.00    0.00       4/6           ConsoleView::handleEvent(input_event *) [87]
+[198]    0.0    0.00    0.00       6         ConsoleView::runningLua(int) [198]
+-----------------------------------------------
+                                   5             View::setInputFocus(int) <cycle 3> [90]
+[199]    0.0    0.00    0.00       5         MultiView::handleFocusChange(int) <cycle 3> [199]
+                                   1             View::setInputFocus(int) <cycle 3> [90]
+-----------------------------------------------
+                0.00    0.00       5/5           paintScreen(void) <cycle 1> [76]
+[200]    0.0    0.00    0.00       5         View::setState(int) [200]
+-----------------------------------------------
+                0.00    0.00       4/4           View::setInputFocus(int) <cycle 3> [90]
+[201]    0.0    0.00    0.00       4         ViewPort::handleFocusChange(int) [201]
+-----------------------------------------------
+                0.00    0.00       3/3           SpriteType::parseSpriteTable(sprite_chunk_struct **, unsigned int) [15]
+[202]    0.0    0.00    0.00       3         lookup_builtin(char *) [202]
+-----------------------------------------------
+                0.00    0.00       2/2           ConsoleData::ConsoleData(int) [592]
+[203]    0.0    0.00    0.00       2         ConsoleData::setScrollbackSize(int) [203]
+-----------------------------------------------
+                0.00    0.00       1/1           callC [3]
+[204]    0.0    0.00    0.00       1         C_setpalette(void) [204]
+                0.00    0.00       1/1           I_vid_setpalette(char const *) [207]
+-----------------------------------------------
+                0.00    0.00       1/1           main [18]
+[205]    0.0    0.00    0.00       1         I_InitVideo(void) [205]
+                0.00    0.00       2/390         I_Message(char *,...) [179]
+-----------------------------------------------
+                0.00    0.00       1/1           UpdateFrame(void) [19]
+[206]    0.0    0.00    0.00       1         I_SetWindowText(char *) [206]
+-----------------------------------------------
+                0.00    0.00       1/1           C_setpalette(void) [204]
+[207]    0.0    0.00    0.00       1         I_vid_setpalette(char const *) [207]
+                0.00    0.00       1/390         I_Message(char *,...) [179]
+-----------------------------------------------
+                0.00    0.00       1/1           Map::Map(int, int, TileSet *) [595]
+[208]    0.0    0.00    0.00       1         Map::allocMap(void) [208]
+-----------------------------------------------
+                0.00    0.00       1/1           ConsoleView::ConsoleView(int, int, int, int) [141]
+[209]    0.0    0.00    0.00       1         ConsoleView::clear(void) [209]
+                0.00    0.00       1/3003        I_ClearDrawable(_drawable *, int, int, int, int) [160]
+-----------------------------------------------
+                0.00    0.00       1/1           ViewPort::setMap(int, int, Map *) [217]
+[210]    0.0    0.00    0.00       1         ViewPort::computeSizeVars(void) [210]
+-----------------------------------------------
+                0.00    0.00       1/1           ConsoleView::ConsoleView(int, int, int, int) [141]
+[211]    0.0    0.00    0.00       1         ConsoleView::computeSizes(void) [211]
+-----------------------------------------------
+                0.00    0.00       1/1           setup_game(void) [127]
+[212]    0.0    0.00    0.00       1         ViewPort::followSprite(Sprite *) [212]
+-----------------------------------------------
+                0.00    0.00       1/1           main [18]
+[213]    0.0    0.00    0.00       1         init_server(void) [213]
+-----------------------------------------------
+                0.00    0.00       1/1           init_lua_objects(void) [132]
+[214]    0.0    0.00    0.00       1         register_luafunctions(void) [214]
+-----------------------------------------------
+                0.00    0.00       1/1           initViews(void) [91]
+[215]    0.0    0.00    0.00       1         ConsoleView::setConsoleHandler(int (*)(ConsoleView *, char *)) [215]
+-----------------------------------------------
+                0.00    0.00       1/1           initViews(void) [91]
+[216]    0.0    0.00    0.00       1         View::setEventCallback(int (*)(input_event *)) [216]
+-----------------------------------------------
+                0.00    0.00       1/1           init_map(void) [139]
+[217]    0.0    0.00    0.00       1         ViewPort::setMap(int, int, Map *) [217]
+                0.00    0.00       1/1           ViewPort::computeSizeVars(void) [210]
+-----------------------------------------------
+                0.00    0.00       1/1           Map::Map(int, int, TileSet *) [595]
+[218]    0.0    0.00    0.00       1         Map::setup(void) [218]
+-----------------------------------------------
+                0.00    0.00     375/375         Sprite::Sprite(SpriteList *, SpriteType *, double, double, double, double) [133]
+[588]    0.0    0.00    0.00     375         LuaBase::LuaBase(void) [588]
+-----------------------------------------------
+                0.00    0.00     340/340         Sprite::~Sprite(void) [145]
+[589]    0.0    0.00    0.00     340         LuaBase::~LuaBase(void) [589]
+-----------------------------------------------
+                0.00    0.00       1/15          ViewPort::ViewPort(int, int, int, int) [598]
+                0.00    0.00       1/15          TextureView::TextureView(int, int, int, int) [594]
+                0.00    0.00       1/15          FPSView::FPSView(int, int, int, int) [596]
+                0.00    0.00       2/15          MultiView::MultiView(int, int, int, int) [593]
+                0.00    0.00       3/15          initViews(void) [91]
+                0.00    0.00       7/15          BufferedView::BufferedView(int, int, int, int) [591]
+[590]    0.0    0.00    0.00      15         View::View(int, int, int, int) [590]
+-----------------------------------------------
+                0.00    0.00       1/7           ConsoleView::ConsoleView(int, int, int, int) [141]
+                0.00    0.00       3/7           HorizStatusBar::HorizStatusBar(int, int, int, int, int) [146]
+                0.00    0.00       3/7           ImageView::ImageView(int, int, int, int, char *) [100]
+[591]    0.0    0.00    0.00       7         BufferedView::BufferedView(int, int, int, int) [591]
+                0.00    0.00       7/15          View::View(int, int, int, int) [590]
+                0.00    0.00       7/7           I_CreateDrawable(_rect *, char *, _drawable *) [196]
+-----------------------------------------------
+                0.00    0.00       2/2           ConsoleView::ConsoleView(int, int, int, int) [141]
+[592]    0.0    0.00    0.00       2         ConsoleData::ConsoleData(int) [592]
+                0.00    0.00       2/2           ConsoleData::setScrollbackSize(int) [203]
+-----------------------------------------------
+                0.00    0.00       2/2           initViews(void) [91]
+[593]    0.0    0.00    0.00       2         MultiView::MultiView(int, int, int, int) [593]
+                0.00    0.00       2/15          View::View(int, int, int, int) [590]
+-----------------------------------------------
+                0.00    0.00       1/1           initViews(void) [91]
+[594]    0.0    0.00    0.00       1         TextureView::TextureView(int, int, int, int) [594]
+                0.00    0.00       1/15          View::View(int, int, int, int) [590]
+-----------------------------------------------
+                0.00    0.00       1/1           init_map(void) [139]
+[595]    0.0    0.00    0.00       1         Map::Map(int, int, TileSet *) [595]
+                0.00    0.00       1/1           Map::allocMap(void) [208]
+                0.00    0.00       1/1           Map::setup(void) [218]
+-----------------------------------------------
+                0.00    0.00       1/1           initViews(void) [91]
+[596]    0.0    0.00    0.00       1         FPSView::FPSView(int, int, int, int) [596]
+                0.00    0.00       1/15          View::View(int, int, int, int) [590]
+-----------------------------------------------
+                0.00    0.00       1/1           init_map(void) [139]
+[597]    0.0    0.00    0.00       1         TileSet::TileSet(int, int) [597]
+-----------------------------------------------
+                0.00    0.00       1/1           initViews(void) [91]
+[598]    0.0    0.00    0.00       1         ViewPort::ViewPort(int, int, int, int) [598]
+                0.00    0.00       1/15          View::View(int, int, int, int) [590]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+
+Index by function name
+
+ [131] C_addsprite(void)     [112] closeandpush (i_main.cpp) [46] luaL_nonnullarg
+ [184] C_obj_delete(void)     [77] comparison (i_main.cpp) [116] luaL_tablearg
+  [92] C_obj_getVelocity(void) [210] ViewPort::computeSizeVars(void) [31] luaO_equalObj
+ [187] C_obj_pos(void)       [211] ConsoleView::computeSizes(void) [41] luaS_new
+ [152] C_obj_setVelocity(void) [194] View::curState(void) [65] luaT_efectivetag
+ [188] C_setmapsquare(void)  [105] dbgMsg(DEBUG_LEVEL, char const *,...) [1] luaV_execute
+ [204] C_setpalette(void)     [93] SpriteList::doAITick(unsigned int) [40] luaV_getglobal
+  [13] C_sprite_addtype(void) [104] Sprite::doAITick(unsigned int) [36] luaV_gettable
+  [50] C_tile_addtype(void)   [83] SpriteType::doBlit(_rect *, IMAGE *) [68] luaV_settable
+ [185] Sprite::Die(void)      [37] Tile::doBlit(_rect *, _rect *) [97] luaV_tostring
+  [62] SpriteType::DrawAt(Sprite *, unsigned int, int, int) [165] ViewPort::doFollowTick(unsigned int) [117] luaY_parse
+  [84] Sprite::DrawClipped(int, int) [26] SpriteList::doTick(unsigned int) [69] lua_beginblock
+ [162] DrawDisplayList(void)  [29] Sprite::doTick(unsigned int) [70] lua_callfunction
+  [61] SpriteType::DrawRecurse(Sprite *, unsigned int, int, int, sprite_chunk_struct *) [113] do_callinc (i_main.cpp) [98] lua_endblock
+  [55] Sprite::Draw(int, int) [10] ConsoleView::drawSelf(void) [118] lua_getnumber
+ [163] EraseScreen(void)     [178] TextureView::drawSelf(void) [79] lua_getref
+ [161] FlipScreen(void)      [129] BufferedView::drawSelf(void) [80] lua_gettable
+ [160] I_ClearDrawable(_drawable *, int, int, int, int) [157] View::drawSelf(void) [119] lua_getuserdata
+ [196] I_CreateDrawable(_rect *, char *, _drawable *) [102] FPSView::drawSelf(void) [81] lua_isfunction
+ [154] I_DrawLine(_drawable *, int, int, int, int) [170] ViewPort::drawSelf(void) [99] lua_istable
+  [82] I_EventLoop(void)     [158] MultiView::drawSelf(void) [120] lua_isuserdata
+ [171] I_FillRectangle(_drawable *, int, int, int, int) [106] drawSubviews(View *) [59] lua_lua2C
+ [168] I_GetDrawContext(_drawable *) [7] View::draw(void) [56] lua_pushnumber
+ [151] I_GetTextExtent(_drawable *, char *, int, _size *) [28] ViewPort::draw_curview(void) [47] lua_pushobject
+ [205] I_InitVideo(void)     [182] findSpriteType(char *) [48] lua_pushstring
+ [179] I_Message(char *,...) [150] find_entry(IMAGELIST *, char *) [121] lua_pushusertag
+ [169] I_ReleaseDrawContext(_drawable *) [212] ViewPort::followSprite(Sprite *) [57] lua_rawgettable
+ [177] I_SetFGColor(_drawable *, int, int, int) [4] ConsoleData::getLineReverse(char *, int, int) [60] lua_tag
+ [206] I_SetWindowText(char *) [11] ConsoleData::getLineStartReverse(int) [183] SpriteType::name(void)
+ [153] I_TextOut(_drawable *, int, int, char *, int) [176] HorizStatusBar::getMaxValue(void) [191] TileSet::newTile(Tile *)
+  [17] I_createimage(_imagedata *, IMAGE *, int) [159] HorizStatusBar::getValue(void) [101] MultiView::nextView(void)
+  [42] I_doBlit(_rect *, IMAGE *) [126] ConsoleData::gobbleLine(void) [53] normalized_type (i_main.cpp)
+  [12] I_loadImage(IMAGE *, char const *, int) [140] handleConsoleInput(ConsoleView *, char *) [186] ConsoleData::numLines(void)
+ [207] I_vid_setpalette(char const *) [87] ConsoleView::handleEvent(input_event *) [5] ConsoleView::paintInputRow(void)
+ [134] Sprite::SpriteSetup(SpriteList *, short, double, double, double, double) [137] View::handleEvent(input_event *) [76] paintScreen(void)
+  [25] UpdateDisplayList(void) [135] Sprite::handleEvent(input_event *) [15] SpriteType::parseSpriteTable(sprite_chunk_struct **, unsigned int)
+  [19] UpdateFrame(void)     [136] ViewPort::handleEvent(input_event *) [52] Sprite::placeObject(Map *)
+ [145] Sprite::~Sprite(void) [172] MultiView::handleEvent(input_event *) [20] present (i_main.cpp)
+ [589] LuaBase::~LuaBase(void) [88] ConsoleView::handleFocusChange(int) [6] printf
+ [147] SpriteList::SpriteList(void) [190] View::handleFocusChange(int) [71] put_luaObject (i_main.cpp)
+  [14] SpriteType::SpriteType(char *, unsigned int) [201] ViewPort::handleFocusChange(int) [49] put_luaObjectonTop (i_main.cpp)
+ [592] ConsoleData::ConsoleData(int) [199] MultiView::handleFocusChange(int) [54] rawgettable (i_main.cpp)
+ [141] ConsoleView::ConsoleView(int, int, int, int) [138] handleMVInput(input_event *) [173] read_little_16(unsigned char **) (bmp.cpp)
+ [594] TextureView::TextureView(int, int, int, int) [43] hash (i_main.cpp) [107] read_little_32(unsigned char **) (bmp.cpp)
+ [591] BufferedView::BufferedView(int, int, int, int) [44] hashindex (i_main.cpp) [214] register_luafunctions(void)
+ [146] HorizStatusBar::HorizStatusBar(int, int, int, int, int) [180] i_convert_path(char *) [175] Sprite::removeObjectFromMap(void)
+ [595] Map::Map(int, int, TileSet *) [156] i_time_ms(void) [144] SpriteList::removeSprite(Sprite *)
+  [51] Tile::Tile(char const *) [91] initViews(void)     [110] HorizStatusBar::repaintSelf(void)
+ [590] View::View(int, int, int, int) [132] init_lua_objects(void) [155] ConsoleView::repaint(void)
+ [133] Sprite::Sprite(SpriteList *, SpriteType *, double, double, double, double) [139] init_map(void) [198] ConsoleView::runningLua(int)
+ [596] FPSView::FPSView(int, int, int, int) [213] init_server(void) [215] ConsoleView::setConsoleHandler(int (*)(ConsoleView *, char *))
+ [588] LuaBase::LuaBase(void) [86] View::inputEvent(input_event *) [166] ViewPort::setCurLoc(curloc_struct *)
+ [597] TileSet::TileSet(int, int) [32] insert (i_main.cpp) [195] View::setDepth(int)
+ [598] ViewPort::ViewPort(int, int, int, int) [16] SpriteType::loadImage(IMAGE *, char const *) [167] BufferedView::setDirty(void)
+ [100] ImageView::ImageView(int, int, int, int, char *) [22] load_bmp(_imagedata *, char const *) [216] View::setEventCallback(int (*)(input_event *))
+ [593] MultiView::MultiView(int, int, int, int) [23] load_bmp_v3(_imagedata *, unsigned char *) [90] View::setInputFocus(int)
+  [75] ConsoleData::addChar(char) [24] load_image(_imagedata *, char const *) [217] ViewPort::setMap(int, int, Map *)
+ [174] Sprite::addObjectToMap(Sprite **) [109] logToFile(char *) [203] ConsoleData::setScrollbackSize(int)
+ [192] addSpriteType(char *, SpriteType *) [202] lookup_builtin(char *) [189] Map::setSquare(int, int, int)
+ [143] SpriteList::addSprite(Sprite *) [94] luaA_Address [200] View::setState(int)
+  [72] ConsoleData::addString(char *) [114] luaA_pushobject [124] HorizStatusBar::setValue(int)
+   [9] ConsoleView::addString(char *) [95] luaC_checkGC   [39] set_normalized (i_main.cpp)
+ [193] View::addSubview(View *) [63] luaC_getref         [218] Map::setup(void)
+ [142] ConsoleView::addText(char *) [35] luaC_ref        [127] setup_game(void)
+ [130] MultiView::addView(View *, char *) [45] luaD_adjusttop [149] ConsoleData::spaceInBuf(void)
+ [208] Map::allocMap(void)    [30] luaD_call             [181] stat
+ [128] bltSplash(void)        [58] luaD_callTM           [122] strconc (i_main.cpp)
+ [164] bltText(char *, int, int) [67] luaD_checkstack    [197] strncmp_ic(char *, char *, int)
+ [111] bracket_end (i_main.cpp) [33] luaD_openstack      [125] MultiView::switchTo(int)
+  [21] ConsoleData::bufWrap(int) [73] luaD_protectedrun   [27] tick_server(int)
+   [3] callC (i_main.cpp)     [38] luaH_get              [103] TileSet::tileIndex(int)
+ [108] Sprite::canCollide(void) [115] luaH_new           [123] travlock (i_main.cpp)
+ [148] ConsoleData::charsInBuf(void) [78] luaH_set         [2] <cycle 1>
+  [34] Sprite::checkCollision(void) [96] luaI_singlematch [85] <cycle 2>
+  [66] checkCparams (i_main.cpp) [64] luaI_type (i_main.cpp) [89] <cycle 3>
+ [209] ConsoleView::clear(void) [74] luaL_addchar

@@ -1,0 +1,65 @@
+Date: Thu, 6 Aug 1998 02:57:06 -0700
+
+This is meant as a ToDo so that Brandon and I can sync up on
+programming stuff.
+
+functionality:
+
+- Add "offsets" for individual image layers
+- propagate mouse/joystick events into lua
+- straighten out keyboard input handling
+- pixel-perfect collisions, collision should occur at collide location,
+  not at object corner location.
+- objects need to be able to have owners other than the map. (i.e. for
+   carrying objects)
+- move the object 'map contact spot' to the center of the object, not the
+  upper left corner
+- give sprites a 'layer number' and draw them in layer order (possibly put off)
+- tile properties in lua 
+    movement_rate, terrain_type, fog of war data, etc...
+- lua objects need to be able to see neighboring objects and access sprites
+  by tile location.
+- lua ai events: (reached tile location, everytick, enemy_near)
+- come up with a way to draw to offscreen/system memory surfaces
+  (i.e. for horizontal status bars, etc)
+- raw map file data format
+- fix map/viewport so that it can hit the right and bottom edges of the
+  map correctly.
+- networked play
+   - remove dplay stuff, replace with cross platform network calls
+   - meta-server
+   - object stuff handled by replicating lua data, do someting like a
+     'replicate' table in each object saying what to replicate over the 
+     network.
+   - let clients simulate physics based on old info, and update when
+     new info comes over the wire
+   - let lua control chat interface to user, so it can be extended
+- path computation algorithm
+  - how do we do objects which affect terrain movement like bridges?
+  - how about generic transporter units?
+  - probably just make a unit which can 'link' to another tile, and 
+    just compute the A* where that unit is one of the nodes which is
+    crossed in the path.
+- need to be able to control view setup (i.e. main.cpp) from lua instead.
+  also need to be able to talk to these views when they are created.
+  
+speedup/safety:
+
+- make sure image layers draw in the same order all the time
+- make sure we get a lua_ref for a string imagechunk index, we shouldn't
+   be comparing the literal strings 
+- check and update maxsprite size when loading sprites
+- debug hooks for 'C stack entries' in a lua stack using __LINE__ etc
+- think about effectively managing offscreen memory
+- check and redo viewport math to make sure we can handle a different tile
+  size
+- lua inheritence cache
+
+tools:
+- image reduction tools
+  - smallest box possible
+  - smallest 'rectangular diffs' from standard image
+
+-- 
+David Jeske (N9LCA) + http://www.chat.net/~jeske/ + jeske@chat.net
+

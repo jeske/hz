@@ -1,0 +1,57 @@
+This is version 3.1 (alpha).
+
+* Changes from version 3.0 to 3.1 (alpha)
+  + NEW FEATURE: anonymous functions with closures (via "upvalues").
+  + new syntax:
+    - local variables in chunks.
+    - better scope control with DO block END.
+    - constructors can now be also written: { record-part; list-part }.
+    - more general syntax for function calls and lvalues, e.g.:
+      f().x=1
+      o:f(x,y):g(z)
+  + major code re-organization and clean-up; reduced module interdependecies.
+  + support for multiple contexts.
+  + new traversal functions "foreach" and "foreachvar".
+  + changing lua to use doubles instead of floats is now trivial.
+  + complete debug information stored in pre-compiled chunks.
+
+* Changes from version 2.5 to 3.0
+  + NEW CONCEPT: "tag methods".
+    Tag methods replace fallbacks as the meta-mechanism for extending the
+    semantics of Lua. Whereas fallbacks had a global nature, tag methods
+    work on objects having the same tag (e.g., groups of tables).
+    Existing code that uses fallbacks should work without change.
+  + new, general syntax for constructors {[exp] = exp, ... }.
+  + support for handling variable number of arguments in functions (varargs).
+  + support for conditional compilation ($if ... $else ... $end).
+  + cleaner semantics in API simplifies host code.
+  + better support for writing libraries (auxlib.h).
+  + better type checking and error messages in the standard library.
+  + luac can now also undump.
+
+* Changes from version 2.4 to 2.5
+  + io and string libraries are now based on pattern matching;
+    the old libraries are still available for compatibility
+  + dofile and dostring can now return values (via return statement)
+  + better support for 16- and 64-bit machines
+  + expanded documentation, with more examples
+
+* Changes from version 2.2 to 2.4
+  + external compiler creates portable binary files that can be loaded faster
+  + interface for debugging and profiling
+  + new "getglobal" fallback
+  + new functions for handling references to Lua objects
+  + new functions in standard lib
+  + only one copy of each string is stored
+  + expanded documentation, with more examples
+
+* Changes from version 2.1 to 2.2
+  + functions now may be declared with any "lvalue" as a name
+  + garbage collection of functions
+  + support for pipes
+
+* Changes from version 1.1 to 2.1
+  + object-oriented support
+  + fallbacks
+  + simplified syntax for tables
+  + many internal improvements
