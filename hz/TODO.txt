@@ -1,53 +1,117 @@
-$Id: TODO.txt,v 1.1 2001/05/08 06:13:31 jeske Exp $
-$Date: 2001/05/08 06:13:31 $
+$Id: TODO.txt,v 1.2 2001/05/17 01:06:05 jeske Exp $
+$Date: 2001/05/17 01:06:05 $
 
-ToDO:
+============= DONE RECENTLY ============================
 
-- Add "x/y offsets" for individual image layers
+5/16/2001  carrying objects now works in a basic way!
+5/16/2001  added "dir()" function to lua with better 
+           display of global variables, tables, and objects
+           for use in the interactive console
+5/15/2001  cleaned up the Sprite/SpriteType classes and
+           separated (most?) lua code into separate subclass.
+           Built an example C++ sprite object.
+5/14/2001  make Windowed mode on Win32 with "-w" command line
+           option for easier debugging/killing of the game when
+           it does bad things. (gdb does not seem to work well
+           yet on win32)
+
+============= TODO NOW =====================================
+
+hotlist:
+- press the "1" button to build a unit, wait for the unit to
+  be built, and then let you pick it up at a mainbase
+  (who builds the unit? my mainship? my mainbase? a new
+   lua 'game' object which does not exist?)
+- allow me to add a horizontal scroll view from lua and 
+  somehow connect it to object properties in lua
+- make tank unit track nearby units and shoot at them 
+  - lua objects need to be able to see neighboring objects and 
+    access sprites by tile location.
+
+============= TODO LATER =====================================
+
+This is the list of stuff which will probably need to be done someday,
+but it's really in the critical path right now. If you are looking for
+something to knock off which is relatively small, you might try
+something in "visual", or something else below which looks simple.
+
+misc:
 - propagate mouse/joystick events into lua (keyboard is there)
-- pixel-perfect collisions, collision should occur at collide location,
-  not at object corner location.
-- objects need to be able to have owners other than the map. (i.e. for
-   carrying objects) (possibly just object activation/visibility)
-- move the object 'map contact spot' to the center of the object, not the
-  upper left corner??
-- give sprites a 'layer number' and draw them in layer order (possibly put off)
+  - we should really change the way input events are processed.
+    First they should go through an input-event-configuration 
+    handler which will map literal input events into logical
+    input events (i.e. buttons, rel axis, abs axis). Then those
+    logical input events should get sent through the chain.
+
+    This should probably happen inside the viewport, before
+    sending the input event to the actual game sprites/game 
+    objects, because other code (such as the ConsoleView needs 
+    access to raw keyboard)
+
+- use sprite "layer" numbers for something useful
+- check and update maxsprite size when loading sprites
+
+map improvements:
 - tile properties in lua
     movement_rate, terrain_type, fog of war data, etc...
-- tile animation
-- lua objects need to be able to see neighboring objects and access sprites
-  by tile location.
-- lua ai events: (reached tile location, everytick, enemy_near)
-- raw map file data format
+    add tile animation
+- real map file data format, and a few real maps!
+
+visual:
+- Add "x/y offsets" for individual image layers
+- pixel-perfect collisions, collision should occur at collide location,
+  not at object corner location. This might be done by finally
+  making the image loading code platform independent, switching
+  from BMP to PNG (or something) and creating the collision bitmask
+  at load time in platform independent code.
 - fix map/viewport so that it can hit the right and bottom edges of the
   map correctly.
-- networked play
-   - remove dplay stuff, replace with cross platform network calls
-   - meta-server
-   - object stuff handled by replicating lua data, do someting like a
-     'replicate' table in each object saying what to replicate over the 
-     network.
-   - let clients simulate physics based on old info, and update when
-     new info comes over the wire
-   - let lua control chat interface to user, so it can be extended
+- examine code to make sure image layers draw in the same order 
+  all the time
+
+ai thoughts:
+- lua ai events: (reached tile location, everytick, enemy_near)
 - path computation algorithm
   - how do we do objects which affect terrain movement like bridges?
   - how about generic transporter units?
   - probably just make a unit which can 'link' to another tile, and 
     just compute the A* where that unit is one of the nodes which is
     crossed in the path.
-- control view setup (i.e. main.cpp) from lua instead of main.cpp??
+
+networked play ideas:
+- remove dplay stuff, replace with cross platform network calls
+- meta-server
+- object stuff handled by replicating lua data, do someting like a
+  'replicate' table in each object saying what to replicate over the 
+  network.
+- let clients simulate physics based on old info, and update when
+  new info comes over the wire
+- let lua control chat interface to user, so it can be extended
    
 speedup/safety:
-
-- make sure image layers draw in the same order all the time
-- make sure we get a lua_ref for a string imagechunk index, we shouldn't
-   be comparing the literal strings 
-- check and update maxsprite size when loading sprites
+- get a lua_ref for a string imagechunk index, to avoid the
+  overhead of comparing strings at runtime. (this will make us
+  more Lua dependent)
 - debug hooks for 'C stack entries' in a lua stack using __LINE__ etc
-- think about effectively managing offscreen memory
+  (I don't even remember what this note means ??)
 - check and redo viewport math to make sure we can handle a different tile
   size
+- offscreen sprite manager 
+  - Change IMAGE type and I_doBlit() to keep track of how many times
+    each sprite is used between page flips, and then build some
+    simple algorithm to incrementally change which ones are stored
+    in offscreen memory and which ones are in system memory.
+    (i.e. add "this_flip_count" and "this_flip_render_count" to IMAGE,
+     when we render, make sure this_flip_count matches the current
+     global flip_count and then increment this_flip_render_count.
+     All loaded IMAGEs will probably need to be in an ordered linked
+     list. During FlipScreen, try and incrementally reorder whoever
+     is near the edge of the usage boundary between off-screen cache
+     and main memory.)
+    Doing this work will also allow us to store enough information
+    in the IMAGE structure to make sure we can RestoreSurfaces()
+    correctly when someone flips back from another app in windows
+    fullscreen mode.
 
 tools:
 - image reduction tools
