@@ -281,7 +281,7 @@ BOOL I_InitVideo (void)
 
     bIsActive = 1;
 
-    return FALSE;
+    return TRUE;
 }
 
 #define UTIMER 50000            /* how long between updates (useconds) */
