@@ -23,12 +23,20 @@ end
 -- keyboard handling stuff
 
 a_key_map = {
+-- Windows key codes
 	[37] = "left",
 	[38] = "up",
 	[39] = "right",
 	[40] = "down",
 	[79] = "o",
-	[80] = "p"
+	[80] = "p",
+-- X11 key codes
+	[65361] = "left",
+	[65362] = "up",
+	[65363] = "right",
+	[65364] = "down",
+	[111] = "o",
+	[112] = "p"
 };
 
 -- cos/sin tables
@@ -71,7 +79,7 @@ dofile("obj_flg.lua");		-- flag
 dofile("obj_expl.lua");		-- explosions
 dofile("obj_proj.lua");		-- projectiles
 
--- dofile("initobj.lua");
+dofile("initobj.lua");
 
 
 function setupGameSprites()
