@@ -27,7 +27,6 @@
 //       direct draw surface for the sprite, which now comes from the
 //       sprite type object instead.
 
-#include <lua.h>
 #include <math.h>
 
 #ifdef OS_WIN
