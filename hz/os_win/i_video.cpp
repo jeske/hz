@@ -258,8 +258,14 @@ void ViewPort::doBlit(RECT *dest,RECT *src, LPDIRECTDRAWSURFACE surf) {
 }
 #endif
 
-void I_doBlit(RECT *dest, IMAGE *an_image) {
+void I_doBlit(RECT *dest, RECT *src_cliprect, IMAGE *an_image) {
 	HRESULT ddrval;
+	
+
+	if (src_cliprect == NULL) {
+		src_cliprect = &(an_image->src);
+	}
+
 	do {
 				
 			/*
@@ -270,7 +276,7 @@ void I_doBlit(RECT *dest, IMAGE *an_image) {
 		//ddrval = lpBackBuffer->Blt(dest, an_image->surf, 
 		//					&(an_image->src), dwTransType  | DDBLT_KEYSRC , NULL);
 		ddrval = lpBackBuffer->BltFast(dest->left,dest->top,
-					an_image->surf,&an_image->src, dwTransType);
+					an_image->surf,src_cliprect, dwTransType);
 
 			if (ddrval != DD_OK) {
 				if( ddrval == DDERR_SURFACELOST ) {
