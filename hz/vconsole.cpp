@@ -280,38 +280,8 @@ ConsoleView::~ConsoleView() {
 
 
 void ConsoleView::clear() {
-#ifdef OS_WIN_FIXING
-	DDBLTFX     ddbltfx;
-    HRESULT     ddrval;
-
-
-	// Erase the background
-	ddbltfx.dwSize = sizeof( ddbltfx );
-	ddbltfx.dwFillColor = dwFillColor;
-	while( 1 )
-	{
-		ddrval = backingStore->Blt(NULL, NULL,
-				 NULL, DDBLT_COLORFILL, &ddbltfx );
-
-		if( ddrval == DD_OK )
-		{
-			break;
-		}
-		if( ddrval == DDERR_SURFACELOST )
-		{
-			if( !RestoreSurfaces() )
-				return;
-		}
-		if( ddrval != DDERR_WASSTILLDRAWING )
-		{
-			return;
-		}
-	}
-#else
-	I_ClearDrawable (&backingStore, 0, 0, my_dimension.width, 
-	    my_dimension.height);
-#endif
-
+  I_ClearDrawable (&backingStore, 0, 0, my_dimension.width, 
+		   my_dimension.height);
 }
 
 void ConsoleView::repaint() {

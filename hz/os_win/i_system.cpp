@@ -39,8 +39,10 @@ const char *i_fix_path(const char *fix_path) {
 int CleanupAndExit(char *err)
 {
   dbgMsg(c_info,"CleanupAndExit:");
-  dbgMsg(c_info,err);  
-
+  if (err) {
+    dbgMsg(c_info,err); 
+  }
+  
   if (hndlMgr) {
     delete hndlMgr;
     hndlMgr = 0;
@@ -66,12 +68,13 @@ int CleanupAndExit(char *err)
   // warn user if there is one
   //
 
-  if (hWndMain) {
+  if (err) {
     MessageBox( hWndMain, err, "ERROR", MB_OK );
+  }
+
+  if (hWndMain) {
     DestroyWindow(hWndMain);
     hWndMain = NULL;
-  } else {
-    MessageBox( NULL, err, "ERROR", MB_OK );
   }
 
   exit(1); // FIX!!!!!! 

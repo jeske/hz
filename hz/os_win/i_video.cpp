@@ -82,7 +82,7 @@ BOOL initAppWindow( HINSTANCE hInstance, int nCmdShow )
       hWndMain = CreateWindowEx(0,  // WS_EX_TOPMOST,
 				"SSGameClass",
 				"HZ",
-				WS_VISIBLE |
+				WS_OVERLAPPED | WS_VISIBLE |
 				WS_SYSMENU,  // so we get an icon in the tray
 				10, // x, we are going to put it mostly off the screen because
 				10, // y, DirectX is fucked...
@@ -199,6 +199,10 @@ BOOL I_InitVideo( void )
 	return CleanupAndExit("DDClipper couldn't attach to hWndMain");
       }
 
+      // we should really check and make sure it supports this
+      dwTransType = DDBLTFAST_SRCCOLORKEY;
+
+
     } else { // full_screen!
       // ---------------------------- FULL SCREEN ---------------------------
 
@@ -236,14 +240,6 @@ BOOL I_InitVideo( void )
     dwTransType = DDBLTFAST_SRCCOLORKEY;
     ddcaps.dwSize = sizeof( ddcaps );
 
-//#ifdef DEBUG
-//    if( GetProfileInt( "Donuts", "force_dest_blt", 0) )
-//    {
-//        dwTransType = DDBLTFAST_DESTCOLORKEY;
-//    }
-//    bHELBlt = GetProfileInt( "Donuts", "force_HEL_blt", bHELBlt );
-//#endif
-
     // Create surfaces
 
 	if (!bUseEmulation) {
@@ -261,7 +257,6 @@ BOOL I_InitVideo( void )
 			return CleanupAndExit("CreateSurface FrontBuffer Failed!");
 		}
 	} else {
-
 		
 		memset( &ddsd, 0, sizeof( ddsd ) );
 		ddsd.dwSize = sizeof( ddsd );
@@ -301,6 +296,10 @@ BOOL I_InitVideo( void )
         ddsd.ddsCaps.dwCaps |= DDSCAPS_SYSTEMMEMORY;
 #endif
 
+    } // end of fullscreen startup
+
+    // common startup
+
     if( !RestoreSurfaces() )
         return CleanupAndExit("RestoreSurfaces Failed!");
 
@@ -310,8 +309,6 @@ BOOL I_InitVideo( void )
     hndlMgr->addHandle(solidbrush = CreateSolidBrush(RGB(255,255,0)));
     if (!linepen || !blackpen || !blackbrush) {
       CleanupAndExit("Couldn't CreatePen() in ConsoleView::ConsoleView()");
-    }
-
     }
 
     return TRUE;
@@ -346,7 +343,6 @@ void ViewPort::doBlit(RECT *dest,RECT *src, LPDIRECTDRAWSURFACE surf) {
 
 void I_doBlit(RECT *dest, RECT *src_cliprect, IMAGE *an_image) {
 	HRESULT ddrval;
-	
 
 	if (src_cliprect == NULL) {
 		src_cliprect = &(an_image->src);
@@ -465,7 +461,6 @@ void I_ClearDrawable (DRAWABLE *draw, int x1, int y1, int x2, int y2)
 {
 
   if (draw->hdc) {
-	
 	SetBkMode(draw->hdc,OPAQUE);
 	SelectObject(draw->hdc,blackbrush); // the "inside" of the rectangle
 	SelectObject(draw->hdc,blackpen);   // the "outline" of the rectangle..
@@ -481,7 +476,7 @@ void I_ClearDrawable (DRAWABLE *draw, int x1, int y1, int x2, int y2)
 	DDBLTFX     ddbltfx;
 	
 	ddbltfx.dwSize = sizeof (ddbltfx);
-	ddbltfx.dwFillColor = dwFillColor;
+	ddbltfx.dwFillColor = 0;
 	while( 1 )
 	{
 	    ddrval = draw->image->surf->Blt(NULL, NULL, NULL, DDBLT_COLORFILL, &ddbltfx );

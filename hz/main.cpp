@@ -367,7 +367,7 @@ void initViews() {
 
 void DestroyGame( void )
 {
-	CleanupAndExit("Clean exit.");
+	CleanupAndExit(NULL);
 }
 
 extern int should_die; // to tell threads to die

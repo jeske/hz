@@ -31,7 +31,11 @@ long FAR PASCAL MainWndproc( HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 
     switch( message )
     {
+
     case WM_ACTIVATEAPP:
+      if (wParam == 0) {
+	break; // ignore deactivate events.
+      }
         bIsActive = (BOOL) wParam;
         if( bIsActive )
         {
