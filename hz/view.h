@@ -49,7 +49,6 @@ typedef unsigned int keyboard_mask_enum;
 #define KM_ASCII_KEY 0x04
 #define	KM_ASCII_KEYRPT 0x08
 
-
 enum mouse_mask_enum {
 	MS_L_BUTTON = 01,
 	MS_M_BUTTON = 02,

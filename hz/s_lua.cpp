@@ -14,31 +14,10 @@
 
 LuaSprite::LuaSprite(SpriteList *aList,SpriteType *a_type, double x, double y, 
 		     double vx, double vy) : Sprite(aList,a_type,x,y,vx,vy) {
+  Sprite *new_node = this;
 
   this->type = OBJ_LUA; 
-  
-  Sprite *new_node = this;
-  
-  if (new_node == NULL) {
-    dbgMsg(c_error,"NULL ptr Sprite...\n");
-    return;
-  }
-  
-  if (mySpriteTypeObj) {
-    obj_type_string = mySpriteTypeObj->name();
-  } else {
-    dbgMsg(c_error,"constructed sprite without typeobj!\n");
-    obj_type_string = "unknown";
-  }
-  
-  dbgMsg(c_excessive,"Sprite::Sprite(), going to add to SpriteList\n");
-  
-  if (mySpriteList) {
-    mySpriteList->addSprite(this);
-  }
-  
-  dbgMsg(c_excessive,"Sprite::Sprite(), added to spritelist (%s:%d)\n",obj_type_string,mynumber);
-  
+    
   dbgMsg(c_excessive,"Sprite::Sprite(), going to add to Lua object list\n");
   
   // see if there is an "objects" table for the destination

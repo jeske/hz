@@ -90,12 +90,13 @@ int lookup_builtin(char *name) {
 
 }
 
-SPRITECHUNK *find_entry(IMAGELIST *a_list, const char *string) {
+
+SPRITECHUNK *find_entry(IMAGELIST *a_list, const char *string_value) {
 	int curloc = 0;
 
-	if (string) {
+	if (string_value) {
 	  while (curloc < a_list->list_len) {
-	    if (!strcmp(a_list->list[curloc].name,string)) {
+	    if (!strcmp(a_list->list[curloc].name,string_value)) {
 	      return (a_list->list[curloc].ptr);
 	    }
 	    
@@ -152,14 +153,15 @@ void SpriteType::DrawRecurse(Sprite *spr_obj, int x, int y, SPRITECHUNK *cur, RE
 			};
 
 		} else if (a_list->index_type == OBJECT_PROPERTY_STR) {
+		  const char *prop_val = spr_obj->getPropertyStr(a_list->prop_name);
 		  DrawRecurse(spr_obj, x, y, 
-			      find_entry(a_list, spr_obj->getPropertyStr(a_list->prop_name) ),
+			      find_entry(a_list, prop_val ),
 			      clip_rect);
 		} else {
 			dbgMsg(l_error,"unknown list index_type\n");
 			return;
 		}
-
+		
 	} else {
 		// we found the image so draw it!
 		IMAGE *an_image = &(cur->content.im_data);

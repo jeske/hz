@@ -52,6 +52,8 @@ static int sprite_number = 0;
 Sprite::Sprite(SpriteList *aList, SpriteType *a_type, double x, double y, double vx, double vy) {
 	dbgMsg(c_excessive,"Sprite::Sprite(), creating typed sprite\n");
 
+	Sprite *new_node = this;
+
 	mySpriteTypeObj = a_type;
 	myMap = 0;
 	this->layer = 0; // set the start layer
@@ -66,8 +68,6 @@ Sprite::Sprite(SpriteList *aList, SpriteType *a_type, double x, double y, double
 	this->mynumber = sprite_number++;
 	mySpriteList = aList;
 
-	Sprite *new_node = this;
-
 	if( x < 0.0) {// no position specified?
 	  new_node->posx = randDouble( 0.0, (double)MAX_DONUT_X );
 	  new_node->posy = randDouble( 0.0, (double)MAX_DONUT_Y );
@@ -80,6 +80,27 @@ Sprite::Sprite(SpriteList *aList, SpriteType *a_type, double x, double y, double
 	//new_node->posy = y;
 	new_node->velx = vx;
 	new_node->vely = vy;
+  
+  if (new_node == NULL) {
+    dbgMsg(c_error,"NULL ptr Sprite...\n");
+    return;
+  }
+  
+  if (mySpriteTypeObj) {
+    obj_type_string = mySpriteTypeObj->name();
+  } else {
+    dbgMsg(c_error,"constructed sprite without typeobj!\n");
+    obj_type_string = "unknown";
+  }
+  
+  dbgMsg(c_excessive,"Sprite::Sprite(), going to add to SpriteList\n");
+  
+  if (mySpriteList) {
+    mySpriteList->addSprite(this);
+  }
+  
+  dbgMsg(c_excessive,"Sprite::Sprite(), added to spritelist (%s:%d)\n",obj_type_string,mynumber);
+
 
 }
 

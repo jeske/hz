@@ -26,6 +26,7 @@
 
 #include "map.h"
 #include "s_lua.h"
+#include "s_hz.h"
 #include "spritet.h" // sprite type
 #include "view.h" // for multiView class
 #include "main.h" // for mainTabView
@@ -513,10 +514,9 @@ void setup_game(void)
 	Sprite *sp;
 	type = findSpriteType("mainship");
 	if (type) {
-		dbgMsg(c_info,"adding SpriteType mainship\n");
-		sp = new LuaSprite(defaultSpriteList, type , 50.0,50.0,0.0,0.0);
-		// mainView->setShipSprite(sp);
-		mainViewPort->followSprite(sp);
+	  dbgMsg(c_info,"adding SpriteType mainship\n");
+	  sp = type->makeInstance(defaultSpriteList,50.0,50.0,0.0,0.0);
+	  mainViewPort->followSprite(sp);
 	} else {
 		dbgMsg(c_info,"no mainship SpriteType!\n");					
 	}
@@ -532,6 +532,9 @@ void setup_game(void)
 	}
 	lua_endblock();
 
+	// hack to try the C++ sprites
+
+	new SHZFlying(defaultSpriteList,type,50.0,100.0,0.0,0.0);
 
 	printf("setup_game() finished\n");
 	fflush(stdout);

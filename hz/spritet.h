@@ -24,8 +24,8 @@
 struct sprite_chunk_struct;
 
 typedef struct {
-	char name[20];
-	struct sprite_chunk_struct *ptr;
+  char name[20];
+  struct sprite_chunk_struct *ptr;
 } IMAGELISTENTRY;
 
 
