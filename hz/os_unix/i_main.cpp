@@ -18,7 +18,6 @@
 #include "i_console.h"
 #include "net.h" // for init_server();
 #include "main.h" // for initViews();
-#include "donuts.h" // various vars that should be elsewhere
 
 
 int usage (char *argv0)
@@ -47,19 +46,8 @@ int main (int argc, char *argv[])
   {
     switch (c)
     {
-      case 'e':
-	bUseEmulation = TRUE;
-	printf("UseEmulation\n");
-	break;
-      case 't':
-	bTest = TRUE;
-	break;
       case 'S':
 	bWantSound = FALSE;
-	break;
-      case 'x':
-	bStress= TRUE;
-	bTest = TRUE;
 	break;
       case 'h':
       case '?':
