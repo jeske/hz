@@ -1,0 +1,13 @@
+CC = gcc
+CPP = g++
+X_INCLUDES = /usr/X11/include
+LUA_INCLUDES = ../lua31/include
+CFLAGS = -g -DLINUX -DOS_UNIX -I.  `sdl-config --cflags` -I$(X_INCLUDES) -I$(LUA_INCLUDES) -Ios_unix_sdl
+VPATH = . ./os_unix_sdl/
+
+X_LIBS = `sdl-config --libs` -L/usr/X11/lib -L/usr/X11R6/lib -lSDL_ttf -lttf -lXpm -lXext -lX11 # -lefence
+LUA_LIBS = -L../lua31/lib -llua -llualib
+LIBS = $(X_LIBS) $(LUA_LIBS) -lm
+
+TARGET=xhz
+PLATFORM_OBJS = i_console.o i_draw.o i_video.o i_system.o i_main.o SDL_gfxPrimitives.o

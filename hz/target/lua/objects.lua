@@ -38,7 +38,12 @@ a_key_map = {
 	[65363] = "right",
 	[65364] = "down",
 	[111] = "o",
-	[112] = "p"
+	[112] = "p",
+-- SDL key codes
+        [273] = "up",
+	[274] = "down",
+	[275] = "right",
+	[276] = "left"
 };
 
 -- cos/sin tables

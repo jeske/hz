@@ -473,7 +473,9 @@ int I_createimage (IMAGEDATA *imd, IMAGE *image, int is_sprite)
 {
   XImage *bImage = NULL, *mImage = NULL;
   int xx, yy; 
-  uint16 *imdata;
+  uint8 *data;
+  uint16 *dpdata;
+  uint32 *qpdata;
   uint8 *mask_data;
   int size;
   int r, g, b;
@@ -484,9 +486,11 @@ int I_createimage (IMAGEDATA *imd, IMAGE *image, int is_sprite)
   I_Message ("Creating image %dx%d, Size is %d\n", imd->width, imd->height, 
   imd->width * imd->height * divisor);
 
-  imdata = (uint16 *) malloc (imd->width * imd->height * 8);
+  data = (uint8 *) malloc (imd->width * imd->height * 24);
+  qpdata = (uint32 *) data;
+  dpdata = (uint16 *) data;
 
-  if (imdata == NULL)
+  if (data == NULL)
     return FALSE;
 
   if (is_sprite)
@@ -506,8 +510,35 @@ int I_createimage (IMAGEDATA *imd, IMAGE *image, int is_sprite)
       switch (X_depth)
       {
 	case 24:
+	  uint32 qp;
+
 	  if (imd->colordepth == 24)
 	  {
+	    /* 24 to 16 bit */
+	    b = (imd->data[(xx + yy * imd->width) * 3]);
+	    g = (imd->data[(xx + yy * imd->width) * 3+1]);
+	    r = (imd->data[(xx + yy * imd->width) * 3+2]);
+	  }
+	  else if (imd->colordepth == 8)
+	  {
+	    b = imd->palette[imd->data[(xx + yy * imd->width)]].blue; 
+	    r = imd->palette[imd->data[(xx + yy * imd->width)]].red; 
+	    g = imd->palette[imd->data[(xx + yy * imd->width)]].green; 
+	  }
+	  if (xx % 2 == 1)
+	  {
+	    dpdata[(xx + yy * imd->width) * 2] = (r << 8) | (g);
+	    dpdata[(xx + yy * imd->width) * 2 + 1] = (b << 8);
+	  }
+	  else
+	  {
+	    dpdata[(xx + yy * imd->width) * 2 - 1] |= r;
+	    dpdata[(xx + yy * imd->width) * 2] = (g << 8) | (b);
+	  }
+	  if (is_sprite && qp == qpdata[0])
+	  {
+	    // this is a mask bit
+	    mask_data[(xx / 8) + (yy * size)] |= (1 << (xx % 8));
 	  }
 	  break;
 	case 16:
@@ -527,8 +558,8 @@ int I_createimage (IMAGEDATA *imd, IMAGE *image, int is_sprite)
 	    g = imd->palette[imd->data[(xx + yy * imd->width)]].green; 
 	  }
 	  dp = ((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3); 
-	  imdata[xx + yy * imd->width] = dp;
-	  if (is_sprite && dp == imdata[0])
+	  dpdata[xx + yy * imd->width] = dp;
+	  if (is_sprite && dp == dpdata[0])
 	  {
 	    // this is a mask bit
 	    mask_data[(xx / 8) + (yy * size)] |= (1 << (xx % 8));
@@ -538,8 +569,8 @@ int I_createimage (IMAGEDATA *imd, IMAGE *image, int is_sprite)
     }
   }
 
-  bImage = XCreateImage(X_display, X_visual, X_depth, ZPixmap, 0, 
-	(char *)imdata, imd->width, imd->height, 32, imd->width *divisor); 
+  bImage = XCreateImage(X_display, X_visual, X_depth, ZPixmap, 1, 
+	(char *)data, imd->width, imd->height, 32, imd->width *divisor); 
 
   image->surf = XCreatePixmap (X_display, RootWindow (X_display, 
       DefaultScreen (X_display)), imd->width, imd->height, 

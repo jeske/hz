@@ -41,8 +41,8 @@ OBJS = $(ALL_OBJS:%=obj/%)
 COMP_OBJS = $(ALL_OBJS:%=obj\%)
 
 
-.c.o:
-	$(CC) -ggdb -c $< $(CFLAGS)
+obj/%.o : %.c
+	$(CC) -ggdb -c $< $(CFLAGS) -o $@
 
 obj/%.o : %.cpp
 	$(CPP) -ggdb -c $< $(CFLAGS) -o $@

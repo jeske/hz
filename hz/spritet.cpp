@@ -168,7 +168,7 @@ void SpriteType::DrawRecurse(Sprite *spr_obj, int x, int y, SPRITECHUNK *cur, RE
 		RECT dest;
 
 		
-		if (an_image->surf) {
+		if (an_image->surf != NULL) {
 		dbgMsg(c_error,"drawing image [%s] (%d,%d)\n",an_image->name,an_image->src.right, an_image->src.bottom);
 		
 
@@ -231,7 +231,6 @@ void SpriteType::DrawRecurse(Sprite *spr_obj, int x, int y, SPRITECHUNK *cur, RE
 				src.bottom -= clip_dist;
 				dbgMsg(c_error,"clipbottom [%s] at (%d,%d)\n",an_image->name,x,y);
 			}
-			
 			
 						
 			this->doBlit(&dest, &src, an_image);
