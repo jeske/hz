@@ -177,11 +177,12 @@ doTick = function(self,tick_diff)
 			-- we need to try and drop it!!
 			print("dropping unit ".. self.carrying_unit.obj_type_name);
 			self.carrying_unit = nil;
-		end
-	
-		self.attempt_pickup_drop_timer = self.attempt_pickup_drop_timer - tick_diff;
-		if self.attempt_pickup_drop_timer <= 0 then
-			self.attempt_pickup_drop_timer = nil;
+			self.attempt_pickup_drop_timer = nil; -- reset the timer!
+		else 
+			self.attempt_pickup_drop_timer = self.attempt_pickup_drop_timer - tick_diff;
+			if self.attempt_pickup_drop_timer <= 0 then
+				self.attempt_pickup_drop_timer = nil;
+			end	
 		end
 	end
 

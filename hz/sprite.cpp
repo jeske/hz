@@ -47,7 +47,7 @@ SpriteList *defaultSpriteList = NULL;
 // class Sprite
 //   - a map sprite
 
-static int sprite_number = 0;
+static int sprite_number = 1; // start at one because Lua bases arrays at 1
 
 Sprite::Sprite(SpriteList *aList, SpriteType *a_type, double x, double y, double vx, double vy) {
 	dbgMsg(c_excessive,"Sprite::Sprite(), creating typed sprite\n");

@@ -11,6 +11,7 @@ function dir_object(a_table, collect_data)
 	else
 		recurse_data = {};
 		recurse_data["function"] = {}; -- hack to get it first in the hash
+		recurse_data["overridden"] = {}; -- record overridden stuff!
 	end
 
 	local i,v = next(a_table,nil);
@@ -21,9 +22,9 @@ function dir_object(a_table, collect_data)
 			recurse_data[type(v)] = type_tbl
 		end
 
-		if i ~= "_parents" then
+		if (i ~= "_parents") and (i ~= "_slotcache") then
 			if type_tbl[i] then
-				type_tbl[i .. "_ov"] = v
+				recurse_data["overridden"][tostring(a_table.obj_type_name) .. ":" .. i] = v
 			else	
 				type_tbl[i] = v	
 			end
@@ -38,7 +39,7 @@ function dir_object(a_table, collect_data)
 	if p_table then
 		local i,v = next(p_table,nil)
   		while i do
-			dir_table(v,recurse_data);
+			dir_object(v,recurse_data);
 			i,v = next(p_table,i)
 		end
 	end
@@ -134,9 +135,9 @@ function printTables(a_table, owner,tabspace)
 
     local formatIndex = function(index,tabspace)
 	    if (type(index) == 'string') then
-		   return (tabspace .. "'"..index.."'");
+		   return (tabspace .. index);
 		else
-		   return (tabspace .. tostring(index));
+		   return (tabspace .. "'" ..tostring(index) .. "'");
 		end
 	end
 
@@ -151,8 +152,13 @@ function printTables(a_table, owner,tabspace)
 
 		while i do
 			if (type(v) == "table") then
-				print("+" .. formatIndex(i,tabspace) .. "=> ".. tostring(v));
-				printTables(v,owner,tabspace.."    ");
+				local classname = v.obj_type_name;
+				if v._parents then
+					print(formatIndex(i,tabspace) .. " = object("..classname..") ".. tostring(v));
+				else
+					print(formatIndex(i,tabspace) .. "=> ".. tostring(v));
+					printTables(v,owner,tabspace.."    ");
+				end
 			elseif (type(v) == "function") then
 
 				print(tabspace .. tostring(i).."();      " .. tostring(v));
