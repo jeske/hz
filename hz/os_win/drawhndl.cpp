@@ -70,7 +70,7 @@ void FlipScreen( void )
 
 
 
-
+// this pretty much does not work!
 
 int RestoreSurfaces( void )
 {
@@ -84,10 +84,12 @@ int RestoreSurfaces( void )
     if( ddrval != DD_OK )
         return FALSE;
 
+#if 0
     // Create and set the palette for the splash bitmap
     lpSplashPalette = DDLoadPalette( lpDD, "SPLASH" );
     if( NULL == lpSplashPalette )
         return CleanupAndExit("DDLoadPalette SPLASH");
+#endif
 
     // set the palette before loading the art
 //    lpFrontBuffer->SetPalette(lpArtPalette );

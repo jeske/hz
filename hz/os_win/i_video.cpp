@@ -234,24 +234,7 @@ BOOL I_InitVideo( void )
 
 void bltSplash( void )
 {
-    HRESULT     ddrval;
-    HBITMAP     hbm;
 
-    // set the palette before loading the splash screen
-    lpFrontBuffer->SetPalette(lpSplashPalette);
-
-    hbm = (HBITMAP)LoadImage( GetModuleHandle( NULL ), "SPLASH", IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION );
-//    hbm = (HBITMAP)LoadImage( NULL, "SPLASH", IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION );
-    if ( NULL == hbm )
-        return;
-
-    // if the surface is lost, DDCopyBitmap will fail and the surface will
-    // be restored in FlipScreen.
-    ddrval = DDCopyBitmap( lpBackBuffer, hbm, 0, 0, 0, 0 );
-
-    DeleteObject( hbm );
-
-    FlipScreen();
 }
 
 #ifdef REMOVE_VIEWPORT_BLIT

@@ -114,7 +114,7 @@ void	paintScreen(void);
 void    DestroyGame( void );
 
 
-extern LPDIRECTDRAWPALETTE     lpSplashPalette;
+// extern LPDIRECTDRAWPALETTE     lpSplashPalette;
 
 extern BOOL                    bSoundEnabled;
 extern BOOL                    bPlayIdle;

@@ -131,7 +131,7 @@ void Sprite::SpriteSetup(SpriteList *aList, SHORT a_type, double x, double y, do
 	if (!lua_istable(objects_tbl) || !lua_istable(object_types_tbl)) {
 		dbgMsg(c_error,"ERR: No 'objects' table to hold new Lua mirror, _OR_ no 'object_types' table\n");
 	} else {
-		// get _THIS_ object type from the "object_type" table
+		// get _THIS_ object type from the "object_types" table
 		// of templates...
 		lua_pushobject(object_types_tbl);
 		lua_pushstring(obj_type_string);

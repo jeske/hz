@@ -21,6 +21,10 @@ unsigned long int i_time_ms() {
 }
 
 
+// This is probably doing something really BAD to string that are
+// still managed by Lua... however, we're not going to deal with
+// that right now....
+
 const char *i_fix_path(const char *fix_path) {
   char *next_chr = (char *)fix_path;
   
@@ -47,24 +51,8 @@ int CleanupAndExit( char *err)
     if( lpFrontBuffer != NULL )
         lpFrontBuffer->Release();
 
-    if( lpSplashPalette != NULL )
-        lpSplashPalette->Release();
-
     if( lpDD != NULL )
         lpDD->Release();
-
-
-#if 0
-	if( lpTile00 != NULL )
-		lpTile00->Release();
-
-	if( lpTile01 != NULL )
-		lpTile01->Release();
-
-	if( lpTile02 != NULL )
-		lpTile02->Release();
-
-#endif
 
 	if (realScreenView) {
 		delete realScreenView;

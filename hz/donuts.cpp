@@ -87,7 +87,7 @@ void UpdateFrame( void )
 }
 
 
-LPDIRECTDRAWPALETTE     lpSplashPalette;
+// LPDIRECTDRAWPALETTE     lpSplashPalette;
 BOOL                    bSoundEnabled = FALSE;
 BOOL                    bPlayIdle = FALSE;
 BOOL                    bPlayBuzz = FALSE;
