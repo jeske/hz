@@ -25,7 +25,7 @@ hz_register_objtype("bullet",{
 	
 	-- apply damage!
 	ge_collision = function(self,x,y,whoIhit)
-		if ((self.layer == whoIhit.layer)) then
+		if (whoIhit.damage and (whoIhit.creator ~= self) and (self.layer == whoIhit.layer)) then
 			if (collisions_active < MAX_COLLISIONS) then
 				C_addsprite("explosion",x,y);
 				collisions_active = collisions_active + 1;

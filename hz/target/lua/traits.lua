@@ -1,5 +1,6 @@
 controllable = {
 key_maps = a_key_map, -- we need the key map!
+firing_frequency = 200.0,
 
 keyUp = function (self,vk_code)
 	local map = self.key_maps[vk_code];
@@ -44,7 +45,7 @@ inputEvent = function(self,ev)
 			C_obj_followsprite(nextobj.objnum);
 		end
 		
-	elseif (ev == 32) then -- space 
+	elseif (ev == 1000032) then -- space 
 		-- fire!
 		local xpos,ypos;
 		local dir;
@@ -79,12 +80,17 @@ handleKeys = function (self)
 
 	printTable(key);
 
-
 	if (key.o) then
 		self.timgdir = self.timgdir + 1;
 		if (self.timgdir > 40) then
 			self.timgdir = self.timgdir - 40.0;
 		end
+	end
+
+	if (key.space) then
+		self.firing = 1;
+	else
+		self.firing = nil;
 	end
 
 	if (key.p) then
@@ -145,6 +151,13 @@ end
 air_physics = {
 vx = 0, vy = 0, rot = 0,
 doTick = function(self,tick_diff)
+
+	-- if we need to fire a bullet, fire one!
+
+	handle_firing(self,tick_diff);
+
+	-- on to physics calculations
+
 	local vx, vy, rot;
 	local dest_dir = self.dest_dir;
 	local ax, ay; -- acceleration vectors
@@ -397,3 +410,41 @@ doTick = function(self,tick_diff)
 	
 end
 }; -- end groud_physics
+
+function handle_firing(self, tick_diff)
+	if self.firing then
+		local xpos,ypos;
+		local dir;
+
+		if self.ticks_til_next_shot then
+			self.ticks_til_next_shot = self.ticks_til_next_shot - tick_diff;
+		else
+			self.ticks_til_next_shot = 0;
+		end
+
+		if self.ticks_til_next_shot <= 0 then
+			self.ticks_til_next_shot = self.ticks_til_next_shot + self.firing_frequency;
+			if (self.timgdir) then
+				dir = self.timgdir;
+			else
+				dir = self.imgdir;
+			end
+
+			xpos,ypos = C_obj_pos(self.objnum);
+
+			local offset = 30;
+
+			new_bullet = C_addsprite(self.bullet_type,
+				xpos + 32 + (Dirx[dir] * offset), ypos + 32 + (Diry[dir-1] * offset), 
+				Dirx[dir-1] * 500.0/1000.0,
+				Diry[dir-1] * 500.0/1000.0);
+			if new_bullet then
+				print(new_bullet);
+				new_bullet.creator = self;
+			end
+
+		end
+	else
+		self.ticks_til_next_shot = nil;
+	end
+end

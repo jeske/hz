@@ -241,6 +241,7 @@ void C_addsprite() {
 	if (type) {
 		dbgMsg(c_excessive,"C_addsprite('%s',%f,%f,%f,%f).\n",type_name,x,y,vx,vy);
 		new_obj = new Sprite(defaultSpriteList, type , x,y,vx,vy);
+		lua_pushobject(lua_getref(new_obj->myLuaServerMirror));
 	} else {
 		dbgMsg(l_error,"no such SpriteType! [%s]\n",type_name);
 	}

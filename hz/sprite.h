@@ -84,8 +84,6 @@ private:
 		void doAITick(unsigned int tickDiff);
 	
 	int mynumber; // my sprite number...
-	int myLuaMirror; // the "ref" for my Lua Mirror    <-- client
-	int myLuaServerMirror; // the "ref" for my Lua "server" Mirror   <-- server
 
 
 	friend class Map;
@@ -104,6 +102,10 @@ private:
 	SpriteList *mySpriteList;
 
 public:
+	int myLuaMirror; // the "ref" for my Lua Mirror    <-- client
+	int myLuaServerMirror; // the "ref" for my Lua "server" Mirror   <-- server
+
+
 	int layer;
 	void setLayer(int new_layer);
 
