@@ -1,12 +1,69 @@
 $debug
 print("Util.lua!!!");
 
+function dir_table(a_table, collect_data)
+	-- this prints most tables out as normal tables, and 
+	-- knows how to descend the _parents class machinery
 
-function printGlobalVariables2()
+	local recurse_data;
+
+	if collect_data then
+		recurse_data = collect_data;
+	else
+		recurse_data = {};
+		recurse_data["function"] = {}; -- hack to get it first in the hash
+	end
+
+	local i,v = next(a_table,nil);
+	while i do
+		local type_tbl = recurse_data[type(v)]
+		if not type_tbl then
+			type_tbl = {}
+			recurse_data[type(v)] = type_tbl
+		end
+
+		if i ~= "_parents" then
+			if type_tbl[i] then
+				type_tbl[i .. "_ov"] = v
+			else	
+				type_tbl[i] = v	
+			end
+			
+		end
+		i,v = next(a_table,i);
+	end
+
+	
+	local p_table = a_table._parents
+
+	if p_table then
+		local i,v = next(p_table,nil)
+  		while i do
+			dir_table(v,recurse_data);
+			i,v = next(p_table,i)
+		end
+	end
+
+	if not collect_data then
+		-- we need to print out the summary!
+		printTables(recurse_data);
+	end
+
+end
+
+
+function dir(a_table)
 	local i;
         local scrwidth = 80; -- screen width
         local maxwidth = 0;
         local formatstring;
+
+	if a_table then
+		dir_table(a_table);
+		return;
+	end
+	-- otherwise they want the global table
+
 
         -- first found out the max function name width
 

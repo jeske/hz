@@ -46,10 +46,8 @@ inputEvent = function(self,ev)
 		end
 	
 	elseif (ev == 32) then
-		if self.Mode then
-			self.reqMode = "Transforming";
-		end
-	
+		-- try to pickup the unit under us!
+		self.attempt_pickup_drop_timer = 200;
 	elseif (ev == 1000032) then -- space 
 		-- fire!
 		local xpos,ypos;
@@ -61,7 +59,7 @@ inputEvent = function(self,ev)
 			dir = self.imgdir;
 		end
 
-		xpos,ypos = C_obj_pos(self.objnum);
+		xpos,ypos = C_obj_getPos(self.objnum);
 
 		C_addsprite(self.bullet_type,
 				xpos + 32 + (Dirx[dir] * 80), ypos + 32 + (Diry[dir-1] * 80), 
@@ -145,6 +143,16 @@ MAX_COLLISIONS = 5;
 
 collidable = {
 ge_collision = function(self,x,y,whoIhit)
+
+	if self.attempt_pickup_drop_timer then
+		if not self.carrying_unit then
+			print("trying to carry unit! " .. whoIhit.obj_type_name);
+			self.carrying_unit = whoIhit;
+			self.attempt_pickup_drop_timer = nil; -- don't pickup anymore
+		end
+
+	end
+
 	if ((collisions_active < MAX_COLLISIONS) and (self.layer == whoIhit.layer)) then
 		C_addsprite("explosion",x,y);
 		collisions_active = collisions_active + 1;
@@ -154,8 +162,34 @@ end
 }; -- end collidable
 
 air_physics = {
+	
+-- properties...
 vx = 0, vy = 0, rot = 0,
+
+	-- methods....
+
 doTick = function(self,tick_diff)
+
+  	-- handle carrying a unit
+	
+	if self.attempt_pickup_drop_timer then
+		if self.carrying_unit then
+			-- we need to try and drop it!!
+			print("dropping unit ".. self.carrying_unit.obj_type_name);
+			self.carrying_unit = nil;
+		end
+	
+		self.attempt_pickup_drop_timer = self.attempt_pickup_drop_timer - tick_diff;
+		if self.attempt_pickup_drop_timer <= 0 then
+			self.attempt_pickup_drop_timer = nil;
+		end
+	end
+
+	if self.carrying_unit then
+		x,y = C_obj_getPos(self.objnum);
+		C_obj_setPos(self.carrying_unit.objnum,x,y);
+ 	end
+
 
 	-- if we need to fire a bullet, fire one!
 
@@ -533,7 +567,7 @@ function handle_firing(self, tick_diff)
 				dir = self.rot + 1;
 			end
 
-			xpos,ypos = C_obj_pos(self.objnum);
+			xpos,ypos = C_obj_getPos(self.objnum);
 
 			local offset = 30;
 

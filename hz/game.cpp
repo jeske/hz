@@ -118,7 +118,7 @@ void C_obj_setLayer() {
 
 }
 
-void C_obj_pos() {
+void C_obj_getPos() {
 	Sprite *sp;
 	lua_Object objnum = lua_getparam(1);
 
@@ -132,10 +132,27 @@ void C_obj_pos() {
 	lua_pushnumber((float)sp->posy);
 }
 
-// C_obj_goTo(objnum, xloc, yloc) : a Lua function
-//
-// objnum : userdata pointer to Sprite
-// xloc, yloc : location to move to in pixels
+void C_obj_setPos() {
+	Sprite *sp;
+	lua_Object objnum  = lua_getparam(1);
+	lua_Object posx    = lua_getparam(2);
+	lua_Object posy    = lua_getparam(3);
+
+	if (!lua_isuserdata(objnum)) {
+		lua_error("incorrect argument 1 to function C_obj_setPos");
+	}
+
+	sp = (Sprite *)lua_getuserdata(objnum);
+
+	if (lua_isnumber(posx)) {
+		sp->posx = lua_getnumber(posx);
+	}
+	if (lua_isnumber(posy)) {
+		sp->posy = lua_getnumber(posy);
+	}
+}
+
+
 
 void C_obj_setVelocity() {
 	Sprite *sp;
@@ -172,6 +189,23 @@ void C_obj_getVelocity() {
 	lua_pushnumber((float)sp->vely);     // y velocity
 
 }
+
+// C_write(String)
+
+void C_write() {
+  lua_Object text_string = lua_getparam(1);
+
+  if (!lua_isstring(text_string)) {
+    lua_error("incorrect type for string argument 1 to function C_write()");
+  }
+
+  printf("%s",lua_getstring(text_string));
+}
+
+// C_obj_goTo(objnum, xloc, yloc) : a Lua function
+//
+// objnum : userdata pointer to Sprite
+// xloc, yloc : location to move to in pixels
 
 void C_obj_goTo() {
 	Sprite *temp;
@@ -386,46 +420,49 @@ void C_luaerror_handler() {
 }
 
 void register_luafunctions() {
-	// C_obj_goTo(objnum, xloc, yloc); 
-	// locations in pixels
-	// objnum should be a "userdata" pointer to a sprite...
-	lua_register("C_obj_goTo",C_obj_goTo);
-	lua_register("C_obj_delete",C_obj_delete);
-	lua_register("C_sprite_addtype",C_sprite_addtype);
-	lua_register("C_addsprite",C_addsprite);
-	lua_register("C_sprite_listtypes", C_sprite_listtypes);
-	lua_register("C_obj_viewFollow", C_obj_viewFollow);
-	lua_register("C_obj_getVelocity", C_obj_getVelocity);
-	lua_register("C_obj_setVelocity", C_obj_setVelocity);
-	lua_register("C_obj_followsprite", C_obj_followsprite);
-	lua_register("C_obj_pos", C_obj_pos );
-	lua_register("C_obj_setLayer", C_obj_setLayer);
-	lua_register("C_setpalette", C_setpalette);
-	lua_register("C_tile_addtype", C_tile_addtype);
-	lua_register("C_setmapsquare", C_setmapsquare);
-	lua_register("C_getmapsquare", C_getmapsquare);
-	lua_register("C_getmapsize", C_getmapsize);
-	
-	// register our error handler
+  // C_obj_goTo(objnum, xloc, yloc); 
+  // locations in pixels
+  // objnum should be a "userdata" pointer to a sprite...
+  lua_register("C_obj_goTo",C_obj_goTo);  // old way to get an object goingn towards something.
+
+  lua_register("C_obj_delete",C_obj_delete);
+  lua_register("C_sprite_addtype",C_sprite_addtype);
+  lua_register("C_addsprite",C_addsprite);
+  lua_register("C_sprite_listtypes", C_sprite_listtypes);
+  lua_register("C_obj_viewFollow", C_obj_viewFollow);
+  lua_register("C_obj_getVelocity", C_obj_getVelocity);
+  lua_register("C_obj_setVelocity", C_obj_setVelocity);
+  lua_register("C_obj_followsprite", C_obj_followsprite);
+  lua_register("C_obj_getPos", C_obj_getPos );
+  lua_register("C_obj_setPos", C_obj_setPos );
+  lua_register("C_obj_setLayer", C_obj_setLayer);
+  lua_register("C_setpalette", C_setpalette);
+  lua_register("C_tile_addtype", C_tile_addtype);
+  lua_register("C_setmapsquare", C_setmapsquare);
+  lua_register("C_getmapsquare", C_getmapsquare);
+  lua_register("C_getmapsize", C_getmapsize);
+  lua_register("write",C_write);
+  
+  // register our error handler
 #if 0
-	lua_pushstring("error");
-	lua_pushcfunction(C_luaerror_handler);
-	lua_callfunction(lua_getglobal("setfallback"));
-	old_error_handler = lua_getparam(1);
+  lua_pushstring("error");
+  lua_pushcfunction(C_luaerror_handler);
+  lua_callfunction(lua_getglobal("setfallback"));
+  old_error_handler = lua_getparam(1);
 #endif
-
+  
 #if USING_LUA25
-
+  
   lua_pushobject(lua_setfallback("error", C_luaerror_handler));
   old_error_ref = lua_ref(1);
-
+  
 #endif
-
-// USING LUA31
+  
+  // USING LUA31
   lua_pushCclosure(C_luaerror_handler,0);
   lua_pushobject(lua_seterrormethod());
   old_error_ref = lua_ref(1); //locked ref!
-
+  
 }
 
 
@@ -535,7 +572,7 @@ void setup_game(void)
 	// hack to try the C++ sprites
 
 	Sprite *c_sprite = new SHZFlying(defaultSpriteList,type,50.0,100.0,0.0,0.0);
-	mainViewPort->followSprite(c_sprite);
+	// mainViewPort->followSprite(c_sprite);
 
 	printf("setup_game() finished\n");
 	fflush(stdout);

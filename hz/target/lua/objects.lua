@@ -6,6 +6,7 @@
 function hz_register_objtype(name, obj) 
 	if (obj ~= nil) then
 		add_parent(obj,world_object);
+		obj.obj_type_name = name;
 		
 		if (object_types[name] ~= nil) then
 			print("Object type [".. name .."] exists, redifining.");
