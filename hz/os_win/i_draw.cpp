@@ -13,6 +13,7 @@
 #include "i_video.h"     // for lpDD
 #include "hndlmgr.h"
 
+#include "i_system.h"
 #include "i_draw.h"      
 
 int g_images_loaded = 0;
@@ -24,6 +25,8 @@ int g_images_loaded = 0;
 // return 0 on success, non-zero on failure
 
 int I_loadImage(IMAGE *an_image, const char *image_name,int is_sprite) {
+
+  image_name = i_fix_path(image_name);
 
 		// strcpy(an_image->name,image_name);
 		an_image->name = strdup (image_name);

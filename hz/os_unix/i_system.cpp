@@ -13,6 +13,14 @@
 #include "i_console.h"
 #include <stdlib.h>
 
+// do nothing on unix!
+
+const char *i_fix_path(const char *a_path) {
+  return (a_path);
+}
+
+// return the system time in ms
+
 unsigned long int i_time_ms() {
   static struct timeval last;
   struct timeval current;

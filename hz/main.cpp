@@ -10,7 +10,7 @@
  * WinMain() function.
  */
 
-#ifdef OS_WIN
+#if defined(OS_WIN)
 #include <io.h>
 #include "resource.h"
 #include "DrawHndl.h"
@@ -240,19 +240,11 @@ void initViews() {
 
 		// test an imageview behind the console..
 		temp_view = new ImageView(0,0,ScreenX,ScreenY,"splash.bmp");
-//#ifdef OS_WIN	
-//		temp_view = new ImageView(0,0,40,ScreenY,"std\\ConBKG.bmp");
-//#else
-//		temp_view = new ImageView(0,0,40,ScreenY,"std/conbkg.bmp");
-//#endif
+
+//		temp_view = new ImageView(0,0,40,ScreenY,i_fix_path("std/conbkg.bmp"));
 //		temp_view->setDepth(2);
 //		consolePane->addSubview(temp_view);
-//
-//#ifdef OS_WIN
-//		temp_view = new ImageView(0,0,ScreenX, 40, "std\\ConBKG.bmp");
-//#else
-//		temp_view = new ImageView(0,0,ScreenX, 40, "std/conbkg.bmp");
-//#endif
+//		temp_view = new ImageView(0,0,ScreenX, 40, i_fix_path("std/conbkg.bmp"));
 
 		temp_view->setDepth(3);
 		consolePane->addSubview(temp_view);
@@ -285,15 +277,10 @@ void initViews() {
 		temp_view->setDepth(-1);
 		gameScreenPane->addSubview(temp_view); 
 
-#ifdef OS_WIN	
-		char player_view_filename[] = "std\\con_player_view.bmp";
-		char status_view_filename[] = "std\\con_status.bmp";
-		char hzdoors_view_filename[] = "std\\con_hz_doors.bmp";
-#else
 		char player_view_filename[] = "std/con_player_view.bmp";
 		char status_view_filename[] = "std/con_status.bmp";
 		char hzdoors_view_filename[] = "std/con_hz_doors.bmp";
-#endif
+
 		int player_view_width = 177, player_view_height = 145;
 		int status_view_width = 177, status_view_height = 143;
 		int hzdoors_view_width = 177, hzdoors_view_height = 128;

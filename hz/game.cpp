@@ -476,9 +476,9 @@ void init_map() {
 	spriteTmplManager->max_sprite.width = 250;  // this sets up the max sprite size
 	spriteTmplManager->max_sprite.height = 250;
 
-//	aTileSet->newTile(new Tile("std\\Tile00.bmp"));
-//	aTileSet->newTile(new Tile("std\\Tile01.bmp"));
-//	aTileSet->newTile(new Tile("std\\Tile02.bmp"));
+//	aTileSet->newTile(new Tile("std/Tile00.bmp"));
+//	aTileSet->newTile(new Tile("std/Tile01.bmp"));
+//	aTileSet->newTile(new Tile("std/Tile02.bmp"));
 
 	dbgMsg(c_excessive,"initmap(): going to init Map\n");
 

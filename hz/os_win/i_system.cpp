@@ -7,6 +7,8 @@
 // system dependent general stuff
 //
 
+#include <string.h>
+
 #include "i_system.h"
 #include "i_video.h"
 #include "..\VConsole.h"
@@ -19,6 +21,16 @@ unsigned long int i_time_ms() {
 }
 
 
+const char *i_fix_path(const char *fix_path) {
+  char *next_chr = (char *)fix_path;
+  
+  while (next_chr = strchr(next_chr,'/')) {
+    *next_chr = '\\'; // convert to backslash
+    next_chr++;       // advance
+  }
+  return fix_path;
+}
+  
 int CleanupAndExit( char *err)
 {
 	dbgMsg(c_info,"CleanupAndExit:");

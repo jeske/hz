@@ -73,6 +73,10 @@ NOTE: The reason it compiles so slow (on windows) is that gcc does
       not yet support precompiled headers and the windows header
       files are quite large. Perhaps someday they'll fix this.
 
+NOTE: All paths should be specified in UNIX style with '/' (i.e.
+      forward slash) characters. i_fix_path() is responsible
+      for converting to backslashes on windows....
+
 4. Acknowledgements
 
 The engine has been ported to XWindows by Brandon Long. Specifically 

@@ -14,7 +14,7 @@
 // should be an incrementing counter which increments one every millisecond.
 // 
 unsigned long int i_time_ms(void); 
-
+const char *i_fix_path(const char *path);
 
 int CleanupAndExit( char *err);
 void i_convert_path (char *path);

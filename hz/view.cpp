@@ -806,31 +806,7 @@ void TextView::clearText() {
 
 ImageView::ImageView(int x, int y, int w, int h, char *imageName) : 
 						BufferedView(x,y,w,h) {
-#if 0
-	HRESULT     ddrval;
-    HBITMAP     hbm;
-
-    // set the palette before loading the splash screen
-    // lpFrontBuffer->SetPalette(lpSplashPalette );
-
-	hbm = (HBITMAP)LoadImage(NULL, imageName, 
-		IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE | LR_CREATEDIBSECTION );
-
-    if ( NULL == hbm ) {
-		if (consoleView) {
-			consoleView->addText("Failed loading Image...");
-		}
-        return;
-	}
-
-    // if the surface is lost, DDCopyBitmap will fail and the surface will
-    // be restored in FlipScreen.
-    ddrval = DDCopyBitmap( backingStore, hbm, 0, 0, 0, 0 );
-
-    DeleteObject( hbm );
-#else
     I_loadImage (this->backingStore.image, imageName, 1);
-#endif
 }
 
 
