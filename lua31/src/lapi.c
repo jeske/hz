@@ -1,5 +1,5 @@
 /*
-** $Id: lapi.c,v 1.1 2000/07/20 06:57:22 jeske Exp $
+** $Id: lapi.c,v 1.2 2001/05/15 07:05:30 blong Exp $
 ** Lua API
 ** See Copyright Notice in lua.h
 */
@@ -320,7 +320,7 @@ void lua_pushnumber (double n)
   incr_top;
 }
 
-void lua_pushstring (char *s)
+void lua_pushstring (const char *s)
 {
   if (s == NULL)
     ttype(L->stack.top) = LUA_T_NIL;
