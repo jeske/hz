@@ -1,6 +1,6 @@
 CC = gcc 
 CPP = g++ 
-DX_INCLUDES = -IC:/dx7asdk/dxf/include -fvtable-thunks
+DX_INCLUDES = -IC:/local/dx7asdk/include -fvtable-thunks
 LUA_INCLUDES = -I../lua31/include
 CFLAGS = -g -DOS_WIN -I. $(DX_INCLUDES) $(LUA_INCLUDES) -Ios_win
 VPATH = .;./os_win/;./obj/
@@ -12,3 +12,8 @@ LIBS = $(DX_LIBS) $(LUA_LIBS) -lm
 TARGET=hz.exe
 PLATFORM_OBJS = hzres.o i_console.o i_draw.o i_video.o i_system.o i_sprtet.o \
            i_main.o hndlmgr.o drawhndl.o ddutil.o control.o platform.o
+
+
+# for the windows program icon and some other junk
+obj/hzres.o:
+	windres os_win/hz.res obj/hzres.o

@@ -58,7 +58,18 @@ to help contribute to the code, I hope you agree with these causes.
   play a 800x600x16bitx70fps 2d RTS game. If you download and run this
   engine, you'll see how easily possible that is on modern hardware.
 
-3. Acknowledgements
+3. Developer Info/Installation
+
+This source kit contains everything you need to compile and run HZ.
+If you have the windows kit, it comes with a full installation of
+Mingw (Gcc for windows), the appropriate include files, and directx
+libraries. If you have the Linux kit, you just have the HZ source.
+On Windows, you'll need to run c:\local\startshell.bat, and then
+you should be able to "make" first inside lua31, and then inside 
+the c:\hz\hz-files\hz directory. If you have any problems with the
+build, email me at <jeske@chat.net>.
+
+4. Acknowledgements
 
 The engine has been ported to XWindows by Brandon Long. Specifically 
 Linux, but should run on other *NIX. It dosn't get nearly the stunning

@@ -1,4 +1,6 @@
 
+all: $(TARGET) install
+
 include platform.conf
 
 include make.conf.$(PLATFORM)
@@ -19,7 +21,6 @@ COMP_OBJS = $(ALL_OBJS:%=obj\%)
 obj/%.o : %.cpp
 	$(CPP) -c $(CFLAGS) $< -o $@
 
-all: $(TARGET) install
 
 platform.conf: 
 	@echo "**************************************************"
@@ -40,9 +41,6 @@ install: $(TARGET)
 
 clean: 
 	rm -f $(TARGET) obj/*.o Makefile.bak
-
-obj/hzres.o:
-	windres os_win/hz.res obj/hzres.o
 
 ifeq ($(PLATFORM),linux)
 # depend does not work right on Windows right now...
