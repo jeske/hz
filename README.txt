@@ -22,8 +22,8 @@ The HZ Engine is Copyright (C) 1998 by David W. Jeske
   Some misc artwork is borrowed (without permission) from 
     other sources.
 
-Homepage: http://www.chat.net/~jeske/Projects/HZ/
-Author:   David W. Jeske <jeske@chat.net>
+Homepage: http://dj1.willowmail.com/~jeske/Projects/HZ/
+Author:   David W. Jeske   <   jeske at chat.net   > 
 
 1. License
 
@@ -44,7 +44,7 @@ to help contribute to the code, I hope you agree with these causes.
   us are still proud to have ahold of. You can read all about why
   Herzog Zwei is a great game on my webpage:
 
-   http://www.chat.net/~jeske/Projects/HZ/docs/why_is_hz_great.html 
+   http://dj1.willowmail.com/~jeske/Projects/HZ/docs/why_is_hz_great.html 
 
 2 - I spent time working at both S3 and 3Dfx (PC graphics chip companies)
   when each of them were hot companies with hot products. PC 3D 
