@@ -22,6 +22,8 @@ The HZ Engine is Copyright (C) 1998 by David W. Jeske
   Some misc artwork is borrowed (without permission) from 
     other sources.
 
+Released under the Apache 2.0 License
+
 Homepage: http://dj1.willowmail.com/~jeske/Projects/HZ/
 Author:   David W. Jeske   <   jeske at chat.net   > 
 
